@@ -6,16 +6,16 @@ export const en: Content = {
     description:
       'Tell the chat who you want to reach. Up to 100 credits a search starts at once; above that the agent shows you the plan with the most it can cost, and you approve it. Then it delivers people with an email checked by a verifier and the source of every data point.',
   },
-  sections: { how: 'how', why: 'why', pricing: 'pricing', faq: 'faq' },
+  sections: { how: 'how', why: 'why', openSource: 'open-source', faq: 'faq' },
   nav: {
     homeLabel: 'Zenbree, home',
     label: 'Sections',
     how: 'How it works',
     why: 'Why',
-    pricing: 'Pricing',
+    openSource: 'Open source',
     faq: 'FAQ',
     signIn: 'Sign in',
-    tryFree: 'Try it free',
+    contact: 'Contact us',
   },
   menu: {
     open: 'Open menu',
@@ -27,9 +27,9 @@ export const en: Content = {
     eyebrow: 'AI agent for B2B outbound',
     titleLine: 'Describe your ideal customer.',
     titleEm: 'Zenbree finds who to contact.',
-    createList: 'Build your first list',
+    cta: 'Request access',
     seeHow: 'See how it works',
-    fine: 'The plan is free · You only pay for delivered rows · 25 credits to try',
+    fine: 'The plan is free · You only pay for delivered rows',
   },
   stage: {
     label: 'Product preview',
@@ -124,7 +124,6 @@ export const en: Content = {
       confirm: 'Over 500 credits, we also ask for a second confirmation.',
     },
     note: 'Companies and people found are free. A row without a required field is not delivered, and you do not pay for it.',
-    start: 'Create this list',
   },
   how: {
     eyebrow: 'How it works',
@@ -267,55 +266,17 @@ export const en: Content = {
       body: 'Search in any country. The app and the agent speak English, Italian, Spanish and French, in the language you pick, and reply drafts in the inbox follow the language of whoever writes to you. Exclusions (customers, competitors, anyone who unsubscribed) last forever.',
     },
   },
-  pricing: {
-    eyebrow: 'Pricing',
-    title: 'Know the cost before you start.',
-    sub: 'Up to 100 credits a search starts at once; above that the agent shows you the plan with the most it can cost, and you approve it. Prices excl. VAT. Reverse charge for EU businesses outside Italy with a valid VAT number; outside the EU, any tax due is calculated at checkout.',
-    perMonth: '/month',
-    plans: [
-      {
-        name: 'Starter',
-        price: '€29',
-        credits: '500 credits a month',
-        equivalent: '≈ 500 checked emails',
-        cta: 'Start with Starter',
-      },
-      {
-        name: 'Pro',
-        badge: 'for running campaigns',
-        price: '€79',
-        credits: '1,500 credits a month',
-        equivalent: '≈ 1,500 checked emails',
-        cta: 'Start with Pro',
-        highlight: true,
-      },
-    ],
-    costsTitle: 'What costs what',
-    costs: [
-      { label: 'Agent plan and questions', value: 'free' },
-      { label: 'Companies and people found (up to 1,000 rows a day)', value: 'free' },
-      { label: 'Email found and checked', value: '1 credit' },
-      { label: 'Phone number found', value: '8 credits' },
-      { label: 'AI cell with source', value: '1 credit' },
-    ],
-    packsTitle: 'Top-ups without a subscription',
-    packs: [
-      { label: '350 credits', value: '€19' },
-      { label: '1,000 credits', value: '€49' },
-      { label: '3,000 credits', value: '€149' },
-    ],
-    packsNote: 'They never expire.',
-    welcome: 'You get 25 free credits when you sign up, no card needed.',
-    example: {
-      title: 'Example: 500 people with email and phone',
-      cost: '500 × (1 + 8) = up to 4,500 credits',
-      buy: 'Starter + 3,000 and 1,000 top-ups = €227 + VAT',
-      note: 'You pay only for the emails and phones found: unused credits go back to your balance.',
-    },
-    expiry:
-      'Plan credits expire at the end of the period and renew every month; top-up credits stay. Plan credits are spent first.',
-    agencies:
-      'Agencies and consultants: one project per client, each with its own lists, exclusions, mailboxes, campaigns and inbox.',
+  openSource: {
+    eyebrow: 'Open source',
+    title: 'Open source. Run it yourself, or let us run it.',
+    sub: 'Zenbree is MIT licensed. Clone it, bring your own provider keys and adapt it to your workflow.',
+    selfHostTitle: 'Self-host',
+    selfHostBody: 'Docker Compose brings up the whole stack: API, worker, web and database.',
+    repoCta: 'View on GitHub',
+    hostedTitle: 'Hosted by us',
+    hostedBody:
+      'Prefer not to run servers and provider accounts? We offer a paid hosted service. Write to us and we will set it up.',
+    hostedCta: 'Contact us',
   },
   faq: {
     eyebrow: 'FAQ',
@@ -348,10 +309,6 @@ export const en: Content = {
         a: 'From professional data providers and public pages, always with the source. Every campaign email lets people unsubscribe, and anyone who does goes into the project’s exclusions forever. Exclusions apply to every campaign of the project. The legal basis and the GDPR art. 14 notice stay with the sender: Zenbree gives no legal advice.',
       },
       {
-        q: 'Do credits expire?',
-        a: 'Subscription credits do: whatever is unused at the end of the period expires, and new ones arrive every month. Top-up credits never expire. Plan credits are spent first.',
-      },
-      {
         q: 'If an email bounces, do I get the credit back?',
         a: 'A credit is charged when an address is found and the verifier does not reject it, catch-all included. A rejected address is not charged. After sending, we do not read bounces today (replies still reach your Zenbree inbox), and the credit for an email that later bounces is not refunded.',
       },
@@ -365,17 +322,14 @@ export const en: Content = {
       },
       {
         q: 'Can I set a spending cap?',
-        a: 'The cap is per search: the plan shows the maximum cost and, above 100 credits, it only starts after you approve (above 500 we ask for one more confirmation). There is no monthly limit, but you cannot spend more than your balance. Auto top-up is off until you turn it on.',
+        a: 'The cap is per search: the plan shows the maximum cost and, above 100 credits, it only starts after you approve (above 500 we ask for one more confirmation). There is no monthly limit, but you cannot spend more than your balance.',
       },
     ],
   },
   final: {
     title: 'Who do you want to reach?',
-    lede: 'Write it in one sentence. The plan is free, and you only pay for the list if it arrives.',
-    inputLabel: 'Describe your ideal customer',
-    placeholder: 'E.g. architecture firms in Turin with more than 10 people',
-    button: 'Start free',
-    fine: 'We only ask for your email to save the chat and your 25 trial credits.',
+    lede: 'Write to us and we will set it up for you.',
+    button: 'Request access',
   },
   footer: {
     legalLabel: 'Legal links',

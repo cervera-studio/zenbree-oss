@@ -1,0 +1,14 @@
+title = "Zenbree"
+
+[extend]
+useDefault = true
+
+# The only hits in the first scan were made-up keys in test fixtures and in docs that quote them.
+[[allowlists]]
+description = "fake keys in tests and in the docs that describe them"
+paths = [
+  '''^api/tests/''',
+  '''\.test\.tsx?$''',
+  '''^docs/''',
+  '''^\.claude/skills/''',
+]

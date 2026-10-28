@@ -34,6 +34,11 @@ timed() {
 
 checks() {
   timed python3 harness/size_check.py "$scope"
+  # Repo-wide, so only the full run: history of this branch. Staged changes are checked at commit time (lefthook).
+  if [[ "$scope" == all ]]; then
+    command -v gitleaks >/dev/null || { echo 'gitleaks is missing: brew install gitleaks' >&2; exit 1; }
+    timed gitleaks git --no-banner --redact
+  fi
   # CI runs these in its own harness job; locally only `all` runs them, so the local gate covers them too.
   if [[ "$scope" == all ]]; then
     (cd harness && timed python3 run_tests.py)

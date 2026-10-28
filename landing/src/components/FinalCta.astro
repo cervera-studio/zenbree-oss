@@ -13,11 +13,6 @@ const { final } = t;
   <div class="flex flex-col items-center gap-5 rounded-xl border border-line bg-raised px-10 py-18 text-center phone:gap-4 phone:px-5 phone:py-10">
     <h2 class="text-headline text-balance phone:text-title">{final.title}</h2>
     <p class="text-lead text-soft">{final.lede}</p>
-    <form class="flex w-full max-w-163 items-center gap-2.5 phone:flex-col phone:items-stretch" method="get" action={links.signUp}>
-      <label for="lpq" class="sr-only">{final.inputLabel}</label>
-      <input id="lpq" type="text" name="brief" placeholder={final.placeholder} class="h-11.5 min-w-0 flex-1 rounded-md phone:flex-none phone:text-body border border-line-strong bg-ground px-3 text-ui text-ink placeholder:text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />
-      <button type="submit" class:list={[btn('primary', 'lg'), 'px-5.5']}>{final.button}</button>
-    </form>
-    <p class="text-small text-muted">{final.fine}</p>
+    <a href={links.contact} class:list={[btn('primary', 'lg'), 'px-5.5']}>{final.button}</a>
   </div>
 </section>

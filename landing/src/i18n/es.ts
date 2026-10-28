@@ -1,7 +1,7 @@
 import type { Content } from '../content';
 
 export const es: Content = {
-  sections: { how: 'como-funciona', why: 'por-que', pricing: 'precios', faq: 'faq' },
+  sections: { how: 'como-funciona', why: 'por-que', openSource: 'codigo-abierto', faq: 'faq' },
   meta: {
     title: 'Zenbree · Agente de IA para outbound B2B',
     description:
@@ -12,10 +12,10 @@ export const es: Content = {
     label: 'Secciones',
     how: 'Cómo funciona',
     why: 'Por qué',
-    pricing: 'Precios',
+    openSource: 'Código abierto',
     faq: 'Preguntas',
     signIn: 'Iniciar sesión',
-    tryFree: 'Pruébalo gratis',
+    contact: 'Contáctanos',
   },
   menu: {
     open: 'Abrir menú',
@@ -27,9 +27,9 @@ export const es: Content = {
     eyebrow: 'Agente de IA para outbound B2B',
     titleLine: 'Describe a tu cliente ideal.',
     titleEm: 'Zenbree encuentra a quién contactar.',
-    createList: 'Crea tu primera lista',
+    cta: 'Solicita acceso',
     seeHow: 'Ver cómo funciona',
-    fine: 'El plan es gratis · Solo pagas las filas entregadas · 25 créditos para probar',
+    fine: 'El plan es gratis · Solo pagas las filas entregadas',
   },
   stage: {
     label: 'Vista previa del producto',
@@ -124,7 +124,6 @@ export const es: Content = {
       confirm: 'Por encima de 500 créditos, te pedimos también una segunda confirmación.',
     },
     note: 'Las empresas y personas encontradas son gratis. Una fila sin un campo obligatorio no se entrega y no la pagas.',
-    start: 'Crear esta lista',
   },
   how: {
     eyebrow: 'Cómo funciona',
@@ -267,55 +266,17 @@ export const es: Content = {
       body: 'Busca en cualquier país. La app y el agente hablan español, inglés, italiano y francés, en el idioma que elijas, y los borradores de respuesta de la bandeja de entrada siguen el idioma de quien te escribe. Las exclusiones (clientes, competidores, cualquiera que se haya dado de baja) duran para siempre.',
     },
   },
-  pricing: {
-    eyebrow: 'Precios',
-    title: 'Conoce el coste antes de empezar.',
-    sub: 'Hasta 100 créditos, la búsqueda empieza enseguida; por encima, el agente te enseña el plan con lo máximo que puede costar y lo apruebas tú. Precios sin IVA. Inversión del sujeto pasivo para empresas de la UE fuera de Italia con un NIF-IVA válido; fuera de la UE, los impuestos aplicables se calculan al pagar.',
-    perMonth: '/mes',
-    plans: [
-      {
-        name: 'Starter',
-        price: '29 €',
-        credits: '500 créditos al mes',
-        equivalent: '≈ 500 emails comprobados',
-        cta: 'Empieza con Starter',
-      },
-      {
-        name: 'Pro',
-        badge: 'para lanzar campañas',
-        price: '79 €',
-        credits: '1.500 créditos al mes',
-        equivalent: '≈ 1.500 emails comprobados',
-        cta: 'Empieza con Pro',
-        highlight: true,
-      },
-    ],
-    costsTitle: 'Cuánto cuesta cada cosa',
-    costs: [
-      { label: 'Plan y preguntas del agente', value: 'gratis' },
-      { label: 'Empresas y personas encontradas (hasta 1.000 filas al día)', value: 'gratis' },
-      { label: 'Email encontrado y comprobado', value: '1 crédito' },
-      { label: 'Teléfono encontrado', value: '8 créditos' },
-      { label: 'Celda de IA con fuente', value: '1 crédito' },
-    ],
-    packsTitle: 'Recargas sin suscripción',
-    packs: [
-      { label: '350 créditos', value: '19 €' },
-      { label: '1.000 créditos', value: '49 €' },
-      { label: '3.000 créditos', value: '149 €' },
-    ],
-    packsNote: 'No caducan nunca.',
-    welcome: 'Al registrarte recibes 25 créditos gratis, sin tarjeta.',
-    example: {
-      title: 'Ejemplo: 500 personas con email y teléfono',
-      cost: '500 × (1 + 8) = hasta 4.500 créditos',
-      buy: 'Starter + recargas de 3.000 y 1.000 = 227 € + IVA',
-      note: 'Solo pagas los emails y teléfonos encontrados: los créditos no usados vuelven a tu saldo.',
-    },
-    expiry:
-      'Los créditos del plan caducan al final del periodo y se renuevan cada mes; los de las recargas se quedan. Primero se gastan los del plan.',
-    agencies:
-      'Agencias y consultores: un proyecto por cliente, cada uno con sus listas, exclusiones, buzones, campañas y bandeja de entrada.',
+  openSource: {
+    eyebrow: 'Código abierto',
+    title: 'Código abierto. Hazlo tú, o nos encargamos nosotros.',
+    sub: 'Zenbree tiene licencia MIT. Clónalo, usa tus propias claves de proveedores y adáptalo a tu forma de trabajar.',
+    selfHostTitle: 'Self-host',
+    selfHostBody: 'Docker Compose levanta todo el stack: API, worker, web y base de datos.',
+    repoCta: 'Ver en GitHub',
+    hostedTitle: 'Alojado por nosotros',
+    hostedBody:
+      '¿Prefieres no gestionar servidores ni cuentas de proveedores? Ofrecemos un servicio alojado de pago. Escríbenos y lo activamos.',
+    hostedCta: 'Escríbenos',
   },
   faq: {
     eyebrow: 'Preguntas',
@@ -348,10 +309,6 @@ export const es: Content = {
         a: 'De proveedores de datos profesionales y de páginas públicas, siempre con la fuente. Cada email de campaña permite darse de baja, y quien lo hace entra para siempre en las exclusiones del proyecto. Las exclusiones valen para todas las campañas del proyecto. La base legal y el aviso del art. 14 del RGPD corresponden a quien envía: Zenbree no ofrece asesoramiento legal.',
       },
       {
-        q: '¿Caducan los créditos?',
-        a: 'Los de la suscripción sí: lo que no se usa al final del periodo caduca, y cada mes llegan nuevos. Los créditos de las recargas no caducan nunca. Primero se gastan los del plan.',
-      },
-      {
         q: 'Si un email rebota, ¿recupero el crédito?',
         a: 'Un crédito se cobra cuando se encuentra una dirección y el verificador no la rechaza, catch-all incluido. Una dirección rechazada no se cobra. Después del envío, hoy no leemos los rebotes (las respuestas siguen llegando a tu bandeja de Zenbree), y el crédito de un email que rebota más tarde no se devuelve.',
       },
@@ -365,17 +322,14 @@ export const es: Content = {
       },
       {
         q: '¿Puedo fijar un límite de gasto?',
-        a: 'El límite es por búsqueda: el plan muestra el coste máximo y, por encima de 100 créditos, solo empieza cuando lo apruebas (por encima de 500 pedimos una confirmación más). No hay límite mensual, pero no puedes gastar más que tu saldo. La recarga automática está desactivada hasta que la activas.',
+        a: 'El límite es por búsqueda: el plan muestra el coste máximo y, por encima de 100 créditos, solo empieza cuando lo apruebas (por encima de 500 pedimos una confirmación más). No hay límite mensual, pero no puedes gastar más que tu saldo.',
       },
     ],
   },
   final: {
     title: '¿A quién quieres llegar?',
-    lede: 'Escríbelo en una frase. El plan es gratis, y solo pagas la lista si llega.',
-    inputLabel: 'Describe a tu cliente ideal',
-    placeholder: 'P. ej., estudios de arquitectura en Turín con más de 10 personas',
-    button: 'Empieza gratis',
-    fine: 'Solo te pedimos el email para guardar el chat y tus 25 créditos de prueba.',
+    lede: 'Escríbenos y te activamos el acceso.',
+    button: 'Solicita acceso',
   },
   footer: {
     legalLabel: 'Enlaces legales',

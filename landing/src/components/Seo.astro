@@ -38,18 +38,6 @@ const jsonLd = [
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     description: t.meta.description,
-    offers: t.pricing.plans.map((p) => ({
-      '@type': 'Offer',
-      name: p.name,
-      price: p.price.replace(/[^\d.]/g, ''),
-      priceCurrency: 'EUR',
-      priceSpecification: {
-        '@type': 'UnitPriceSpecification',
-        price: p.price.replace(/[^\d.]/g, ''),
-        priceCurrency: 'EUR',
-        unitText: 'MONTH',
-      },
-    })),
   },
   {
     '@context': 'https://schema.org',

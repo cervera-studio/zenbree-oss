@@ -6,16 +6,16 @@ export const it: Content = {
     description:
       'Scrivi in chat chi vuoi raggiungere. Fino a 100 crediti la ricerca parte subito; oltre, l’agente ti mostra il piano con il costo massimo e lo approvi tu. Poi consegna persone con un’email controllata da un verificatore e la fonte di ogni dato.',
   },
-  sections: { how: 'come', why: 'perche', pricing: 'prezzi', faq: 'faq' },
+  sections: { how: 'come', why: 'perche', openSource: 'open-source', faq: 'faq' },
   nav: {
     homeLabel: 'Zenbree, home',
     label: 'Sezioni',
     how: 'Come funziona',
     why: 'Perché',
-    pricing: 'Prezzi',
+    openSource: 'Open source',
     faq: 'Domande',
     signIn: 'Accedi',
-    tryFree: 'Prova gratis',
+    contact: 'Contattaci',
   },
   menu: {
     open: 'Apri il menu',
@@ -27,9 +27,9 @@ export const it: Content = {
     eyebrow: "Agente AI per l'outbound B2B",
     titleLine: 'Descrivi il cliente ideale.',
     titleEm: 'Zenbree trova chi contattare.',
-    createList: 'Crea la prima lista',
+    cta: 'Richiedi l’accesso',
     seeHow: 'Guarda come funziona',
-    fine: 'Il piano è gratis · Paghi solo le righe consegnate · 25 crediti per provare',
+    fine: 'Il piano è gratis · Paghi solo le righe consegnate',
   },
   stage: {
     label: 'Anteprima del prodotto',
@@ -123,7 +123,6 @@ export const it: Content = {
       confirm: 'Oltre 500 crediti ti chiediamo anche una seconda conferma.',
     },
     note: 'Aziende e persone trovate sono gratis. Una riga senza un campo obbligatorio non viene consegnata e non la paghi.',
-    start: 'Crea questa lista',
   },
   how: {
     eyebrow: 'Come funziona',
@@ -266,55 +265,17 @@ export const it: Content = {
       body: 'Cerchi in qualunque paese. L’app e l’agente parlano italiano, inglese, spagnolo e francese, nella lingua che scegli, e le bozze di risposta in inbox seguono la lingua di chi ti scrive. Le esclusioni (clienti, concorrenti, chi si è disiscritto) valgono per sempre.',
     },
   },
-  pricing: {
-    eyebrow: 'Prezzi',
-    title: 'Sai il costo prima di partire.',
-    sub: "Fino a 100 crediti la ricerca parte subito; oltre, l'agente ti mostra il piano con il costo massimo e lo approvi tu. Prezzi IVA esclusa. Reverse charge per le aziende UE fuori dall'Italia con partita IVA valida; fuori dall'UE l'imposta, se dovuta, si calcola al checkout.",
-    perMonth: '/mese',
-    plans: [
-      {
-        name: 'Starter',
-        price: '€29',
-        credits: '500 crediti al mese',
-        equivalent: '≈ 500 email controllate',
-        cta: 'Inizia con Starter',
-      },
-      {
-        name: 'Pro',
-        badge: 'per chi fa campagne',
-        price: '€79',
-        credits: '1.500 crediti al mese',
-        equivalent: '≈ 1.500 email controllate',
-        cta: 'Inizia con Pro',
-        highlight: true,
-      },
-    ],
-    costsTitle: 'Quanto costa cosa',
-    costs: [
-      { label: 'Piano e domande dell’agente', value: 'gratis' },
-      { label: 'Aziende e persone trovate (fino a 1.000 righe al giorno)', value: 'gratis' },
-      { label: 'Email trovata e controllata', value: '1 credito' },
-      { label: 'Telefono trovato', value: '8 crediti' },
-      { label: 'Cella AI con fonte', value: '1 credito' },
-    ],
-    packsTitle: 'Ricariche senza abbonamento',
-    packs: [
-      { label: '350 crediti', value: '€19' },
-      { label: '1.000 crediti', value: '€49' },
-      { label: '3.000 crediti', value: '€149' },
-    ],
-    packsNote: 'Non scadono mai.',
-    welcome: 'Alla registrazione ricevi 25 crediti gratis, senza carta.',
-    example: {
-      title: 'Esempio: 500 persone con email e telefono',
-      cost: '500 × (1 + 8) = 4.500 crediti al massimo',
-      buy: 'Starter + ricariche da 3.000 e 1.000 = €227 + IVA',
-      note: 'Paghi solo email e telefoni trovati: i crediti non usati tornano sul saldo.',
-    },
-    expiry:
-      'I crediti del piano scadono a fine periodo e si rinnovano ogni mese; quelli delle ricariche restano. Si usano prima quelli del piano.',
-    agencies:
-      'Agenzie e consulenti: un progetto per ogni cliente, ognuno con le sue liste, esclusioni, caselle, campagne e inbox.',
+  openSource: {
+    eyebrow: 'Open source',
+    title: 'Open source. Fai da te, o lo gestiamo noi.',
+    sub: 'Zenbree ha licenza MIT. Clonalo, usa le tue chiavi dei fornitori e adattalo al tuo modo di lavorare.',
+    selfHostTitle: 'Self-host',
+    selfHostBody: 'Docker Compose avvia tutto lo stack: API, worker, web e database.',
+    repoCta: 'Vedi su GitHub',
+    hostedTitle: 'Gestito da noi',
+    hostedBody:
+      'Non vuoi occuparti di server e account dei fornitori? Offriamo un servizio a pagamento già gestito. Scrivici e lo attiviamo.',
+    hostedCta: 'Scrivici',
   },
   faq: {
     eyebrow: 'Domande',
@@ -347,10 +308,6 @@ export const it: Content = {
         a: 'Da fornitori di dati professionali e da pagine pubbliche, sempre con la fonte. Ogni email di campagna permette di disiscriversi, e chi lo fa entra nelle esclusioni del progetto per sempre. Le esclusioni valgono per tutte le campagne del progetto. La base giuridica e l’informativa ex art. 14 GDPR restano a carico di chi invia: Zenbree non dà consulenza legale.',
       },
       {
-        q: 'I crediti scadono?',
-        a: 'Quelli dell’abbonamento sì: a fine periodo la parte non usata scade, e ogni mese ne arrivano di nuovi. Quelli delle ricariche non scadono mai. Si consumano prima i crediti del piano.',
-      },
-      {
         q: 'Se un’email non viene recapitata, mi rimborsate il credito?',
         a: 'Il credito si paga quando un indirizzo viene trovato e il verificatore non lo scarta, anche se è «catch-all». Un indirizzo scartato non lo paghi. Dopo l’invio, invece, oggi non controlliamo quali email non vengono recapitate (le risposte arrivano comunque nella tua inbox su Zenbree), e non rimborsiamo il credito di un’email che poi non arriva.',
       },
@@ -364,17 +321,14 @@ export const it: Content = {
       },
       {
         q: 'Posso fissare un tetto di spesa?',
-        a: 'Il tetto è per ricerca: il piano mostra il costo massimo e, oltre 100 crediti, parte solo dopo la tua approvazione (oltre 500 chiediamo una seconda conferma). Non c’è un limite mensile, ma non puoi spendere più del saldo. La ricarica automatica è spenta finché non la attivi.',
+        a: 'Il tetto è per ricerca: il piano mostra il costo massimo e, oltre 100 crediti, parte solo dopo la tua approvazione (oltre 500 chiediamo una seconda conferma). Non c’è un limite mensile, ma non puoi spendere più del saldo.',
       },
     ],
   },
   final: {
     title: 'Chi vuoi raggiungere?',
-    lede: 'Scrivilo in una frase. Il piano è gratis, la lista la paghi solo se arriva.',
-    inputLabel: 'Descrivi il tuo cliente ideale',
-    placeholder: 'Es. studi di architettura a Torino con più di 10 persone',
-    button: 'Inizia gratis',
-    fine: "Ti chiediamo solo l'email per salvare la chat e i 25 crediti di prova.",
+    lede: 'Scrivici e ti attiviamo l’accesso.',
+    button: 'Richiedi l’accesso',
   },
   footer: {
     legalLabel: 'Link legali',

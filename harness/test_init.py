@@ -25,7 +25,7 @@ class HarnessTest(unittest.TestCase):
             testdb_script.chmod(0o755)
             lock = root / 'heavy.lock'
             log = root / 'commands'
-            for name in ('uv', 'pnpm', 'python3'):
+            for name in ('uv', 'pnpm', 'python3', 'gitleaks'):
                 binary = root / 'bin' / name
                 binary.write_text(
                     '#!/bin/bash\n'
@@ -51,28 +51,29 @@ class HarnessTest(unittest.TestCase):
             def size(scope):
                 return [f'{root.name}:python3 harness/size_check.py {scope}']
 
+            leaks = [f'{root.name}:gitleaks git --no-banner --redact']
             mig = [f'{root.name}:python3 harness/migration_order.py']
             testdb = [f'{root.name}:testdb.sh']
             fx = [f'{root.name}:python3 harness/web_fixtures.py']
 
             cases = [
-                ([], {}, 0, mig + size('all') + harness + api + fx + web + landing),
+                ([], {}, 0, mig + size('all') + leaks + harness + api + fx + web + landing),
                 (['api'], {}, 0, mig + size('api') + api + fx),
                 (['web', '--fast'], {'TEST_DATABASE_URL': ''}, 0, size('web') + web[:5]),
-                (['--fast'], {'TEST_DATABASE_URL': ''}, 0, mig + size('all') + harness + api[:4] + web[:5] + landing[:3]),
+                (['--fast'], {'TEST_DATABASE_URL': ''}, 0, mig + size('all') + leaks + harness + api[:4] + web[:5] + landing[:3]),
                 (['api', '--fast'], {}, 0, mig + size('api') + api[:4]),
                 (['web', '--fast'], {}, 0, size('web') + web[:5]),
                 (['landing'], {'TEST_DATABASE_URL': ''}, 0, size('landing') + landing),
                 (['landing', '--fast'], {}, 0, size('landing') + landing[:3]),
-                ([], {'TEST_DATABASE_URL': ''}, 0, mig + testdb + size('all') + harness + api + fx + web + landing),
+                ([], {'TEST_DATABASE_URL': ''}, 0, mig + testdb + size('all') + leaks + harness + api + fx + web + landing),
                 (['api'], {'TEST_DATABASE_URL': ''}, 0, mig + testdb + size('api') + api + fx),
                 (['web'], {'TEST_DATABASE_URL': ''}, 0, testdb + size('web') + fx + web),
                 (['api'], {'TEST_DATABASE_URL': '', 'HARNESS_DB_DOWN': '1'}, 1, mig + testdb),
                 (['--typo'], {}, 2, []),
                 (['--help'], {}, 0, []),
-                ([], {'HARNESS_FAIL': 'run_tests.py'}, 17, mig + size('all') + harness),
-                ([], {'HARNESS_FAIL': 'sync --locked'}, 17, mig + size('all') + harness + api[:1]),
-                ([], {'HARNESS_FAIL': 'run pytest -q -n 4'}, 17, mig + size('all') + harness + api),
+                ([], {'HARNESS_FAIL': 'run_tests.py'}, 17, mig + size('all') + leaks + harness),
+                ([], {'HARNESS_FAIL': 'sync --locked'}, 17, mig + size('all') + leaks + harness + api[:1]),
+                ([], {'HARNESS_FAIL': 'run pytest -q -n 4'}, 17, mig + size('all') + leaks + harness + api),
                 (['web'], {'HARNESS_FAIL': 'harness/web_fixtures.py'}, 17, size('web') + fx),
                 (['web'], {'HARNESS_FAIL': 'lint'}, 17, size('web') + fx + web[:2]),
                 (['web'], {'HARNESS_FAIL': 'build'}, 17, size('web') + fx + web),

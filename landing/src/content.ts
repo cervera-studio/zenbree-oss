@@ -7,10 +7,11 @@ import { it } from './i18n/it';
 const app = (import.meta.env.PUBLIC_APP_URL || 'http://localhost:3000').replace(/\/$/, '');
 
 export const links = {
-  signUp: `${app}/auth/sign-up`,
   signIn: `${app}/auth/sign-in`,
   terms: `${app}/terms`,
   privacy: `${app}/privacy`,
+  repo: 'https://github.com/cervera-studio/zenbree-oss',
+  contact: 'mailto:supporto@zenbree.com',
 } as const;
 
 // ponytail: Italian keeps `/`, where it has always been, so no indexed URL moves (#699). English is the
@@ -53,23 +54,13 @@ export type Step = {
   art: StepArt;
 };
 
-export type Plan = {
-  name: string;
-  badge?: string;
-  price: string;
-  credits: string;
-  equivalent: string;
-  cta: string;
-  highlight?: true;
-};
-
 export type WorksLogo = 'gmail' | 'outlook' | 'linkedin' | 'excel' | 'api' | 'hubspot';
 
 type Float = { key: string; value: string; source: string };
 
 type Card = { title: string; body: string };
 
-export type Section = 'how' | 'why' | 'pricing' | 'faq';
+export type Section = 'how' | 'why' | 'openSource' | 'faq';
 
 export type Content = {
   meta: { title: string; description: string };
@@ -81,10 +72,10 @@ export type Content = {
     label: string;
     how: string;
     why: string;
-    pricing: string;
+    openSource: string;
     faq: string;
     signIn: string;
-    tryFree: string;
+    contact: string;
   };
   menu: {
     open: string;
@@ -96,7 +87,7 @@ export type Content = {
     eyebrow: string;
     titleLine: string;
     titleEm: string;
-    createList: string;
+    cta: string;
     seeHow: string;
     fine: string;
   };
@@ -141,7 +132,6 @@ export type Content = {
     max: string;
     rules: PlanRules;
     note: string;
-    start: string;
   };
   how: {
     eyebrow: string;
@@ -167,21 +157,16 @@ export type Content = {
     replies: Card & { labels: readonly { label: string; tone?: 'pos' | 'info' | 'neg' }[] };
     market: Card;
   };
-  pricing: {
+  openSource: {
     eyebrow: string;
     title: string;
     sub: string;
-    perMonth: string;
-    plans: readonly Plan[];
-    costsTitle: string;
-    costs: readonly { label: string; value: string }[];
-    packsTitle: string;
-    packs: readonly { label: string; value: string }[];
-    packsNote: string;
-    welcome: string;
-    example: { title: string; cost: string; buy: string; note: string };
-    expiry: string;
-    agencies: string;
+    selfHostTitle: string;
+    selfHostBody: string;
+    repoCta: string;
+    hostedTitle: string;
+    hostedBody: string;
+    hostedCta: string;
   };
   faq: {
     eyebrow: string;
@@ -193,10 +178,7 @@ export type Content = {
   final: {
     title: string;
     lede: string;
-    inputLabel: string;
-    placeholder: string;
     button: string;
-    fine: string;
   };
   footer: {
     legalLabel: string;
