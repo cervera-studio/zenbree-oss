@@ -1,0 +1,49 @@
+---
+interface Props {
+  labels: { themeLabel: string; dark: string };
+  size: 'header' | 'menu';
+}
+const { labels, size } = Astro.props;
+const sizes = { header: 'size-7.5 phone:hidden', menu: 'size-11' }[size];
+const icon = {
+  width: 16,
+  height: 16,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  'stroke-width': 2,
+  'stroke-linecap': 'round',
+  'stroke-linejoin': 'round',
+  'aria-hidden': 'true',
+} as const;
+---
+
+<button type="button" data-theme-toggle aria-pressed="false" aria-label={`${labels.themeLabel}: ${labels.dark}`} class:list={['inline-flex cursor-pointer items-center justify-center rounded-md text-soft transition-colors hover:bg-raised hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none', sizes]}>
+  <svg {...icon} class="shrink-0 stroke-current dark:hidden"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path></svg>
+  <svg {...icon} class="hidden shrink-0 stroke-current dark:block"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+</button>
+
+<script>
+  // The icon follows the scheme in CSS (the `dark` variant); this keeps aria-pressed and the store.
+  const media = matchMedia('(prefers-color-scheme: dark)');
+  const toggles = document.querySelectorAll<HTMLButtonElement>('button[data-theme-toggle]');
+  const isDark = () => {
+    const html = document.documentElement.classList;
+    return html.contains('scheme-dark') || (html.contains('scheme-light-dark') && media.matches);
+  };
+  const sync = () => {
+    for (const toggle of toggles) toggle.setAttribute('aria-pressed', String(isDark()));
+  };
+
+  for (const toggle of toggles) {
+    toggle.addEventListener('click', () => {
+      const next = isDark() ? 'light' : 'dark';
+      try {
+        localStorage.setItem('theme', next);
+      } catch {}
+      window.theme.apply(next);
+      sync();
+    });
+  }
+  media.addEventListener('change', sync);
+  sync();
+</script>

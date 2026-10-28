@@ -1,0 +1,336 @@
+{
+  "automations": {
+    "title": "Automations",
+    "breadcrumb": "Path",
+    "subtitle": "Steps that find, qualify and add people to a campaign, by hand or on a schedule.",
+    "loadError": "Could not load automations.",
+    "empty": {
+      "title": "No automations yet",
+      "text": "An automation finds people for a list, qualifies them, looks up their emails and adds them to a campaign, every day or week, within a credit cap you set."
+    },
+    "columns": {
+      "name": "Automation",
+      "trigger": "Trigger",
+      "state": "State",
+      "version": "Version",
+      "lastRun": "Last run",
+      "nextRun": "Next run"
+    },
+    "trigger": {
+      "manual": "Manual",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "webhook": "Webhook",
+      "signal": "Signals"
+    },
+    "state": {
+      "active": "Active",
+      "paused": "Paused"
+    },
+    "version": "v{version, number, credits}",
+    "approved": "Approved",
+    "needsReview": "Next run is a review",
+    "notRun": "Not run yet",
+    "byHand": "When you run it",
+    "runStatus": {
+      "queued": "Queued",
+      "running": "Running",
+      "succeeded": "Succeeded",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "unknown": "Outcome unknown"
+    },
+    "head": {
+      "cap": "Up to {cap, plural, one {# credit} other {{cap, number, credits} credits}} a run",
+      "readOnly": "Only the person who made this automation, or an admin, can run, pause or approve it."
+    },
+    "controls": {
+      "pause": "Pause",
+      "resume": "Resume",
+      "paused": "Automation paused. A queued run is cancelled.",
+      "resumed": "Automation resumed.",
+      "runNow": "Run now",
+      "runAgain": "Run again"
+    },
+    "confirmRun": {
+      "title": "Run {name} now?",
+      "cap": "This run can spend up to {cap, plural, one {# credit} other {{cap, number, credits} credits}}.",
+      "review": "It is the first run of version {version, number, credits}, so it is a review run.{campaign, select, yes {{hubspot, select, yes { The people it adds enter the campaign as drafts, and nobody is written to HubSpot, until you approve the run.} other { The people it adds enter the campaign as drafts until you approve the run.}}} other {{hubspot, select, yes { Nobody is written to HubSpot until you approve the run.} other {}}}}",
+      "queued": "Run queued. It starts within a minute.",
+      "alreadyGoing": "A run is already going. Open it to follow its steps.",
+      "reviewInstantly": "It is the first run of version {version, number, credits}, so it needs a review. Nobody is added to Instantly{hubspot, select, yes { or written to HubSpot} other {}} until you approve it."
+    },
+    "runs": {
+      "title": "Runs",
+      "empty": "No runs yet.",
+      "columns": {
+        "run": "Run",
+        "status": "Status",
+        "trigger": "Started by",
+        "version": "Version",
+        "credits": "Credits",
+        "started": "Started",
+        "finished": "Finished"
+      },
+      "open": "Run of {date}",
+      "trigger": {
+        "manual": "By hand",
+        "schedule": "Schedule",
+        "webhook": "Webhook call",
+        "signal": "Signals"
+      },
+      "review": "Review",
+      "credits": "{spent, number, credits} of {cap, plural, one {# credit} other {{cap, number, credits} credits}}",
+      "creditsOnRun": "See the run",
+      "stopping": "Stopping"
+    },
+    "run": {
+      "title": "Run of {date}",
+      "open": "Open the run",
+      "created": "Queued",
+      "started": "Started",
+      "finished": "Finished",
+      "credits": "Credits spent",
+      "reviewText": "{campaign, select, yes {{hubspot, select, yes {The people this run added wait in the campaign as drafts, and its HubSpot writes are held, until you approve the run.} other {The people this run added wait in the campaign as drafts until you approve the run.}}} other {{hubspot, select, yes {This run's HubSpot writes are held until you approve the run.} other {Approve the run when you are happy with its result.}}}}",
+      "ended": "Why it ended",
+      "steps": "Steps",
+      "summary": "People",
+      "taken": "Taken in by this run",
+      "refused": "Left out before any credit",
+      "promoted": "Made active by the approval",
+      "hubspotAfterApproval": "HubSpot write after approval",
+      "cancel": "Cancel run",
+      "cancelled": "Run cancelled.",
+      "cancelRunning": "The run stops before the step that is going saves its result. That step and the ones after it are skipped and charge nothing.{hubspot, select, yes { If the HubSpot step already wrote contacts, it shows how many.} other {}}",
+      "cancelEnded": "The run had already ended, so nothing was cancelled.",
+      "stopping": "Stopping. The step that is going is skipped and charges nothing.{hubspot, select, yes { If the HubSpot step already wrote contacts, it shows how many.} other {}}",
+      "approve": "Approve run",
+      "approveTitle": "Approve this run?",
+      "approveText": "{campaign, select, yes {{hubspot, select, yes {Later runs of this version add people with the campaign's normal status and write to HubSpot without waiting.} other {Later runs of this version add people with the campaign's normal status without waiting.}}} other {{hubspot, select, yes {Later runs of this version write to HubSpot without waiting.} other {Later runs of this version go without a review.}}}}",
+      "activeCampaign": "The campaign is running. Approving makes this run's people active now, and the campaign can send to them on its next step. Later runs add people as active too.",
+      "unknownCampaign": "Zenbree could not check the campaign. If it is running, approving makes this run's people active now, and the campaign can send to them on its next step.",
+      "approved": "Run approved.",
+      "retryHubspot": "Write to HubSpot again",
+      "retryHubspotText": "The HubSpot write after approval did not finish. Trying again skips the people already written.",
+      "hubspotPendingText": "The HubSpot write after approval has not finished yet. If it does not finish, start it again. Nobody is written twice.",
+      "retried": "HubSpot write queued again.",
+      "outdated": "The automation changed after this run, so it can no longer be approved.",
+      "outdatedRunAgain": "Run it again to review the new version.",
+      "call": {
+        "title": "Call that started this run",
+        "webhookId": "webhook-id",
+        "receivedAt": "Received",
+        "matchedBy": "Person found by",
+        "by": {
+          "linkedin_url": "LinkedIn URL",
+          "email": "Email"
+        },
+        "rowGone": "The person's row was deleted from the list."
+      },
+      "reviewTextInstantly": "This run's people are waiting: they are not added to Instantly{hubspot, select, yes { or written to HubSpot} other {}} until you approve the run.",
+      "approveTextInstantly": "When you approve, this run's people are added to Instantly right away. Later runs of this version add people without waiting{hubspot, select, yes { and write them to HubSpot} other {}}.",
+      "activeInstantly": "The Instantly campaign is running: after the approval it can start emailing these people right away, and the people of later runs too.",
+      "unknownInstantly": "We cannot check the status of the Instantly campaign. If it is running, after the approval it can start emailing these people right away.",
+      "instantly": {
+        "title": "Instantly",
+        "campaign": "Campaign",
+        "held": "People to add to Instantly",
+        "sent": "People added to Instantly",
+        "waiting": {
+          "approval": "Nobody is added to Instantly until you approve this run.",
+          "paused": "The automation is paused. The people will be added when you turn it back on.",
+          "creator_gone": "The person who created the automation is no longer in the organization, so the people are not added to Instantly.",
+          "connection": "Instantly is not connected to this client. The people will be added when you connect it again.",
+          "other_workspace": "This client is now connected to another Instantly workspace. The people wait until you connect the earlier workspace again or pick another campaign in the editor.",
+          "other_batch": "Instantly is already adding other people of this client. These people will be added as soon as it finishes.",
+          "starting": "The people will be added to Instantly within a minute."
+        },
+        "batchUnreadable": "The status of these people on Instantly could not be loaded. Reload the page to try again."
+      },
+      "reviewTextInstantlyNone": "This run has nobody to add to Instantly.{hubspot, select, yes { Its HubSpot writes wait until you approve it.} other {}} After the approval, later runs of this version add people to Instantly with no review.",
+      "approveTextInstantlyNone": "This run has nobody to add to Instantly. When you approve, later runs of this version add people without waiting{hubspot, select, yes { and write them to HubSpot} other {}}.",
+      "activeInstantlyNone": "The Instantly campaign is running: after the approval it can start emailing the people of later runs right away.",
+      "unknownInstantlyNone": "We cannot check the status of the Instantly campaign. If it is running, after the approval it can start emailing the people of later runs right away.",
+      "signal": {
+        "title": "Signals that started it",
+        "account": "Company",
+        "accountGone": "Company deleted",
+        "noTitle": "Job posting with no title",
+        "score": "Score {n, number, credits}",
+        "nobody": {
+          "account_gone": "Nobody was taken in: the company was deleted or excluded from the list.",
+          "no_new_person": "Nobody was taken in: the list has no person at this company that the automation has not taken yet.",
+          "all_refused": "Nobody was taken in: every person at this company was left out before any credit.",
+          "other": "Nobody at this company was taken in."
+        },
+        "givenUp": "{n, plural, one {After # failed run} other {After {n, number, credits} failed runs}} in a row, these signals count as used. The company starts a run again only when new signals reach the minimum score.",
+        "givenBack": "This run did not use its signals and gave them back.",
+        "gone": "The signals of this run are no longer available."
+      }
+    },
+    "step": {
+      "number": "Step {n, number, credits}",
+      "kind": {
+        "find_people": "Find people",
+        "qualify": "Qualify with AI",
+        "find_emails": "Find emails",
+        "add_to_campaign": "Add to campaign",
+        "add_to_instantly": "Add to Instantly",
+        "write_hubspot": "Write to HubSpot"
+      },
+      "status": {
+        "pending": "Waiting",
+        "running": "Running",
+        "succeeded": "Done",
+        "skipped": "Skipped",
+        "failed": "Failed",
+        "uncertain": "Uncertain"
+      },
+      "credits": "Credits",
+      "attempts": "Attempts",
+      "started": "Started",
+      "finished": "Finished",
+      "uncertain": "The run stopped during this step, so what it did outside Zenbree is not known. The next run may take the same people again, but it does not charge for them, add them to the campaign or write them to HubSpot a second time.",
+      "notRetried": "Not tried again on its own, because it may already have written.",
+      "enrolledAs": {
+        "draft": "Added as drafts",
+        "active": "Added as active"
+      },
+      "leftOut": "Left out of the campaign",
+      "leftOutInstantly": "People left out of the Instantly campaign"
+    },
+    "output": {
+      "accounts": "Accounts looked at",
+      "accountsWithoutDomain": "Accounts with no domain",
+      "accountsExcluded": "Accounts excluded by your rules",
+      "peopleFound": "People found",
+      "peopleExcluded": "People excluded by your rules",
+      "peopleAdded": "People added to the list",
+      "scored": "People scored",
+      "kept": "Reached the minimum score",
+      "belowMinimum": "Below the minimum score",
+      "notReached": "Left for the next run because credits ran out",
+      "searched": "People searched",
+      "found": "Emails found",
+      "refusedByRules": "Emails refused by your rules",
+      "vendorDidNotAnswer": "No answer from the email provider",
+      "withContact": "People with an email or LinkedIn",
+      "enrolled": "People added",
+      "held": "People to add to Instantly",
+      "heldForApproval": "Held until you approve",
+      "created": "New HubSpot contacts",
+      "existing": "Already in HubSpot",
+      "alreadyWritten": "Written by an earlier run",
+      "heldByHubspotGate": "Held by HubSpot's checks",
+      "refusedSince": "Refused by your rules since the run"
+    },
+    "leftOut": {
+      "excluded": "Excluded by your rules",
+      "duplicate": "Already in this campaign, replied or contacted",
+      "noContact": "No usable email or LinkedIn",
+      "inOtherCampaign": "In another running campaign",
+      "heldByInstantly": "Already in Instantly",
+      "stopped": "Stopped after a reply or an opt-out",
+      "overLimit": "Over the campaign's size limit"
+    },
+    "refused": {
+      "excluded": "Excluded by your rules",
+      "alreadyHandled": "Already handled by a campaign",
+      "inOtherCampaign": "In another running campaign",
+      "heldByInstantly": "Already in Instantly",
+      "stopped": "Stopped after a reply or an opt-out"
+    },
+    "skipped": {
+      "previous_step_failed": "Skipped because an earlier step failed.",
+      "run_ended": "Skipped because the run stopped before this step.",
+      "no_new_people": "Skipped because the list has no people this automation has not taken in yet.",
+      "no_people_left": "Skipped because no people were left after the earlier steps.",
+      "cancelled": "Skipped because the run was cancelled.",
+      "automation_paused": "Skipped because the automation was paused.",
+      "reservation_expired": "Skipped because the run's credit hold expired.",
+      "run_not_running": "Skipped because the run had already ended."
+    },
+    "code": {
+      "vendor_failed": "A data provider did not answer.",
+      "vendor_disabled": "A data provider is turned off or not connected.",
+      "step_crashed": "The step hit an error three times and stopped.",
+      "campaign_ended": "The campaign has ended, so nobody can be added to it.",
+      "hubspot_off": "HubSpot is not connected, or write-back is off.",
+      "hubspot_token": "HubSpot did not accept the connection. Reconnect it in Integrations.",
+      "hubspot_failed": "HubSpot refused a write. The people written before it stay written.",
+      "write_crashed": "The HubSpot write stopped on an error. The people stay held.",
+      "cancelled": "Cancelled.",
+      "automation_paused": "The automation was paused.",
+      "automation_edited": "The automation was edited before this run started.",
+      "reservation_expired": "The run's credit hold expired.",
+      "run_not_running": "The run had already ended.",
+      "creator_deleted": "The person who made the automation deleted their account.",
+      "user_banned": "The person who made the automation is suspended.",
+      "creator_left": "The person who made the automation left the organization.",
+      "invalid_configuration": "A list, campaign or HubSpot connection it uses is gone.",
+      "project_cap_reached": "This client reached its credit limit.",
+      "insufficient_credits": "There were not enough credits to start.",
+      "worker_outcome_unknown": "The run stopped and did not report back. The credits its steps did not use went back.",
+      "credit_cap_reached": "The run reached its credit cap. The people it did not reach come first in the next run.",
+      "other": "The run hit an error that has no description yet.",
+      "instantly_campaign_not_found": "The Instantly campaign no longer exists. Pick another one in the editor.",
+      "instantly_not_connected": "Instantly is not connected to this client, or the saved key cannot be read. Connect it again in Integrations.",
+      "instantly_refused": "Instantly refused the key or the account's plan. Connect it again in Integrations.",
+      "instantly_unreachable": "Instantly did not answer, even after the retries."
+    },
+    "webhook": {
+      "title": "Webhook",
+      "rotate": "Rotate secret",
+      "url": "URL",
+      "noUrl": "The URL is not available. Ask an admin or Zenbree support.",
+      "secretMade": "Secret made {when}. Zenbree does not show it again.",
+      "noSecret": "This automation has no secret yet, so it takes no calls. Make one, then put the URL and the secret in the tool that sends the calls.",
+      "noSecretReadOnly": "This automation has no secret yet, so it takes no calls. The person who made it, or an admin, can make one.",
+      "make": "Make the secret",
+      "paused": "The automation is paused: calls are refused until you resume it.",
+      "rotateTitle": "Rotate the secret of {name}?",
+      "rotateText": "The old secret stops working at once. Calls signed with it are refused from now on.",
+      "rotateUrlStays": "The URL stays the same.",
+      "rotateUpdateSender": "Put the new secret in the tool that sends the calls.",
+      "rotateConfirm": "Rotate secret",
+      "shownTitle": "Copy the secret now",
+      "shownText": "Zenbree shows it only this once. If you lose it, rotate the secret to make a new one.",
+      "secret": "Signing secret",
+      "done": "I copied it",
+      "noneWaiting": "No call waits to start.",
+      "pending": "{n, plural, one {# call waits} other {{n, number, credits} calls wait}} to start. Each call starts its own run, one after the other.",
+      "waitingForApproval": "Calls wait until you approve the review run of this version. Open it in the runs below.",
+      "copy": "Copy {what}",
+      "copyShort": "Copy",
+      "copied": "Copied",
+      "copiedWhat": "{what} copied.",
+      "copyFailed": "Could not copy. Select the text and copy it.",
+      "howTo": {
+        "title": "How to call it",
+        "body": "Send a POST to the URL with a JSON object body of at most 16 KiB that names one person of the list: email, linkedin_url, or both. A larger body gets a 413. The person must already be in the list.",
+        "sign": "Sign each call with the secret, as Standard Webhooks specifies: the headers webhook-id (a unique id for each call, so a repeat starts nothing), webhook-timestamp (in seconds, within 5 minutes of now) and webhook-signature.",
+        "signDocs": "Read the Standard Webhooks spec",
+        "answer": "An answer of 202 means the call is taken. Its run starts within a minute when no other run of the automation is going."
+      }
+    },
+    "instantlySkipped": {
+      "excluded": "On the exclusion list",
+      "noEmail": "No valid email",
+      "duplicateInSelection": "Same email as another person",
+      "inNativeCampaign": "In a Zenbree campaign",
+      "repliedOrContacted": "Already contacted or replied",
+      "alreadyInInstantly": "Already in Instantly",
+      "crmHold": "Blocked by the CRM",
+      "stopped": "Replied, unsubscribed or the email bounced"
+    },
+    "signal": {
+      "title": "Signals",
+      "watchlist": "Watchlist",
+      "deleted": "Watchlist deleted",
+      "minScore": "Minimum signal score",
+      "since": "Counts signals since",
+      "rule": "A run starts for a company when the scores of its new signals add up to the minimum. A posting scores up to 100, halved every 30 days. Signals that arrive while the automation is paused start nothing.",
+      "deletedText": "This automation starts no run until you pick another watchlist in Edit."
+    }
+  }
+}

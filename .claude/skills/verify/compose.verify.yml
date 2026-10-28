@@ -1,0 +1,109 @@
+# Verification overlay: bin/stack runs `compose.yml` + this file as its own compose project
+# (zenbree-verify), with its own volumes and ports, so the developer's stack stays untouched. Its images are
+# tagged by content, so stacks built from the same inputs share them.
+# Interpolated values come from the generated --env-file in the run's state directory.
+#
+# Memory: every service has a ceiling, and bin/stack charges a running stack at their sum (VERIFY_STACK_MIB
+# must equal it; harness/test_stack.py checks). A container that passes its ceiling is killed alone, inside its
+# own stack, and the Docker VM never runs out under the other agents' stacks. Ceilings sit above the peaks of
+# stacks driven on 2026-10-16 (cgroup memory.peak), with fewer worker processes and smaller Postgres buffers
+# than compose.yml. oom_score_adj makes the kernel pick a verify container before the developer's stack.
+
+x-api-env: &api-env
+  image: ghcr.io/cervera-studio/zenbree-oss-api:${VERIFY_API_TAG:-unset} # bin/stack: a hash of the build inputs
+  env_file: !reset [] # never load the checkout's .env (it points at the developer's database)
+  restart: "no"
+  oom_score_adj: 500
+  environment:
+    WEB_ORIGIN: http://localhost:${VERIFY_WEB_PORT}
+    AUTH_ISSUER: http://localhost:${VERIFY_WEB_PORT}
+    AUTH_AUDIENCE: http://localhost:${VERIFY_WEB_PORT}
+    LLM_PRIMARY_PROVIDER: ${LLM_PRIMARY_PROVIDER:-deepseek}
+    CHAT_PRIMARY_PROVIDER: ${CHAT_PRIMARY_PROVIDER:-deepseek}
+    DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+    ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    OAUTH_TOKEN_ENCRYPTION_KEY: ${OAUTH_TOKEN_ENCRYPTION_KEY:-}
+    APOLLO_API_KEY: ${APOLLO_API_KEY:-}
+    APOLLO_BASE_URL: ${APOLLO_BASE_URL:-https://api.apollo.io/v1}
+    AIARK_API_KEY: ${AIARK_API_KEY:-}
+    AIARK_BASE_URL: ${AIARK_BASE_URL:-https://api.ai-ark.com/api/developer-portal}
+    TREG_API_KEY: ${TREG_API_KEY:-}
+    TREG_BASE_URL: ${TREG_BASE_URL:-https://treg.superdesign.dev}
+    MILLIONVERIFIER_API_KEY: ${MILLIONVERIFIER_API_KEY:-}
+    EXA_API_KEY: ${EXA_API_KEY:-}
+    EXA_ENABLED: ${EXA_ENABLED:-false}
+    SERPER_API_KEY: ${SERPER_API_KEY:-}
+    FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY:-}
+    DEEPSEEK_USER_ID_SECRET: ${DEEPSEEK_USER_ID_SECRET:-}
+    UNIPILE_DSN: ${UNIPILE_DSN:-}
+    UNIPILE_API_KEY: ${UNIPILE_API_KEY:-}
+    UNIPILE_WEBHOOK_SECRET: ${UNIPILE_WEBHOOK_SECRET:-}
+    INSTANTLY_API_BASE_URL: ${INSTANTLY_API_BASE_URL:-https://api.instantly.ai}
+    HUBSPOT_OAUTH_CLIENT_ID: ${HUBSPOT_OAUTH_CLIENT_ID:-}
+    HUBSPOT_OAUTH_CLIENT_SECRET: ${HUBSPOT_OAUTH_CLIENT_SECRET:-}
+    API_PUBLIC_BASE_URL: ${API_PUBLIC_BASE_URL:-}
+    VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+    VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY:-}
+    VAPID_SUBJECT: ${VAPID_SUBJECT:-}
+  extra_hosts: ["host.docker.internal:host-gateway"]
+
+services:
+  postgres:
+    restart: "no"
+    ports: !reset []
+    command: ["postgres", "-c", "shared_buffers=32MB"] # peak 229 MiB at the default 128MB; above 65 MiB it is page cache
+    mem_limit: 192m
+    oom_score_adj: 500
+  redis:
+    restart: "no"
+    ports: !reset []
+    command: ["redis-server", "--appendonly", "no"] # a verify stack's queue never outlives it
+    mem_limit: 48m
+    oom_score_adj: 500
+  api:
+    <<: *api-env
+    ports: !override ["127.0.0.1:${VERIFY_API_PORT}:8000"]
+    mem_limit: 256m # peak 197 MiB
+  migrate: *api-env # runs before the stack is ready, inside its build reservation
+  worker:
+    <<: *api-env
+    # Peak 413 MiB with 4 processes; one chat turn and a beat task at a time is enough to verify.
+    command: ["celery", "-A", "app.worker", "worker", "--loglevel=info", "--concurrency=2"]
+    mem_limit: 512m # 302 MiB of process memory after one chat turn (2026-10-16)
+  worker-webhooks:
+    <<: *api-env
+    command: ["celery", "-A", "app.worker", "worker", "-Q", "webhooks", "--loglevel=info", "--concurrency=1"]
+    mem_limit: 128m # peak 130 MiB with 2 processes
+  beat:
+    <<: *api-env
+    mem_limit: 128m # peak 100 MiB
+  flower:
+    profiles: [verify-off] # not started
+  web:
+    image: ghcr.io/cervera-studio/zenbree-oss-web:${VERIFY_WEB_TAG:-unset}
+    build:
+      args:
+        NEXT_BUILD_SKIP_TYPECHECK: "1" # the gate type-checks; here the check only costs build memory
+        NEXT_BUILD_WORKERS: "2" # Next's default, 11 on this host, took the build from 2.4 to 3.2 GiB
+    env_file: !reset []
+    restart: "no"
+    environment:
+      BETTER_AUTH_URL: http://localhost:${VERIFY_WEB_PORT}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      VERIFY_API: http://localhost:${VERIFY_API_PORT}
+    # The image bakes NEXT_PUBLIC_API_URL=http://verify-api.invalid (bin/stack): this start writes the stack's
+    # API URL over it, so stacks on other ports share one image.
+    entrypoint:
+      - sh
+      - -c
+      - grep -rlF http://verify-api.invalid .next | xargs -r sed -i "s|http://verify-api.invalid|$$VERIFY_API|g" && exec node server.js
+    ports: !override ["127.0.0.1:${VERIFY_WEB_PORT}:3000"]
+    mem_limit: 288m # peak 244 MiB
+    oom_score_adj: 500
+  landing:
+    profiles: [verify-off] # not part of up or doctor; features/landing.md starts it by name
+    restart: "no"
+    build:
+      args:
+        PUBLIC_APP_URL: http://localhost:${VERIFY_WEB_PORT}
+    ports: !override ["127.0.0.1:14321:8080"]

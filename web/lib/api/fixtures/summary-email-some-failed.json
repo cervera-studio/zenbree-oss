@@ -1,0 +1,15 @@
+{
+  "contact": "email",
+  "kind": "none_found",
+  "refunded": 0,
+  "searched": 2,
+  "tally": {
+    "failed": 1,
+    "found": 0,
+    "invalid": 0,
+    "no_input": 0,
+    "no_source": 0,
+    "not_found": 1
+  },
+  "unmatched": 0
+}

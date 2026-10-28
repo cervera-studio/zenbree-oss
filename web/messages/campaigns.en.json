@@ -1,0 +1,291 @@
+{
+  "campaigns": {
+    "title": "Campaigns",
+    "loadError": "Could not load campaigns.",
+    "awaiting": "{count, plural, one {# to approve} other {{count, number, credits} to approve}}",
+    "awaitingHeld": "{count, plural, one {# held} other {{count, number, credits} held}}",
+    "stats": "{targets, plural, one {# person} other {{targets, number, credits} people}} · {sent, plural, one {# sent} other {{sent, number, credits} sent}} · {replied, plural, one {# replied} other {{replied, number, credits} replied}} · {failed, plural, one {# failed} other {{failed, number, credits} failed}}",
+    "delete": "Delete draft",
+    "activate": "Activate",
+    "pause": "Pause",
+    "resume": "Resume",
+    "activateHelp": "Nothing is sent until you activate it, and every message waits for your approval.",
+    "riskTitle": "LinkedIn steps carry a restriction risk",
+    "testSent": "Test email sent to {to}.",
+    "status": {
+      "draft": "Draft",
+      "active": "Active",
+      "paused": "Paused",
+      "stopped": "Stopped",
+      "completed": "Completed"
+    },
+    "new": {
+      "title": "New campaign",
+      "description": "Start a draft from a list of people. You write the steps before anything is sent.",
+      "noLists": "You need a list of people first: ask the chat to find some.",
+      "newChat": "New chat",
+      "error": "Could not create the campaign.",
+      "name": "Campaign name",
+      "list": "List of people",
+      "listMissing": "The list from the link is not available. Pick a list.",
+      "create": "Create draft"
+    },
+    "senders": {
+      "title": "Send from",
+      "description": "The mailboxes this campaign sends from. Each person stays on one mailbox for the whole thread."
+    },
+    "steps": {
+      "title": "Steps",
+      "description": "Up to 12 steps. Delays are days after the campaign starts. Tokens: {tokens}",
+      "locked": "Steps can only be changed while the campaign is a draft.",
+      "add": "Add step",
+      "save": "Save steps",
+      "saved": "Steps saved."
+    },
+    "preview": {
+      "title": "Preview",
+      "description": "The saved steps as the first people on the list will receive them.",
+      "show": "Show preview",
+      "empty": "Nobody to preview."
+    },
+    "step": {
+      "title": "Step {number}",
+      "channel": "Channel",
+      "channels": {
+        "email": "Email",
+        "linkedin_connect": "LinkedIn invitation",
+        "linkedin_message": "LinkedIn message",
+        "hubspot_task": "HubSpot task"
+      },
+      "delay": "Day",
+      "threaded": "Reply in the same thread",
+      "test": "Send me a test",
+      "remove": "Remove step",
+      "subject": "Subject",
+      "body": "Message",
+      "note": "Invitation note (optional)",
+      "taskHelp": "Nothing is sent: Zenbree creates a HubSpot task with this draft for the owner of the contact or its company, or for you when there is none. It is created at once, without approval.",
+      "taskSubject": "Draft subject (optional)",
+      "removed": "Step {number, number, credits} removed."
+    },
+    "previewErrors": {
+      "NO_EMAIL": "No email address: this step is skipped.",
+      "NO_THREAD": "Skipped: the first email cannot be sent to this person.",
+      "OUTREACH_COPY_UNRENDERED": "Not sent: a token is not recognised.",
+      "OUTREACH_COPY_MISSING_FIELD": "Not sent: a token has no value for this person.",
+      "INVALID_EMAIL": "The email address is not valid: this step is skipped.",
+      "COPY_TOO_LONG": "Not sent: the message is too long once filled in."
+    },
+    "approvals": {
+      "title": "{count, plural, =0 {Waiting for approval} other {Waiting for approval ({count, number, credits})}}",
+      "description": "Nothing is sent until you approve it. Approved messages go out within the campaign hours and mailbox limits.",
+      "loadError": "Could not load the messages waiting for approval.",
+      "empty": "No message is waiting for approval.",
+      "approveAll": "Approve {count, plural, one {the one shown} other {all {count, number, credits} shown}}",
+      "subject": "Subject",
+      "body": "Message",
+      "save": "Save",
+      "cancel": "Cancel",
+      "approve": "Approve",
+      "edit": "Edit",
+      "reject": "Skip this step",
+      "progress": "Message {current, number, credits} of {total, number, credits}",
+      "stepChannel": "Step {step, number, credits} · {channel}",
+      "editText": "Edit the text",
+      "doneTitle": "All reviewed",
+      "doneBody": "{approved, plural, =0 {No message approved: nothing is sent.} one {The approved message goes out within the campaign hours and mailbox limits.} other {{approved, number, credits} messages go out within the campaign hours and mailbox limits.}}",
+      "toInbox": "Go to replies",
+      "emptyNext": "Nothing to approve right now: the next ones arrive tomorrow.",
+      "editTitle": "Edit the message for {name}",
+      "reviewed": "<b>{reviewed, number, credits}</b> of {total, number, credits} reviewed",
+      "decided": "{approved, number, credits} approved · {skipped, number, credits} skipped",
+      "skip": "Skip",
+      "rejected": "{count, plural, one {Step skipped} other {{count, number, credits} steps skipped}}",
+      "restored": "{count, plural, one {Message waiting again} other {{count, number, credits} messages waiting again}}",
+      "undoLate": "{count, plural, one {One message can no longer be restored: the sequence has moved on} other {{count, number, credits} messages can no longer be restored: the sequence has moved on}}",
+      "sends": "Goes out {when} from {from}",
+      "sendsNoSender": "Goes out {when}",
+      "fromLinkedin": "LinkedIn",
+      "fromLinkedinNamed": "LinkedIn ({name})",
+      "when": {
+        "today": "today at {time}",
+        "tomorrow": "tomorrow at {time}",
+        "weekday": "{weekday} at {time}",
+        "todayWork": "today during working hours",
+        "tomorrowWork": "tomorrow during working hours",
+        "weekdayWork": "{weekday} during working hours"
+      },
+      "reviewTitle": "To approve",
+      "queueTitle": "Up next",
+      "queueMeta": "{count, plural, one {# in the queue} other {{count, number, credits} in the queue}}",
+      "stepShort": "Step {step, number, credits}",
+      "backToCampaign": "Back to the campaign",
+      "announce": "Message for {name}",
+      "shortcutsHint": "Shortcuts: A approve, S skip, E edit",
+      "held": "{count, plural, one {# message was not approved and still waits} other {{count, number, credits} messages were not approved and still wait}}: Instantly sends to the person, or a stop in Instantly holds them.",
+      "heldLink": "See the campaign's people",
+      "heldTitle": "Held",
+      "heldMeta": "{count, plural, one {# message} other {{count, number, credits} messages}}",
+      "heldDescription": "Zenbree sends none of these while the person is held, and approving them changes nothing."
+    },
+    "deleteTitle": "Delete draft “{name}”?",
+    "deleteBody": "The campaign and its steps will be deleted. This cannot be undone.",
+    "deleteBullet1": "{count, plural, =0 {No people had been added} one {The person added leaves the campaign} other {The {count, number, credits} people added leave the campaign}}",
+    "deleteBullet2": "The lists they came from are unchanged",
+    "subtitle": "Email and LinkedIn sequences started from your lists. Nothing goes out without your approval.",
+    "newFromList": "New campaign from a list",
+    "tabsLabel": "Filter by status",
+    "tabs": {
+      "all": "All",
+      "active": "Active",
+      "draft": "Drafts",
+      "paused": "Paused",
+      "completed": "Completed"
+    },
+    "columns": {
+      "campaign": "Campaign",
+      "status": "Status",
+      "steps": "Steps",
+      "progress": "Progress",
+      "replies": "Replies"
+    },
+    "people": "{count, plural, one {# person} other {{count, number, credits} people}}",
+    "progress": "{sent, plural, one {# sent} other {{sent, number, credits} sent}} · {failed, plural, one {# failed} other {{failed, number, credits} failed}}",
+    "banner": "{count, plural, one {# message is waiting} other {{count, number, credits} messages are waiting}} for your approval",
+    "bannerMany": "in {count, plural, one {# campaign} other {{count, number, credits} campaigns}}",
+    "review": "Review",
+    "emptyTab": "No campaigns with this status.",
+    "emptyState": {
+      "title": "No campaigns",
+      "body": "A campaign starts from a list of people: write the steps, choose which mailbox sends, and approve the messages before they go out.",
+      "list": "A list of people with email",
+      "mailbox": "A connected email mailbox",
+      "linkedin": "LinkedIn <m>(optional, only for LinkedIn steps)</m>",
+      "findPeople": "Find people",
+      "connect": "Connect",
+      "chooseList": "Choose a list",
+      "done": "Ready:",
+      "todo": "To do:",
+      "optional": "Optional:"
+    },
+    "detail": {
+      "seeSteps": "See the steps",
+      "length": "{steps, plural, one {# step} other {{steps, number, credits} steps}}{days, plural, =0 {} one { over # day} other { over {days, number, credits} days}}",
+      "repliedLabel": "Replied: {label}",
+      "sentStep": "Step {step, number, credits} sent",
+      "taskStep": "Step {step, number, credits}: task created in HubSpot",
+      "outOfOffice": "Out of office · restarts {day, select, other {on {date}}}",
+      "readyStep": "Step {step, number, credits} ready, waiting for you",
+      "peopleError": "Could not load the people.",
+      "stepOf": "{done, number, credits} of {total, plural, one {# step} other {{total, number, credits} steps}}",
+      "states": {
+        "excluded": "Excluded",
+        "replied": "Replied · stopped",
+        "paused": "Paused",
+        "done": "Sequence done",
+        "awaiting": "To approve",
+        "waiting": "Waiting",
+        "invalidEmail": "Invalid email",
+        "missingValue": "Missing a value"
+      },
+      "state": "Status",
+      "peopleEmpty": "Nobody in this campaign.",
+      "replies": "Replies",
+      "sent": "Sent",
+      "repliesDetail": "{interested, number, credits} interested · {auto, plural, one {# automatic} other {{auto, number, credits} automatic}}",
+      "signalReason": "Entered because: {title}",
+      "invalidAddress": "The address is not valid",
+      "repliesTile": "Replies",
+      "peopleTitle": "People",
+      "dayShort": "D{day, number, credits}",
+      "window": "{days} {start, number, credits}:00–{end, number, credits}:00",
+      "sentToday": "today {sent, number, credits} of {cap, number, credits}",
+      "person": "Person",
+      "failed": "Failed",
+      "invalidEmail": "{count, plural, one {# invalid email} other {{count, number, credits} invalid emails}}",
+      "noSender": "No mailbox connected",
+      "from": "From {senders}",
+      "people": "People",
+      "replied": "Replied",
+      "activity": "Last activity",
+      "step": "Step",
+      "changeSenders": "Change",
+      "unreadReplies": "{count, plural, one {# unread reply} other {{count, number, credits} unread replies}}",
+      "sequence": "Sequence",
+      "sendersTitle": "Senders",
+      "hold": {
+        "held_by_instantly": {
+          "label": "Email by Instantly",
+          "hint": "Instantly sends this person's email in this client, so Zenbree sends them no email."
+        },
+        "stop_pending": {
+          "label": "Stopping in Instantly",
+          "hint": "They replied, opted out or their address bounced. Zenbree sends nothing to them until Instantly confirms the stop."
+        },
+        "stop_failed": {
+          "label": "Stop failed in Instantly",
+          "hint": "Instantly did not confirm the stop, so Zenbree sends nothing to them. Retry it, or confirm it by hand, on the Instantly card in Integrations."
+        },
+        "stopped": {
+          "label": "Stopped in Instantly",
+          "hint": "The stop is done: Instantly confirmed it, a member confirmed it by hand, or Instantly no longer had them. Zenbree does not write to them again."
+        }
+      },
+      "valuesFrom": "Values from {at}",
+      "missingValue": "No value for {tokens}. Keeps the campaign open until they have a value and you regenerate the values.",
+      "regenerate": {
+        "button": "Regenerate values",
+        "title": "Regenerate the values?",
+        "description": "Each person's values are read again from the list. People who waited for a value start once they have one.",
+        "rewritten": "Messages waiting for approval, and approved messages that have not gone out yet, are written again from the new values. Your edits and approvals of them are lost.",
+        "unchanged": "Messages already sent or in sending do not change.",
+        "done": "{renewed, plural, one {# person updated} other {{renewed, number, credits} people updated}} · {active, plural, one {# started} other {{active, number, credits} started}} · {waiting, plural, one {# still waiting} other {{waiting, number, credits} still waiting}} · {kept, plural, one {# kept the old values} other {{kept, number, credits} kept the old values}}"
+      }
+    },
+    "pushPrompt": {
+      "title": "Want an alert when someone replies?",
+      "body": "We show it from your browser even when Zenbree is closed. Urgent events only, never outside your hours.",
+      "allow": "Turn on alerts",
+      "dismiss": "Not now",
+      "enabled": "Browser notifications turned on.",
+      "error": "We couldn't turn notifications on. Try again from the settings."
+    },
+    "breadcrumb": "Path",
+    "activity": {
+      "title": "Recent activity",
+      "empty": "No activity yet.",
+      "loadMore": "Load more",
+      "loadError": "Could not load the activity.",
+      "deleted": "Deleted person",
+      "sent": "Step {step, number, credits} sent · {channel}",
+      "approved": "Step {step, number, credits} approved",
+      "reply": "replied: {label}",
+      "replied": "replied",
+      "auto_reply": "automatic reply",
+      "unsubscribe": "asked not to be contacted again",
+      "yesterday": "yesterday"
+    },
+    "senderHold": {
+      "label": "Held",
+      "reasons": {
+        "send_uncertain": "We don't know whether the last email from {sender} went out. Zenbree does not send it again, so the conversation stops here.",
+        "mailbox_unknown": "The conversation started from a mailbox Zenbree no longer knows. It does not continue from another mailbox.",
+        "disconnected": "The conversation is on {sender}, which is disconnected. Connect it again to continue.",
+        "needs_reconnect": "The conversation is on {sender}, which needs reconnecting. Reconnect it to continue.",
+        "unlinked": "The conversation is on {sender}, which this client no longer uses. Link it to the client again to continue.",
+        "not_in_pool": "The conversation is on {sender}, which this campaign does not use. Add it to the campaign's mailboxes to continue.",
+        "paused": "The conversation is on {sender}, which is paused. Resume it to continue.",
+        "throttled": "The conversation is on {sender}, which the provider limited. It goes on by itself."
+      },
+      "count": "{count, plural, one {# conversation waits for this mailbox} other {{count, number, credits} conversations wait for this mailbox}}"
+    },
+    "variants": {
+      "title": "A/B test",
+      "share": "{percent, number, credits}% of the people who join get copy B.",
+      "paused": "Paused: people who join now get copy A and stay outside the test.",
+      "kept": "People who already joined keep their copy and its text. A pause changes only the people who join later. The texts cannot change after launch.",
+      "pause": "Pause the test",
+      "resume": "Resume the test"
+    }
+  }
+}

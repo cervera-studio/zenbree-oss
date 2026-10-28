@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Campagne</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-row{transition:background 190ms cubic-bezier(0.4,0,1,1)}
+.zb-row:hover{background:var(--zb-muted);transition-duration:110ms}
+.zb-link{color:var(--zb-fg);font-weight:600;text-decoration:none}
+.zb-link:hover{color:var(--zb-ink);text-decoration:underline}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="campaigns" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+
+  <main style="min-width: 0; display: flex; flex-direction: column; gap: 24px; padding: 40px">
+    <div style="display: flex; align-items: flex-end; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1">
+        <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.18; letter-spacing: 0">Campagne</h1>
+        <p style="margin: 0; font-size: 14px; color: var(--zb-muted-fg)">Sequenze email e LinkedIn partite dalle tue liste. Non parte nulla senza la tua approvazione.</p>
+      </div>
+      <a href="{{nav.lists}}" style="height: 38px; padding: 0 16px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Nuova campagna da una lista
+      </a>
+    </div>
+
+    <sc-if value="{{notEmpty}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <a href="{{nav.detail}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; background: rgba(254,154,0,0.10); border: 1px solid rgba(254,154,0,0.35); color: var(--zb-fg); text-decoration: none">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-warn-fg)"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+          <span style="flex-grow: 1"><strong>12 messaggi aspettano la tua approvazione</strong> <span style="color: var(--zb-muted-fg)">· Agenzie marketing Milano · SDR</span></span>
+          <span style="font-weight: 600; color: var(--zb-ink)">Rivedi</span>
+        </a>
+
+        <div role="tablist" aria-label="Filtra campagne" style="display: inline-flex; align-self: flex-start; padding: 3px; gap: 2px; border-radius: 10.5px; background: var(--zb-rail)">
+          <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+            <button type="button" role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="height: 30px; padding: 0 12px; border: 0; border-radius: 7px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.shadow}}">{{t.label}} <span style="font-weight: 400; color: var(--zb-muted-fg)">{{t.count}}</span></button>
+          </sc-for>
+        </div>
+
+        <div style="border: 1px solid var(--zb-border); border-radius: 14px; overflow: hidden">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px">
+            <thead>
+              <tr style="background: var(--zb-rail); text-align: left">
+                <th scope="col" style="padding: 10px 16px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Campagna</th>
+                <th scope="col" style="padding: 10px 16px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Stato</th>
+                <th scope="col" style="padding: 10px 16px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Step</th>
+                <th scope="col" style="padding: 10px 16px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg); width: 200px">Avanzamento</th>
+                <th scope="col" style="padding: 10px 16px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg); text-align: right">Risposte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{rows}}" as="c" hint-placeholder-count="5">
+                <tr class="zb-row" style="border-top: 1px solid var(--zb-muted)">
+                  <td style="padding: 14px 16px">
+                    <div style="display: flex; flex-direction: column; gap: 3px">
+                      <a href="{{c.href}}" class="zb-link">{{c.name}}</a>
+                      <span style="font-size: 12px; color: var(--zb-muted-fg); display: inline-flex; align-items: center; gap: 5px">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M3 15h18M9 3v18"></path></svg>{{c.list}} · {{c.people}} persone</span>
+                    </div>
+                  </td>
+                  <td style="padding: 14px 16px; white-space: nowrap">
+                    <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{c.sBg}}; color: {{c.sFg}}; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 999px; background: {{c.sDot}}"></span>{{c.status}}</span>
+                    <sc-if value="{{c.awaiting}}" hint-placeholder-val="{{false}}"><span style="margin-left: 6px; font-size: 12px; font-weight: 600; color: var(--zb-warn-fg)">{{c.awaiting}}</span></sc-if>
+                  </td>
+                  <td style="padding: 14px 16px">
+                    <span style="display: inline-flex; gap: 4px">
+                      <sc-for list="{{c.steps}}" as="s" hint-placeholder-count="3">
+                        <span title="{{s.title}}" style="height: 22px; min-width: 22px; padding: 0 6px; box-sizing: border-box; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; background: {{s.bg}}; color: {{s.fg}}">{{s.k}}</span>
+                      </sc-for>
+                    </span>
+                  </td>
+                  <td style="padding: 14px 16px">
+                    <div style="display: flex; flex-direction: column; gap: 4px">
+                      <span style="height: 6px; border-radius: 999px; background: var(--zb-rail); overflow: hidden"><span style="display: block; height: 6px; width: {{c.pct}}; background: var(--zb-brand)"></span></span>
+                      <span style="font-size: 12px; color: var(--zb-muted-fg); font-variant-numeric: tabular-nums">{{c.sent}} inviati · {{c.failed}} non riusciti</span>
+                    </div>
+                  </td>
+                  <td style="padding: 14px 16px; text-align: right; font-variant-numeric: tabular-nums"><strong>{{c.replied}}</strong> <span style="color: var(--zb-muted-fg)">{{c.rate}}</span></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <section aria-labelledby="ce" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--zb-border); border-radius: 21px; padding: 48px">
+        <div style="max-width: 600px; display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center">
+          <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 17.5px; background: var(--zb-tint); color: var(--zb-ink); display: flex; align-items: center; justify-content: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <h2 id="ce" style="margin: 0; font-size: 20px; font-weight: 700">Nessuna campagna</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--zb-muted-fg)">Una campagna parte da una lista di persone: scrivi gli step, scegli da quale casella inviare e approvi i messaggi prima che partano.</p>
+          </div>
+          <ol style="margin: 0; padding: 0; list-style: none; width: 100%; display: flex; flex-direction: column; gap: 8px; text-align: left">
+            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-pos-fg)"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="flex-grow: 1">Una lista di persone con email</span><span style="font-size: 12px; color: var(--zb-muted-fg)">Agenzie marketing Milano · SDR</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-warn-fg)"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+              <span style="flex-grow: 1">Una casella email collegata</span><a href="{{nav.integrations}}" style="font-size: 13px; font-weight: 600; text-decoration: none">Collega</a>
+            </li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)">
+              <span style="width: 18px; height: 18px; box-sizing: border-box; border-radius: 999px; border: 2px dashed var(--zb-border)"></span>
+              <span style="flex-grow: 1">LinkedIn <span style="color: var(--zb-muted-fg)">(facoltativo, solo per gli step LinkedIn)</span></span><a href="{{nav.integrations}}" style="font-size: 13px; font-weight: 600; text-decoration: none">Collega</a>
+            </li>
+          </ol>
+          <a href="{{nav.lists}}" style="height: 42px; padding: 0 18px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; white-space: nowrap">Scegli una lista</a>
+        </div>
+      </section>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"empty":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'all' };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const empty = this.props.empty === true || this.props.empty === 'true';
+    const ST = {
+      active: ['Attiva', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)', '#00bc7d'],
+      draft: ['Bozza', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)', '#62748e'],
+      paused: ['In pausa', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)', '#fe9a00'],
+      completed: ['Completata', 'var(--zb-tint)', 'var(--zb-ink)', 'var(--zb-ink)'],
+      stopped: ['Fermata', 'rgba(251,44,54,0.10)', 'var(--zb-neg-fg)', '#fb2c36']
+    };
+    const S = (k) => k === 'E'
+      ? { k: '@', title: 'Email', bg: 'var(--zb-tint)', fg: 'var(--zb-ink)' }
+      : { k: 'in', title: k === 'I' ? 'Invito LinkedIn' : 'Messaggio LinkedIn', bg: 'rgba(0,184,219,0.12)', fg: 'var(--zb-social-fg)' };
+    const C = (name, list, people, st, steps, sent, total, failed, replied, awaiting, href) => {
+      const s = ST[st];
+      return {
+        name, list, people: String(people), st, status: s[0], sBg: s[1], sFg: s[2], sDot: s[3],
+        steps: steps.split('').map(S), sent: String(sent), failed: String(failed), replied: String(replied),
+        rate: sent ? '· ' + Math.round(replied / Math.max(1, people) * 100) + '%' : '', pct: Math.round(sent / Math.max(1, total) * 100) + '%',
+        awaiting: awaiting || false, href: h(href)
+      };
+    };
+    const all = [
+      C('Agenzie marketing Milano · SDR', 'Agenzie marketing Milano · SDR', 47, 'active', 'EIEM', 18, 188, 1, 5, '12 da approvare', 'Camp-Detail.dc.html'),
+      C('Resp. marketing tech · Q4', 'Resp. marketing tech 50–200', 64, 'draft', 'EE', 0, 128, 0, 0, '', 'Camp-Builder.dc.html'),
+      C('Fiere 2026 · follow-up', 'fiere_2026.csv', 241, 'paused', 'EEE', 302, 723, 6, 19, '', 'Camp-Detail.dc.html'),
+      C('Software house Torino', 'Software house Torino', 38, 'completed', 'EIE', 114, 114, 2, 7, '', 'Camp-Detail.dc.html')
+    ];
+    const tabs = [['all', 'Tutte'], ['active', 'Attive'], ['draft', 'Bozze'], ['paused', 'In pausa'], ['completed', 'Completate']].map(([k, label]) => {
+      const on = this.state.tab === k;
+      return { label, count: String(k === 'all' ? all.length : all.filter((c) => c.st === k).length), sel: on ? 'true' : 'false', bg: on ? 'var(--zb-bg)' : 'transparent', fg: on ? 'var(--zb-fg)' : 'var(--zb-muted-fg)', shadow: on ? '0 1px 2px rgba(7,25,29,0.10)' : 'none', pick: () => this.setState({ tab: k }) };
+    });
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      empty, notEmpty: !empty, tabs,
+      rows: this.state.tab === 'all' ? all : all.filter((c) => c.st === this.state.tab),
+      nav: { lists: h(empty ? 'List.dc.html' : 'Lists.dc.html'), detail: h('Camp-Detail.dc.html'), integrations: h('Set-Integrations.dc.html') }
+    };
+  }
+}
+</script>
+</body>
+</html>

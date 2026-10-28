@@ -1,0 +1,20 @@
+---
+import { type Content, links } from '../content';
+import { wrap } from '../styles/classes';
+import Logo from './Logo.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+---
+
+<footer class:list={[wrap, 'flex flex-wrap items-center gap-4 pt-10 pb-12 text-small text-soft phone:flex-col phone:items-start phone:gap-5 phone:pt-8 phone:pb-10']}>
+  <Logo />
+  <span>© 2026 Zenbree</span>
+  <nav class="ml-auto flex flex-wrap gap-6 phone:ml-0 phone:gap-x-5 phone:gap-y-3" aria-label={t.footer.legalLabel}>
+    <a href={links.terms} class="hover:text-ink">{t.footer.terms}</a>
+    <a href={links.privacy} class="hover:text-ink">{t.footer.privacy}</a>
+    <a href={links.signIn} class="hover:text-ink">{t.footer.signIn}</a>
+  </nav>
+</footer>

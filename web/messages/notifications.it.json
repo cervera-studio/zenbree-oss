@@ -1,0 +1,212 @@
+{
+  "notifications": {
+    "title": "Notifiche",
+    "open": "Notifiche",
+    "openUnread": "Notifiche, {count, number, credits} da leggere",
+    "close": "Chiudi",
+    "unread": "da leggere",
+    "summary": {
+      "unread": "{count, number, credits} da leggere",
+      "allRead": "Tutte lette"
+    },
+    "filters": {
+      "label": "Filtra notifiche",
+      "all": "Tutte",
+      "unread": "Da leggere",
+      "reply": "Risposte",
+      "decide": "Da decidere"
+    },
+    "actions": {
+      "reply": "Rispondi",
+      "open": "Apri",
+      "accept": "Accetta",
+      "review": "Rivedi e approva",
+      "retry": "Riprova",
+      "for": "{action}: {title}"
+    },
+    "channel": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "meeting": "Incontro"
+    },
+    "markAllRead": "Segna tutte come lette",
+    "empty": {
+      "title": "Sei in pari",
+      "body": "Qui arrivano risposte, ricerche finite e messaggi da approvare."
+    },
+    "today": "Oggi",
+    "yesterday": "Ieri",
+    "someone": "Un contatto",
+    "settingsLabel": "Impostazioni notifiche",
+    "kind": {
+      "reply_urgent": {
+        "title": "{label, select, meeting_request {{name} chiede un incontro} other {Risposta interessata da {name}}}",
+        "body": "Apri per leggere la risposta."
+      },
+      "reply": {
+        "title": "Nuova risposta da {name}",
+        "body": "Apri per leggere la risposta.",
+        "campaign": "Campagna «{campaign}»",
+        "unverified": "Mittente non verificato"
+      },
+      "search_done": {
+        "title": "Ricerca finita",
+        "titleBoth": "Ricerca finita: {people, plural, one {# persona} other {{people, number, credits} persone}} in {companies, plural, one {# azienda} other {{companies, number, credits} aziende}}",
+        "titlePeople": "Ricerca finita: {people, plural, one {# persona} other {{people, number, credits} persone}}",
+        "titleCompanies": "Ricerca finita: {companies, plural, one {# azienda} other {{companies, number, credits} aziende}}",
+        "refunded": "{count, plural, one {# credito reso} other {{count, number, credits} crediti resi}}",
+        "body": "I risultati sono pronti nella chat."
+      },
+      "search_failed": {
+        "title": "Ricerca ferma: un fornitore non risponde",
+        "progress": "{done, number, credits} di {units, number, credits}, le altre non le paghi",
+        "body": "Riprova dalla chat: quello che manca non lo paghi."
+      },
+      "agent_question": {
+        "title": "L'agente ha bisogno di te",
+        "plan": "piano da approvare",
+        "funnel": "nessun risultato",
+        "body": "Rispondi nella chat per continuare."
+      },
+      "approval_needed": {
+        "title": "{count, plural, one {# messaggio da approvare} other {{count, number, credits} messaggi da approvare}}",
+        "body": "{count, plural, one {parte dopo il tuo ok} other {partono dopo il tuo ok}}"
+      },
+      "low_credits": {
+        "title": "Crediti in esaurimento",
+        "body": "{credits, plural, one {Ti resta # credito} other {Ti restano {credits, number, credits} crediti}}."
+      },
+      "payment_failed": {
+        "title": "Ricarica automatica non riuscita",
+        "body": "Controlla il metodo di pagamento."
+      },
+      "linkedin_accepted": {
+        "title": "{name} ha accettato il collegamento",
+        "body": "Campagna «{campaign}» · sequenza LinkedIn"
+      },
+      "bounces_high": {
+        "title": "Troppi rimbalzi in «{campaign}»",
+        "body": "{invalid, plural, one {# indirizzo non valido} other {{invalid, number, credits} indirizzi non validi}} su {attempted, plural, one {# persona} other {{attempted, number, credits} persone}}",
+        "paused": "{invalid, plural, one {# email rimbalzata} other {{invalid, number, credits} email rimbalzate}} su {attempted, plural, one {# inviata} other {{attempted, number, credits} inviate}} · campagna in pausa"
+      },
+      "mailbox_error": {
+        "title": "{provider, select, unipile {Account LinkedIn scollegato} other {Casella scollegata}}",
+        "titleNamed": "«{mailbox}» {provider, select, unipile {è scollegato} other {è scollegata}}",
+        "body": "{provider, select, unipile {Le campagne LinkedIn non inviano finché non ricolleghi l’account.} other {Le campagne che la usano non inviano finché non la ricolleghi.}}"
+      },
+      "plan_renewed": {
+        "title": "Piano {plan, select, starter {Starter} pro {Pro} other {{plan}}} rinnovato: +{credits, plural, one {# credito} other {{credits, number, credits} crediti}}",
+        "body": "{expired, plural, =0 {{organization}} one {{organization} · # credito non usato scaduto} other {{organization} · {expired, number, credits} crediti non usati scaduti}}"
+      }
+    },
+    "settings": {
+      "title": "Notifiche",
+      "description": "Scegli cosa ti raggiunge quando non sei su Zenbree. Nell'app trovi sempre tutto sotto la campanella.",
+      "loadError": "Impossibile caricare le impostazioni delle notifiche.",
+      "saved": "Salvato",
+      "saveError": "Salvataggio non riuscito. Riprova.",
+      "groups": {
+        "replies": "Risposte",
+        "searches": "Campagne e ricerche",
+        "account": "Account"
+      },
+      "table": {
+        "event": "Quando",
+        "always": "sempre",
+        "unavailable": "Non disponibile"
+      },
+      "events": {
+        "replyUrgent": {
+          "label": "Risposta interessata o richiesta di incontro",
+          "help": "Al massimo un'email ogni 30 minuti; le altre vanno nel riepilogo. Mai il testo della risposta."
+        },
+        "reply": {
+          "label": "Altre risposte",
+          "help": "Non ora, non interessato, risposte automatiche. Solo nel riepilogo."
+        },
+        "linkedinAccepted": {
+          "label": "Invito LinkedIn accettato",
+          "help": "Solo nel riepilogo."
+        },
+        "approvalNeeded": {
+          "label": "Messaggi da approvare",
+          "help": "Solo nel riepilogo, con il numero ancora in attesa."
+        },
+        "searchDone": {
+          "label": "Ricerca finita",
+          "help": "Solo se la ricerca dura più di 5 minuti o Zenbree è chiuso."
+        },
+        "searchFailed": {
+          "label": "Ricerca ferma o serve una tua scelta",
+          "help": "Quando un fornitore ferma una ricerca che non stai guardando. L'email conta nel limite di una urgente ogni 30 minuti."
+        },
+        "bouncesHigh": {
+          "label": "Troppi rimbalzi in una campagna",
+          "help": "Più del 5% di indirizzi non validi, con almeno 20 persone a cui scrivere. La campagna non va in pausa da sola."
+        },
+        "lowCredits": {
+          "label": "Crediti sotto 200",
+          "help": "Una volta, finché non ricarichi. Mai con la ricarica automatica attiva."
+        },
+        "mailboxError": {
+          "label": "Casella scollegata o bloccata",
+          "help": "Le campagne che la usano non inviano finché non la ricolleghi."
+        },
+        "locked": {
+          "label": "Ricevute, rinnovi e sicurezza",
+          "help": "Pagamenti, rinnovo del piano, nuovo accesso, cambio password"
+        }
+      },
+      "channels": {
+        "inApp": "Nell'app",
+        "email": "Email",
+        "browser": "Browser"
+      },
+      "browser": {
+        "title": "Notifiche del browser",
+        "on": "Notifiche del browser attive su questo computer.",
+        "ask": {
+          "title": "Ricevi le risposte anche con Zenbree chiuso.",
+          "body": "Il browser ti chiederà il permesso una volta sola.",
+          "inPageTitle": "Ricevi un avviso dal browser mentre Zenbree è aperto."
+        },
+        "allow": "Attiva notifiche del browser",
+        "denied": {
+          "title": "Il browser blocca le notifiche di Zenbree.",
+          "body": "Per attivarle apri le impostazioni del sito (icona a sinistra dell'indirizzo) e consenti le notifiche. Poi torna su questa pagina. Intanto ti scriviamo per email."
+        },
+        "unsupported": {
+          "title": "Browser non supportato",
+          "body": "Questo browser non mostra notifiche. Restano il pannello e l'email."
+        },
+        "enabled": "Notifiche del browser attivate.",
+        "enableError": "Non siamo riusciti ad attivare le notifiche. Riprova.",
+        "test": "Invia una prova",
+        "turnOff": "Disattiva su questo browser",
+        "testSent": "Notifica di prova inviata.",
+        "testError": "La prova non è partita. Riattiva le notifiche del browser e riprova.",
+        "turnedOff": "Notifiche del browser disattivate su questo computer."
+      },
+      "digest": {
+        "label": "Riepilogo via email",
+        "help": "Una sola email con tutto quello che non è urgente: risposte, messaggi da approvare, ricerche finite. Parte solo se c'è qualcosa da dire. Orari in ora italiana.",
+        "frequencyLabel": "Frequenza del riepilogo",
+        "hourLabel": "Ora del riepilogo",
+        "at": "alle",
+        "frequency": {
+          "daily": "Ogni giorno lavorativo",
+          "weekly": "Ogni lunedì",
+          "off": "Mai"
+        }
+      },
+      "dnd": {
+        "label": "Non disturbare",
+        "help": "Niente email immediate né notifiche del browser: tutto resta nel pannello e, se attivo, nel riepilogo. Pagamenti e sicurezza arrivano comunque."
+      },
+      "switch": {
+        "on": "Attivo",
+        "off": "Disattivo"
+      }
+    }
+  }
+}

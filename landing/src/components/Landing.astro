@@ -1,0 +1,83 @@
+---
+import '../styles/theme.css';
+import { content, defaultLocale, type Locale, locales, paths } from '../content';
+import Estimate from './Estimate.astro';
+import Faq from './Faq.astro';
+import FinalCta from './FinalCta.astro';
+import Flow from './Flow.astro';
+import Footer from './Footer.astro';
+import Hero from './Hero.astro';
+import Nav from './Nav.astro';
+import Pricing from './Pricing.astro';
+import Seo from './Seo.astro';
+import SiteMenu from './SiteMenu.astro';
+import Statement from './Statement.astro';
+import Why from './Why.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = content[locale];
+const canonical = new URL(paths[locale], Astro.site);
+---
+
+<!doctype html>
+<html lang={locale} class="scheme-light-dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      // Runs before first paint, so a stored theme never flashes the OS scheme.
+      const classes = { system: 'scheme-light-dark', light: 'scheme-light', dark: 'scheme-dark' };
+      window.theme = {
+        read() {
+          try {
+            const stored = localStorage.getItem('theme');
+            return Object.hasOwn(classes, stored) ? stored : 'system';
+          } catch {
+            return 'system';
+          }
+        },
+        apply(preference) {
+          const current = Object.values(classes).find((c) => document.documentElement.classList.contains(c));
+          document.documentElement.classList.replace(current, classes[preference]);
+        },
+      };
+      window.theme.apply(window.theme.read());
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonical} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={new URL(paths[l], Astro.site)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(paths[defaultLocale], Astro.site)} />
+    <Seo locale={locale} canonical={canonical} t={t} />
+  </head>
+  <body class="bg-ground font-sans text-body text-ink">
+    <Nav t={t} locale={locale} />
+    <main>
+      <Hero t={t} />
+      <Statement t={t} />
+      <Estimate t={t} locale={locale} />
+      <Flow t={t} />
+      <Why t={t} />
+      <Pricing t={t} />
+      <Faq t={t} />
+      <FinalCta t={t} />
+    </main>
+    <Footer t={t} />
+    <SiteMenu t={t} locale={locale} />
+
+    <script>
+      const menu = document.getElementById('site-menu');
+      menu?.querySelectorAll('nav a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', () => menu.hidePopover());
+      });
+    </script>
+  </body>
+</html>

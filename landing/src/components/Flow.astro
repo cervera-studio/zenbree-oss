@@ -1,0 +1,35 @@
+---
+import type { Content } from '../content';
+import { cells, eyebrow, h2, section } from '../styles/classes';
+import Eyebrow from './Eyebrow.astro';
+import StepSnip from './StepSnip.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+---
+
+<section id={t.sections.how} class:list={[section, 'flex flex-col gap-14 phone:gap-7']}>
+  <div class="flex max-w-150 flex-col gap-5">
+    <Eyebrow>{t.how.eyebrow}</Eyebrow>
+    <h2 class={h2}>{t.how.titleLine}<br />{t.how.titleRest}</h2>
+  </div>
+  <ol class:list={[cells, 'grid-cols-4 tablet:grid-cols-2 phone:grid-cols-1']}>
+    {t.how.steps.map((s) => (
+      <li class="row-span-2 grid min-w-0 grid-cols-1 grid-rows-subgrid">
+        <div class="flex flex-col justify-end bg-raised p-5">
+          <StepSnip art={s.art} ui={t.ui} />
+        </div>
+        <div class="flex flex-col gap-2 bg-ground p-5">
+          <div class:list={[eyebrow, 'flex gap-1.5 text-accent-ink']}><span class="shrink-0 whitespace-nowrap" aria-hidden="true">{s.n} ·</span><h3 class="text-eyebrow">{s.title}</h3></div>
+          <p class="text-feature">{s.short}</p>
+          <p class="text-ui text-soft">{s.body}</p>
+          <ul class="mt-2 flex flex-col gap-1.5 text-small text-soft">
+            {s.points.map((point) => <li class="flex gap-2"><i class="mt-1.5 size-1.5 shrink-0 bg-accent" aria-hidden="true"></i>{point}</li>)}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

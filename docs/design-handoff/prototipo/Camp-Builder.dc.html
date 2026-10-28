@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Nuova campagna</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;width:100%;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg)}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.zb-step{transition:border-color 190ms cubic-bezier(0.4,0,1,1)}
+.zb-step:hover{border-color:var(--zb-ink) !important;transition-duration:110ms}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--zb-brand);margin:0;flex-shrink:0}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="campaigns" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+
+  <div style="min-width: 0; display: flex; flex-direction: column">
+    <header style="display: flex; align-items: center; gap: 12px; padding: 20px 32px; border-bottom: 1px solid var(--zb-border)">
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <a href="{{nav.campaigns}}" style="font-size: 12px; color: var(--zb-muted-fg); text-decoration: none">← Tutte le campagne</a>
+        <div style="display: flex; align-items: center; gap: 10px">
+          <label for="cn" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Nome della campagna</label>
+          <input id="cn" type="text" value="{{name}}" onChange="{{setName}}" style="min-width: 0; width: 420px; border: 0; border-radius: 7px; background: transparent; font-family: inherit; font-size: 22px; font-weight: 700; color: var(--zb-fg); padding: 2px 4px; margin-left: -4px">
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: rgba(98,116,142,0.12); color: var(--zb-neu-fg); font-size: 12px; font-weight: 600; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 999px; background: #62748e"></span>Bozza</span>
+        </div>
+        <a href="{{nav.list}}" style="font-size: 13px; color: var(--zb-muted-fg); text-decoration: none; display: inline-flex; align-items: center; gap: 6px">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M3 15h18M9 3v18"></path></svg>
+          47 persone da <span style="color: var(--zb-ink); font-weight: 600">Agenzie marketing Milano · SDR</span> · solo righe consegnate, esclusioni già tolte
+        </a>
+      </div>
+      <a href="{{nav.chat}}" style="height: 38px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-ai-fg)"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+        Riscrivi con l'agente
+      </a>
+    </header>
+
+    <div style="flex-grow: 1; display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 0">
+      <main style="padding: 24px 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0">
+        <div style="display: flex; align-items: baseline; gap: 12px">
+          <h2 style="margin: 0; font-size: 16px; font-weight: 700; flex-grow: 1">Step</h2>
+          <span style="font-size: 12px; color: var(--zb-muted-fg)">{{stepCount}} di 12 · i giorni contano dall'avvio</span>
+        </div>
+
+        <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0">
+          <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+            <li style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 12px">
+              <div style="display: flex; flex-direction: column; align-items: center">
+                <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg); padding-top: 14px">Giorno</span>
+                <span style="font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums">{{s.day}}</span>
+                <span style="flex-grow: 1; width: 2px; margin: 6px 0; background: var(--zb-border); border-radius: 2px; min-height: 16px"></span>
+              </div>
+              <div style="padding-bottom: 12px">
+                <sc-if value="{{s.closed}}" hint-placeholder-val="{{true}}">
+                  <button type="button" class="zb-step" onClick="{{s.open}}" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--zb-border); background: var(--zb-card); color: var(--zb-fg); font-family: inherit; font-size: 14px; text-align: left; cursor: pointer">
+                    <span style="height: 26px; min-width: 26px; padding: 0 6px; box-sizing: border-box; border-radius: 7px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; background: {{s.chipBg}}; color: {{s.chipFg}}; white-space: nowrap">{{s.k}}</span>
+                    <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                      <span style="font-weight: 600">{{s.n}} · {{s.channel}}</span>
+                      <span style="font-size: 13px; color: var(--zb-muted-fg); overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{s.summary}}</span>
+                    </span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="color: var(--zb-muted-fg)"><path d="m6 9 6 6 6-6"></path></svg>
+                  </button>
+                </sc-if>
+                <sc-if value="{{s.isOpen}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 14px; border: 2px solid var(--zb-ink); background: var(--zb-card)">
+                    <div style="display: flex; align-items: center; gap: 10px">
+                      <span style="height: 26px; min-width: 26px; padding: 0 6px; box-sizing: border-box; border-radius: 7px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; background: {{s.chipBg}}; color: {{s.chipFg}}; white-space: nowrap">{{s.k}}</span>
+                      <span style="font-weight: 700; flex-grow: 1">{{s.n}} · {{s.channel}}</span>
+                      <sc-if value="{{s.isEmail}}" hint-placeholder-val="{{true}}">
+                        <button type="button" style="height: 30px; padding: 0 10px; border-radius: 7px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap">Inviami una prova</button>
+                      </sc-if>
+                      <button type="button" aria-label="Rimuovi step" onClick="{{s.remove}}" style="width: 30px; height: 30px; border: 0; border-radius: 7px; background: transparent; color: var(--zb-muted-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>
+                      </button>
+                    </div>
+                    <sc-if value="{{s.threaded}}" hint-placeholder-val="{{false}}">
+                      <span style="font-size: 12px; color: var(--zb-muted-fg); display: inline-flex; align-items: center; gap: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17 4 12l5-5M20 18v-2a4 4 0 0 0-4-4H4"></path></svg>Risponde nello stesso thread dello step 1: oggetto «Re: …»</span>
+                    </sc-if>
+                    <sc-if value="{{s.hasSubject}}" hint-placeholder-val="{{true}}">
+                      <div style="display: flex; flex-direction: column; gap: 6px">
+                        <label for="subj" style="font-size: 13px; font-weight: 600">Oggetto</label>
+                        <input id="subj" class="zb-field" type="text" value="{{s.subject}}" onChange="{{s.setSubject}}" style="height: 40px; padding: 0 12px">
+                      </div>
+                    </sc-if>
+                    <div style="display: flex; flex-direction: column; gap: 6px">
+                      <label for="body" style="font-size: 13px; font-weight: 600">{{s.bodyLabel}}</label>
+                      <textarea id="body" class="zb-field" rows="{{s.rows}}" value="{{s.body}}" onChange="{{s.setBody}}" style="padding: 10px 12px; line-height: 1.55; resize: vertical"></textarea>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12px; color: var(--zb-muted-fg)">
+                      Variabili:
+                      <sc-for list="{{tokens}}" as="t" hint-placeholder-count="4">
+                        <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; padding: 2px 6px; border-radius: 5px; background: var(--zb-rail); color: var(--zb-fg)">{{t}}</span>
+                      </sc-for>
+                      <span style="flex-grow: 1"></span>
+                      <span style="font-variant-numeric: tabular-nums">{{s.chars}} / {{s.max}}</span>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </li>
+          </sc-for>
+        </ol>
+
+        <div style="display: flex; gap: 8px; margin-left: 68px">
+          <button type="button" onClick="{{addEmail}}" style="height: 36px; padding: 0 12px; border-radius: 10.5px; border: 1px dashed var(--zb-border); background: transparent; color: var(--zb-ink); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap">+ Email</button>
+          <button type="button" onClick="{{addMsg}}" style="height: 36px; padding: 0 12px; border-radius: 10.5px; border: 1px dashed var(--zb-border); background: transparent; color: var(--zb-ink); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap">+ Messaggio LinkedIn</button>
+        </div>
+      </main>
+
+      <aside style="border-left: 1px solid var(--zb-border); background: var(--zb-card); padding: 24px; display: flex; flex-direction: column; gap: 22px">
+        <section aria-labelledby="snd" style="display: flex; flex-direction: column; gap: 10px">
+          <h2 id="snd" style="margin: 0; font-size: 14px; font-weight: 700">Invia da</h2>
+          <span style="font-size: 12px; line-height: 1.5; color: var(--zb-muted-fg)">Ogni persona resta sulla stessa casella per tutto il thread.</span>
+          <sc-if value="{{hasSender}}" hint-placeholder-val="{{true}}">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10.5px; background: var(--zb-bg); border: 1px solid var(--zb-border); cursor: pointer">
+                <input type="checkbox" checked="{{useA}}" onChange="{{toggleA}}">
+                <span style="flex-grow: 1; display: flex; flex-direction: column"><span style="font-weight: 600">ale@ritmosales.it</span><span style="font-size: 12px; color: var(--zb-muted-fg)">25 al giorno · in riscaldamento</span></span>
+              </label>
+              <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10.5px; background: var(--zb-bg); border: 1px dashed var(--zb-border); opacity: 0.7">
+                <input type="checkbox" disabled aria-label="marco@ritmosales.it, da ricollegare">
+                <span style="flex-grow: 1; display: flex; flex-direction: column"><span style="font-weight: 600">marco@ritmosales.it</span><span style="font-size: 12px; color: var(--zb-warn-fg)">Da ricollegare</span></span>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{noSender}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 10.5px; border: 1px dashed var(--zb-border)">
+              <span style="font-size: 13px">Nessuna casella collegata.</span>
+              <a href="{{nav.integrations}}" style="font-size: 13px; font-weight: 600; text-decoration: none">Collegane una in Integrazioni</a>
+            </div>
+          </sc-if>
+        </section>
+
+        <section aria-labelledby="win" style="display: flex; flex-direction: column; gap: 8px">
+          <h2 id="win" style="margin: 0; font-size: 14px; font-weight: 700">Quando</h2>
+          <div style="display: flex; gap: 4px" role="group" aria-label="Giorni di invio">
+            <sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+              <button type="button" aria-pressed="{{d.on}}" onClick="{{d.toggle}}" style="flex-grow: 1; height: 32px; border: 0; border-radius: 7px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background: {{d.bg}}; color: {{d.fg}}">{{d.l}}</button>
+            </sc-for>
+          </div>
+          <span style="font-size: 13px">9:00–18:00 · Europa/Roma <span style="color: var(--zb-muted-fg)">· pausa di 9–14 minuti tra un'email e l'altra</span></span>
+        </section>
+
+        <section aria-labelledby="appr" style="display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 14px; background: var(--zb-bg); border: 1px solid var(--zb-border)">
+          <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+            <span id="appr" style="font-weight: 700">Approva i messaggi prima dell'invio</span>
+            <span style="font-size: 12px; line-height: 1.5; color: var(--zb-muted-fg)">Ogni messaggio aspetta il tuo ok, persona per persona.</span>
+          </div>
+          <button type="button" role="switch" aria-checked="{{approveStr}}" aria-labelledby="appr" onClick="{{toggleApprove}}" style="width: 44px; height: 26px; flex-shrink: 0; padding: 3px; border: 0; border-radius: 999px; cursor: pointer; display: flex; justify-content: {{knob}}; background: {{track}}">
+            <span style="width: 20px; height: 20px; border-radius: 999px; background: #f8fcfb; box-shadow: 0 1px 2px rgba(7,25,29,0.25)"></span>
+          </button>
+        </section>
+
+        <section aria-labelledby="prev" style="display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 8px">
+            <h2 id="prev" style="margin: 0; font-size: 14px; font-weight: 700; flex-grow: 1">Anteprima · step {{openN}}</h2>
+            <label for="pp" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Persona in anteprima</label>
+            <select id="pp" class="zb-field" value="{{who}}" onChange="{{setWho}}" style="width: 170px; height: 32px; padding: 0 8px; font-size: 13px">
+              <option value="0">Giulia Ferri</option>
+              <option value="1">Marco Bellini</option>
+              <option value="2">Luca Conti</option>
+            </select>
+          </div>
+          <sc-if value="{{previewOk}}" hint-placeholder-val="{{true}}">
+            <div style="padding: 14px; border-radius: 14px; background: var(--zb-bg); border: 1px solid var(--zb-border); display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.55">
+              <sc-if value="{{pvSubject}}" hint-placeholder-val="{{true}}"><span style="font-weight: 700">{{pvSubject}}</span></sc-if>
+              <span style="white-space: pre-line">{{pvBody}}</span>
+              <span style="color: var(--zb-muted-fg); white-space: pre-line">{{pvSign}}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{previewErr}}" hint-placeholder-val="{{false}}">
+            <div role="status" style="padding: 12px; border-radius: 14px; background: rgba(254,154,0,0.10); border: 1px solid rgba(254,154,0,0.35); font-size: 13px; line-height: 1.5">{{previewErr}}</div>
+          </sc-if>
+        </section>
+
+        <sc-if value="{{hasLinkedin}}" hint-placeholder-val="{{true}}">
+          <p style="margin: 0; font-size: 12px; line-height: 1.5; color: var(--zb-muted-fg)"><strong style="color: var(--zb-warn-fg)">Gli step LinkedIn comportano un rischio di limitazione.</strong> Inviamo con limiti per account e solo in orario lavorativo.</p>
+        </sc-if>
+      </aside>
+    </div>
+
+    <footer style="position: sticky; bottom: 0; display: flex; align-items: center; gap: 12px; padding: 14px 32px; border-top: 1px solid var(--zb-border); background: var(--zb-bg)">
+      <sc-if value="{{blockers}}" hint-placeholder-val="{{false}}">
+        <ul role="alert" style="margin: 0; padding: 0; list-style: none; flex-grow: 1; display: flex; flex-direction: column; gap: 2px; font-size: 13px; color: var(--zb-neg-fg); font-weight: 600">
+          <sc-for list="{{blockers}}" as="b" hint-placeholder-count="2"><li>{{b}}</li></sc-for>
+        </ul>
+      </sc-if>
+      <sc-if value="{{ready}}" hint-placeholder-val="{{true}}">
+        <span style="flex-grow: 1; font-size: 13px; color: var(--zb-muted-fg)">Non parte nulla finché non la attivi, e ogni messaggio aspetta la tua approvazione.</span>
+      </sc-if>
+      <button type="button" style="height: 40px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap">Salva bozza</button>
+      <sc-if value="{{ready}}" hint-placeholder-val="{{true}}">
+        <a href="{{nav.detail}}" style="height: 40px; padding: 0 18px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; white-space: nowrap">Attiva</a>
+      </sc-if>
+      <sc-if value="{{blockers}}" hint-placeholder-val="{{false}}">
+        <button type="button" disabled style="height: 40px; padding: 0 18px; border: 0; border-radius: 10.5px; background: var(--zb-rail); color: var(--zb-muted-fg); font-family: inherit; font-weight: 600; font-size: 14px; cursor: not-allowed">Attiva</button>
+      </sc-if>
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"blocked":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const T = (k) => '{{' + k + '}}';
+    this.state = {
+      name: 'Agenzie marketing Milano · SDR', open: 0, who: 0, approve: true, useA: true,
+      days: [true, true, true, true, true, false, false],
+      steps: [
+        { type: 'email', day: 0, subject: T('firstName') + ', un SDR per ' + T('companyName') + ' da lunedì?', body: 'Ciao ' + T('firstName') + ',\n\nho visto che ' + T('companyName') + ' sta cercando un SDR. Mentre selezionate, possiamo mettervi a disposizione un SDR già formato sul vostro mercato, da subito e senza assunzione.\n\nTi va di sentirci 15 minuti questa settimana?' },
+        { type: 'linkedin_connect', day: 2, body: 'Ciao ' + T('firstName') + ', ti ho scritto per email a proposito dell’SDR per ' + T('companyName') + '. Mi farebbe piacere collegarci.' },
+        { type: 'email', day: 5, threaded: true, body: 'Ciao ' + T('firstName') + ', ti riscrivo nel caso la mia email sia finita sotto le altre. Se l’annuncio per SDR è ancora aperto, posso mandarti due profili da vedere.' },
+        { type: 'linkedin_message', day: 8, body: 'Grazie per il collegamento, ' + T('firstName') + '! Se ti interessa, ti mando il caso di un’agenzia simile a ' + T('companyName') + '.' }
+      ]
+    };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const blocked = this.props.blocked === true || this.props.blocked === 'true';
+    const S = this.state;
+    const CH = { email: ['Email', '@', 'var(--zb-tint)', 'var(--zb-ink)'], linkedin_connect: ['Invito LinkedIn', 'in', 'rgba(0,184,219,0.12)', 'var(--zb-social-fg)'], linkedin_message: ['Messaggio LinkedIn', 'in', 'rgba(0,184,219,0.12)', 'var(--zb-social-fg)'] };
+    const setStep = (i, patch) => this.setState({ steps: S.steps.map((s, j) => (j === i ? { ...s, ...patch } : s)) });
+    const people = [
+      { firstName: 'Giulia', companyName: 'Officina Nove', email: true },
+      { firstName: 'Marco', companyName: 'Studio Brezza', email: true },
+      { firstName: 'Luca', companyName: 'Nodo Agency', email: false }
+    ];
+    const fill = (txt, p) => (txt || '').replace(/\{\{(\w+)\}\}/g, (_, k) => p[k] ?? '');
+    const steps = S.steps.map((s, i) => {
+      const c = CH[s.type], isOpen = S.open === i, isEmail = s.type === 'email';
+      return {
+        n: 'Step ' + (i + 1), day: String(s.day), channel: c[0], k: c[1], chipBg: c[2], chipFg: c[3],
+        summary: (isEmail && s.subject ? s.subject + ' — ' : '') + s.body.replace(/\n+/g, ' '),
+        closed: !isOpen, isOpen, isEmail, threaded: !!s.threaded,
+        hasSubject: isEmail && !s.threaded, subject: s.subject || '', body: s.body,
+        bodyLabel: s.type === 'linkedin_connect' ? 'Nota dell’invito (facoltativa)' : 'Messaggio',
+        rows: isEmail ? 7 : 3, chars: String(s.body.length), max: s.type === 'linkedin_connect' ? '300' : '4000',
+        open: () => this.setState({ open: i }),
+        remove: () => this.setState({ steps: S.steps.filter((_, j) => j !== i), open: 0 }),
+        setSubject: (e) => setStep(i, { subject: e.target.value }),
+        setBody: (e) => setStep(i, { body: e.target.value })
+      };
+    });
+    const cur = S.steps[S.open] || S.steps[0];
+    const p = people[S.who];
+    const previewErr = cur && cur.type === 'email' && !p.email ? 'Indirizzo email non valido: questo step viene saltato. L’indirizzo di Luca è rimbalzato; riceve solo gli step LinkedIn.' : false;
+    const hasLinkedin = S.steps.some((s) => s.type !== 'email');
+    const blockers = [];
+    if (blocked || !S.useA) blockers.push('Scegli una casella collegata da cui inviare.');
+    if (blocked && hasLinkedin) blockers.push('Collega LinkedIn in Integrazioni per gli step LinkedIn.');
+    if (!S.steps.length) blockers.push('Scrivi almeno uno step.');
+    const last = S.steps.length ? S.steps[S.steps.length - 1].day : 0;
+    const add = (type) => { if (S.steps.length < 12) this.setState({ steps: [...S.steps, { type, day: last + 3, threaded: type === 'email' && S.steps.some((s) => s.type === 'email'), subject: '', body: '' }], open: S.steps.length }); };
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { campaigns: h('Campaigns.dc.html'), list: h('List.dc.html'), chat: h('Chat-Running.dc.html'), detail: h('Camp-Detail.dc.html'), integrations: h('Set-Integrations.dc.html') },
+      name: S.name, setName: (e) => this.setState({ name: e.target.value }),
+      steps, stepCount: String(S.steps.length), openN: String(S.open + 1),
+      tokens: ['{{firstName}}', '{{lastName}}', '{{companyName}}', '{{jobTitle}}'],
+      addEmail: () => add('email'), addMsg: () => add('linkedin_message'),
+      hasSender: !blocked, noSender: blocked, useA: S.useA, toggleA: () => this.setState({ useA: !S.useA }),
+      days: ['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((l, i) => ({ l, on: S.days[i] ? 'true' : 'false', bg: S.days[i] ? 'var(--zb-brand)' : 'var(--zb-rail)', fg: S.days[i] ? 'var(--zb-on-brand)' : 'var(--zb-muted-fg)', toggle: () => this.setState({ days: S.days.map((v, j) => (j === i ? !v : v)) }) })),
+      approveStr: S.approve ? 'true' : 'false', knob: S.approve ? 'flex-end' : 'flex-start', track: S.approve ? 'var(--zb-brand)' : 'var(--zb-border)',
+      toggleApprove: () => this.setState({ approve: !S.approve }),
+      who: String(S.who), setWho: (e) => this.setState({ who: Number(e.target.value) }),
+      previewErr, previewOk: !previewErr,
+      pvSubject: cur && cur.type === 'email' ? (cur.threaded ? 'Re: ' + fill(S.steps[0].subject, p) : fill(cur.subject, p)) : false,
+      pvBody: cur ? fill(cur.body, p) : '',
+      pvSign: cur && cur.type === 'email' ? 'Ale Poli\nRitmo Sales\n\nSe non vuoi più ricevere email, rispondi «stop».' : '',
+      hasLinkedin,
+      blockers: blockers.length ? blockers : false, ready: !blockers.length
+    };
+  }
+}
+</script>
+</body>
+</html>

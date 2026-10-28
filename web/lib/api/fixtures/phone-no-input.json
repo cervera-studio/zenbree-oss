@@ -1,0 +1,29 @@
+{
+  "credits": 0,
+  "row": {
+    "cell_meta": {},
+    "cells": {
+      "company_domain": "acme.test",
+      "last_name": "Rossi"
+    },
+    "created_at": "2026-01-01T00:00:00Z",
+    "crm_hold": null,
+    "delivered": true,
+    "excluded": false,
+    "id": "phone-no-input",
+    "lookups": {
+      "email": {
+        "state": "not_searched"
+      },
+      "phone": {
+        "state": "not_searched"
+      }
+    },
+    "rating": null,
+    "rating_note": null,
+    "relevance_score": null,
+    "score_reasons": null,
+    "seq": 1
+  },
+  "status": "no_input"
+}

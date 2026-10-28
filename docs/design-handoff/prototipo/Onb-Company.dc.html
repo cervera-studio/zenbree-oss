@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Onboarding, la tua azienda</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;width:100%;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:15px;color:var(--zb-fg)}
+.zb-field:focus,.zb-url:focus-within{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.zb-url input:focus{outline:none}
+@keyframes zb-spin{to{transform:rotate(360deg)}}
+.zb-spin{animation:zb-spin 900ms linear infinite}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; display: flex; flex-direction: column; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="OnbHeader" theme="{{theme}}" step="1" hint-size="100%,64px"></dc-import>
+
+  <main style="flex-grow: 1; display: flex; justify-content: center; padding: 64px 32px">
+    <div style="width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 28px">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.18; letter-spacing: 0">Parlaci della tua azienda</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.5; color: var(--zb-muted-fg)">Leggiamo il tuo sito e prepariamo un profilo di vendita: a chi vendi, quali problemi risolvi, chi contattare.</p>
+      </div>
+
+      <sc-if value="{{idle}}" hint-placeholder-val="{{true}}">
+        <form style="background: var(--zb-card); border: 1px solid var(--zb-border); border-radius: 21px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="site" style="font-size: 13px; font-weight: 600">Sito web</label>
+            <div class="zb-url" style="display: flex; align-items: center; height: 46px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); overflow: hidden">
+              <span style="padding: 0 4px 0 14px; color: var(--zb-muted-fg); font-size: 15px">https://</span>
+              <input id="site" type="text" inputmode="url" autocomplete="url" value="ritmosales.it" style="flex-grow: 1; height: 44px; border: 0; background: transparent; font-family: inherit; font-size: 15px; color: var(--zb-fg); padding: 0 14px 0 0">
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="about" style="font-size: 13px; font-weight: 600">Descrizione <span style="font-weight: 400; color: var(--zb-muted-fg)">(facoltativa se hai un sito)</span></label>
+            <textarea id="about" class="zb-field" rows="4" placeholder="Cosa vendi, a chi, in quali paesi…" style="padding: 12px 14px; line-height: 1.5; resize: vertical"></textarea>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="font-size: 12px; color: var(--zb-muted-fg); flex-grow: 1">L'analisi è gratis e non contatta nessuno.</span>
+            <button type="button" onClick="{{analyze}}" style="height: 44px; padding: 0 20px; border: 0; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer">Analizza</button>
+          </div>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{busy}}" hint-placeholder-val="{{false}}">
+        <section aria-live="polite" aria-label="Analisi in corso" style="background: var(--zb-card); border: 1px solid var(--zb-border); border-radius: 21px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 13px; padding: 4px 10px; border-radius: 7px; background: var(--zb-rail)">ritmosales.it</span>
+            <span style="font-size: 13px; color: var(--zb-muted-fg)">Analisi in corso, può richiedere un minuto…</span>
+          </div>
+          <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+            <li style="display: flex; align-items: center; gap: 12px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-pos-fg)"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="flex-grow: 1">Leggo il sito</span><span style="font-size: 12px; color: var(--zb-muted-fg)">7 pagine</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 12px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-pos-fg)"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="flex-grow: 1">Capisco cosa vendi e a chi</span><span style="font-size: 12px; color: var(--zb-muted-fg)">SDR in outsourcing, formazione</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 12px">
+              <svg class="zb-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" style="color: var(--zb-ink)"><path d="M21 12a9 9 0 1 1-6.2-8.6"></path></svg>
+              <span style="flex-grow: 1; font-weight: 600">Preparo il profilo di vendita</span>
+            </li>
+          </ol>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 6px; border-top: 1px solid var(--zb-border)">
+            <button type="button" onClick="{{reset}}" style="height: 40px; padding: 0 14px; border: 1px solid var(--zb-border); border-radius: 10.5px; background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer">Cambia sito</button>
+            <a href="{{nav.ob2}}" style="height: 40px; padding: 0 18px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">Vedi il profilo
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+            </a>
+          </div>
+        </section>
+      </sc-if>
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; border: 1px dashed var(--zb-border)">
+          <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Poi · 2</span>
+          <span style="font-weight: 600">Controlli il profilo</span>
+          <span style="font-size: 13px; color: var(--zb-muted-fg); line-height: 1.45">Correggi chi compra, i problemi, chi escludere.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; border: 1px dashed var(--zb-border)">
+          <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Poi · 3</span>
+          <span style="font-weight: 600">Scegli un segmento</span>
+          <span style="font-size: 13px; color: var(--zb-muted-fg); line-height: 1.45">Te ne propongo tre, con chi cercare.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; border: 1px dashed var(--zb-border)">
+          <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Infine</span>
+          <span style="font-weight: 600">La prima lista</span>
+          <span style="font-size: 13px; color: var(--zb-muted-fg); line-height: 1.45">Si apre una chat già pronta: approvi il piano e parte.</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { busy: false };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    return {
+      theme, nav: { ob2: h('Onb-Profile.dc.html') }, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      busy: this.state.busy, idle: !this.state.busy,
+      analyze: () => this.setState({ busy: true }),
+      reset: () => this.setState({ busy: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

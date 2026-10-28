@@ -1,0 +1,29 @@
+{
+  "cell_meta": {},
+  "cells": {
+    "company_domain": "acme.it",
+    "email": "elsa@acme.it",
+    "first_name": "Elsa",
+    "full_name": "Elsa Verdi",
+    "last_name": "Verdi"
+  },
+  "created_at": "2026-01-01T00:00:00Z",
+  "crm_hold": null,
+  "delivered": true,
+  "excluded": false,
+  "id": "email-catch-all",
+  "lookups": {
+    "email": {
+      "state": "found",
+      "verdict": "catch_all"
+    },
+    "phone": {
+      "state": "not_searched"
+    }
+  },
+  "rating": null,
+  "rating_note": null,
+  "relevance_score": null,
+  "score_reasons": null,
+  "seq": 3
+}

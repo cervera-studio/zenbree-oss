@@ -1,0 +1,68 @@
+---
+import { type Content, warmupBars } from '../content';
+import { cells, data, dataSm, h2, section, type Tone, tag } from '../styles/classes';
+import Eyebrow from './Eyebrow.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+const { why } = t;
+
+const barHeights: Record<(typeof warmupBars)[number], string> = {
+  20: 'h-1/5',
+  40: 'h-2/5',
+  60: 'h-3/5',
+  80: 'h-4/5',
+  100: 'h-full',
+};
+const labelTones: Record<'pos' | 'info' | 'neg', Tone> = {
+  pos: 'positive',
+  info: 'accent',
+  neg: 'negative',
+};
+const cell = 'flex flex-col gap-2 bg-ground px-6 py-5.5 phone:px-4 phone:py-4.5';
+const title = 'flex items-center gap-2 text-accent-ink';
+const ledgerRow = 'flex items-center justify-between gap-3 px-3 py-2';
+---
+
+<section id={t.sections.why} class:list={[section, 'flex flex-col gap-10 phone:gap-7']}>
+  <div class="flex max-w-150 flex-col gap-5">
+    <Eyebrow>{why.eyebrow}</Eyebrow>
+    <h2 class={h2}>{why.titleLine}<br />{why.titleRest}</h2>
+  </div>
+  <div class:list={[cells, 'grid-cols-3 tablet:grid-cols-2 phone:grid-cols-1']}>
+    <article class={cell}>
+      <div class={title}><Icon name="pay" /><h3 class="text-ui-strong text-ink">{why.pay.title}</h3></div>
+      <p class="text-small text-soft">{why.pay.body}</p>
+      <div class="mt-auto flex flex-col rounded-md border border-line text-small">
+        <div class={ledgerRow}><span>{why.pay.ledgerSearch}</span><b class={data}>{why.pay.ledgerSearchValue}</b></div>
+        <div class:list={[ledgerRow, 'border-t border-hair']}><span>{why.pay.ledgerRefund}</span><b class:list={[data, 'text-positive']}>{why.pay.ledgerRefundValue}</b></div>
+        <div class:list={[ledgerRow, 'rounded-b-md border-t border-line bg-raised']}><span>{why.pay.ledgerBalance}</span><b class={data}>{why.pay.ledgerBalanceValue}</b></div>
+      </div>
+    </article>
+    <article class={cell}>
+      <div class={title}><Icon name="source" /><h3 class="text-ui-strong text-ink">{why.source.title}</h3></div>
+      <p class="text-small text-soft">{why.source.body}</p>
+      <div class="mt-auto flex flex-col gap-1 rounded-md border border-line px-3 py-2.5"><span class="text-ui-strong">{why.source.cellValue}</span><span class:list={[dataSm, 'break-all text-accent-ink']}>{why.source.cellSource}</span></div>
+    </article>
+    <article class={cell}>
+      <div class={title}><Icon name="approve" /><h3 class="text-ui-strong text-ink">{why.approve.title}</h3></div>
+      <p class="text-small text-soft">{why.approve.body}</p>
+      <div class="mt-auto flex h-12 items-end gap-1.5 pt-2">{warmupBars.map((h) => <span class:list={['flex-1 rounded-t-xs bg-accent', barHeights[h]]}></span>)}</div>
+      <span class="text-small text-muted">{why.approve.caption}</span>
+    </article>
+    <article class={cell}>
+      <div class={title}><Icon name="replies" /><h3 class="text-ui-strong text-ink">{why.replies.title}</h3></div>
+      <p class="text-small text-soft">{why.replies.body}</p>
+      <div class="mt-auto flex flex-wrap gap-1.5 pt-2">
+        {why.replies.labels.map((l) => <span class={tag(l.tone ? labelTones[l.tone] : 'neutral')}>{l.label}</span>)}
+      </div>
+    </article>
+    <article class:list={[cell, 'col-span-2 phone:col-span-1']}>
+      <div class={title}><Icon name="market" /><h3 class="text-ui-strong text-ink">{why.market.title}</h3></div>
+      <p class="max-w-150 text-small text-soft">{why.market.body}</p>
+    </article>
+  </div>
+</section>

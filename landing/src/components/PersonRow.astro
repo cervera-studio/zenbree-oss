@@ -1,0 +1,17 @@
+---
+import type { Person } from '../content';
+import { avatar, dataSm, tag } from '../styles/classes';
+
+interface Props {
+  person: Person;
+  verified?: string;
+}
+const { person, verified } = Astro.props;
+---
+
+<div class="flex items-center gap-2.5 border-t border-hair py-2 text-ui">
+  <span class={avatar()} aria-hidden="true">{person.initials}</span>
+  <span class="flex min-w-0 grow flex-col"><strong class="text-ui-strong">{person.name}</strong><span class="truncate text-small text-muted">{person.role} · {person.company}</span></span>
+  {verified && <span class="text-small font-bold whitespace-nowrap text-positive phone:hidden">{verified}</span>}
+  <span class:list={[tag('positive'), dataSm]}>{person.score}</span>
+</div>

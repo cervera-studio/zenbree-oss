@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+import { createServer } from 'node:http';
+
+const port = Number(process.argv[2] ?? 18765);
+const rejected = [401, { type: 'errors/invalid_credentials' }];
+const created = [201, { object: 'AccountCreated', account_id: 'acc-verify' }];
+const routes = {
+  'GET /api/v1/accounts/acc-verify': [200, { object: 'Account', id: 'acc-verify', name: 'Anna Rossi', connection_params: {} }],
+};
+
+// The login email picks the answer: "reject" is refused, "checkpoint" asks for a code, else it connects.
+// The code 123456 solves a checkpoint, any other code is refused.
+function login(body) {
+  const username = String(body.username ?? '');
+  if (username.includes('reject')) return rejected;
+  if (username.includes('checkpoint'))
+    return [201, { object: 'Checkpoint', account_id: 'acc-verify', checkpoint: { type: 'OTP' } }];
+  return created;
+}
+
+createServer((req, res) => {
+  let raw = '';
+  req.on('data', (chunk) => (raw += chunk));
+  req.on('end', () => {
+    let body = {};
+    try {
+      body = JSON.parse(raw);
+    } catch {}
+    const key = `${req.method} ${req.url}`;
+    const [status, payload] =
+      key === 'POST /api/v1/accounts'
+        ? login(body)
+        : key === 'POST /api/v1/accounts/checkpoint'
+          ? body.code === '123456'
+            ? created
+            : rejected
+          : (routes[key] ?? [404, { status: 404 }]);
+    console.log(`${key} -> ${status}`);
+    res.writeHead(status, { 'Content-Type': 'application/json' }).end(JSON.stringify(payload));
+  });
+}).listen(port, () => console.log(`fake-unipile on :${port}`));

@@ -1,0 +1,54 @@
+{
+  "team": {
+    "title": "Équipe {name}",
+    "titleFallback": "Équipe",
+    "descriptionAdmin": "Invitez des personnes à travailler avec vous : les listes, les conversations, les campagnes et les réponses sont partagées. Les administrateurs gèrent aussi l’équipe, les crédits, les clés d’API et les webhooks.",
+    "descriptionMember": "Les personnes avec qui vous partagez les listes, les conversations, les campagnes et les réponses. Seuls les administrateurs invitent, changent les rôles et retirent des membres.",
+    "loadError": "Impossible de charger l’équipe.",
+    "member": "Personne",
+    "role": "Rôle",
+    "joined": "Dans l’équipe depuis",
+    "actions": "Actions",
+    "you": "(vous)",
+    "roles": {
+      "admin": "Administrateur",
+      "member": "Membre"
+    },
+    "roleOf": "Rôle de {name}",
+    "inviteEmail": "E-mail à inviter",
+    "inviteEmailPlaceholder": "nom@entreprise.com",
+    "remove": "Retirer",
+    "removeLabel": "Retirer {name} de l’équipe",
+    "removeTitle": "Retirer {name} de l’équipe ?",
+    "removeBody": "Cette personne perd immédiatement l’accès à l’équipe. Vous pouvez la réinviter à tout moment.",
+    "removeConfirm": "Retirer",
+    "removeBullet1": "Elle ne voit plus les listes, les conversations, les campagnes et les réponses de l’équipe.",
+    "removeBullet2": "Ce qu’elle a créé reste dans l’équipe.",
+    "pendingTitle": "Invitations en attente",
+    "expires": "Expire le {date}",
+    "expired": "Expirée",
+    "cancel": "Annuler l’invitation",
+    "cancelLabel": "Annuler l’invitation envoyée à {email}",
+    "errors": {
+      "generic": "Cela n’a pas fonctionné. Réessayez."
+    },
+    "forMe": {
+      "title": "Invitations pour vous",
+      "item": "Vous avez été invité dans l’équipe {name}.",
+      "open": "Ouvrir l’invitation"
+    },
+    "invite": "Inviter",
+    "invitation": {
+      "title": "Rejoindre {name}",
+      "body": "{inviter} vous a invité dans l’équipe {name} en tant que {role, select, admin {administrateur} other {membre}}. Les listes, les conversations, les campagnes et les réponses de l’équipe seront partagées avec vous.",
+      "accept": "Accepter l’invitation",
+      "decline": "Refuser",
+      "declined": "Vous avez refusé l’invitation.",
+      "failed": "Impossible de répondre à l’invitation. Réessayez.",
+      "home": "Aller sur Zenbree",
+      "switchAccount": "Se connecter avec un autre compte",
+      "invalidTitle": "Invitation non valide",
+      "invalidBody": "L’invitation a expiré, a déjà reçu une réponse ou est destinée à une autre adresse. Vous êtes connecté en tant que {email} : si l’invitation est pour un autre e-mail, connectez-vous avec celui-ci. Sinon, demandez une nouvelle invitation."
+    }
+  }
+}

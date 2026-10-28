@@ -1,0 +1,111 @@
+{
+  "inbox": {
+    "breadcrumb": "Path",
+    "listCount": "{n, plural, one {# conversation} other {{n, number, credits} conversations}} · newest first",
+    "title": "Inbox",
+    "filters": "Filter replies",
+    "anyChannel": "All channels",
+    "label": {
+      "interested": "Interested",
+      "meeting_request": "Meeting request",
+      "not_interested": "Not interested",
+      "not_now": "Not now",
+      "other": "Other",
+      "none": "Not labelled"
+    },
+    "channel": {
+      "email": "Email",
+      "linkedin": "LinkedIn"
+    },
+    "kind": {
+      "auto_reply": "Auto-reply",
+      "unsubscribe": "Opt-out"
+    },
+    "changeLabel": "Change label",
+    "relabelError": "Could not change the label.",
+    "autoLabel": "Labelled automatically",
+    "loadError": "Could not load the inbox.",
+    "empty": "No replies here yet",
+    "newer": "← Newer",
+    "older": "Older →",
+    "backToList": "← All replies",
+    "threads": "Conversations",
+    "newestFirst": "Newest first",
+    "emptyFiltered": "No replies match these filters.",
+    "channelLabel": "Channel",
+    "campaign": "Campaign",
+    "thread": "Conversation with {name}",
+    "sequenceStopped": "The sequence for {name} stopped when they replied.",
+    "autoReply": {
+      "paused": "Auto-reply: {name}'s sequence is paused and restarts {day, select, other {on {date}}}.",
+      "continues": "Auto-reply: {name}'s sequence goes on.",
+      "none": "Auto-reply: no sequence is running for {name}.",
+      "pausedNote": "The sequence is paused, not stopped."
+    },
+    "reminder": {
+      "set": "I set a reminder for {month}. The sequence for {name} stopped.",
+      "setNoSequence": "I set a reminder for {month}.",
+      "due": "Reminder: time to get back to {name}."
+    },
+    "unverified": {
+      "marker": "Unverified",
+      "notice": "We could not verify the sender: this message may not come from this address. Be careful with any links in it."
+    },
+    "seeExclusions": "See exclusions",
+    "unsubscribedState": "{name} asked not to get any more messages: the sequence stopped and you cannot reply.",
+    "emptyBody": "When someone replies to a campaign, by email or on LinkedIn, the conversation lands here with a label: Interested, Meeting request, Not now, Not interested. The sequence for that person stops on its own.",
+    "toCampaigns": "Go to campaigns",
+    "view": {
+      "all": "All",
+      "unread": "Unread",
+      "interested": "Interested",
+      "meeting_request": "Meeting request",
+      "not_interested": "Not interested",
+      "not_now": "Not now",
+      "other": "Other",
+      "none": "Not labelled",
+      "unsubscribe": "Opt-outs"
+    },
+    "unreadSr": "unread",
+    "you": "You",
+    "step": "step {n, number, credits}",
+    "reply": {
+      "draftFrom": "Agent's draft · from {from}",
+      "answerFrom": "Your answer · from {from}",
+      "placeholder": "Write your answer",
+      "send": "Send answer",
+      "sending": "Sending…",
+      "status": {
+        "sending": "Sending",
+        "failed": "Not sent",
+        "unknown": "Outcome unknown"
+      },
+      "sendError": "Could not send the answer.",
+      "openIntegrations": "Open Integrations",
+      "blocked": {
+        "EXCLUDED": "This person is in your exclusions: you cannot answer from here.",
+        "NO_MAILBOX": "No mailbox connected to answer from: connect or reconnect one in Integrations.",
+        "NO_LINKEDIN": "Connect your LinkedIn account to answer from here.",
+        "NO_RECIPIENT": "There is no address to answer.",
+        "ACCOUNT_PAUSED": "This sender is paused: resume it in Senders to answer."
+      },
+      "regenerate": "Regenerate",
+      "writeDraft": "Write a draft",
+      "regenerating": "Writing…",
+      "regenerateError": "Could not write a new draft.",
+      "restore": "Restore the previous text",
+      "held": {
+        "mailbox_unknown": "The conversation with this person started from a mailbox Zenbree no longer knows: you can't answer from here.",
+        "disconnected": "The mailbox the conversation started from is disconnected. Connect it again in Integrations to answer.",
+        "needs_reconnect": "The mailbox the conversation started from needs reconnecting. Reconnect it in Integrations to answer.",
+        "unlinked": "This client no longer uses the mailbox the conversation started from. Link it to the client again in Senders to answer."
+      }
+    },
+    "campaignChip": "Campaign: {name}",
+    "removeCampaign": "Remove the campaign filter",
+    "oldestFirst": "Oldest first",
+    "listCountOldest": "{n, plural, one {# conversation} other {{n, number, credits} conversations}} · oldest first",
+    "sortOldest": "Show oldest first",
+    "sortNewest": "Show newest first"
+  }
+}

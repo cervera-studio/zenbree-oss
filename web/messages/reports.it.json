@@ -1,0 +1,76 @@
+{
+  "reports": {
+    "link": "Report",
+    "title": "Report campagne",
+    "breadcrumb": "Percorso",
+    "subtitle": "Cosa ha fatto ogni campagna nelle date che scegli.",
+    "loadError": "Impossibile caricare il report.",
+    "empty": "Nessuna campagna è ancora partita.",
+    "range": {
+      "label": "Date",
+      "from": "Dal",
+      "to": "Al",
+      "apply": "Mostra",
+      "presets": "Intervalli rapidi",
+      "last": "{days, plural, one {Ultimo giorno} other {Ultimi {days, number, credits} giorni}}"
+    },
+    "columns": {
+      "campaign": "Campagna",
+      "contacted": "Contattati",
+      "sent": "Inviati",
+      "replied": "Risposte",
+      "positive": "Positivi",
+      "bounced": "Rimbalzi",
+      "meetings": "Riunioni",
+      "deals": "Deal"
+    },
+    "sender": {
+      "native": "Zenbree",
+      "instantly": "Instantly"
+    },
+    "channels": "{email, plural, one {# email} other {{email, number, credits} email}} · {invites, plural, one {# invito} other {{invites, number, credits} inviti}} · {messages, plural, one {# messaggio} other {{messages, number, credits} messaggi}}",
+    "replied": "{replied, number, credits} su {contacted, plural, one {# contattato} other {{contacted, number, credits} contattati}}",
+    "positive": "{positive, number, credits} su {replied, plural, one {# risposta} other {{replied, number, credits} risposte}}",
+    "unknown": "Non noto",
+    "lineage": {
+      "summary": "Da dove vengono le persone",
+      "noList": "Nessuna lista",
+      "signal": "{watchlist} ({type, select, job_posting {offerte di lavoro} other {{type}}})",
+      "counts": "{contacted, plural, one {# contattato} other {{contacted, number, credits} contattati}} · {replied, plural, one {# risposta} other {{replied, number, credits} risposte}} · {positive, plural, one {# positivo} other {{positive, number, credits} positivi}}",
+      "source": {
+        "onboarding": "Onboarding",
+        "manual": "Aggiunte a mano",
+        "csv": "Import CSV",
+        "refill": "Rifornimento",
+        "signal": "Segnale",
+        "unknown": "Persona non abbinata o eliminata"
+      }
+    },
+    "variants": {
+      "summary": "Risultati per variante",
+      "group": {
+        "a": "Variante A",
+        "b": "Variante B",
+        "outside": "Fuori dal test",
+        "unknown": "Non attribuite"
+      },
+      "enrolled": "Persone nel gruppo oggi",
+      "contacted": "Persone contattate",
+      "sent": "Messaggi inviati",
+      "replied": "Risposte",
+      "repliedOf": "{replied, number, credits} su {contacted, plural, one {# persona contattata} other {{contacted, number, credits} persone contattate}}",
+      "positive": "Risposte positive",
+      "positiveOf": "{positive, number, credits} su {replied, plural, one {# risposta} other {{replied, number, credits} risposte}}"
+    },
+    "notes": {
+      "people": "I conteggi sono persone, alla data del loro primo evento: chi risponde due volte conta una volta.",
+      "before": "Una risposta in queste date può venire da una persona contattata prima.",
+      "positiveBefore": "Una risposta positiva in queste date può venire da una persona che aveva già risposto prima.",
+      "unknown": "Non noto vuol dire non ancora misurato: Zenbree non registra ancora i propri rimbalzi, e riunioni e deal arriveranno da HubSpot.",
+      "variants": "In un test A/B, Zenbree non indica una variante vincente e non mostra percentuali: una variante può contare poche persone, e una piccola differenza può dipendere dal caso.",
+      "variantGroups": "Fuori dal test: le persone entrate mentre il test era in pausa, che ricevono i testi della variante A. Non attribuite: invii e risposte di persone non più nella campagna, o di mittenti che non corrispondono a nessuna persona.",
+      "instantlyPartial": "I conteggi di Instantly sono completi fino al {at}.",
+      "instantlyPending": "I conteggi di Instantly non sono ancora completi: la prima lettura completa di Instantly non è finita."
+    }
+  }
+}

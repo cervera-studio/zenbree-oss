@@ -1,0 +1,152 @@
+{
+  "onboarding": {
+    "step": "Step {current, number, credits} of {total, number, credits}",
+    "skip": "Skip for now",
+    "steps": {
+      "company": "Company",
+      "profile": "Profile",
+      "segments": "Segments"
+    },
+    "errors": {
+      "generic": "Something went wrong. Try again in a moment."
+    },
+    "company": {
+      "title": "Tell us about your business",
+      "description": "We read your website and draft a sales profile: who you sell to, what problems you solve, who to contact.",
+      "website": "Website",
+      "about": "Description",
+      "aboutHint": "(optional if you have a website)",
+      "aboutPlaceholder": "What you sell, to whom, in which countries…",
+      "free": "The analysis is free and contacts no one.",
+      "submit": "Analyse",
+      "studying": "Analysing, this can take a minute…",
+      "busyLabel": "Analysis in progress",
+      "fromDescription": "Your description",
+      "phases": {
+        "site": "Reading the website",
+        "offer": "Working out what you sell and to whom",
+        "profile": "Drafting the sales profile"
+      },
+      "changeSite": "Change website",
+      "editDescription": "Edit description",
+      "pagesRead": "{n, plural, one {# page} other {{n, number, credits} pages}}",
+      "phaseStatus": {
+        "done": "Done",
+        "running": "In progress",
+        "pending": "Waiting"
+      },
+      "next": {
+        "profile": {
+          "tag": "Then · 2",
+          "title": "You review the profile",
+          "body": "Fix who buys, the problems, who to exclude."
+        },
+        "segments": {
+          "tag": "Then · 3",
+          "title": "You pick a segment",
+          "body": "We propose a few, each with who to look for."
+        },
+        "list": {
+          "tag": "Finally",
+          "title": "Your first list",
+          "body": "A chat opens with the request already written."
+        }
+      }
+    },
+    "profile": {
+      "title": "Your profile",
+      "description": "Check and correct it: your segments and first list come from here.",
+      "back": "Back",
+      "confirm": "Confirm and propose segments",
+      "proposing": "Preparing segments…",
+      "count": "{count, number, credits} of {max, number, credits}",
+      "add": "Add",
+      "item": "{label}, item {n, number, credits}",
+      "remove": "Remove {item}",
+      "removeEmpty": "Remove empty item",
+      "proofPlaceholder": "Customer cases, numbers, names you can cite.",
+      "proofMissing": "Not found: add it yourself if you can.",
+      "groups": {
+        "identity": "Who you are",
+        "audience": "Who you sell to",
+        "timing": "When and where",
+        "exclude": "Who to exclude"
+      },
+      "sections": {
+        "companyName": "Company name",
+        "summary": "In short",
+        "personas": "Who buys",
+        "painPoints": "Problems you solve",
+        "solution": "How you solve them",
+        "buyingTriggers": "Buying triggers",
+        "markets": "Markets",
+        "exclusions": "Never contact",
+        "proof": "Proof and results"
+      },
+      "hints": {
+        "personas": "The roles that sign or decide.",
+        "painPoints": "As the customer would say it, not you.",
+        "buyingTriggers": "Events that make a company ready now.",
+        "markets": "Countries or regions you sell in.",
+        "exclusions": "They go into Exclusions: no list will contain them."
+      },
+      "usage": {
+        "title": "Where it is used",
+        "segments": {
+          "title": "In the segments.",
+          "body": "Who buys, the problems and the buying triggers become the search criteria."
+        },
+        "list": {
+          "title": "In the first list.",
+          "body": "The chat starts from a request with your company and the segment you pick."
+        },
+        "exclusions": {
+          "title": "In the exclusions.",
+          "body": "Company names, domains, emails and LinkedIn profiles become rules in Exclusions; the rest goes into the first list's request."
+        },
+        "memory": {
+          "title": "In every chat.",
+          "body": "The agent reads it in every chat for this client before proposing a plan; your other clients keep their own."
+        }
+      }
+    },
+    "segments": {
+      "title": "Pick your first segment",
+      "description": "Each segment becomes a search: pick one and we'll build your first list.",
+      "empty": "No segments proposed. Try regenerating them or completing the profile.",
+      "who": "Who",
+      "problem": "Problem",
+      "outcome": "Outcome",
+      "signalHint": "Look for: {signal}",
+      "criteriaTitle": "Search criteria",
+      "pick": "Build the first list",
+      "back": "Edit the profile",
+      "regenerate": "Propose other segments",
+      "otherLanguage": "These segments were written in another language. Propose other segments to get them in your language.",
+      "chatPrompt": "Already know who to look for?",
+      "chatLink": "Write it in the chat",
+      "solo": "owner only",
+      "seniority": {
+        "owner": "Owner",
+        "founder": "Founder",
+        "c_suite": "C-suite",
+        "partner": "Partner",
+        "vp": "VP",
+        "head": "Head",
+        "director": "Director",
+        "manager": "Manager",
+        "senior": "Senior",
+        "entry": "Entry level",
+        "intern": "Intern"
+      },
+      "criteria": {
+        "titles": "Titles",
+        "seniorities": "Seniority",
+        "industries": "Industries",
+        "employeeRanges": "Employees",
+        "locations": "Countries",
+        "keywords": "Keywords"
+      }
+    }
+  }
+}

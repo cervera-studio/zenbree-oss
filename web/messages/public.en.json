@@ -1,0 +1,51 @@
+{
+  "public": {
+    "signIn": "Sign in",
+    "tryFree": "Try it free",
+    "legalLanguageNote": "This document is available in English and Italian only.",
+    "footer": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "apiDocs": "API docs"
+    },
+    "meta": {
+      "title": "Zenbree · Describe your ideal customer, Zenbree finds who to contact",
+      "description": "Tell the chat who you want to reach: up to 100 credits a search starts at once; above that the agent shows you the plan and the most it can cost, and you approve it. Then it delivers people with a verified email and the source of every data point. The plan is free, you only pay for delivered rows."
+    },
+    "unsubscribe": {
+      "pageTitle": "Unsubscribe",
+      "fallbackSender": "this sender",
+      "askTitle": "Stop receiving emails from {sender}?",
+      "lastEmail": "{name} wrote to you on {date}, with the subject «{subject}».",
+      "askBody": "If you confirm, <strong>{email}</strong> will get no more messages from {sender}, not even the ones already scheduled.",
+      "reason": "Want to tell us why?",
+      "optional": "(optional)",
+      "reasons": {
+        "not_interested": "I'm not interested",
+        "wrong_person": "I'm not the right person in the company",
+        "too_many": "I get too many emails",
+        "other": "Other"
+      },
+      "confirm": "Yes, stop writing to me",
+      "mistake": "Opened the link by mistake? Close this page: nothing changes.",
+      "doneTitle": "Done: you won't get any more emails from {sender}",
+      "doneBody": "<strong>{email}</strong> is on {sender}'s exclusion list. Scheduled messages have been cancelled. Nothing else to do.",
+      "undoAsk": "Clicked by mistake?",
+      "undo": "Undo the unsubscribe",
+      "dataTitle": "Your data",
+      "dataBody": "{sender} found your contact in public professional sources. You can ask for it to be deleted entirely.",
+      "erasure": "Ask to delete my data",
+      "erasureSent": "Request sent to {sender}, who will answer within a month.",
+      "erasureFailed": "The request could not be sent. Reply to {sender}'s email asking them to delete your data.",
+      "alreadyTitle": "Already unsubscribed",
+      "alreadyBody": "Since {date}, <strong>{email}</strong> gets no emails from {sender}. If a message reached you after that date, just reply «no grazie»: we read it and block that one too.",
+      "alreadyBodyUndated": "<strong>{email}</strong> gets no more emails from {sender}. If another message reached you, just reply «no grazie»: we read it and block that one too.",
+      "failed": "Something went wrong. Try again, or reply «no grazie» to the email.",
+      "invalidTitle": "This link no longer works",
+      "invalidBody": "It may be incomplete (this happens when the email is forwarded or the link wraps onto a new line). To stop receiving messages, just <strong>reply «no grazie»</strong> to the email: it always works.",
+      "controller": "Data controller: {sender}. Sent with Zenbree on behalf of {sender}.",
+      "controllerUnknown": "Sent with Zenbree on behalf of the sender.",
+      "privacy": "Privacy notice"
+    }
+  }
+}

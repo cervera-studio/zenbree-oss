@@ -1,0 +1,54 @@
+{
+  "team": {
+    "title": "Team {name}",
+    "titleFallback": "Team",
+    "descriptionAdmin": "Invita persone a lavorare con te: liste, chat, campagne e risposte sono condivise. Gli amministratori gestiscono anche team, crediti, API key e webhook.",
+    "descriptionMember": "Le persone con cui condividi liste, chat, campagne e risposte. Solo gli amministratori invitano, cambiano i ruoli e rimuovono.",
+    "loadError": "Impossibile caricare il team.",
+    "member": "Persona",
+    "role": "Ruolo",
+    "joined": "Nel team dal",
+    "actions": "Azioni",
+    "you": "(tu)",
+    "roles": {
+      "admin": "Amministratore",
+      "member": "Membro"
+    },
+    "roleOf": "Ruolo di {name}",
+    "inviteEmail": "Email da invitare",
+    "inviteEmailPlaceholder": "nome@azienda.it",
+    "remove": "Rimuovi",
+    "removeLabel": "Rimuovi {name} dal team",
+    "removeTitle": "Rimuovere {name} dal team?",
+    "removeBody": "Perde subito l'accesso al team. Puoi invitarlo di nuovo quando vuoi.",
+    "removeConfirm": "Rimuovi",
+    "removeBullet1": "Non vede più liste, chat, campagne e risposte del team.",
+    "removeBullet2": "Quello che ha creato resta al team.",
+    "pendingTitle": "Inviti in attesa",
+    "expires": "Scade il {date}",
+    "expired": "Scaduto",
+    "cancel": "Annulla invito",
+    "cancelLabel": "Annulla l'invito a {email}",
+    "errors": {
+      "generic": "Operazione non riuscita. Riprova."
+    },
+    "forMe": {
+      "title": "Inviti per te",
+      "item": "Ti hanno invitato nel team {name}.",
+      "open": "Apri l'invito"
+    },
+    "invite": "Invita",
+    "invitation": {
+      "title": "Unisciti a {name}",
+      "body": "{inviter} ti ha invitato nel team {name} come {role, select, admin {amministratore} other {membro}}. Liste, chat, campagne e risposte del team saranno condivise con te.",
+      "accept": "Accetta l'invito",
+      "decline": "Rifiuta",
+      "declined": "Hai rifiutato l'invito.",
+      "failed": "Non è stato possibile rispondere all'invito. Riprova.",
+      "home": "Vai a Zenbree",
+      "switchAccount": "Accedi con un altro account",
+      "invalidTitle": "Invito non valido",
+      "invalidBody": "L'invito è scaduto, ha già una risposta o è per un altro indirizzo. Hai fatto l'accesso come {email}: se l'invito è per un'altra email, accedi con quella. Altrimenti chiedi un nuovo invito."
+    }
+  }
+}

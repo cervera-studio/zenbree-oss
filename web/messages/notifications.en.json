@@ -1,0 +1,212 @@
+{
+  "notifications": {
+    "title": "Notifications",
+    "open": "Notifications",
+    "openUnread": "Notifications, {count, number, credits} unread",
+    "close": "Close",
+    "unread": "unread",
+    "summary": {
+      "unread": "{count, number, credits} unread",
+      "allRead": "All read"
+    },
+    "filters": {
+      "label": "Filter notifications",
+      "all": "All",
+      "unread": "Unread",
+      "reply": "Replies",
+      "decide": "To decide"
+    },
+    "actions": {
+      "reply": "Reply",
+      "open": "Open",
+      "accept": "Accept",
+      "review": "Review and approve",
+      "retry": "Retry",
+      "for": "{action}: {title}"
+    },
+    "channel": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "meeting": "Meeting"
+    },
+    "markAllRead": "Mark all as read",
+    "empty": {
+      "title": "You're all caught up",
+      "body": "Replies, finished searches and messages to approve show up here."
+    },
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "someone": "A contact",
+    "settingsLabel": "Notification settings",
+    "kind": {
+      "reply_urgent": {
+        "title": "{label, select, meeting_request {{name} asks for a meeting} other {Interested reply from {name}}}",
+        "body": "Open to read the reply."
+      },
+      "reply": {
+        "title": "New reply from {name}",
+        "body": "Open to read the reply.",
+        "campaign": "Campaign \"{campaign}\"",
+        "unverified": "Sender not verified"
+      },
+      "search_done": {
+        "title": "Search finished",
+        "titleBoth": "Search finished: {people, plural, one {# person} other {{people, number, credits} people}} at {companies, plural, one {# company} other {{companies, number, credits} companies}}",
+        "titlePeople": "Search finished: {people, plural, one {# person} other {{people, number, credits} people}}",
+        "titleCompanies": "Search finished: {companies, plural, one {# company} other {{companies, number, credits} companies}}",
+        "refunded": "{count, plural, one {# credit returned} other {{count, number, credits} credits returned}}",
+        "body": "The results are ready in the chat."
+      },
+      "search_failed": {
+        "title": "Search stopped: a provider is not responding",
+        "progress": "{done, number, credits} of {units, number, credits}, you don't pay for the rest",
+        "body": "Retry from the chat: you don't pay for what's missing."
+      },
+      "agent_question": {
+        "title": "The agent needs you",
+        "plan": "plan to approve",
+        "funnel": "no results",
+        "body": "Answer in the chat to continue."
+      },
+      "approval_needed": {
+        "title": "{count, plural, one {# message to approve} other {{count, number, credits} messages to approve}}",
+        "body": "{count, plural, one {goes out after your OK} other {go out after your OK}}"
+      },
+      "low_credits": {
+        "title": "Credits running low",
+        "body": "You have {credits, plural, one {# credit} other {{credits, number, credits} credits}} left."
+      },
+      "payment_failed": {
+        "title": "Automatic top-up failed",
+        "body": "Check your payment method."
+      },
+      "linkedin_accepted": {
+        "title": "{name} accepted your connection",
+        "body": "Campaign \"{campaign}\" · LinkedIn sequence"
+      },
+      "bounces_high": {
+        "title": "Too many bounces in \"{campaign}\"",
+        "body": "{invalid, plural, one {# invalid address} other {{invalid, number, credits} invalid addresses}} out of {attempted, plural, one {# person} other {{attempted, number, credits} people}}",
+        "paused": "{invalid, plural, one {# email} other {{invalid, number, credits} emails}} bounced out of {attempted, plural, one {# sent} other {{attempted, number, credits} sent}} · campaign paused"
+      },
+      "mailbox_error": {
+        "title": "{provider, select, unipile {LinkedIn account disconnected} other {Mailbox disconnected}}",
+        "titleNamed": "{provider, select, other {\"{mailbox}\" is disconnected}}",
+        "body": "{provider, select, unipile {LinkedIn campaigns don't send until you reconnect the account.} other {Campaigns that use it don't send until you reconnect it.}}"
+      },
+      "plan_renewed": {
+        "title": "{plan, select, starter {Starter} pro {Pro} other {{plan}}} plan renewed: +{credits, plural, one {# credit} other {{credits, number, credits} credits}}",
+        "body": "{expired, plural, =0 {{organization}} one {{organization} · # unused credit expired} other {{organization} · {expired, number, credits} unused credits expired}}"
+      }
+    },
+    "settings": {
+      "title": "Notifications",
+      "description": "Choose what reaches you when you're not on Zenbree. Everything is always under the bell in the app.",
+      "loadError": "Could not load your notification settings.",
+      "saved": "Saved",
+      "saveError": "Saving failed. Try again.",
+      "groups": {
+        "replies": "Replies",
+        "searches": "Campaigns and searches",
+        "account": "Account"
+      },
+      "table": {
+        "event": "When",
+        "always": "always",
+        "unavailable": "Not available"
+      },
+      "events": {
+        "replyUrgent": {
+          "label": "Interested reply or meeting request",
+          "help": "At most one email every 30 minutes; the rest go in the digest. Never the reply's text."
+        },
+        "reply": {
+          "label": "Other replies",
+          "help": "Not now, not interested, automatic replies. Digest only."
+        },
+        "linkedinAccepted": {
+          "label": "LinkedIn invitation accepted",
+          "help": "Digest only."
+        },
+        "approvalNeeded": {
+          "label": "Messages to approve",
+          "help": "Digest only, with the number still waiting."
+        },
+        "searchDone": {
+          "label": "Search finished",
+          "help": "Only if the search takes more than 5 minutes or Zenbree is closed."
+        },
+        "searchFailed": {
+          "label": "Search stopped or your choice needed",
+          "help": "When a provider stops a search you're not watching. The email counts toward the limit of one urgent email every 30 minutes."
+        },
+        "bouncesHigh": {
+          "label": "Too many bounces in a campaign",
+          "help": "More than 5% invalid addresses, with at least 20 people to write to. The campaign does not pause by itself."
+        },
+        "lowCredits": {
+          "label": "Credits under 200",
+          "help": "Once, until you top up. Never with automatic top-up on."
+        },
+        "mailboxError": {
+          "label": "Mailbox disconnected or blocked",
+          "help": "Campaigns that use it don't send until you reconnect it."
+        },
+        "locked": {
+          "label": "Receipts, renewals and security",
+          "help": "Payments, plan renewal, new sign-in, password change"
+        }
+      },
+      "channels": {
+        "inApp": "In app",
+        "email": "Email",
+        "browser": "Browser"
+      },
+      "browser": {
+        "title": "Browser notifications",
+        "on": "Browser notifications are on for this computer.",
+        "ask": {
+          "title": "Get replies even when Zenbree is closed.",
+          "body": "Your browser will ask for permission once.",
+          "inPageTitle": "Get a browser alert while Zenbree is open."
+        },
+        "allow": "Turn on browser notifications",
+        "denied": {
+          "title": "Your browser blocks Zenbree notifications.",
+          "body": "To turn them on, open the site settings (the icon left of the address) and allow notifications. Then come back to this page. Meanwhile we email you."
+        },
+        "unsupported": {
+          "title": "Browser not supported",
+          "body": "This browser doesn't show notifications. The panel and email still work."
+        },
+        "enabled": "Browser notifications turned on.",
+        "enableError": "We couldn't turn notifications on. Try again.",
+        "test": "Send a test",
+        "turnOff": "Turn off on this browser",
+        "testSent": "Test notification sent.",
+        "testError": "The test didn't go out. Turn browser notifications on again and retry.",
+        "turnedOff": "Browser notifications turned off on this computer."
+      },
+      "digest": {
+        "label": "Email digest",
+        "help": "One email with everything that isn't urgent: replies, messages to approve, finished searches. It only goes out when there's something to say. Times are Italian time.",
+        "frequencyLabel": "Digest frequency",
+        "hourLabel": "Digest time",
+        "at": "at",
+        "frequency": {
+          "daily": "Every working day",
+          "weekly": "Every Monday",
+          "off": "Never"
+        }
+      },
+      "dnd": {
+        "label": "Do not disturb",
+        "help": "No immediate emails or browser notifications: everything stays in the panel and, if on, in the digest. Payments and security still come through."
+      },
+      "switch": {
+        "on": "On",
+        "off": "Off"
+      }
+    }
+  }
+}

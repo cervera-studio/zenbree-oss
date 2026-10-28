@@ -1,0 +1,27 @@
+{
+  "cell_meta": {},
+  "cells": {
+    "company_domain": "acme.it",
+    "email": null,
+    "first_name": "Fabio",
+    "last_name": "Rosa"
+  },
+  "created_at": "2026-01-01T00:00:00Z",
+  "crm_hold": null,
+  "delivered": true,
+  "excluded": false,
+  "id": "email-failed",
+  "lookups": {
+    "email": {
+      "state": "failed"
+    },
+    "phone": {
+      "state": "not_searched"
+    }
+  },
+  "rating": null,
+  "rating_note": null,
+  "relevance_score": null,
+  "score_reasons": null,
+  "seq": 5
+}

@@ -1,0 +1,52 @@
+---
+import type { Content } from '../content';
+import { btn, dataSm, panel, panelHead, tag } from '../styles/classes';
+import PersonRow from './PersonRow.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+const { stage, ui } = t;
+const chip = 'inline-flex h-6.5 items-center rounded-md border px-2 text-ui whitespace-nowrap';
+const floats = [
+  [stage.emailFloat, 'text-accent-ink'],
+  [stage.refundFloat, 'text-positive'],
+] as const;
+---
+
+<figure class="m-0 rounded-xl border border-line bg-raised p-6 phone:p-3" aria-label={stage.label}>
+  <div class="overflow-hidden rounded-lg border border-line bg-ground shadow-frame">
+    <div class="flex h-10 items-center gap-1.5 border-b border-line bg-raised px-4">
+      <span class="size-2.5 rounded-full bg-line"></span><span class="size-2.5 rounded-full bg-line"></span><span class="size-2.5 rounded-full bg-line"></span>
+      <span class:list={[dataSm, 'mx-auto text-muted']}>app.zenbree.com</span>
+    </div>
+    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] tablet:grid-cols-1">
+      <div class="flex flex-col gap-4 border-r border-line p-6 tablet:border-r-0 tablet:border-b phone:p-4">
+        <p class="max-w-15/16 self-end rounded-lg bg-accent-tint px-3 py-2.5 text-ui text-ink">{stage.brief}</p>
+        <div class={panel}>
+          <div class={panelHead}><strong class="flex-1 text-ui-strong">{stage.planTitle}</strong><span class={tag('accent')}>{stage.planBudget}</span></div>
+          <div class="flex flex-col gap-3 p-3">
+            <div class="flex flex-wrap gap-1.5">
+              {stage.columns.map((column) => <span class:list={[chip, 'border-line text-soft']}>{column}</span>)}<span class:list={[chip, 'border-accent-tint bg-accent-tint text-accent-ink']}>{stage.aiColumn}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2.5 text-small text-muted"><span>{stage.planFooter}</span><span class={btn('primary', 'sm')}>{ui.approveStart}</span></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 max-xl:hidden">
+          {floats.map(([f, tone]) => (
+            <div class="flex flex-col gap-1 rounded-md border border-line bg-ground px-3.5 py-3 shadow-snippet">
+              <span class:list={[dataSm, tone]}>{f.key}</span>
+              <strong class="truncate text-ui-strong">{f.value}</strong>
+              <span class="text-small text-muted">{f.source}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="flex flex-col p-6 phone:p-4">
+        <div class="flex items-center justify-between gap-2.5 pb-2"><strong class="text-ui-strong">{ui.people}</strong><span class:list={[dataSm, 'text-muted']}>{stage.rowsSummary}</span></div>
+        {t.people.map((person) => <PersonRow person={person} verified={ui.verified} />)}
+      </div>
+    </div>
+  </div>
+</figure>

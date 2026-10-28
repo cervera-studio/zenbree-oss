@@ -1,0 +1,166 @@
+{
+  "campaignBuilder": {
+    "renameLabel": "Campaign name",
+    "rename": "Rename the campaign",
+    "renamed": "Name saved.",
+    "steps": {
+      "title": "Steps",
+      "meta": "{count, number, credits} of {max, number, credits} · days count from launch",
+      "locked": "Steps can only be edited while the campaign is a draft.",
+      "empty": "Still empty",
+      "day": "Day",
+      "dayValue": "Day {day}",
+      "heading": "Step {number, number, credits} · {channel}",
+      "variables": "Variables:",
+      "tokens": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "companyName": "Company",
+        "role": "Role"
+      },
+      "insert": "Insert {token}",
+      "counter": "{count, number, credits} / {max, number, credits}",
+      "none": "No steps yet: add one below."
+    },
+    "fields": {
+      "title": "Fields",
+      "meta": "Each person's own value, from the list or the signal",
+      "none": "No fields yet. Add one with + Field under a step's message.",
+      "help": "Required: a person with no value does not get the steps that use the field. To remove a field, first remove its token from the steps.",
+      "add": "Field",
+      "addLabel": "Add a field from the list or the signal",
+      "columns": "List columns",
+      "noColumns": "The list has no columns to add.",
+      "signalGroup": "Signal",
+      "ai": "AI",
+      "filled": "{filled, number, credits} of {people, plural, one {# person} other {{people, number, credits} people}}",
+      "mode": "When {field} has no value",
+      "required": "Required",
+      "fallback": "Fallback text",
+      "fallbackLabel": "Fallback text for {field}",
+      "fallbackPlaceholder": "Text for a person with no value",
+      "fallbackBlank": "Write the fallback text, or pick Required.",
+      "nobodyReady": "{count, plural, one {# person misses} other {{count, number, credits} people miss}} a value for {fields}. Add the values to the list, or give each of these fields a fallback text.",
+      "remove": "Remove {field}",
+      "signal": {
+        "title": "Signal title",
+        "city": "Signal city",
+        "country": "Signal country",
+        "url": "Signal link"
+      },
+      "addSnippet": "Add an AI snippet"
+    },
+    "add": {
+      "email": "Email",
+      "linkedin_connect": "LinkedIn invite",
+      "linkedin_message": "LinkedIn message",
+      "hubspot_task": "HubSpot task"
+    },
+    "senders": {
+      "title": "Send from",
+      "description": "Each person stays on the same mailbox for the whole thread.",
+      "warming": "daily limit rising",
+      "none": "No mailbox connected.",
+      "connect": "Connect one in Integrations",
+      "loadError": "Could not load the mailboxes.",
+      "meta": "one mailbox per thread",
+      "max": "Up to {max, plural, one {# mailbox} other {{max, number, credits} mailboxes}} per campaign.",
+      "keepOne": "The campaign needs a mailbox that can send: add another before you remove this one."
+    },
+    "when": {
+      "title": "When",
+      "days": "Sending days: Monday to Friday",
+      "letters": "MTWTFSS",
+      "window": "9:00–18:00 · Europe/Rome · 9–14 minutes between two emails",
+      "fixed": "Hours and days are the mailboxes' own and apply to every campaign."
+    },
+    "approval": {
+      "title": "Approve messages before sending",
+      "body": "Always on: every message waits for your OK, person by person."
+    },
+    "preview": {
+      "title": "Preview · step {number, number, credits}",
+      "person": "Person",
+      "empty": "Nobody to show.",
+      "noSteps": "Add a step to see the preview.",
+      "updating": "Updating the preview…",
+      "failed": "Preview not updated. Try editing the step again.",
+      "plain": "Preview",
+      "missing": "No value for {fields} for this person: the steps that use {count, plural, one {it} other {them}} are not sent."
+    },
+    "footer": {
+      "save": "Save draft",
+      "saved": "Draft saved."
+    },
+    "blockers": {
+      "noMailbox": "No mailbox connected: the campaign cannot start.",
+      "noMailboxLink": "Connect one in Integrations",
+      "pickMailbox": "Pick a connected mailbox to send from.",
+      "noLinkedIn": "Connect LinkedIn in Integrations for the LinkedIn steps.",
+      "noSteps": "Write at least one step.",
+      "noTargets": "This campaign has nobody to contact.",
+      "noCopyB": "The A/B test is on: write copy B for at least one step, or turn the test off."
+    },
+    "source": {
+      "linked": "{count, plural, one {# person} other {{count, number, credits} people}} from <b>{list}</b> · exclusions already removed",
+      "gone": "{count, plural, one {# person} other {{count, number, credits} people}} · the source list no longer exists"
+    },
+    "rewrite": {
+      "link": "Rewrite with the agent",
+      "prompt": "Rewrite the message sequence of the campaign \"{name}\" (campaign_id {id}) and save it on the draft."
+    },
+    "addStep": "Add step:",
+    "needsInvite": "To send a LinkedIn message, add a LinkedIn invite first.",
+    "parallel": {
+      "title": "Allow people who are in another active campaign",
+      "body": "A reply to either campaign stops both. The change applies to the next people added and the next sends: it adds no one left out before."
+    },
+    "snippet": {
+      "title": "Add an AI snippet",
+      "description": "One short line for each person, written only from the research the list already holds. It never searches the web.",
+      "label": "Field name",
+      "labelPlaceholder": "E.g. Opening line",
+      "prompt": "What should the snippet say?",
+      "promptPlaceholder": "One sentence that links their recent news to our offer.",
+      "inputs": "Research to use",
+      "inputsMax": "{max, plural, one {# column at most} other {{max, number, credits} columns at most}}",
+      "noResearch": "This list has no AI research column yet. Add one on the list, then come back.",
+      "noPeople": "No one in this campaign can still get a step and has a row on the campaign list, so there is no one to write a snippet for.",
+      "coverage": "Covers {rows, plural, one {# person} other {{rows, number, credits} people}} of {people, plural, one {# person} other {{people, number, credits} people}}: only people who can still get a step and have a row on the campaign list, {max, plural, one {# person} other {{max, number, credits} people}} at most in one run.",
+      "estimating": "Estimating the cost…",
+      "estimate": "Up to {credits, plural, one {# credit} other {{credits, number, credits} credits}}",
+      "estimateDetail": "{price, plural, one {# credit} other {{price, number, credits} credits}} for each snippet delivered · {people, plural, one {# person with research} other {{people, number, credits} people with research}}",
+      "estimateNote": "The estimate counts only people with research in these columns. A person with none gets no snippet and costs nothing.",
+      "estimateNone": "No one in this campaign has research in these columns, so there is nothing to write.",
+      "estimateFailed": "We could not estimate the cost.",
+      "unavailable": "We could not load the campaign list.",
+      "approve": "Approve and generate",
+      "creating": "Starting…",
+      "createFailed": "We could not add the AI snippet.",
+      "progress": "{done, number, credits} of {people, plural, one {# person} other {{people, number, credits} people}} done",
+      "progressNote": "You can close this window: the snippets keep coming. The field is already in the field list.",
+      "done": "{filled, plural, one {# snippet written} other {{filled, number, credits} snippets written}} · {credits, plural, one {# credit} other {{credits, number, credits} credits}} charged",
+      "doneNote": "{field} is in the field list. Add it to a step with + Field.",
+      "failed": "The snippets stopped: {reason}",
+      "paused": "AI snippets are paused for now."
+    },
+    "variants": {
+      "tabs": "Copy of this step",
+      "a": "Copy A",
+      "b": "Copy B",
+      "sameAsA": "People in copy B get the same text as copy A for this step.",
+      "write": "Write copy B",
+      "useA": "Use copy A for this step",
+      "previewLabel": "Copy to preview",
+      "title": "A/B test",
+      "switch": "Compare two copies of the messages",
+      "help": "Each person who joins gets copy A or copy B and keeps it, with its text, until the end. The texts cannot change after launch.",
+      "share": "Share of people who get copy B",
+      "shareOption": "{percent, number, credits}%",
+      "saved": "The share is saved at once. Copy B is saved with the steps.",
+      "offTitle": "Turn the A/B test off?",
+      "offBody": "Copy B is removed from every step, and deleted when you save the draft.",
+      "offConfirm": "Turn off"
+    }
+  }
+}

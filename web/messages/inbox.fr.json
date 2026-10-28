@@ -1,0 +1,111 @@
+{
+  "inbox": {
+    "breadcrumb": "Chemin",
+    "listCount": "{n, plural, one {# conversation} other {{n, number, credits} conversations}} · les plus récentes en haut",
+    "title": "Boîte de réception",
+    "filters": "Filtrer les réponses",
+    "anyChannel": "Tous les canaux",
+    "label": {
+      "interested": "Intéressé",
+      "meeting_request": "Demande de rendez-vous",
+      "not_interested": "Pas intéressé",
+      "not_now": "Pas maintenant",
+      "other": "Autre",
+      "none": "Sans étiquette"
+    },
+    "channel": {
+      "email": "E-mail",
+      "linkedin": "LinkedIn"
+    },
+    "kind": {
+      "auto_reply": "Réponse automatique",
+      "unsubscribe": "Désinscription"
+    },
+    "changeLabel": "Changer l’étiquette",
+    "relabelError": "Impossible de changer l’étiquette.",
+    "autoLabel": "Étiquetée automatiquement",
+    "loadError": "Impossible de charger la boîte de réception.",
+    "empty": "Pas encore de réponse ici",
+    "newer": "← Plus récentes",
+    "older": "Plus anciennes →",
+    "backToList": "← Toutes les réponses",
+    "threads": "Conversations",
+    "newestFirst": "Les plus récentes d’abord",
+    "emptyFiltered": "Aucune réponse ne correspond à ces filtres.",
+    "channelLabel": "Canal",
+    "campaign": "Campagne",
+    "thread": "Conversation avec {name}",
+    "sequenceStopped": "La séquence de {name} s’est arrêtée à sa réponse.",
+    "autoReply": {
+      "paused": "Réponse automatique : la séquence de {name} est en pause et reprend {day, select, other {le {date}}}.",
+      "continues": "Réponse automatique : la séquence de {name} continue.",
+      "none": "Réponse automatique : aucune séquence n’est en cours pour {name}.",
+      "pausedNote": "La séquence est en pause, pas arrêtée."
+    },
+    "reminder": {
+      "set": "J’ai créé un rappel pour {month}. La séquence de {name} s’est arrêtée.",
+      "setNoSequence": "J’ai créé un rappel pour {month}.",
+      "due": "Rappel : il est temps de recontacter {name}."
+    },
+    "unverified": {
+      "marker": "Non vérifié",
+      "notice": "Nous n’avons pas pu vérifier l’expéditeur : ce message ne vient peut-être pas de cette adresse. Soyez prudent avec les liens qu’il contient."
+    },
+    "seeExclusions": "Voir les exclusions",
+    "unsubscribedState": "{name} a demandé à ne plus recevoir de messages : la séquence s’est arrêtée et vous ne pouvez pas répondre.",
+    "emptyBody": "Quand quelqu’un répond à une campagne, par e-mail ou sur LinkedIn, la conversation arrive ici avec une étiquette : Intéressé, Demande de rendez-vous, Pas maintenant, Pas intéressé. La séquence de cette personne s’arrête d’elle-même.",
+    "toCampaigns": "Aller aux campagnes",
+    "view": {
+      "all": "Toutes",
+      "unread": "Non lues",
+      "interested": "Intéressé",
+      "meeting_request": "Demande de rendez-vous",
+      "not_interested": "Pas intéressé",
+      "not_now": "Pas maintenant",
+      "other": "Autre",
+      "none": "Sans étiquette",
+      "unsubscribe": "Désinscriptions"
+    },
+    "unreadSr": "non lue",
+    "you": "Vous",
+    "step": "étape {n, number, credits}",
+    "reply": {
+      "draftFrom": "Brouillon de l’agent · depuis {from}",
+      "answerFrom": "Votre réponse · depuis {from}",
+      "placeholder": "Rédigez votre réponse",
+      "send": "Envoyer la réponse",
+      "sending": "Envoi…",
+      "status": {
+        "sending": "Envoi en cours",
+        "failed": "Non envoyé",
+        "unknown": "Résultat inconnu"
+      },
+      "sendError": "Impossible d’envoyer la réponse.",
+      "openIntegrations": "Ouvrir les Intégrations",
+      "blocked": {
+        "EXCLUDED": "Cette personne figure dans vos exclusions : vous ne pouvez pas répondre d’ici.",
+        "NO_MAILBOX": "Aucune boîte mail connectée pour répondre : connectez-en ou reconnectez-en une dans Intégrations.",
+        "NO_LINKEDIN": "Connectez votre compte LinkedIn pour répondre d’ici.",
+        "NO_RECIPIENT": "Il n’y a aucune adresse à laquelle répondre.",
+        "ACCOUNT_PAUSED": "Cet expéditeur est en pause : réactivez-le dans Expéditeurs pour répondre."
+      },
+      "regenerate": "Régénérer",
+      "writeDraft": "Écrire un brouillon",
+      "regenerating": "Rédaction…",
+      "regenerateError": "Impossible d’écrire un nouveau brouillon.",
+      "restore": "Restaurer le texte précédent",
+      "held": {
+        "mailbox_unknown": "La conversation avec cette personne a commencé depuis une boîte que Zenbree ne connaît plus : vous ne pouvez pas répondre d’ici.",
+        "disconnected": "La boîte d’où est partie la conversation est déconnectée. Connectez-la de nouveau dans Intégrations pour répondre.",
+        "needs_reconnect": "Il faut reconnecter la boîte d’où est partie la conversation. Reconnectez-la dans Intégrations pour répondre.",
+        "unlinked": "Ce client n’utilise plus la boîte d’où est partie la conversation. Associez-la de nouveau au client dans Expéditeurs pour répondre."
+      }
+    },
+    "campaignChip": "Campagne : {name}",
+    "removeCampaign": "Retirer le filtre de campagne",
+    "oldestFirst": "Les plus anciennes d’abord",
+    "listCountOldest": "{n, plural, one {# conversation} other {{n, number, credits} conversations}} · les plus anciennes en haut",
+    "sortOldest": "Afficher les plus anciennes d’abord",
+    "sortNewest": "Afficher les plus récentes d’abord"
+  }
+}

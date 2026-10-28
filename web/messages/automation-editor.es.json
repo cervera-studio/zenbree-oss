@@ -1,0 +1,207 @@
+{
+  "automationEditor": {
+    "new": "Nueva automatización",
+    "edit": "Editar",
+    "editTitle": "Editar {name}",
+    "readOnly": "Solo quien creó esta automatización, o un administrador, puede editarla.",
+    "back": "Volver a la automatización",
+    "loadError": "No se pudieron cargar las listas y campañas de este cliente. Recarga la página para volver a intentarlo.",
+    "leave": "Tus cambios no están guardados. ¿Quieres salir de esta página?",
+    "fields": {
+      "pick": "Elige uno",
+      "unavailable": "Ya no está disponible",
+      "name": "Nombre",
+      "trigger": "Cuándo se ejecuta",
+      "when": {
+        "manual": "Solo cuando alguien pulsa Ejecutar ahora en su página.",
+        "daily": "Una vez al día. La primera ejecución empieza en menos de un minuto después de reanudar la automatización.",
+        "weekly": "Una vez a la semana. La primera ejecución empieza en menos de un minuto después de reanudar la automatización.",
+        "webhook": "Cada vez que una herramienta que conectas envía una llamada firmada que indica una persona de la lista. Después de guardar, la página de la automatización muestra la URL y el secreto.",
+        "signal": "Cada vez que las señales de una empresa de la lista de seguimiento alcanzan la puntuación mínima. Cada ejecución busca personas solo en esa empresa."
+      },
+      "list": "Lista de personas",
+      "listHint": "Las personas con las que trabaja. Las personas que encuentra se añaden a esta lista.",
+      "listEmpty": "Aún no tienes listas de personas. <link>Abre un chat</link> y describe a quién quieres llegar: la lista nace cuando empieza la búsqueda.",
+      "cap": "Límite de créditos por ejecución",
+      "capHint": "Una ejecución se detiene al llegar a este número de créditos. De 1 a {max, number, credits}.",
+      "signal": {
+        "watchlist": "Lista de seguimiento",
+        "watchlistHint": "Las empresas cuyas señales sigue. Con Encontrar personas, busca en la lista de empresas de esta lista de seguimiento.",
+        "watchlistHintList": "Las empresas cuyas señales sigue. Con Encontrar personas, busca en {list}, la lista de empresas de esta lista de seguimiento.",
+        "paused": "{name} (en pausa)",
+        "deleted": "La lista de seguimiento de esta automatización se eliminó. Elige otra.",
+        "minScore": "Puntuación mínima de señales",
+        "minScoreHint": "Una oferta de empleo vale hasta 100 cuando se publica, y su puntuación se reduce a la mitad cada 30 días. Las señales de una empresa se suman. De más de 0 a 10.000.",
+        "noWatchlist": "Este cliente aún no tiene ninguna lista de seguimiento, así que ninguna señal puede iniciar una ejecución.",
+        "unreadable": "No se pudieron cargar las listas de seguimiento. Recarga la página para intentarlo de nuevo."
+      }
+    },
+    "steps": {
+      "title": "Pasos",
+      "hint": "Los pasos se ejecutan siempre en este orden. Activa los que necesites.",
+      "find_people": {
+        "hint": "Encuentra personas en las empresas de una lista de empresas. Gratis.",
+        "accounts": "Lista de empresas",
+        "accountsHint": "Cada ejecución toma las siguientes empresas de esta lista, en el orden de la lista.",
+        "titles": "Cargos",
+        "titlesHint": "Un cargo por línea, hasta 10.",
+        "seniorities": "Nivel",
+        "senioritiesHint": "Déjalos todos desactivados para tomar cualquier nivel.",
+        "perAccount": "Personas por empresa",
+        "perAccountHint": "De 1 a 5."
+      },
+      "qualify": {
+        "hint": "La IA da a cada persona una puntuación de 0 a 100 según tu descripción. 1 crédito por cada persona puntuada.",
+        "brief": "Quién encaja",
+        "briefHint": "Describe a las personas que buscas, en hasta 1000 caracteres.",
+        "minScore": "Puntuación mínima",
+        "minScoreHint": "Una persona con una puntuación menor se detiene aquí. De 0 a 100."
+      },
+      "find_emails": {
+        "hint": "Encuentra un email de trabajo verificado para quien no tiene uno. 1 crédito cuando lo encuentra."
+      },
+      "add_to_campaign": {
+        "hint": "Añade las personas a una campaña. Nunca inicia la campaña ni envía nada por sí mismo.",
+        "campaign": "Campaña",
+        "campaignHint": "Solo campañas que no han terminado."
+      },
+      "write_hubspot": {
+        "hint": "Escribe cada contacto y su empresa en HubSpot. Necesita HubSpot conectado con la escritura activada.",
+        "creator": "Las ejecuciones escriben en el HubSpot de quien creó esta automatización, no en el tuyo."
+      },
+      "add_to_instantly": {
+        "hint": "Añade las personas a una campaña de Instantly de este cliente, con los campos estándar. Zenbree nunca inicia ni modifica la campaña. Gratis.",
+        "campaign": "Campaña de Instantly",
+        "campaignHint": "Las campañas de la cuenta de Instantly conectada a este cliente.",
+        "sends": "Esta campaña está activa: Instantly puede empezar a enviar emails en cuanto se añaden las personas. En cada versión nueva, no se añade a nadie hasta que apruebes su primera ejecución.",
+        "notConnected": "Conecta Instantly a este cliente para elegir una campaña.",
+        "unreadable": "No se pudieron cargar las campañas de Instantly.",
+        "keepsSaved": "La campaña elegida sigue guardada hasta que elijas otra.",
+        "settings": "Abrir Integraciones"
+      }
+    },
+    "seniority": {
+      "owner": "Propietario",
+      "founder": "Fundador",
+      "c_suite": "C-suite",
+      "partner": "Socio",
+      "vp": "VP",
+      "head": "Head",
+      "director": "Director",
+      "manager": "Manager",
+      "senior": "Senior",
+      "junior": "Junior",
+      "entry": "Nivel inicial",
+      "intern": "Becario"
+    },
+    "gaps": {
+      "title": "Para terminar",
+      "name": "Pon un nombre a la automatización, de hasta 120 caracteres.",
+      "list": "Elige una lista de personas.",
+      "noStep": "Activa al menos un paso.",
+      "accounts": "Elige la lista de empresas donde buscar personas.",
+      "titles": "Escribe de 1 a 10 cargos, cada uno de hasta 200 caracteres.",
+      "perAccount": "Indica de 1 a 5 personas por empresa.",
+      "brief": "Describe quién encaja, en hasta 1000 caracteres.",
+      "minScore": "Indica una puntuación mínima de 0 a 100.",
+      "campaign": "Elige una campaña.",
+      "cap": "Indica un límite de créditos de 1 a 100.",
+      "oneSystem": "Elige Añadir a la campaña o Añadir a Instantly: una automatización solo puede usar uno.",
+      "signalScore": "Indica una puntuación mínima de señales mayor que 0 y hasta 10.000."
+    },
+    "preview": {
+      "title": "Vista previa",
+      "run": "Vista previa",
+      "readsOnly": "La vista previa solo lee. No gasta créditos y no escribe nada, ni en Zenbree ni fuera.",
+      "checking": "Comprobando…",
+      "notYet": "Pulsa Vista previa para comprobar esta automatización.",
+      "failed": "No se pudo cargar la vista previa. Inténtalo de nuevo.",
+      "ready": "Tiene todo lo que necesita.",
+      "problems": "Corrige esto antes de guardar",
+      "problemsPaused": "Corrige estos puntos antes de reanudarla",
+      "pausedSaves": "Está en pausa, así que puedes guardarla. Cuando la reanudes, Zenbree vuelve a comprobar estos puntos y la deja en pausa si queda alguno.",
+      "hubspotOfCreator": "Las ejecuciones escriben en el HubSpot de quien creó esta automatización.",
+      "records": {
+        "title": "Registros",
+        "people": "Personas de la lista que aún no ha tomado",
+        "withEmail": "De ellas, con email",
+        "withContact": "De ellas, con email o LinkedIn",
+        "accounts": "Empresas en la lista de empresas",
+        "count": "{n, number, credits}",
+        "accountsNote": "Cada ejecución mira hasta {n, plural, one {# empresa} other {{n, number, credits} empresas}}, las siguientes en el orden de la lista.",
+        "accountsNoteSignal": "Cada ejecución mira solo la empresa cuyas señales la iniciaron."
+      },
+      "conditions": {
+        "title": "Condiciones",
+        "titles": "Cargos: {titles}",
+        "seniorities": "Nivel: {seniorities}",
+        "anySeniority": "Cualquier nivel",
+        "perAccount": "Hasta {n, plural, one {# persona} other {{n, number, credits} personas}} por empresa",
+        "minScore": "Puntuación mínima {n, number, credits}"
+      },
+      "actions": "Acciones, en orden",
+      "free": "Gratis",
+      "each": "{n, plural, one {# crédito} other {{n, number, credits} créditos}} por persona",
+      "activeCampaign": "Esta campaña está activa. Cuando apruebes una ejecución de revisión, las siguientes ejecuciones añaden personas como activas y la campaña les envía mensajes.",
+      "budget": "Presupuesto",
+      "perRun": "Personas por ejecución, como máximo",
+      "maxCredits": "Créditos por ejecución, como máximo",
+      "people": "{n, plural, one {# persona} other {{n, number, credits} personas}}",
+      "credits": "{n, plural, one {# crédito} other {{n, number, credits} créditos}}",
+      "instantlySends": "Esta campaña de Instantly está activa. Cuando apruebes la primera ejecución, las personas se añaden enseguida e Instantly puede empezar a enviar emails. Las ejecuciones siguientes las añaden sin revisión.",
+      "instantlyUnreadable": "Ahora mismo no podemos leer la campaña en Instantly. La ejecución la volverá a comprobar cuando llegue a este paso.",
+      "signals": {
+        "title": "Señales recientes",
+        "accounts": "{n, plural, =0 {Ninguna empresa de la lista de seguimiento tiene señales de los últimos 30 días que alcancen la puntuación mínima.} one {# empresa de la lista de seguimiento tiene señales de los últimos 30 días que alcanzan la puntuación mínima.} other {{n, number, credits} empresas de la lista de seguimiento tienen señales de los últimos 30 días que alcanzan la puntuación mínima.}}",
+        "noName": "Empresa sin nombre",
+        "noTitle": "Oferta sin título",
+        "score": "Puntuación {n, number, credits}",
+        "seen": "{title} · última señal el {when}",
+        "fromNow": "Estas son las empresas de los últimos 30 días cuyas señales alcanzan la puntuación mínima. Solo inician ejecuciones las señales que llegan cuando la automatización está activa."
+      }
+    },
+    "save": {
+      "create": "Crear automatización",
+      "createsPaused": "Se crea en pausa, así que todavía no se ejecuta nada. Reanúdala en su página para iniciarla. Una automatización diaria o semanal se ejecuta entonces en menos de un minuto.",
+      "publish": "Publicar la versión {version, number, credits}",
+      "save": "Guardar",
+      "published": "Guardada como versión {version, number, credits}.",
+      "saved": "Guardado.",
+      "effects": {
+        "newVersion": "Las próximas ejecuciones usan la versión {next, number, credits}.",
+        "queuedCancelled": "Una ejecución en cola, si la hay, se cancela.",
+        "runningFinishes": "Una ejecución en curso, si la hay, termina con la versión con la que empezó.",
+        "nextReview": "La próxima ejecución es de revisión.",
+        "reviewDrafts": "Las personas que añade la ejecución de revisión entran en la campaña como borradores hasta que apruebes la ejecución.",
+        "reviewHubspot": "La ejecución de revisión no escribe nada en HubSpot hasta que la apruebes.",
+        "draftsRemoved": "Las personas que una ejecución de revisión añadió como borradores salen de la campaña si no se aprobó ninguna ejecución de su versión.",
+        "scheduleStarts": "La primera ejecución programada empieza en menos de un minuto.",
+        "scheduleOnResume": "La primera ejecución programada empieza en menos de un minuto después de reanudar la automatización.",
+        "queuedStillRuns": "La programación se detiene. Una ejecución que ya puso en cola se ejecuta igualmente.",
+        "campaignSends": "La campaña está activa. Cuando apruebes la ejecución de revisión, las siguientes ejecuciones añaden personas como activas y la campaña les envía mensajes.",
+        "webhookSecretNext": "Después de guardar, crea el secreto en la página de la automatización. Hasta entonces no se acepta ninguna llamada.",
+        "webhookStops": "La URL del webhook y su secreto dejan de funcionar al instante, y las llamadas en espera se descartan. Si vuelves al webhook, la automatización recibe una URL y un secreto nuevos.",
+        "signalStops": "La automatización ya no se inicia con las señales de la lista de seguimiento: se quitan la lista de seguimiento y la puntuación mínima.",
+        "reviewInstantly": "Hasta que apruebes la primera ejecución, no se añade a nadie a Instantly.",
+        "instantlyReleased": "Las personas en espera para Instantly de una ejecución no aprobada no se añaden. La próxima ejecución las vuelve a tomar.",
+        "instantlyCampaignDropped": "Las personas en espera para la campaña de Instantly anterior ya no se añaden, aunque la ejecución estuviera aprobada. La próxima ejecución las vuelve a tomar.",
+        "instantlySends": "La campaña de Instantly está activa. Tras la aprobación, las ejecuciones siguientes añaden a las personas e Instantly puede empezar a enviar emails.",
+        "signalFromNow": "Solo inician ejecuciones las señales que llegan después de guardar, y ninguna mientras la automatización está en pausa."
+      },
+      "confirm": {
+        "publishTitle": "¿Publicar la versión {version, number, credits}?",
+        "publish": "Las ejecuciones ya hechas siguen en la versión {version, number, credits}.",
+        "saveTitle": "¿Guardar los cambios?",
+        "save": "Los cambios se aplican a las próximas ejecuciones."
+      }
+    },
+    "delete": {
+      "button": "Eliminar automatización",
+      "title": "¿Eliminar {name}?",
+      "description": "No se puede deshacer.",
+      "runs": "Se eliminan sus ejecuciones y su historial.",
+      "running": "Una ejecución en curso se detiene antes de guardar su siguiente paso, y los créditos que tenía reservados y no gastó vuelven al cliente.",
+      "people": "Las personas que añadió a una campaña se quedan allí. Las que esperan como borradores siguen siendo borradores."
+    }
+  }
+}

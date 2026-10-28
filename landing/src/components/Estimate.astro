@@ -1,0 +1,115 @@
+---
+import { type Content, links } from '../content';
+import {
+  btn,
+  data,
+  dataSm,
+  eyebrow,
+  h2,
+  headRow,
+  headSide,
+  panel,
+  section,
+} from '../styles/classes';
+import Eyebrow from './Eyebrow.astro';
+import { type PlanColumn, planCost, planRule, tariffs } from './estimate';
+
+interface Props {
+  t: Content;
+  locale: string;
+}
+const { t, locale } = Astro.props;
+const { plan } = t;
+const [first] = plan.examples;
+const columns = Object.keys(tariffs) as PlanColumn[];
+const cost = planCost(first.rows, first.columns);
+const fmt = new Intl.NumberFormat(locale, { useGrouping: 'always' });
+const unit = (n: number) => `${fmt.format(n)} ${n === 1 ? plan.credit : plan.credits}`;
+---
+
+<section class:list={[section, 'flex flex-col gap-10 phone:gap-6']} aria-labelledby="plan-title">
+  <div class={headRow}>
+    <div class="flex max-w-135 flex-1 flex-col gap-5">
+      <Eyebrow>{plan.eyebrow}</Eyebrow>
+      <h2 id="plan-title" class={h2}>{plan.title}</h2>
+    </div>
+    <p class:list={[headSide, 'text-small']}>{plan.lead}</p>
+  </div>
+  {/* A plain GET form: without the script it still sends the brief to sign-up; the script only updates the cost. */}
+  <form method="get" action={links.signUp} data-estimate data-locale={locale} data-strings={JSON.stringify({ credit: plan.credit, credits: plan.credits, rules: plan.rules })} class:list={[panel, 'overflow-hidden']}>
+    <label for="plan-brief" class="sr-only">{plan.inputLabel}</label>
+    <input id="plan-brief" name="brief" type="text" value={first.brief} autocomplete="off" class="h-16 w-full min-w-0 border-0 border-b border-line bg-ground px-5 text-title text-ink caret-accent outline-none focus-visible:bg-selected phone:h-14 phone:text-feature" />
+    <div class="flex flex-wrap items-center gap-2 border-b border-line bg-raised px-5 py-3">
+      <span class:list={[eyebrow, 'mr-1 text-muted']}>{plan.examplesLabel}</span>
+      {plan.examples.map((e) => (
+        <button type="button" data-example={JSON.stringify(e)} class={btn('outline', 'default')}>{e.brief}</button>
+      ))}
+    </div>
+    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-px bg-line tablet:grid-cols-1">
+      <div class="flex flex-col gap-6 bg-ground p-5">
+        <div class="flex flex-col gap-2">
+          <label for="plan-rows" class="flex items-baseline justify-between text-ui-strong">{plan.rows}<output for="plan-rows" data-rows class:list={[data, 'text-ink']}>{fmt.format(first.rows)}</output></label>
+          <input id="plan-rows" type="range" min="10" max="500" step="10" value={first.rows} class="h-8 w-full cursor-pointer accent-accent" />
+        </div>
+        <fieldset class="flex flex-col gap-2">
+          <legend class="mb-2 text-ui-strong">{plan.columns}</legend>
+          {columns.map((c) => (
+            <label class="flex min-h-11 cursor-pointer items-center gap-3 rounded-md border border-line bg-ground px-3 py-2 text-ui transition-colors hover:bg-raised has-checked:border-accent has-checked:bg-accent-tint motion-reduce:transition-none">
+              <input type="checkbox" value={c} checked={first.columns.includes(c)} class="size-4 shrink-0 accent-accent" />
+              <span class="flex-1">{plan.column[c]}</span>
+              <span class:list={[dataSm, 'text-muted']}>{unit(tariffs[c])} {plan.perRow}</span>
+            </label>
+          ))}
+        </fieldset>
+      </div>
+      <div class="flex flex-col justify-between gap-6 bg-raised p-5">
+        <div class="flex flex-col gap-2">
+          <span class="text-ui-strong text-soft">{plan.max}</span>
+          <output data-cost class="text-headline tabular-nums phone:text-title" aria-live="polite">{unit(cost)}</output>
+          <p data-rule class="text-small text-soft">{planRule(cost, plan.rules)}</p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <p class="text-small text-muted">{plan.note}</p>
+          <button type="submit" class:list={[btn('primary', 'lg'), 'self-start phone:self-stretch']}>{plan.start}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<script>
+  import { type PlanColumn, type PlanRules, planCost, planRule } from './estimate';
+
+  type Strings = { credit: string; credits: string; rules: PlanRules };
+
+  for (const form of document.querySelectorAll<HTMLFormElement>('form[data-estimate]')) {
+    const s = JSON.parse(form.dataset.strings ?? '{}') as Strings;
+    const fmt = new Intl.NumberFormat(form.dataset.locale, { useGrouping: 'always' });
+    const brief = form.querySelector<HTMLInputElement>('#plan-brief');
+    const rows = form.querySelector<HTMLInputElement>('#plan-rows');
+    const boxes = [...form.querySelectorAll<HTMLInputElement>('input[type=checkbox]')];
+    const out = {
+      rows: form.querySelector('[data-rows]'),
+      cost: form.querySelector('[data-cost]'),
+      rule: form.querySelector('[data-rule]'),
+    };
+    const update = () => {
+      const n = Number(rows?.value ?? 0);
+      const cost = planCost(n, boxes.filter((b) => b.checked).map((b) => b.value as PlanColumn));
+      if (out.rows) out.rows.textContent = fmt.format(n);
+      if (out.cost) out.cost.textContent = `${fmt.format(cost)} ${cost === 1 ? s.credit : s.credits}`;
+      if (out.rule) out.rule.textContent = planRule(cost, s.rules);
+    };
+    rows?.addEventListener('input', update);
+    for (const box of boxes) box.addEventListener('change', update);
+    for (const button of form.querySelectorAll<HTMLButtonElement>('button[data-example]')) {
+      button.addEventListener('click', () => {
+        const e = JSON.parse(button.dataset.example ?? '{}') as { brief: string; rows: number; columns: PlanColumn[] };
+        if (brief) brief.value = e.brief;
+        if (rows) rows.value = String(e.rows);
+        for (const box of boxes) box.checked = e.columns.includes(box.value as PlanColumn);
+        update();
+      });
+    }
+  }
+</script>

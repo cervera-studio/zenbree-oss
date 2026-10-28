@@ -1,0 +1,48 @@
+---
+import type { Content, StepArt } from '../content';
+import { dataSm, tag } from '../styles/classes';
+
+interface Props {
+  art: StepArt;
+  ui: Content['ui'];
+}
+const { art, ui } = Astro.props;
+const line = 'flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5';
+// No min-w-0: a narrow cell wraps the value under the key instead of shrinking the key to nothing.
+const key = 'flex-1 text-muted';
+const label = 'shrink-0 text-muted';
+const value = 'ml-auto text-right';
+const prose = 'font-sans text-small';
+---
+
+<div class:list={[dataSm, 'flex flex-col gap-1.5 rounded-md border border-line bg-ground px-3.5 py-3 shadow-snippet']}>
+  {art.kind === 'brief' && (
+    <>
+      <p class:list={[prose, 'self-end rounded-md bg-accent-tint px-2 py-1.5 text-ink']}>{art.brief}</p>
+      <p class:list={[prose, 'text-soft']}>{art.question}</p>
+      <div class="flex flex-wrap gap-1.5">{/* The answers wrap: in Spanish and French they are wider than a card between 900 and 1024 px. */}<span class={tag('accent', true)}>{art.choices[0]}</span><span class={tag('neutral', true)}>{art.choices[1]}</span></div>
+    </>
+  )}
+  {art.kind === 'plan' && (
+    <>
+      <div class={line}><span class:list={[key, 'text-ink']}>{art.title}</span><span class:list={[value, 'text-accent-ink']}>{art.budget}</span></div>
+      {art.steps.map((step) => <span class="text-soft">{step}</span>)}
+      <span class="text-positive">{art.note}</span>
+    </>
+  )}
+  {art.kind === 'list' && (
+    <>
+      <div class={line}><span class:list={[key, 'text-ink']}>{ui.people}</span><span class:list={[value, 'text-accent-ink']}>{art.delivered}</span></div>
+      {art.people.map((p) => <div class={line}><span class={key}>{p.name} · {p.role}</span><span class:list={[value, 'text-positive']}>{p.score}</span></div>)}
+      <p class:list={[prose, 'text-soft']}><b class="text-accent-ink">{art.why.title}</b> {art.why.quote}</p>
+    </>
+  )}
+  {art.kind === 'mail' && (
+    <>
+      <div class={line}><span class:list={[key, 'text-ink']}>{ui.toApprove}</span><span class:list={[value, 'text-accent-ink']}>{art.queue}</span></div>
+      <div class={line}><span class={label}>{ui.to}</span><span class="min-w-0 flex-1 truncate text-right">{art.to}</span></div>
+      <div class={line}><span class={label}>{ui.subject}</span><span class="min-w-0 flex-1 truncate text-right">{art.subject}</span></div>
+      <p class:list={[prose, 'line-clamp-2 text-soft']}>{art.body}</p>
+    </>
+  )}
+</div>

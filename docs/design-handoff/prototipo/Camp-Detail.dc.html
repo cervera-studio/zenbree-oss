@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Campagna attiva</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-row:hover{background:var(--zb-muted)}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="campaigns" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+
+  <main style="min-width: 0; padding: 24px 32px; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <a href="{{nav.campaigns}}" style="font-size: 12px; color: var(--zb-muted-fg); text-decoration: none">← Tutte le campagne</a>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+        <h1 style="margin: 0; font-size: 22px; font-weight: 700">Agenzie marketing Milano · SDR</h1>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{st.bg}}; color: {{st.fg}}; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 999px; background: {{st.dot}}"></span>{{st.label}}</span>
+        <span style="flex-grow: 1"></span>
+        <a href="{{nav.inbox}}" style="height: 36px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">Risposte <span style="height: 20px; min-width: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: var(--zb-brand); color: var(--zb-on-brand); font-size: 11px; display: inline-flex; align-items: center; justify-content: center">2</span></a>
+        <button type="button" onClick="{{togglePause}}" style="height: 36px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap">{{pauseLabel}}</button>
+      </div>
+      <span style="font-size: 13px; color: var(--zb-muted-fg)">Da ale@ritmosales.it · lun–ven 9:00–18:00 · 4 step in 8 giorni · <a href="{{nav.builder}}" style="text-decoration: none; font-weight: 600">Vedi gli step</a></span>
+    </div>
+
+    <dl style="margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <div style="padding: 16px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)"><dt style="font-size: 12px; color: var(--zb-muted-fg)">Persone</dt><dd style="margin: 4px 0 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums">47</dd></div>
+      <div style="padding: 16px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)"><dt style="font-size: 12px; color: var(--zb-muted-fg)">Inviati</dt><dd style="margin: 4px 0 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums">{{sent}} <span style="font-size: 13px; font-weight: 400; color: var(--zb-muted-fg)">oggi 18 su 25</span></dd></div>
+      <div style="padding: 16px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)"><dt style="font-size: 12px; color: var(--zb-muted-fg)">Risposte</dt><dd style="margin: 4px 0 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums">5 <span style="font-size: 13px; font-weight: 400; color: var(--zb-muted-fg)">2 interessati · 1 automatica</span></dd></div>
+      <div style="padding: 16px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)"><dt style="font-size: 12px; color: var(--zb-muted-fg)">Non riusciti</dt><dd style="margin: 4px 0 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums">1 <span style="font-size: 13px; font-weight: 400; color: var(--zb-muted-fg)">email rimbalzata</span></dd></div>
+    </dl>
+
+    <section aria-labelledby="aq" style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: baseline; gap: 12px">
+        <h2 id="aq" style="margin: 0; font-size: 16px; font-weight: 700; flex-grow: 1">In attesa di approvazione ({{pending}})</h2>
+        <sc-if value="{{hasPending}}" hint-placeholder-val="{{true}}">
+          <button type="button" onClick="{{approveAll}}" style="height: 34px; padding: 0 14px; border: 0; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer">Approva tutti i {{shown}} mostrati</button>
+        </sc-if>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: var(--zb-muted-fg)">Non parte nulla senza la tua approvazione. I messaggi approvati partono negli orari della campagna e nei limiti della casella.</p>
+      <sc-if value="{{hasPending}}" hint-placeholder-val="{{true}}">
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+          <sc-for list="{{queue}}" as="q" hint-placeholder-count="3">
+            <article style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border)">
+              <span style="font-size: 12px; color: var(--zb-muted-fg)">Step {{q.step}} · {{q.channel}} · <strong style="color: var(--zb-fg)">{{q.name}}</strong> {{q.company}}</span>
+              <sc-if value="{{q.subject}}" hint-placeholder-val="{{true}}"><span style="font-weight: 700; font-size: 13px">{{q.subject}}</span></sc-if>
+              <span style="font-size: 13px; line-height: 1.55; white-space: pre-line; flex-grow: 1">{{q.body}}</span>
+              <div style="display: flex; gap: 6px; padding-top: 8px; border-top: 1px solid var(--zb-border)">
+                <button type="button" onClick="{{q.approve}}" style="height: 32px; padding: 0 12px; border: 0; border-radius: 7px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 12px; cursor: pointer">Approva</button>
+                <button type="button" style="height: 32px; padding: 0 12px; border-radius: 7px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 12px; cursor: pointer; white-space: nowrap">Modifica</button>
+                <span style="flex-grow: 1"></span>
+                <button type="button" onClick="{{q.skip}}" style="height: 32px; padding: 0 8px; border: 0; border-radius: 7px; background: transparent; color: var(--zb-muted-fg); font-family: inherit; font-weight: 600; font-size: 12px; cursor: pointer">Salta questo step</button>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{noPending}}" hint-placeholder-val="{{false}}">
+        <div role="status" style="padding: 14px 16px; border-radius: 14px; background: rgba(0,188,125,0.08); border: 1px solid rgba(0,188,125,0.30); font-size: 14px">Nessun messaggio in attesa di approvazione. I prossimi arrivano domattina, quando scattano gli step 2.</div>
+      </sc-if>
+    </section>
+
+    <section aria-labelledby="pp" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="pp" style="margin: 0; font-size: 16px; font-weight: 700">Persone</h2>
+      <div style="border: 1px solid var(--zb-border); border-radius: 14px; overflow: hidden">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px">
+          <thead>
+            <tr style="background: var(--zb-rail); text-align: left">
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Persona</th>
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Step</th>
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Stato</th>
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Ultima attività</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{targets}}" as="t" hint-placeholder-count="6">
+              <tr class="zb-row" style="border-top: 1px solid var(--zb-muted)">
+                <td style="padding: 10px 14px"><span style="font-weight: 600">{{t.name}}</span> <span style="color: var(--zb-muted-fg)">· {{t.company}}</span></td>
+                <td style="padding: 10px 14px">
+                  <span style="display: inline-flex; gap: 4px" aria-label="{{t.stepLabel}}">
+                    <sc-for list="{{t.dots}}" as="d" hint-placeholder-count="4"><span style="width: 22px; height: 6px; border-radius: 999px; background: {{d}}"></span></sc-for>
+                  </span>
+                </td>
+                <td style="padding: 10px 14px"><span style="height: 22px; padding: 0 8px; border-radius: 999px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; background: {{t.bg}}; color: {{t.fg}}; white-space: nowrap">{{t.status}}</span></td>
+                <td style="padding: 10px 14px; color: var(--zb-muted-fg)">
+                  <sc-if value="{{t.href}}" hint-placeholder-val="{{false}}"><a href="{{t.href}}" style="font-weight: 600; text-decoration: none">{{t.last}}</a></sc-if>
+                  <sc-if value="{{t.noHref}}" hint-placeholder-val="{{true}}"><span>{{t.last}}</span></sc-if>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { done: {}, paused: false };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const S = this.state;
+    const Q = [
+      { id: 'q1', step: 1, channel: 'Email', name: 'Francesca Testa', company: 'Bottega Pixel', subject: 'Francesca, un SDR per Bottega Pixel da lunedì?', body: 'Ciao Francesca,\n\nho visto che Bottega Pixel sta cercando un SDR. Mentre selezionate, possiamo mettervi a disposizione un SDR già formato…' },
+      { id: 'q2', step: 1, channel: 'Email', name: 'Andrea Lombardi', company: 'Arco Brand Lab', subject: 'Andrea, un SDR per Arco Brand Lab da lunedì?', body: 'Ciao Andrea,\n\nho visto che Arco Brand Lab sta cercando un SDR. Mentre selezionate, possiamo mettervi a disposizione un SDR già formato…' },
+      { id: 'q3', step: 2, channel: 'Invito LinkedIn', name: 'Martina Greco', company: 'Vela Studio', subject: '', body: 'Ciao Martina, ti ho scritto per email a proposito dell’SDR per Vela Studio. Mi farebbe piacere collegarci.' }
+    ];
+    const left = Q.filter((q) => !S.done[q.id]);
+    const pending = 12 - (Q.length - left.length);
+    const ST = { act: ['Attivo', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)'], rep: ['Ha risposto · fermato', 'var(--zb-tint)', 'var(--zb-ink)'], exc: ['Escluso', 'rgba(251,44,54,0.10)', 'var(--zb-neg-fg)'], wait: ['Da approvare', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)'], bounce: ['Email rimbalzata', 'rgba(251,44,54,0.10)', 'var(--zb-neg-fg)'], pause: ['In pausa', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)'] };
+    const T = (name, company, step, st, last, href) => ({
+      name, company, status: ST[st][0], bg: ST[st][1], fg: ST[st][2], last, href: href ? h(href) : false, noHref: !href,
+      stepLabel: 'Step ' + step + ' di 4',
+      dots: [1, 2, 3, 4].map((n) => (n <= step ? (st === 'rep' ? 'var(--zb-ink)' : 'var(--zb-brand)') : 'var(--zb-rail)'))
+    });
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { campaigns: h('Campaigns.dc.html'), inbox: h('Inbox.dc.html'), builder: h('Camp-Builder.dc.html') },
+      st: S.paused ? { label: 'In pausa', bg: 'rgba(254,154,0,0.14)', fg: 'var(--zb-warn-fg)', dot: '#fe9a00' } : { label: 'Attiva', bg: 'rgba(0,188,125,0.12)', fg: 'var(--zb-pos-fg)', dot: '#00bc7d' },
+      pauseLabel: S.paused ? 'Riprendi' : 'Metti in pausa', togglePause: () => this.setState({ paused: !S.paused }),
+      sent: String(18 + (Q.length - left.length)),
+      pending: String(pending), shown: String(left.length), hasPending: left.length > 0, noPending: left.length === 0,
+      approveAll: () => this.setState({ done: { q1: true, q2: true, q3: true } }),
+      queue: left.map((q) => ({ ...q, step: String(q.step), subject: q.subject || false, approve: () => this.setState({ done: { ...S.done, [q.id]: true } }), skip: () => this.setState({ done: { ...S.done, [q.id]: true } }) })),
+      targets: [
+        T('Giulia Ferri', 'Officina Nove', 1, 'rep', 'Ha risposto: Interessata · 2 ore fa', 'Inbox.dc.html'),
+        T('Marco Bellini', 'Studio Brezza', 1, 'rep', 'Richiesta di incontro · ieri', 'Inbox.dc.html'),
+        T('Chiara Gallo', 'Lanterna Digital', 2, 'rep', 'Non ora (LinkedIn) · ieri', 'Inbox.dc.html'),
+        T('Elena Moretti', 'Ponte Creativo', 1, 'pause', 'Fuori ufficio · riparte l’8 ottobre', 'Inbox.dc.html'),
+        T('Stefano Ricci', 'Mosaico Adv', 1, 'rep', 'Non interessato · 3 giorni fa', 'Inbox.dc.html'),
+        T('Andrea Lombardi', 'Arco Brand Lab', 0, 'wait', 'Step 1 pronto, aspetta te'),
+        T('Sara Villa', 'Fiordaliso Comunicazione', 1, 'exc', 'Disiscritta · aggiunta alle Esclusioni', 'Set-Exclusions.dc.html'),
+        T('Luca Conti', 'Nodo Agency', 0, 'bounce', 'L’indirizzo non esiste più'),
+        T('Francesca Testa', 'Bottega Pixel', 0, 'wait', 'Step 1 pronto, aspetta te')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "contact": "email",
+  "kind": "partial",
+  "refunded": 0,
+  "searched": 3,
+  "tally": {
+    "failed": 0,
+    "found": 1,
+    "invalid": 1,
+    "no_input": 0,
+    "no_source": 0,
+    "not_found": 1
+  },
+  "unmatched": 0
+}

@@ -1,0 +1,207 @@
+{
+  "automationEditor": {
+    "new": "New automation",
+    "edit": "Edit",
+    "editTitle": "Edit {name}",
+    "readOnly": "Only the person who made this automation, or an admin, can edit it.",
+    "back": "Back to the automation",
+    "loadError": "The lists and campaigns of this client could not be loaded. Reload the page to try again.",
+    "leave": "Your edits are not saved. Leave this page?",
+    "fields": {
+      "pick": "Pick one",
+      "unavailable": "No longer available",
+      "name": "Name",
+      "trigger": "When it runs",
+      "when": {
+        "manual": "Only when someone presses Run now on its page.",
+        "daily": "Once a day. The first run starts within a minute after the automation is resumed.",
+        "weekly": "Once a week. The first run starts within a minute after the automation is resumed.",
+        "webhook": "Each time a tool you connect sends a signed call that names one person of the list. After you save, the automation's page gives the URL and the secret.",
+        "signal": "Each time the signals of a company of the watchlist reach the minimum score. Each run looks for people at that company only."
+      },
+      "list": "People list",
+      "listHint": "The people it works on. The people it finds are added to this list.",
+      "listEmpty": "You have no people lists yet. <link>Open a chat</link> and describe who you want to reach: the list is created when the search starts.",
+      "cap": "Credit cap for each run",
+      "capHint": "A run stops when it reaches this number of credits. From 1 to {max, number, credits}.",
+      "signal": {
+        "watchlist": "Watchlist",
+        "watchlistHint": "The companies it watches for signals. With Find people, search the company list of this watchlist.",
+        "watchlistHintList": "The companies it watches for signals. With Find people, search {list}, the company list of this watchlist.",
+        "paused": "{name} (paused)",
+        "deleted": "The watchlist of this automation was deleted. Pick another one.",
+        "minScore": "Minimum signal score",
+        "minScoreHint": "A job posting scores up to 100 when it goes up, and its score halves every 30 days. A company's signals add up. From above 0 to 10,000.",
+        "noWatchlist": "This client has no watchlist yet, so no signal can start a run.",
+        "unreadable": "The watchlists could not be loaded. Reload the page to try again."
+      }
+    },
+    "steps": {
+      "title": "Steps",
+      "hint": "The steps always run in this order. Turn on the steps you need.",
+      "find_people": {
+        "hint": "Finds people at the companies of a company list. Free.",
+        "accounts": "Company list",
+        "accountsHint": "Each run takes the next companies of this list, in list order.",
+        "titles": "Job titles",
+        "titlesHint": "One title on each line, up to 10.",
+        "seniorities": "Seniority",
+        "senioritiesHint": "Leave all off to take any seniority.",
+        "perAccount": "People at each company",
+        "perAccountHint": "From 1 to 5."
+      },
+      "qualify": {
+        "hint": "The AI gives each person a score from 0 to 100 against your brief. 1 credit for each person it scores.",
+        "brief": "Who fits",
+        "briefHint": "Describe the people you want, in up to 1000 characters.",
+        "minScore": "Minimum score",
+        "minScoreHint": "A person with a lower score stops here. From 0 to 100."
+      },
+      "find_emails": {
+        "hint": "Finds a verified work email for a person who has none. 1 credit when it finds one."
+      },
+      "add_to_campaign": {
+        "hint": "Adds the people to a campaign. It never starts the campaign and sends nothing itself.",
+        "campaign": "Campaign",
+        "campaignHint": "Only campaigns that have not ended."
+      },
+      "write_hubspot": {
+        "hint": "Writes each contact and its company to HubSpot. Needs HubSpot connected with write-back on.",
+        "creator": "Runs write to the HubSpot of the person who made this automation, not to yours."
+      },
+      "add_to_instantly": {
+        "hint": "Adds the people to an Instantly campaign of this client, with the standard fields. Zenbree never starts or changes the campaign. Free.",
+        "campaign": "Instantly campaign",
+        "campaignHint": "The campaigns of the Instantly workspace connected to this client.",
+        "sends": "This campaign is running: Instantly can start emailing people as soon as they are added. For each new version, nobody is added until you approve its first run.",
+        "notConnected": "Connect Instantly to this client to pick a campaign.",
+        "unreadable": "The Instantly campaigns could not be loaded.",
+        "keepsSaved": "The chosen campaign stays saved until you pick another one.",
+        "settings": "Open Integrations"
+      }
+    },
+    "seniority": {
+      "owner": "Owner",
+      "founder": "Founder",
+      "c_suite": "C-suite",
+      "partner": "Partner",
+      "vp": "VP",
+      "head": "Head",
+      "director": "Director",
+      "manager": "Manager",
+      "senior": "Senior",
+      "junior": "Junior",
+      "entry": "Entry level",
+      "intern": "Intern"
+    },
+    "gaps": {
+      "title": "To finish",
+      "name": "Give the automation a name, up to 120 characters.",
+      "list": "Pick a people list.",
+      "noStep": "Turn on at least one step.",
+      "accounts": "Pick the company list to find people at.",
+      "titles": "Write 1 to 10 job titles, each up to 200 characters.",
+      "perAccount": "Set the people at each company from 1 to 5.",
+      "brief": "Describe who fits, in up to 1000 characters.",
+      "minScore": "Set the minimum score from 0 to 100.",
+      "campaign": "Pick a campaign.",
+      "cap": "Set the credit cap from 1 to 100.",
+      "oneSystem": "Choose Add to campaign or Add to Instantly: an automation can use only one of them.",
+      "signalScore": "Set the minimum signal score above 0 and up to 10,000."
+    },
+    "preview": {
+      "title": "Preview",
+      "run": "Preview",
+      "readsOnly": "The preview only reads. It spends no credits and writes nothing, in Zenbree or outside it.",
+      "checking": "Checking…",
+      "notYet": "Press Preview to check this automation.",
+      "failed": "The preview could not be loaded. Try again.",
+      "ready": "Everything it needs is in place.",
+      "problems": "Fix these before you save",
+      "problemsPaused": "Fix these before you resume it",
+      "pausedSaves": "It is paused, so you can save it. When you resume it, Zenbree checks these again and keeps it paused while one is left.",
+      "hubspotOfCreator": "Runs write to the HubSpot of the person who made this automation.",
+      "records": {
+        "title": "Records",
+        "people": "People in the list that it has not taken yet",
+        "withEmail": "Of those, with an email",
+        "withContact": "Of those, with an email or LinkedIn",
+        "accounts": "Companies in the company list",
+        "count": "{n, number, credits}",
+        "accountsNote": "Each run looks at up to {n, plural, one {# company} other {{n, number, credits} companies}}, the next ones in list order.",
+        "accountsNoteSignal": "Each run looks only at the company whose signals started it."
+      },
+      "conditions": {
+        "title": "Conditions",
+        "titles": "Job titles: {titles}",
+        "seniorities": "Seniority: {seniorities}",
+        "anySeniority": "Any seniority",
+        "perAccount": "Up to {n, plural, one {# person} other {{n, number, credits} people}} at each company",
+        "minScore": "Minimum score {n, number, credits}"
+      },
+      "actions": "Actions, in order",
+      "free": "Free",
+      "each": "{n, plural, one {# credit} other {{n, number, credits} credits}} a person",
+      "activeCampaign": "This campaign is running. After you approve a review run, later runs add people as active, and the campaign sends to them.",
+      "budget": "Budget",
+      "perRun": "People in each run, at most",
+      "maxCredits": "Credits in each run, at most",
+      "people": "{n, plural, one {# person} other {{n, number, credits} people}}",
+      "credits": "{n, plural, one {# credit} other {{n, number, credits} credits}}",
+      "instantlySends": "This Instantly campaign is running. Once you approve the first run, people are added right away and Instantly can start emailing them. Later runs add people with no review.",
+      "instantlyUnreadable": "We cannot read the campaign on Instantly right now. The run checks it again when it reaches this step.",
+      "signals": {
+        "title": "Recent signals",
+        "accounts": "{n, plural, =0 {No company of the watchlist has signals from the last 30 days that reach the minimum score.} one {# company of the watchlist has signals from the last 30 days that reach the minimum score.} other {{n, number, credits} companies of the watchlist have signals from the last 30 days that reach the minimum score.}}",
+        "noName": "Company with no name",
+        "noTitle": "Job posting with no title",
+        "score": "Score {n, number, credits}",
+        "seen": "{title} · newest signal {when}",
+        "fromNow": "These are the companies of the last 30 days whose signals reach the minimum score. Only signals that arrive after the automation is active start runs."
+      }
+    },
+    "save": {
+      "create": "Create automation",
+      "createsPaused": "It is made paused, so nothing runs yet. Resume it on its page to start it. A daily or weekly automation then runs within a minute.",
+      "publish": "Publish version {version, number, credits}",
+      "save": "Save",
+      "published": "Saved as version {version, number, credits}.",
+      "saved": "Saved.",
+      "effects": {
+        "newVersion": "The next runs use version {next, number, credits}.",
+        "queuedCancelled": "A run waiting in the queue, if any, is cancelled.",
+        "runningFinishes": "A run in progress, if any, finishes on the version it started with.",
+        "nextReview": "The next run is a review run.",
+        "reviewDrafts": "The people the review run adds enter the campaign as drafts until you approve the run.",
+        "reviewHubspot": "The review run writes nothing to HubSpot until you approve it.",
+        "draftsRemoved": "People that a review run added as drafts leave the campaign if no run of its version was approved.",
+        "scheduleStarts": "The first scheduled run starts within a minute.",
+        "scheduleOnResume": "The first scheduled run starts within a minute after you resume the automation.",
+        "queuedStillRuns": "The schedule stops. A run that it already queued still runs.",
+        "campaignSends": "The campaign is running. After you approve the review run, later runs add people as active, and the campaign sends to them.",
+        "webhookSecretNext": "After you save, make the secret on the automation's page. Until then no call is taken.",
+        "webhookStops": "The webhook URL and its secret stop working at once, and calls that wait are dropped. If you switch back, the automation gets a new URL and secret.",
+        "signalStops": "The automation no longer starts from the watchlist's signals: its watchlist and minimum score are removed.",
+        "reviewInstantly": "Nobody is added to Instantly until you approve the first run.",
+        "instantlyReleased": "People waiting for Instantly from a run that was not approved are not added. The next run takes them again.",
+        "instantlyCampaignDropped": "People waiting for the earlier Instantly campaign are no longer added, even if their run was approved. The next run takes them again.",
+        "instantlySends": "The Instantly campaign is running. After the approval, later runs add people and Instantly can start emailing them.",
+        "signalFromNow": "Only signals that arrive after this save start runs, and none while the automation is paused."
+      },
+      "confirm": {
+        "publishTitle": "Publish version {version, number, credits}?",
+        "publish": "The runs that already ran keep version {version, number, credits}.",
+        "saveTitle": "Save the changes?",
+        "save": "The changes apply to the next runs."
+      }
+    },
+    "delete": {
+      "button": "Delete automation",
+      "title": "Delete {name}?",
+      "description": "You cannot undo this.",
+      "runs": "Its runs and their history are deleted.",
+      "running": "A run in progress stops before it stores its next step, and the credits it held and did not spend go back to the client.",
+      "people": "People it added to a campaign stay there. People still waiting as drafts stay drafts."
+    }
+  }
+}

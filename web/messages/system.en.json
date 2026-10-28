@@ -1,0 +1,37 @@
+{
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": {
+      "list": "This list no longer exists",
+      "campaign": "This campaign no longer exists",
+      "chat": "This chat no longer exists",
+      "page": "This page doesn’t exist"
+    },
+    "body": {
+      "list": "The link points to a list that was deleted or belongs to another account.",
+      "campaign": "The link points to a campaign that was deleted or belongs to another account.",
+      "chat": "The link points to a conversation that was deleted or belongs to another account.",
+      "page": "The address is wrong or the page has moved."
+    },
+    "cta": {
+      "list": "Go to your lists",
+      "campaign": "Go to your campaigns",
+      "chat": "Start a new chat",
+      "page": "Back to home"
+    },
+    "recentList": "{name} · {entity, select, person {{count, plural, one {# person} other {{count, number, credits} people}}} other {{count, plural, one {# company} other {{count, number, credits} companies}}}}",
+    "lookingFor": "Maybe you were looking for",
+    "destination": {
+      "list": "Your lists",
+      "campaign": "Your campaigns"
+    }
+  },
+  "forbidden": {
+    "eyebrow": "Error 403 · access denied",
+    "title": "This page is reserved for the Zenbree team",
+    "body": "You’re signed in as <strong>{email}</strong>, which doesn’t have the admin role. If you need access, ask an administrator: there’s nothing to fix in your account.",
+    "back": "Back to the app",
+    "switchAccount": "Sign in with another account",
+    "supportCode": "Support code:"
+  }
+}

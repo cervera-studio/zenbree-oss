@@ -1,0 +1,212 @@
+{
+  "notifications": {
+    "title": "Notificaciones",
+    "open": "Notificaciones",
+    "openUnread": "Notificaciones, {count, number, credits} sin leer",
+    "close": "Cerrar",
+    "unread": "sin leer",
+    "summary": {
+      "unread": "{count, number, credits} sin leer",
+      "allRead": "Todo leído"
+    },
+    "filters": {
+      "label": "Filtrar notificaciones",
+      "all": "Todas",
+      "unread": "Sin leer",
+      "reply": "Respuestas",
+      "decide": "Por decidir"
+    },
+    "actions": {
+      "reply": "Responder",
+      "open": "Abrir",
+      "accept": "Aceptar",
+      "review": "Revisar y aprobar",
+      "retry": "Reintentar",
+      "for": "{action}: {title}"
+    },
+    "channel": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "meeting": "Reunión"
+    },
+    "markAllRead": "Marcar todo como leído",
+    "empty": {
+      "title": "Estás al día",
+      "body": "Aquí aparecen las respuestas, las búsquedas terminadas y los mensajes por aprobar."
+    },
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "someone": "Un contacto",
+    "settingsLabel": "Ajustes de notificaciones",
+    "kind": {
+      "reply_urgent": {
+        "title": "{label, select, meeting_request {{name} pide una reunión} other {Respuesta interesada de {name}}}",
+        "body": "Abre para leer la respuesta."
+      },
+      "reply": {
+        "title": "Nueva respuesta de {name}",
+        "body": "Abre para leer la respuesta.",
+        "campaign": "Campaña «{campaign}»",
+        "unverified": "Remitente no verificado"
+      },
+      "search_done": {
+        "title": "Búsqueda terminada",
+        "titleBoth": "Búsqueda terminada: {people, plural, one {# persona} other {{people, number, credits} personas}} en {companies, plural, one {# empresa} other {{companies, number, credits} empresas}}",
+        "titlePeople": "Búsqueda terminada: {people, plural, one {# persona} other {{people, number, credits} personas}}",
+        "titleCompanies": "Búsqueda terminada: {companies, plural, one {# empresa} other {{companies, number, credits} empresas}}",
+        "refunded": "{count, plural, one {# crédito devuelto} other {{count, number, credits} créditos devueltos}}",
+        "body": "Los resultados están listos en el chat."
+      },
+      "search_failed": {
+        "title": "Búsqueda detenida: un proveedor no responde",
+        "progress": "{done, number, credits} de {units, number, credits}, el resto no lo pagas",
+        "body": "Reintenta desde el chat: lo que falta no lo pagas."
+      },
+      "agent_question": {
+        "title": "El agente te necesita",
+        "plan": "plan por aprobar",
+        "funnel": "sin resultados",
+        "body": "Responde en el chat para continuar."
+      },
+      "approval_needed": {
+        "title": "{count, plural, one {# mensaje por aprobar} other {{count, number, credits} mensajes por aprobar}}",
+        "body": "{count, plural, one {sale tras tu visto bueno} other {salen tras tu visto bueno}}"
+      },
+      "low_credits": {
+        "title": "Créditos a punto de agotarse",
+        "body": "Te {credits, plural, one {queda # crédito} other {quedan {credits, number, credits} créditos}}."
+      },
+      "payment_failed": {
+        "title": "La recarga automática ha fallado",
+        "body": "Revisa tu método de pago."
+      },
+      "linkedin_accepted": {
+        "title": "{name} ha aceptado tu invitación",
+        "body": "Campaña «{campaign}» · secuencia de LinkedIn"
+      },
+      "bounces_high": {
+        "title": "Demasiados rebotes en «{campaign}»",
+        "body": "{invalid, plural, one {# dirección no válida} other {{invalid, number, credits} direcciones no válidas}} de {attempted, plural, one {# persona} other {{attempted, number, credits} personas}}",
+        "paused": "{invalid, plural, one {# email rebotado} other {{invalid, number, credits} emails rebotados}} de {attempted, plural, one {# enviado} other {{attempted, number, credits} enviados}} · campaña en pausa"
+      },
+      "mailbox_error": {
+        "title": "{provider, select, unipile {Cuenta de LinkedIn desconectada} other {Buzón desconectado}}",
+        "titleNamed": "«{mailbox}» {provider, select, unipile {está desconectada} other {está desconectado}}",
+        "body": "{provider, select, unipile {Las campañas de LinkedIn no envían hasta que reconectes la cuenta.} other {Las campañas que lo usan no envían hasta que lo reconectes.}}"
+      },
+      "plan_renewed": {
+        "title": "Plan {plan, select, starter {Starter} pro {Pro} other {{plan}}} renovado: +{credits, plural, one {# crédito} other {{credits, number, credits} créditos}}",
+        "body": "{expired, plural, =0 {{organization}} one {{organization} · # crédito sin usar ha caducado} other {{organization} · {expired, number, credits} créditos sin usar han caducado}}"
+      }
+    },
+    "settings": {
+      "title": "Notificaciones",
+      "description": "Elige qué te llega cuando no estás en Zenbree. Todo está siempre bajo la campana en la aplicación.",
+      "loadError": "No se pudieron cargar tus ajustes de notificaciones.",
+      "saved": "Guardado",
+      "saveError": "No se pudo guardar. Inténtalo de nuevo.",
+      "groups": {
+        "replies": "Respuestas",
+        "searches": "Campañas y búsquedas",
+        "account": "Cuenta"
+      },
+      "table": {
+        "event": "Cuándo",
+        "always": "siempre",
+        "unavailable": "No disponible"
+      },
+      "events": {
+        "replyUrgent": {
+          "label": "Respuesta interesada o petición de reunión",
+          "help": "Como máximo un email cada 30 minutos; el resto va en el resumen. Nunca el texto de la respuesta."
+        },
+        "reply": {
+          "label": "Otras respuestas",
+          "help": "Ahora no, no interesado, respuestas automáticas. Solo en el resumen."
+        },
+        "linkedinAccepted": {
+          "label": "Invitación de LinkedIn aceptada",
+          "help": "Solo en el resumen."
+        },
+        "approvalNeeded": {
+          "label": "Mensajes por aprobar",
+          "help": "Solo en el resumen, con el número que sigue en espera."
+        },
+        "searchDone": {
+          "label": "Búsqueda terminada",
+          "help": "Solo si la búsqueda tarda más de 5 minutos o Zenbree está cerrado."
+        },
+        "searchFailed": {
+          "label": "Búsqueda detenida o hace falta tu decisión",
+          "help": "Cuando un proveedor detiene una búsqueda que no estás mirando. El email cuenta para el límite de un email urgente cada 30 minutos."
+        },
+        "bouncesHigh": {
+          "label": "Demasiados rebotes en una campaña",
+          "help": "Más del 5 % de direcciones no válidas, con al menos 20 personas a las que escribir. La campaña no se pausa sola."
+        },
+        "lowCredits": {
+          "label": "Créditos por debajo de 200",
+          "help": "Una vez, hasta que recargues. Nunca con la recarga automática activada."
+        },
+        "mailboxError": {
+          "label": "Buzón desconectado o bloqueado",
+          "help": "Las campañas que lo usan no envían hasta que lo reconectes."
+        },
+        "locked": {
+          "label": "Recibos, renovaciones y seguridad",
+          "help": "Pagos, renovación del plan, nuevo inicio de sesión, cambio de contraseña"
+        }
+      },
+      "channels": {
+        "inApp": "En la aplicación",
+        "email": "Email",
+        "browser": "Navegador"
+      },
+      "browser": {
+        "title": "Notificaciones del navegador",
+        "on": "Las notificaciones del navegador están activadas en este ordenador.",
+        "ask": {
+          "title": "Recibe las respuestas aunque Zenbree esté cerrado.",
+          "body": "Tu navegador te pedirá permiso una vez.",
+          "inPageTitle": "Recibe un aviso del navegador mientras Zenbree está abierto."
+        },
+        "allow": "Activar notificaciones del navegador",
+        "denied": {
+          "title": "Tu navegador bloquea las notificaciones de Zenbree.",
+          "body": "Para activarlas, abre los ajustes del sitio (el icono a la izquierda de la dirección) y permite las notificaciones. Después vuelve a esta página. Mientras tanto te escribimos por email."
+        },
+        "unsupported": {
+          "title": "Navegador no compatible",
+          "body": "Este navegador no muestra notificaciones. El panel y el email siguen funcionando."
+        },
+        "enabled": "Notificaciones del navegador activadas.",
+        "enableError": "No pudimos activar las notificaciones. Inténtalo de nuevo.",
+        "test": "Enviar una prueba",
+        "turnOff": "Desactivar en este navegador",
+        "testSent": "Notificación de prueba enviada.",
+        "testError": "La prueba no ha salido. Activa de nuevo las notificaciones del navegador y reinténtalo.",
+        "turnedOff": "Notificaciones del navegador desactivadas en este ordenador."
+      },
+      "digest": {
+        "label": "Resumen por email",
+        "help": "Un email con todo lo que no es urgente: respuestas, mensajes por aprobar, búsquedas terminadas. Solo sale cuando hay algo que contar. Las horas son en horario de Italia.",
+        "frequencyLabel": "Frecuencia del resumen",
+        "hourLabel": "Hora del resumen",
+        "at": "a las",
+        "frequency": {
+          "daily": "Cada día laborable",
+          "weekly": "Cada lunes",
+          "off": "Nunca"
+        }
+      },
+      "dnd": {
+        "label": "No molestar",
+        "help": "Sin emails inmediatos ni notificaciones del navegador: todo se queda en el panel y, si está activado, en el resumen. Los pagos y la seguridad siguen llegando."
+      },
+      "switch": {
+        "on": "Activado",
+        "off": "Desactivado"
+      }
+    }
+  }
+}

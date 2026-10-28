@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Esclusioni</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;height:40px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg);padding:0 12px}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.zb-row:hover{background:var(--zb-muted)}
+.zb-x:hover{background:var(--zb-rail-hover) !important;color:var(--zb-neg-fg) !important}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="settings" section="exclusions" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+  <main style="min-width: 0; padding: 32px 40px; display: flex; flex-direction: column; gap: 24px">
+    <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.18; letter-spacing: 0">Impostazioni</h1>
+    <dc-import name="SettingsTabs" theme="{{theme}}" active="exclusions" hint-size="100%,45px"></dc-import>
+
+    <div style="max-width: 960px; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-size: 20px; font-weight: 700">Da non contattare</h2>
+        <p style="margin: 0; color: var(--zb-muted-fg); line-height: 1.5">Le aziende e le persone elencate qui vengono escluse dai risultati di ricerca, non vengono mai arricchite né aggiunte alle campagne. Un dominio include anche i suoi sottodomini e tutti gli indirizzi email.</p>
+      </div>
+
+      <form style="display: flex; align-items: flex-end; gap: 10px; padding: 16px; border-radius: 17.5px; background: var(--zb-card); border: 1px solid var(--zb-border)">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="kind" style="font-size: 13px; font-weight: 600">Tipo</label>
+          <select id="kind" class="zb-field" value="{{kind}}" onChange="{{setKind}}" style="width: 170px">
+            <option value="domain">Dominio</option>
+            <option value="email">Email</option>
+            <option value="company_name">Nome azienda</option>
+            <option value="linkedin_url">URL LinkedIn</option>
+          </select>
+        </div>
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px">
+          <label for="val" style="font-size: 13px; font-weight: 600">Valore</label>
+          <input id="val" class="zb-field" type="text" value="{{draft}}" onChange="{{setDraft}}" placeholder="{{placeholder}}" style="width: 100%">
+        </div>
+        <button type="button" onClick="{{add}}" style="height: 40px; padding: 0 16px; border: 0; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 14px; cursor: pointer">Aggiungi</button>
+        <button type="button" style="height: 40px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"></path></svg>
+          Importa CSV
+        </button>
+      </form>
+      <sc-if value="{{msg}}" hint-placeholder-val="{{false}}">
+        <span role="status" style="font-size: 13px; font-weight: 600; color: {{msgColor}}">{{msg}}</span>
+      </sc-if>
+
+      <div style="border: 1px solid var(--zb-border); border-radius: 14px; overflow: hidden">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px">
+          <thead>
+            <tr style="background: var(--zb-rail); text-align: left">
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg); width: 150px">Tipo</th>
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Valore</th>
+              <th scope="col" style="padding: 10px 14px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Origine</th>
+              <th scope="col" style="padding: 10px 14px; width: 48px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Azioni</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{items}}" as="x" hint-placeholder-count="6">
+              <tr class="zb-row" style="border-top: 1px solid var(--zb-muted)">
+                <td style="padding: 8px 14px"><span style="height: 22px; padding: 0 8px; border-radius: 999px; background: var(--zb-rail); font-size: 12px; display: inline-flex; align-items: center; white-space: nowrap">{{x.kindLabel}}</span></td>
+                <td style="padding: 8px 14px; font-weight: 600">{{x.value}}</td>
+                <td style="padding: 8px 14px; color: var(--zb-muted-fg)">{{x.source}}</td>
+                <td style="padding: 4px 8px">
+                  <button type="button" class="zb-x" aria-label="{{x.removeLabel}}" onClick="{{x.remove}}" style="width: 32px; height: 32px; border: 0; border-radius: 7px; background: transparent; color: var(--zb-muted-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+                  </button>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 0; font-size: 12px; line-height: 1.55; color: var(--zb-muted-fg)">Importa un valore per riga, oppure un CSV con intestazioni: le persone vengono prese per Email, altrimenti per LinkedIn URL; le aziende per Dominio/Sito. Fino a 5.000 righe per file.</p>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      kind: 'domain', draft: '', msg: '', msgOk: true,
+      items: [
+        { kind: 'company_name', value: 'Clienti attuali (elenco CRM)', source: 'Dal profilo' },
+        { kind: 'domain', value: '[dominio-concorrente-1].it', source: 'Dal profilo · concorrente' },
+        { kind: 'domain', value: '[dominio-concorrente-2].it', source: 'Dal profilo · concorrente' },
+        { kind: 'email', value: 'sara.villa@fiordalisocom.it', source: 'Disiscritta il 30 set · ha risposto' },
+        { kind: 'email', value: 'martina@velastudio.it', source: 'Disiscritta oggi · dal link nell\u2019email' },
+        { kind: 'domain', value: 'ritmosales.it', source: 'Il tuo dominio' },
+        { kind: 'linkedin_url', value: 'linkedin.com/in/marco-esempio', source: 'Aggiunto a mano' }
+      ]
+    };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const S = this.state;
+    const K = { email: 'Email', domain: 'Dominio', company_name: 'Nome azienda', linkedin_url: 'URL LinkedIn' };
+    const P = { email: 'nome@azienda.it', domain: 'azienda.it', company_name: 'Azienda S.r.l.', linkedin_url: 'linkedin.com/in/nome' };
+    const valid = (k, v) => k === 'email' ? /.+@.+\..+/.test(v) : k === 'domain' ? /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v) : v.length > 1;
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      kind: S.kind, draft: S.draft, placeholder: P[S.kind],
+      msg: S.msg || false, msgColor: S.msgOk ? 'var(--zb-pos-fg)' : 'var(--zb-neg-fg)',
+      setKind: (e) => this.setState({ kind: e.target.value, msg: '' }),
+      setDraft: (e) => this.setState({ draft: e.target.value }),
+      add: () => {
+        const v = S.draft.trim();
+        if (!valid(S.kind, v)) return this.setState({ msg: 'Il valore non è valido per il tipo selezionato.', msgOk: false });
+        this.setState({ items: [{ kind: S.kind, value: v, source: 'Aggiunto a mano' }, ...S.items], draft: '', msg: 'Aggiunta 1 esclusione.', msgOk: true });
+      },
+      items: S.items.map((x, i) => ({
+        ...x, kindLabel: K[x.kind], removeLabel: 'Rimuovi l’esclusione ' + x.value,
+        remove: () => this.setState({ items: S.items.filter((_, j) => j !== i), msg: '' })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

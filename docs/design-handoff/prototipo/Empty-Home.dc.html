@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Primo accesso</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.zb-seg{transition:border-color 190ms cubic-bezier(0.4,0,1,1)}
+.zb-seg:hover{border-color:var(--zb-ink) !important;transition-duration:110ms}
+textarea:focus{outline:none}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="home" empty="{{yes}}" credits="100" credits-pct="100%" hint-size="248px,100vh"></dc-import>
+
+  <main style="display: flex; flex-direction: column; align-items: center; padding: 10vh 32px 48px; gap: 32px">
+    <div style="width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 12px; text-align: center">
+        <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Benvenuto, Ale</span>
+        <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.18; letter-spacing: 0">Chi vuoi raggiungere per primo?</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.5; color: var(--zb-muted-fg)">Conosco già Ritmo Sales dal tuo sito. Scegli un segmento o descrivi chi cerchi: ti propongo un piano, gratis.</p>
+      </div>
+
+      <form style="background: var(--zb-card); border: 1px solid var(--zb-border); border-radius: 21px; padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(7,25,29,0.04), 0 8px 24px -12px rgba(7,25,29,0.10)">
+        <label for="brief" class="sr-only">Descrivi chi vuoi raggiungere</label>
+        <textarea id="brief" rows="3" placeholder="Es. agenzie di marketing a Milano, 10-50 dipendenti, che assumono SDR" style="resize: none; border: 0; background: transparent; font-family: inherit; font-size: 15px; line-height: 1.5; color: var(--zb-fg); padding: 4px 4px 0"></textarea>
+        <div style="display: flex; align-items: center; gap: 8px">
+          <span style="flex-grow: 1"></span>
+          <span style="font-size: 12px; color: var(--zb-muted-fg)">Il piano è gratis: paghi solo dopo averlo approvato</span>
+          <a href="{{nav.question}}" aria-label="Invia" style="width: 36px; height: 36px; border-radius: 999px; background: var(--zb-brand); color: var(--zb-on-brand); display: flex; align-items: center; justify-content: center; text-decoration: none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 19V5"></path></svg>
+          </a>
+        </div>
+      </form>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Dai tuoi segmenti</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+          <a href="{{nav.question}}" class="zb-seg" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border); color: var(--zb-fg); text-decoration: none">
+            <span style="font-weight: 600; line-height: 1.35">Agenzie di marketing che assumono SDR</span>
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">CEO, resp. commerciale · 10–50</span>
+          </a>
+          <a href="{{nav.question}}" class="zb-seg" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border); color: var(--zb-fg); text-decoration: none">
+            <span style="font-weight: 600; line-height: 1.35">SaaS italiane che costruiscono il team sales</span>
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">Founder, head of sales · 20–100</span>
+          </a>
+          <a href="{{nav.question}}" class="zb-seg" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border); color: var(--zb-fg); text-decoration: none">
+            <span style="font-weight: 600; line-height: 1.35">Distributori industriali verso l’estero</span>
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">Direttore commerciale · 50–250</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="first-steps" style="width: 100%; max-width: 760px; box-sizing: border-box; padding: 20px; border-radius: 17.5px; background: var(--zb-rail); display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: baseline; gap: 12px">
+        <h2 id="first-steps" style="margin: 0; font-size: 15px; font-weight: 700; flex-grow: 1">Primi passi</h2>
+        <span style="font-size: 12px; color: var(--zb-muted-fg); font-variant-numeric: tabular-nums">1 di 3</span>
+      </div>
+      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+        <li style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10.5px; background: var(--zb-bg)">
+          <span style="width: 22px; height: 22px; border-radius: 999px; background: var(--zb-brand); color: var(--zb-on-brand); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+          </span>
+          <span style="flex-grow: 1; color: var(--zb-muted-fg); text-decoration: line-through">Crea il profilo di vendita</span>
+          <a href="{{nav.memory}}" style="font-size: 13px; font-weight: 600; text-decoration: none">Vedi in Memoria</a>
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10.5px; background: var(--zb-bg)">
+          <span style="width: 22px; height: 22px; box-sizing: border-box; border-radius: 999px; border: 2px solid var(--zb-ink); flex-shrink: 0"></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Crea la tua prima lista</span><span style="font-size: 12px; color: var(--zb-muted-fg)">Hai 100 crediti di benvenuto: bastano per una prima lista di prova da 10 contatti.</span></span>
+          <a href="{{nav.question}}" style="height: 34px; padding: 0 12px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; white-space: nowrap">Inizia</a>
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10.5px; background: var(--zb-bg)">
+          <span style="width: 22px; height: 22px; box-sizing: border-box; border-radius: 999px; border: 2px solid var(--zb-border); flex-shrink: 0"></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Collega una casella email</span><span style="font-size: 12px; color: var(--zb-muted-fg)">Serve solo per le campagne. Per le liste puoi farne a meno.</span></span>
+          <a href="{{nav.integrations}}" style="font-size: 13px; font-weight: 600; text-decoration: none">Collega</a>
+        </li>
+      </ol>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    return {
+      theme, yes: true, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { question: h('Chat-Question.dc.html'), memory: h('Set-Memory.dc.html'), integrations: h('Set-Integrations.dc.html') }
+    };
+  }
+}
+</script>
+</body>
+</html>

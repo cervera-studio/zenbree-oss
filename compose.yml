@@ -1,0 +1,169 @@
+# Stack completo: in locale `docker compose up`, in prod lo stesso file + .env di prod.
+# ponytail: niente reverse proxy né certificati: in prod il traffico entra da Cloudflare Tunnel
+# (profilo "prod", config in ops/cloudflared.yml), nessuna porta esposta sulla VPS.
+
+# In prod le immagini arrivano già costruite da GHCR (CI, tag = SHA del commit); in locale si buildano.
+x-api: &api
+  image: ghcr.io/cervera-studio/zenbree-oss-api:${IMAGE_TAG:-local}
+  build: ./api
+  environment:
+    DATABASE_URL: ${DATABASE_URL:-postgresql://zenbree:postgres@postgres:5432/zenbree}
+    REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+    AUTH_JWKS_URL: ${AUTH_JWKS_URL:-http://web:3000/api/auth/jwks} # localhost nel container = il container stesso
+  env_file:
+    - path: ${ZENBREE_ENV_FILE:-.env}
+      required: false
+  restart: unless-stopped
+  depends_on:
+    migrate: { condition: service_completed_successfully }
+    redis: { condition: service_healthy }
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-zenbree}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-zenbree}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports: ["127.0.0.1:${POSTGRES_PORT:-5432}:5432"] # host già occupato (es. Postgres di brew)? POSTGRES_PORT=5433
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-zenbree}"]
+      interval: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redisdata:/data]
+    ports: ["127.0.0.1:6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 10
+
+  migrate: # api/db migrations (#268), before anything reads the schema; exits once applied
+    <<: *api
+    # SKIP_MIGRATE=1 ops/deploy-production.sh sets MIGRATE_COMMAND=true: a rollback image may lack the runner
+    command: ${MIGRATE_COMMAND:-python -m app.core.migrate}
+    restart: "no"
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  api:
+    <<: *api
+    # #419: a ceiling, so a runaway process is killed alone instead of the host OOM killer picking Postgres.
+    # Idle 2026-10-08: api ~100 MiB, worker ~300 MiB (4 processes), worker-webhooks ~130 MiB, web ~90 MiB.
+    mem_limit: 1g
+    ports: ["127.0.0.1:8000:8000"]
+
+  worker:
+    <<: *api
+    command: ["celery", "-A", "app.worker", "worker", "--loglevel=info", "--concurrency=4"]
+    mem_limit: 2g
+
+  worker-webhooks: # #93: outbound webhooks on their own queue, so a slow receiver never holds a chat or campaign slot
+    <<: *api
+    command: ["celery", "-A", "app.worker", "worker", "-Q", "webhooks", "--loglevel=info", "--concurrency=2"]
+    mem_limit: 512m
+
+  beat:
+    <<: *api
+    command: ["celery", "-A", "app.worker", "beat", "--loglevel=info", "-S", "redbeat.RedBeatScheduler"]
+
+  flower:
+    <<: *api
+    # Flower lists the arguments of every task, all organizations together, and any container can
+    # reach it: without FLOWER_BASIC_AUTH (user:password, read by Flower itself) it does not start (#361).
+    command:
+      - sh
+      - -c
+      - >-
+        [ -n "$$FLOWER_BASIC_AUTH" ] ||
+        { echo "FLOWER_BASIC_AUTH (user:password) is not set: Flower stays off" >&2; exit 1; };
+        exec celery -A app.worker flower --port=5555 --url_prefix=flower
+    ports: ["127.0.0.1:5555:5555"]
+
+  web:
+    image: ghcr.io/cervera-studio/zenbree-oss-web:${IMAGE_TAG:-local}
+    build:
+      context: ./web
+      args: # NEXT_PUBLIC_* finiscono nel bundle al build, non a runtime
+        BETTER_AUTH_IDENTIFY_URL: ${BETTER_AUTH_IDENTIFY_URL:-}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+        NEXT_PUBLIC_POSTHOG_KEY: ${NEXT_PUBLIC_POSTHOG_KEY:-}
+        NEXT_PUBLIC_POSTHOG_HOST: ${NEXT_PUBLIC_POSTHOG_HOST:-}
+        NEXT_PUBLIC_BETTERSTACK_WEB_ERROR_DSN: ${NEXT_PUBLIC_BETTERSTACK_WEB_ERROR_DSN:-}
+        NEXT_PUBLIC_LANDING_URL: ${NEXT_PUBLIC_LANDING_URL-http://localhost:4321}
+    env_file:
+      - path: ${ZENBREE_ENV_FILE:-.env}
+        required: false
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://zenbree:postgres@postgres:5432/zenbree}
+      API_BASE_URL: ${API_BASE_URL:-http://api:8000}
+    restart: unless-stopped
+    depends_on: [api]
+    ports: ["127.0.0.1:3000:3000"]
+    mem_limit: 1g
+
+  landing:
+    image: ghcr.io/cervera-studio/zenbree-oss-landing:${IMAGE_TAG:-local}
+    build:
+      context: ./landing
+      args:
+        PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:3000}
+    restart: unless-stopped
+    ports: ["127.0.0.1:4321:8080"]
+
+  tunnel:
+    image: cloudflare/cloudflared:2026.10.0@sha256:9b49eed8f62806d5d45ddf59ecefb5710429598ea6d3fcccd2af938f621b2b07 # upgrade on purpose (#426)
+    profiles: [prod]
+    restart: unless-stopped
+    command: ["tunnel", "--no-autoupdate", "--config", "/etc/cloudflared/config.yml", "run"]
+    volumes:
+      - ./cloudflared:/home/nonroot/.cloudflared:ro
+      - ./ops/cloudflared.yml:/etc/cloudflared/config.yml:ro
+    depends_on: [web, api, landing]
+
+  logs: # log di tutti i container → BetterStack (source "zenbree-production", team zenbree)
+    image: timberio/vector:0.58.0-alpine
+    profiles: [prod]
+    restart: unless-stopped
+    volumes: [/var/run/docker.sock:/var/run/docker.sock:ro]
+    configs: [{ source: vector, target: /etc/vector/vector.yaml }]
+
+volumes:
+  pgdata:
+  redisdata:
+
+configs:
+  vector: # inline perché Vector 0.58 non espande ${VAR} nella uri: lo fa compose
+    content: |
+      sources:
+        docker:
+          type: docker_logs
+          include_labels: ["com.docker.compose.project=zenbree"]
+      transforms:
+        # api, worker and web write one JSON object per line: lift its keys (level, event, ids) to
+        # the top so Better Stack can search them, and drop the raw copy, or every line ships twice.
+        # A plain line (uvicorn, Celery banners) passes as is. On a clash the line's key wins.
+        parsed:
+          type: remap
+          inputs: [docker]
+          source: |
+            parsed, err = parse_json(.message)
+            if err == null && is_object(parsed) {
+              del(.message)
+              . = merge!(., parsed)
+            }
+      sinks:
+        betterstack:
+          type: http
+          inputs: [parsed]
+          uri: "https://${BETTERSTACK_LOGS_HOST:-localhost}/"
+          encoding: { codec: json }
+          compression: gzip
+          auth: { strategy: bearer, token: "${BETTERSTACK_LOGS_TOKEN:-}" }

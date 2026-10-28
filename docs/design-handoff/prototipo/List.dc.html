@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Lista</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.zb-row{transition:background 190ms cubic-bezier(0.4,0,1,1)}
+.zb-row:hover{background:var(--zb-muted);transition-duration:110ms}
+.zb-name{all:unset;cursor:pointer;font-weight:600;color:var(--zb-fg)}
+.zb-name:hover{color:var(--zb-ink);text-decoration:underline}
+.zb-name:focus-visible{outline:2px solid var(--zb-ink);outline-offset:2px;border-radius:3px}
+input:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="lists" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+
+  <div style="display: flex; min-width: 0; min-height: 100vh">
+    <main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: 24px 28px">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <nav aria-label="Percorso" style="font-size: 12px; color: var(--zb-muted-fg); display: flex; gap: 6px; align-items: center">
+          <a href="{{nav.lists}}" style="text-decoration: none; color: var(--zb-muted-fg)">Liste</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span>Agenzie marketing Milano · SDR</span>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em">Agenzie marketing Milano · SDR</h1>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: rgba(0,188,125,0.12); color: var(--zb-pos-fg); font-size: 12px; font-weight: 600; white-space: nowrap">
+            <span style="width: 6px; height: 6px; border-radius: 999px; background: #00bc7d"></span>Completato
+          </span>
+          <span style="flex-grow: 1"></span>
+                    <button type="button" onClick="{{openAi}}" style="height: 36px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true" style="stroke: var(--zb-ai-fg)"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+            Colonna AI
+          </button>
+          <button type="button" onClick="{{openMore}}" style="height: 36px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            Altre righe
+          </button>
+          <a href="{{nav.builder}}" style="height: 36px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+            Avvia campagna
+          </a>
+          <button type="button" onClick="{{openExport}}" style="height: 36px; padding: 0 14px; border-radius: 10.5px; border: 0; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+            Esporta
+          </button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap"><a href="{{nav.running}}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--zb-muted-fg); text-decoration: none"><span style="display: inline-flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>Nata dalla chat <span style="color: var(--zb-ink); font-weight: 600">«Trova CEO di agenzie marketing a Milano»</span></a><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--zb-muted-fg)">Stessa chat:<span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 9px; border-radius: 7px; background: var(--zb-tint); color: var(--zb-ink); font-size: 12px; font-weight: 600; white-space: nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M3 15h18M9 3v18"></path></svg>Persone 47</span><a href="{{nav.companies}}" title="Agenzie marketing Milano · aziende" style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 9px; border-radius: 7px; border: 1px solid var(--zb-border); background: var(--zb-card); color: var(--zb-fg); font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M3 15h18M9 3v18"></path></svg>Aziende <span style="font-weight: 400; color: var(--zb-muted-fg)">31</span></a></span></div>
+        <dl style="margin: 0; display: flex; gap: 28px; font-size: 13px">
+          <div style="display: flex; flex-direction: column; gap: 2px"><dt style="color: var(--zb-muted-fg); font-size: 12px">Consegnate</dt><dd style="margin: 0; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums">47 <span style="font-weight: 400; font-size: 13px; color: var(--zb-muted-fg)">di 50</span></dd></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><dt style="color: var(--zb-muted-fg); font-size: 12px">Email verificate</dt><dd style="margin: 0; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums">47</dd></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><dt style="color: var(--zb-muted-fg); font-size: 12px">Crediti usati</dt><dd style="margin: 0; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums">298 <span style="font-weight: 400; font-size: 13px; color: var(--zb-muted-fg)">di 300</span></dd></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><dt style="color: var(--zb-muted-fg); font-size: 12px">Costo per lead</dt><dd style="margin: 0; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums">6,3</dd></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><dt style="color: var(--zb-muted-fg); font-size: 12px">Con annuncio SDR</dt><dd style="margin: 0; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums">9</dd></div>
+        </dl>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div role="tablist" aria-label="Filtra righe" style="display: inline-flex; padding: 3px; gap: 2px; border-radius: 10.5px; background: var(--zb-rail)">
+          <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+            <button type="button" role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="height: 30px; padding: 0 12px; border: 0; border-radius: 7px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.shadow}}">{{t.label}} <span style="font-weight: 400; color: var(--zb-muted-fg); font-variant-numeric: tabular-nums">{{t.count}}</span></button>
+          </sc-for>
+        </div>
+        <span style="flex-grow: 1"></span>
+        <label for="q" class="sr-only">Cerca nella lista</label>
+        <div style="position: relative; width: 280px">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" style="stroke: var(--zb-muted-fg); position: absolute; left: 11px; top: 11px"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input id="q" type="search" placeholder="Cerca per nome, azienda, dominio" style="box-sizing: border-box; width: 100%; height: 36px; padding: 0 12px 0 34px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); font-family: inherit; font-size: 13px; color: var(--zb-fg); white-space: nowrap">
+        </div>
+      </div>
+
+      <div style="border: 1px solid var(--zb-border); border-radius: 14px; overflow: auto; background: var(--zb-bg)">
+        <table style="width: 100%; min-width: 1060px; border-collapse: collapse; font-size: 13px">
+          <thead>
+            <tr style="background: var(--zb-rail); text-align: left">
+              <th scope="col" style="padding: 10px 12px; width: 56px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Fit</th>
+              <th scope="col" style="padding: 10px 12px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Persona <span style="color: var(--zb-ink)">*</span></th>
+              <th scope="col" style="padding: 10px 12px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Azienda <span style="color: var(--zb-ink)">*</span></th>
+              <th scope="col" style="padding: 10px 12px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Email <span style="color: var(--zb-ink)">*</span></th>
+              <th scope="col" style="padding: 10px 12px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Dip.</th>
+              <th scope="col" style="padding: 10px 12px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Annuncio SDR</th>
+              <th scope="col" style="padding: 10px 12px; font-weight: 600; font-size: 12px; color: var(--zb-ai-fg)">
+                <span style="display: inline-flex; align-items: center; gap: 5px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>Perché è in target</span>
+              </th>
+              <th scope="col" style="padding: 10px 12px; width: 84px; font-weight: 600; font-size: 12px; color: var(--zb-muted-fg)">Valuta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+              <tr class="zb-row" style="border-top: 1px solid var(--zb-muted); background: {{r.rowBg}}">
+                <td style="padding: 10px 12px; vertical-align: top">
+                  <div style="display: flex; flex-direction: column; gap: 4px; width: 36px">
+                    <span style="font-weight: 700; font-variant-numeric: tabular-nums">{{r.fit}}</span>
+                    <span style="height: 3px; border-radius: 999px; background: var(--zb-rail-hover); overflow: hidden"><span style="display: block; height: 3px; width: {{r.fitPct}}; background: var(--zb-brand)"></span></span>
+                  </div>
+                </td>
+                <td style="padding: 10px 12px; vertical-align: top; white-space: nowrap">
+                  <div style="display: flex; flex-direction: column; gap: 2px">
+                    <button type="button" class="zb-name" onClick="{{r.open}}">{{r.name}}</button>
+                    <span style="color: var(--zb-muted-fg); font-size: 12px">{{r.role}}</span>
+                  </div>
+                </td>
+                <td style="padding: 10px 12px; vertical-align: top; white-space: nowrap">
+                  <div style="display: flex; flex-direction: column; gap: 2px">
+                    <span>{{r.company}}</span>
+                    <span style="color: var(--zb-muted-fg); font-size: 12px">{{r.domain}}</span>
+                  </div>
+                </td>
+                <td style="padding: 10px 12px; vertical-align: top; white-space: nowrap">
+                  <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start">
+                    <span style="color: {{r.emailColor}}">{{r.email}}</span>
+                    <span style="height: 20px; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; background: {{r.chipBg}}; color: {{r.chipFg}}">{{r.chip}}</span>
+                  </div>
+                </td>
+                <td style="padding: 10px 12px; vertical-align: top; font-variant-numeric: tabular-nums; color: var(--zb-muted-fg)">{{r.emp}}</td>
+                <td style="padding: 10px 12px; vertical-align: top; white-space: nowrap">
+                  <sc-if value="{{r.job}}" hint-placeholder-val="{{true}}">
+                    <span style="height: 22px; padding: 0 8px; border-radius: 999px; background: rgba(0,184,219,0.12); color: var(--zb-social-fg); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{r.job}}</span>
+                  </sc-if>
+                  <sc-if value="{{r.noJob}}" hint-placeholder-val="{{false}}"><span style="color: var(--zb-muted-fg)">—</span></sc-if>
+                </td>
+                <td style="padding: 10px 12px; vertical-align: top; max-width: 300px">
+                  <span style="display: block; line-height: 1.45">{{r.why}}</span>
+                  <a href="#" style="font-size: 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 2px">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>{{r.src}}
+                  </a>
+                </td>
+                <td style="padding: 10px 12px; vertical-align: top">
+                  <div style="display: flex; gap: 4px">
+                    <button type="button" aria-label="In target" aria-pressed="{{r.goodPressed}}" onClick="{{r.rateGood}}" style="width: 30px; height: 30px; border-radius: 7px; border: 1px solid {{r.goodBorder}}; background: {{r.goodBg}}; color: {{r.goodFg}}; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                    </button>
+                    <button type="button" aria-label="Fuori target" aria-pressed="{{r.badPressed}}" onClick="{{r.rateBad}}" style="width: 30px; height: 30px; border-radius: 7px; border: 1px solid {{r.badBorder}}; background: {{r.badBg}}; color: {{r.badFg}}; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 0; font-size: 12px; color: var(--zb-muted-fg)">* Obbligatorie. Le righe da completare restano nella lista ma non vengono esportate né pagate. Le valutazioni In target / Fuori target guidano le prossime righe.</p>
+    </main>
+
+    <sc-if value="{{sel}}" hint-placeholder-val="{{false}}">
+      <aside aria-label="Dettaglio persona" style="width: 380px; flex-shrink: 0; box-sizing: border-box; border-left: 1px solid var(--zb-border); background: var(--zb-card); padding: 20px; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; align-items: flex-start; gap: 12px">
+          <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--zb-tint); color: var(--zb-ink); display: flex; align-items: center; justify-content: center; font-weight: 700">{{sel.initials}}</span>
+          <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+            <h2 style="margin: 0; font-size: 17px; font-weight: 700">{{sel.name}}</h2>
+            <span style="font-size: 13px; color: var(--zb-muted-fg)">{{sel.role}} · {{sel.company}}</span>
+          </div>
+          <button type="button" aria-label="Chiudi dettaglio" onClick="{{close}}" style="width: 32px; height: 32px; border-radius: 7px; border: 0; background: transparent; color: var(--zb-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <dl style="margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px">
+          <div style="display: flex; gap: 12px; align-items: center"><dt style="width: 80px; color: var(--zb-muted-fg)">Email</dt><dd style="margin: 0; display: flex; gap: 8px; align-items: center; flex-wrap: wrap">{{sel.email}} <span style="height: 20px; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; background: {{sel.chipBg}}; color: {{sel.chipFg}}">{{sel.chip}}</span></dd></div>
+          <div style="display: flex; gap: 12px"><dt style="width: 80px; color: var(--zb-muted-fg)">LinkedIn</dt><dd style="margin: 0"><a href="#" style="text-decoration: none">Apri profilo</a></dd></div>
+          <div style="display: flex; gap: 12px"><dt style="width: 80px; color: var(--zb-muted-fg)">Sito</dt><dd style="margin: 0">{{sel.domain}}</dd></div>
+          <div style="display: flex; gap: 12px"><dt style="width: 80px; color: var(--zb-muted-fg)">Dipendenti</dt><dd style="margin: 0">{{sel.emp}}</dd></div>
+          <div style="display: flex; gap: 12px"><dt style="width: 80px; color: var(--zb-muted-fg)">Fit</dt><dd style="margin: 0; font-weight: 700">{{sel.fit}} / 100</dd></div>
+        </dl>
+
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <h3 style="margin: 0; font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-ai-fg)">Ricerca AI</h3>
+          <div style="padding: 12px; border-radius: 14px; background: var(--zb-bg); border: 1px solid var(--zb-border); display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">Perché è in target</span>
+            <span style="font-size: 13px; line-height: 1.5">{{sel.why}}</span>
+            <a href="#" style="font-size: 12px; text-decoration: none">Fonte: {{sel.src}}</a>
+          </div>
+          <div style="padding: 12px; border-radius: 14px; background: var(--zb-bg); border: 1px solid var(--zb-border); display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">Clienti principali</span>
+            <span style="font-size: 13px; line-height: 1.5">{{sel.clients}}</span>
+            <a href="#" style="font-size: 12px; text-decoration: none">Fonte: {{sel.domain}}/clienti</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h3 style="margin: 0; font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Da dove arriva</h3>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+            <li style="display: flex; gap: 8px; align-items: center"><span style="height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(98,116,142,0.12); color: var(--zb-neu-fg); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">Database aziende</span>Azienda e dipendenti</li>
+            <li style="display: flex; gap: 8px; align-items: center"><span style="height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(0,184,219,0.12); color: var(--zb-social-fg); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">Annunci</span>Segnale di assunzione</li>
+            <li style="display: flex; gap: 8px; align-items: center"><span style="height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(0,188,125,0.12); color: var(--zb-pos-fg); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">Verifica email</span>{{sel.verify}}</li>
+          </ul>
+        </div>
+
+        <span style="flex-grow: 1"></span>
+        <div style="display: flex; gap: 8px">
+          <button type="button" style="flex-grow: 1; height: 38px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer">Escludi</button>
+          <button type="button" style="flex-grow: 1; height: 38px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer">Cerca il telefono</button>
+        </div>
+      </aside>
+    </sc-if>
+  </div>
+  <sc-if value="{{aiOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position: fixed; inset: 0; z-index: 50; background: rgba(7,25,29,0.45); display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div role="dialog" aria-modal="true" aria-labelledby="ai-t" style="width: 100%; max-width: 520px; box-sizing: border-box; background: var(--zb-card); color: var(--zb-fg); border: 1px solid var(--zb-border); border-radius: 21px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 24px 64px -16px rgba(7,25,29,0.45)">
+        <div style="display: flex; align-items: center; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 10.5px; background: rgba(173,70,255,0.10); color: var(--zb-ai-fg); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg></span>
+          <h2 id="ai-t" style="margin: 0; font-size: 18px; font-weight: 700">Nuova colonna AI</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="ai-l" style="font-size: 13px; font-weight: 600">Nome colonna</label>
+          <input id="ai-l" type="text" value="{{aiLabel}}" onChange="{{setAiLabel}}" placeholder="Es. Vende agli ospedali" style="box-sizing: border-box; height: 42px; padding: 0 12px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 14px; white-space: nowrap">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="ai-p" style="font-size: 13px; font-weight: 600">Cosa deve trovare l'AI per ogni riga?</label>
+          <textarea id="ai-p" rows="3" value="{{aiPrompt}}" onChange="{{setAiPrompt}}" placeholder="Es. Questa azienda vende agli ospedali? Rispondi sì/no con un breve motivo." style="box-sizing: border-box; padding: 10px 12px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 14px; line-height: 1.5; resize: vertical"></textarea>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 14px; background: var(--zb-bg); border: 1px solid var(--zb-border); font-size: 13px; line-height: 1.5">
+          <span style="font-weight: 700; font-variant-numeric: tabular-nums">Fino a 47 crediti · 47 righe consegnate</span>
+          <span style="color: var(--zb-muted-fg)">Ogni riga viene ricercata sul web, con la fonte. 1 credito per cella compilata; le celle vuote sono gratis.</span>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px">
+          <button type="button" onClick="{{closeDialog}}" style="height: 40px; padding: 0 16px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Annulla</button>
+          <button type="button" onClick="{{addAi}}" disabled="{{aiInvalid}}" style="height: 40px; padding: 0 18px; border: 0; border-radius: 10.5px; background: {{aiBtnBg}}; color: {{aiBtnFg}}; font-family: inherit; font-weight: 600; font-size: 14px; cursor: pointer">Aggiungi e compila</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{moreOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position: fixed; inset: 0; z-index: 50; background: rgba(7,25,29,0.45); display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div role="dialog" aria-modal="true" aria-labelledby="mr-t" style="width: 100%; max-width: 520px; box-sizing: border-box; background: var(--zb-card); color: var(--zb-fg); border: 1px solid var(--zb-border); border-radius: 21px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 24px 64px -16px rgba(7,25,29,0.45)">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <h2 id="mr-t" style="margin: 0; font-size: 18px; font-weight: 700">Altre righe</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: var(--zb-muted-fg)">Dalla stessa ricerca, senza ripetere chi è già in lista. Stesse colonne e stesse regole del piano v1.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span id="mr-n" style="font-size: 13px; font-weight: 600">Quante</span>
+          <div role="radiogroup" aria-labelledby="mr-n" style="display: inline-flex; padding: 3px; gap: 2px; border-radius: 10.5px; background: var(--zb-rail)">
+            <sc-for list="{{moreOpts}}" as="o" hint-placeholder-count="3">
+              <button type="button" role="radio" aria-checked="{{o.sel}}" onClick="{{o.pick}}" style="height: 32px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 7px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; font-variant-numeric: tabular-nums; background: {{o.bg}}; color: {{o.fg}}; box-shadow: {{o.shadow}}">{{o.label}}</button>
+            </sc-for>
+          </div>
+          <span style="font-size: 12px; color: var(--zb-muted-fg)">~120 persone ancora trovabili</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 12px; border-radius: 14px; background: var(--zb-bg); border: 1px solid var(--zb-border); font-size: 13px; font-variant-numeric: tabular-nums">
+          <span>Costo stimato: <strong>fino a {{moreCost}} crediti</strong></span><span style="color: var(--zb-muted-fg)">Saldo 942</span>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px">
+          <button type="button" onClick="{{closeDialog}}" style="height: 40px; padding: 0 16px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Annulla</button>
+          <a href="{{nav.running}}" style="height: 40px; padding: 0 18px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; white-space: nowrap">Aggiungi {{moreN}} righe</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{exportOpen}}" hint-placeholder-val="{{false}}">
+    <dc-import name="ExportDialog" theme="{{theme}}" step="{{exportStep}}" on-close="{{closeExport}}" hint-size="100%,100vh"></dc-import>
+  </sc-if>
+  <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+    <div role="status" style="position: fixed; right: 24px; bottom: 24px; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; background: var(--zb-fg); color: var(--zb-bg); font-size: 14px; box-shadow: 0 12px 32px -12px rgba(7,25,29,0.45)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+      {{toast}}
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"dialog":{"editor":"enum","options":["none","export"],"default":"none"},"exportStep":{"editor":"enum","options":["options","done","error"],"default":"options"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dialog: null, aiLabel: '', aiPrompt: '', moreN: 50, toast: '', tab: 'all', sel: 'r1', ratings: { r1: 'good', r2: 'good', r11: 'bad' } };
+  }
+  _href(p) {
+    return ((this.props.theme ?? 'light') === 'dark' ? 'Dark-' : '') + p;
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => this._href(p);
+    const nav = { home: h('Main.dc.html'), question: h('Chat-Question.dc.html'), plan: h('Chat-Plan.dc.html'), running: h('Chat-Running.dc.html'), list: h('List.dc.html'), lists: h('Lists.dc.html'), companies: h('Companies.dc.html'), builder: h('Camp-Builder.dc.html') };
+    const xo = this.state.exportOpen ?? ((this.props.dialog ?? 'none') === 'export');
+    return { ...this._vals(), theme, nav, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      exportOpen: xo, exportStep: this.props.exportStep ?? 'options',
+      openExport: () => this.setState({ exportOpen: true }), closeExport: () => this.setState({ exportOpen: false }) };
+  }
+  _vals() {
+    const S = this.state;
+    const data = [
+      ['r1', 'Giulia Ferri', 'CEO', 'Officina Nove', 'officinanove.it', 'giulia.ferri@officinanove.it', 'ok', 92, '24', 'SDR · 6 gg fa', 'Cerca il primo SDR per l’outbound verso aziende industriali lombarde.', 'officinanove.it/lavora-con-noi', 'Manifattura B2B, meccanica, packaging'],
+      ['r2', 'Marco Bellini', 'Resp. commerciale', 'Studio Brezza', 'studiobrezza.com', 'm.bellini@studiobrezza.com', 'ok', 88, '38', 'BDR · 11 gg fa', 'Ha aperto una sede a Torino e sta allargando il team new business.', 'studiobrezza.com/news', 'Retail, GDO, food'],
+      ['r3', 'Chiara Gallo', 'Founder e CEO', 'Lanterna Digital', 'lanternadigital.it', 'chiara@lanternadigital.it', 'ok', 85, '17', 'SDR · 3 gg fa', 'Agenzia performance in crescita: 6 assunzioni negli ultimi 12 mesi.', 'linkedin.com/company/lanterna-digital', 'E-commerce, moda, cosmetica'],
+      ['r4', 'Elena Moretti', 'CEO', 'Ponte Creativo', 'pontecreativo.it', 'e.moretti@pontecreativo.it', 'ok', 81, '42', 'SDR · 19 gg fa', 'Vende progetti di brand a PMI, cerca SDR con inglese per l’estero.', 'pontecreativo.it/careers', 'PMI manifatturiere, export'],
+      ['r5', 'Luca Conti', 'Business director', 'Nodo Agency', 'nodoagency.com', 'luca.conti@nodoagency.com', 'ok', 79, '29', '', 'Agenzia HubSpot partner: vende retainer a software house italiane.', 'nodoagency.com/partner', 'SaaS, software house'],
+      ['r6', 'Sara Villa', 'CEO', 'Fiordaliso Comunicazione', 'fiordalisocom.it', 'sara.villa@fiordalisocom.it', 'ok', 77, '15', 'BDR · 24 gg fa', 'Ha vinto due gare pubbliche e cerca nuovi clienti privati.', 'fiordalisocom.it/news', 'Pubblica amministrazione, sanità'],
+      ['r7', 'Davide Rinaldi', 'Head of sales', 'Quadrante Media', 'quadrantemedia.it', 'd.rinaldi@quadrantemedia.it', 'catch', 76, '33', 'SDR · 8 gg fa', 'Team commerciale di 3 persone, cerca il quarto profilo junior.', 'quadrantemedia.it/jobs', 'Automotive, mobilità'],
+      ['r8', 'Francesca Testa', 'Co-founder', 'Bottega Pixel', 'bottegapixel.it', 'f.testa@bottegapixel.it', 'ok', 74, '12', '', 'Studio piccolo ma con clienti enterprise; la founder segue le vendite.', 'bottegapixel.it/chi-siamo', 'Banche, assicurazioni'],
+      ['r9', 'Andrea Lombardi', 'Direttore commerciale', 'Arco Brand Lab', 'arcobrandlab.it', 'a.lombardi@arcobrandlab.it', 'ok', 72, '46', 'SDR · 27 gg fa', 'Ha appena lanciato un’offerta per il B2B tech e la sta spingendo.', 'arcobrandlab.it/b2b', 'Tech B2B, startup'],
+      ['r10', 'Paolo Marchi', 'Sales manager', 'Rete Sei', 'retesei.it', 'Non trovata', 'none', 70, '21', '', 'Lavora con catene di ristorazione nel Nord Italia.', 'retesei.it/casi', 'Ristorazione, hospitality'],
+      ['r11', 'Martina Greco', 'CEO', 'Vela Studio', 'velastudio.it', 'martina@velastudio.it', 'ok', 68, '11', '', 'Focus su eventi più che su lead generation: fit più debole.', 'velastudio.it', 'Eventi, fiere']
+    ];
+    const chipOf = (st) => st === 'ok'
+      ? { chip: 'Verificata', chipBg: 'rgba(0,188,125,0.12)', chipFg: 'var(--zb-pos-fg)', verify: 'Casella esistente, non catch-all' }
+      : st === 'catch'
+        ? { chip: 'Catch-all · da completare', chipBg: 'rgba(254,154,0,0.14)', chipFg: 'var(--zb-warn-fg)', verify: 'Il dominio accetta tutto: non verificabile' }
+        : { chip: 'Da completare', chipBg: 'rgba(98,116,142,0.12)', chipFg: 'var(--zb-neu-fg)', verify: 'Nessuna email trovata dai fornitori' };
+    const all = data.map((d) => {
+      const [id, name, role, company, domain, email, st, fit, emp, job, why, src, clients] = d;
+      const rating = S.ratings[id] || '';
+      const c = chipOf(st);
+      return {
+        id, name, role, company, domain, email, st, emp, why, src, clients,
+        fit: String(fit), fitPct: fit + '%',
+        job: job || false, noJob: !job,
+        emailColor: st === 'none' ? 'var(--zb-muted-fg)' : 'var(--zb-fg)',
+        ...c,
+        initials: name.split(' ').map((p) => p[0]).join(''),
+        rowBg: S.sel === id ? 'var(--zb-tint)' : 'transparent',
+        goodPressed: rating === 'good' ? 'true' : 'false',
+        badPressed: rating === 'bad' ? 'true' : 'false',
+        goodBg: rating === 'good' ? 'rgba(0,188,125,0.12)' : 'var(--zb-bg)',
+        goodFg: rating === 'good' ? 'var(--zb-pos-fg)' : 'var(--zb-muted-fg)',
+        goodBorder: rating === 'good' ? 'rgba(0,188,125,0.45)' : 'var(--zb-border)',
+        badBg: rating === 'bad' ? 'rgba(251,44,54,0.10)' : 'var(--zb-bg)',
+        badFg: rating === 'bad' ? 'var(--zb-neg-fg)' : 'var(--zb-muted-fg)',
+        badBorder: rating === 'bad' ? 'rgba(251,44,54,0.40)' : 'var(--zb-border)',
+        open: () => this.setState({ sel: id }),
+        rateGood: () => this.setState({ ratings: { ...S.ratings, [id]: rating === 'good' ? '' : 'good' } }),
+        rateBad: () => this.setState({ ratings: { ...S.ratings, [id]: rating === 'bad' ? '' : 'bad' } })
+      };
+    });
+    const delivered = all.filter((r) => r.st === 'ok');
+    const pending = all.filter((r) => r.st !== 'ok');
+    const rows = S.tab === 'ok' ? delivered : S.tab === 'pending' ? pending : all;
+    const tabs = [
+      { key: 'all', label: 'Tutte', count: '50' },
+      { key: 'ok', label: 'Consegnate', count: '47' },
+      { key: 'pending', label: 'Da completare', count: '3' }
+    ].map((t) => {
+      const on = S.tab === t.key;
+      return { ...t, sel: on ? 'true' : 'false', bg: on ? 'var(--zb-bg)' : 'transparent', fg: on ? 'var(--zb-fg)' : 'var(--zb-muted-fg)', shadow: on ? '0 1px 2px rgba(7,25,29,0.10)' : 'none', pick: () => this.setState({ tab: t.key }) };
+    });
+    const sel = all.find((r) => r.id === S.sel) || false;
+    const aiInvalid = S.aiLabel.trim().length < 1 || S.aiPrompt.trim().length < 3;
+    const moreOpts = [25, 50, 100].map((n) => { const on = S.moreN === n; return { label: String(n), sel: on ? 'true' : 'false', bg: on ? 'var(--zb-bg)' : 'transparent', fg: on ? 'var(--zb-fg)' : 'var(--zb-muted-fg)', shadow: on ? '0 1px 2px rgba(7,25,29,0.10)' : 'none', pick: () => this.setState({ moreN: n }) }; });
+    return {
+      rows, tabs, sel, close: () => this.setState({ sel: null }),
+      aiOpen: S.dialog === 'ai', moreOpen: S.dialog === 'more',
+      openAi: () => this.setState({ dialog: 'ai', toast: '' }), openMore: () => this.setState({ dialog: 'more', toast: '' }),
+      closeDialog: () => this.setState({ dialog: null }),
+      aiLabel: S.aiLabel, aiPrompt: S.aiPrompt, aiInvalid,
+      aiBtnBg: aiInvalid ? 'var(--zb-rail)' : 'var(--zb-brand)', aiBtnFg: aiInvalid ? 'var(--zb-muted-fg)' : 'var(--zb-on-brand)',
+      setAiLabel: (e) => this.setState({ aiLabel: e.target.value.slice(0, 60) }),
+      setAiPrompt: (e) => this.setState({ aiPrompt: e.target.value.slice(0, 500) }),
+      addAi: () => { if (!aiInvalid) this.setState({ dialog: null, toast: 'Colonna «' + S.aiLabel.trim() + '» aggiunta: compilazione in corso, prima le righe con fit più alto.', aiLabel: '', aiPrompt: '' }); },
+      toast: S.toast || false,
+      moreOpts, moreN: String(S.moreN), moreCost: (S.moreN * 5).toLocaleString('it-IT')
+    };
+  }
+}
+</script>
+</body>
+</html>

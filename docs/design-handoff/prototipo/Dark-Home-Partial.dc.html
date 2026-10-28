@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Home parziale (scuro)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+body{margin:0;background:#0e1515}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #0e1515">
+  <dc-import name="Home-Data" theme="dark" layout="desktop" state="partial" step="{{step}}" hint-size="100%,100vh"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"step":{"editor":"enum","options":["auto","prima","dopo"],"default":"auto"},"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() { return { step: this.props.step ?? 'auto' }; }
+}
+</script>
+</body>
+</html>

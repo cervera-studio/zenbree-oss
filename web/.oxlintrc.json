@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [],
+  "categories": {
+    "correctness": "off",
+    "suspicious": "off",
+    "pedantic": "off",
+    "perf": "off",
+    "style": "off",
+    "restriction": "off",
+    "nursery": "off"
+  },
+  "jsPlugins": ["eslint-plugin-react-you-might-not-need-an-effect", "./lint/oxlint/index.mjs"],
+  "rules": {
+    "react-you-might-not-need-an-effect/no-adjust-state-on-prop-change": "error",
+    "react-you-might-not-need-an-effect/no-chain-state-updates": "error",
+    "react-you-might-not-need-an-effect/no-derived-state": "error",
+    "react-you-might-not-need-an-effect/no-event-handler": "error",
+    "react-you-might-not-need-an-effect/no-external-store-subscription": "error",
+    "react-you-might-not-need-an-effect/no-initialize-state": "error",
+    "react-you-might-not-need-an-effect/no-pass-data-to-parent": "error",
+    "react-you-might-not-need-an-effect/no-pass-live-state-to-parent": "error",
+    "react-you-might-not-need-an-effect/no-reset-all-state-on-prop-change": "error",
+    "zenbree/no-reset-all-state-on-prop-change": "error",
+    "zenbree/date-time-zone": "error",
+    "no-restricted-properties": [
+      "error",
+      {
+        "property": "toLocaleDateString",
+        "message": "Date formatted in the process zone (UTC in the container), not in the user's. Format it through next-intl, which carries the user's zone: 'useFormatter()' in a client component, 'getFormatter()' on the server. Replace 'toLocaleDateString' and 'toLocaleTimeString' with the formatter. A raw Intl.DateTimeFormat names its 'timeZone': the user's from 'useTimeZone()' or 'getTimeZone()', or a fixed zone only when the zone is part of the data, such as a UTC calendar day."
+      },
+      {
+        "property": "toLocaleTimeString",
+        "message": "Date formatted in the process zone (UTC in the container), not in the user's. Format it through next-intl, which carries the user's zone: 'useFormatter()' in a client component, 'getFormatter()' on the server. Replace 'toLocaleDateString' and 'toLocaleTimeString' with the formatter. A raw Intl.DateTimeFormat names its 'timeZone': the user's from 'useTimeZone()' or 'getTimeZone()', or a fixed zone only when the zone is part of the data, such as a UTC calendar day."
+      }
+    ],
+    "zenbree/tailwind-scale": "error"
+  },
+  "ignorePatterns": ["node_modules", ".next", "coverage", "next-env.d.ts"]
+}

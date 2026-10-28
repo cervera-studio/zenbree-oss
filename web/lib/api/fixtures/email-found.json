@@ -1,0 +1,30 @@
+{
+  "cell_meta": {},
+  "cells": {
+    "company_domain": "acme.it",
+    "email": "anna@acme.it",
+    "first_name": "Anna",
+    "full_name": "Anna Neri",
+    "last_name": "Neri",
+    "title": "CEO"
+  },
+  "created_at": "2026-01-01T00:00:00Z",
+  "crm_hold": null,
+  "delivered": true,
+  "excluded": false,
+  "id": "email-found",
+  "lookups": {
+    "email": {
+      "state": "found",
+      "verdict": "verified"
+    },
+    "phone": {
+      "state": "not_searched"
+    }
+  },
+  "rating": null,
+  "rating_note": null,
+  "relevance_score": null,
+  "score_reasons": null,
+  "seq": 1
+}

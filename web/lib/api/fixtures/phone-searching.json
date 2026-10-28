@@ -1,0 +1,25 @@
+{
+  "cell_meta": {},
+  "cells": {
+    "full_name": "Bo Bianchi",
+    "linkedin_url": "https://linkedin.com/in/bo"
+  },
+  "created_at": "2026-01-01T00:00:00Z",
+  "crm_hold": null,
+  "delivered": false,
+  "excluded": false,
+  "id": "phone-searching",
+  "lookups": {
+    "email": {
+      "state": "searching"
+    },
+    "phone": {
+      "state": "searching"
+    }
+  },
+  "rating": null,
+  "rating_note": null,
+  "relevance_score": "80.00",
+  "score_reasons": null,
+  "seq": 2
+}

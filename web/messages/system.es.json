@@ -1,0 +1,37 @@
+{
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": {
+      "list": "Esta lista ya no existe",
+      "campaign": "Esta campaña ya no existe",
+      "chat": "Este chat ya no existe",
+      "page": "Esta página no existe"
+    },
+    "body": {
+      "list": "El enlace lleva a una lista que se eliminó o que pertenece a otra cuenta.",
+      "campaign": "El enlace lleva a una campaña que se eliminó o que pertenece a otra cuenta.",
+      "chat": "El enlace lleva a una conversación que se eliminó o que pertenece a otra cuenta.",
+      "page": "La dirección es incorrecta o la página se ha movido."
+    },
+    "cta": {
+      "list": "Ir a tus listas",
+      "campaign": "Ir a tus campañas",
+      "chat": "Empezar un chat nuevo",
+      "page": "Volver al inicio"
+    },
+    "recentList": "{name} · {entity, select, person {{count, plural, one {# persona} other {{count, number, credits} personas}}} other {{count, plural, one {# empresa} other {{count, number, credits} empresas}}}}",
+    "lookingFor": "Quizá buscabas",
+    "destination": {
+      "list": "Tus listas",
+      "campaign": "Tus campañas"
+    }
+  },
+  "forbidden": {
+    "eyebrow": "Error 403 · acceso denegado",
+    "title": "Esta página está reservada al equipo de Zenbree",
+    "body": "Has iniciado sesión como <strong>{email}</strong>, que no tiene el rol de administrador. Si necesitas acceso, pídeselo a un administrador: no hay nada que arreglar en tu cuenta.",
+    "back": "Volver a la aplicación",
+    "switchAccount": "Iniciar sesión con otra cuenta",
+    "supportCode": "Código de soporte:"
+  }
+}

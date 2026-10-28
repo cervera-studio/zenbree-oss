@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Schede impostazioni</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0}
+.zb-tab:hover{color:var(--zb-fg) !important}
+</style>
+</helmet>
+<nav aria-label="Impostazioni" class="{{themeClass}}" style="box-sizing: border-box; width: 100%; display: flex; gap: 4px; border-bottom: 1px solid var(--zb-border); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; background: var(--zb-bg)">
+  <sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+    <a href="{{t.href}}" class="zb-tab" aria-current="{{t.current}}" style="height: 44px; padding: 0 12px; display: inline-flex; align-items: center; text-decoration: none; margin-bottom: -1px; border-bottom: 2px solid {{t.line}}; color: {{t.fg}}; font-weight: {{t.w}}">{{t.label}}</a>
+  </sc-for>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"active":{"editor":"enum","options":["profile","notifications","senders","integrations","memory","exclusions","apikeys","billing"],"default":"senders"},"$preview":{"width":1100,"height":45}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const a = this.props.active ?? 'senders';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const tabs = [
+      ['profile', 'Profilo', 'Set-Profile.dc.html'],
+      ['notifications', 'Notifiche', 'Set-Notifications.dc.html'],
+      ['senders', 'Mittenti', 'Set-Senders.dc.html'],
+      ['integrations', 'Integrazioni', 'Set-Integrations.dc.html'],
+      ['memory', 'Memoria', 'Set-Memory.dc.html'],
+      ['exclusions', 'Esclusioni', 'Set-Exclusions.dc.html'],
+      ['apikeys', 'API key', 'Set-ApiKeys.dc.html'],
+      ['billing', 'Crediti', 'Billing.dc.html']
+    ].map(([k, label, f]) => ({
+      label, href: h(f), current: a === k ? 'page' : 'false',
+      line: a === k ? 'var(--zb-ink)' : 'transparent',
+      fg: a === k ? 'var(--zb-fg)' : 'var(--zb-muted-fg)', w: a === k ? '600' : '500'
+    }));
+    return { themeClass: theme === 'dark' ? 'zb-dark' : '', tabs };
+  }
+}
+</script>
+</body>
+</html>

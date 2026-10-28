@@ -1,0 +1,76 @@
+{
+  "reports": {
+    "link": "Report",
+    "title": "Campaign report",
+    "breadcrumb": "Path",
+    "subtitle": "What each campaign did in the dates you choose.",
+    "loadError": "Could not load the report.",
+    "empty": "No campaign has started yet.",
+    "range": {
+      "label": "Dates",
+      "from": "From",
+      "to": "To",
+      "apply": "Show",
+      "presets": "Quick ranges",
+      "last": "{days, plural, one {Last day} other {Last {days, number, credits} days}}"
+    },
+    "columns": {
+      "campaign": "Campaign",
+      "contacted": "Contacted",
+      "sent": "Sent",
+      "replied": "Replied",
+      "positive": "Positive",
+      "bounced": "Bounced",
+      "meetings": "Meetings",
+      "deals": "Deals"
+    },
+    "sender": {
+      "native": "Zenbree",
+      "instantly": "Instantly"
+    },
+    "channels": "{email, plural, one {# email} other {{email, number, credits} emails}} · {invites, plural, one {# invite} other {{invites, number, credits} invites}} · {messages, plural, one {# message} other {{messages, number, credits} messages}}",
+    "replied": "{replied, number, credits} of {contacted, plural, one {# contacted} other {{contacted, number, credits} contacted}}",
+    "positive": "{positive, number, credits} of {replied, plural, one {# replied} other {{replied, number, credits} replied}}",
+    "unknown": "Unknown",
+    "lineage": {
+      "summary": "Where the people came from",
+      "noList": "No list",
+      "signal": "{watchlist} ({type, select, job_posting {job postings} other {{type}}})",
+      "counts": "{contacted, plural, one {# contacted} other {{contacted, number, credits} contacted}} · {replied, plural, one {# replied} other {{replied, number, credits} replied}} · {positive, plural, one {# positive} other {{positive, number, credits} positive}}",
+      "source": {
+        "onboarding": "Onboarding",
+        "manual": "Added by hand",
+        "csv": "CSV import",
+        "refill": "Refill",
+        "signal": "Signal",
+        "unknown": "Unmatched or deleted person"
+      }
+    },
+    "variants": {
+      "summary": "Results by copy variant",
+      "group": {
+        "a": "Variant A",
+        "b": "Variant B",
+        "outside": "Outside the test",
+        "unknown": "Not attributed"
+      },
+      "enrolled": "People in the group now",
+      "contacted": "People contacted",
+      "sent": "Messages sent",
+      "replied": "Replies",
+      "repliedOf": "{replied, number, credits} of {contacted, plural, one {# person contacted} other {{contacted, number, credits} people contacted}}",
+      "positive": "Positive replies",
+      "positiveOf": "{positive, number, credits} of {replied, plural, one {# reply} other {{replied, number, credits} replies}}"
+    },
+    "notes": {
+      "people": "Counts are people, on the date of their first event: a person who replies twice counts once.",
+      "before": "A reply in these dates can come from a person contacted before them.",
+      "positiveBefore": "A positive reply in these dates can come from a person who had already replied before them.",
+      "unknown": "Unknown means not measured yet: Zenbree does not record its own bounces yet, and meetings and deals will come from HubSpot.",
+      "variants": "In an A/B test, Zenbree picks no winner and shows no percentages: a variant can hold few people, and a small gap can be chance.",
+      "variantGroups": "Outside the test: people who joined while the test was paused, who get the copy of variant A. Not attributed: messages and replies of people no longer in the campaign, or of senders who matched nobody.",
+      "instantlyPartial": "Instantly counts are complete up to {at}.",
+      "instantlyPending": "Instantly counts are not complete yet: the first full read of Instantly has not finished."
+    }
+  }
+}

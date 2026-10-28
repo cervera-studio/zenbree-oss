@@ -1,0 +1,93 @@
+#!/usr/bin/env node
+// Drags the open bottom sheet's grab handle with real touch events (CDP) on the Chrome that
+// bin/browser started, and prints where the sheet was during and after the drag.
+//
+//   bin/sheet-drag <steps> <px per step> <ms per step> [hold ms before release]
+//
+// `during` pairs the finger's offset with the sheet's; `after` samples the sheet 20 to 400 ms after
+// the release (`open: false` once it closed). Set MOTION=reduce to drag under reduced motion (the
+// default is no-preference: the host's own setting leaks into headless Chrome). FAST=1 skips the
+// read between steps. CDP sends one touch event about every 35 ms, so a flick needs few long steps
+// (2 steps of 70 px), not many short ones: 4 x 30 px moves at about 850 px/s and springs back.
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const STATE = join(
+  process.env.VERIFY_HOME ?? join(process.env.HOME, '.cache/zenbree-verify'),
+  process.env.VERIFY_ID ?? '',
+);
+if (!process.env.VERIFY_ID) {
+  console.error('sheet-drag: set VERIFY_ID=<name>, as for bin/browser');
+  process.exit(1);
+}
+const [steps, stepPx, stepMs, holdMs = '0'] = process.argv.slice(2);
+if (!stepMs) {
+  console.error('usage: bin/sheet-drag <steps> <px per step> <ms per step> [hold ms]');
+  process.exit(2);
+}
+const { port } = JSON.parse(readFileSync(join(STATE, 'browser.json'), 'utf8'));
+const page = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find(
+  (t) => t.type === 'page',
+);
+const ws = new WebSocket(page.webSocketDebuggerUrl);
+await new Promise((r) => {
+  ws.onopen = r;
+});
+let id = 0;
+const pending = new Map();
+ws.onmessage = (m) => {
+  const d = JSON.parse(m.data);
+  if (pending.has(d.id)) {
+    pending.get(d.id)(d.result);
+    pending.delete(d.id);
+  }
+};
+const send = (method, params = {}) =>
+  new Promise((r) => {
+    pending.set(++id, r);
+    ws.send(JSON.stringify({ id, method, params }));
+  });
+const evaluate = async (expr) =>
+  (await send('Runtime.evaluate', { expression: expr, returnByValue: true })).result.value;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+const SHEET = `(() => {
+  const d = document.querySelector('[role="dialog"]');
+  const h = d?.querySelector('[data-slot="bottom-sheet-handle"]')?.getBoundingClientRect();
+  if (!h) return null;
+  return { top: Math.round(d.getBoundingClientRect().top), height: d.offsetHeight,
+           x: h.left + h.width / 2, y: h.top + h.height / 2, state: d.dataset.state };
+})()`;
+
+// Emulation lasts only as long as this connection, so it is set here, not by bin/browser.
+await send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
+await send('Emulation.setEmulatedMedia', {
+  features: [{ name: 'prefers-reduced-motion', value: process.env.MOTION ?? 'no-preference' }],
+});
+const start = await evaluate(SHEET);
+if (!start) {
+  console.error('sheet-drag: no open bottom sheet');
+  process.exit(1);
+}
+const at = (y) => [{ x: start.x, y, id: 1 }];
+let y = start.y;
+await send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: at(y) });
+const during = [];
+for (let i = 0; i < Number(steps); i++) {
+  y += Number(stepPx);
+  await send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: at(y) });
+  await sleep(Number(stepMs));
+  if (process.env.FAST) continue;
+  const s = await evaluate(SHEET);
+  during.push({ finger: Math.round(y - start.y), sheet: s ? s.top - start.top : null });
+}
+if (Number(holdMs)) await sleep(Number(holdMs));
+await send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+const after = [];
+for (const ms of [20, 60, 120, 250, 400]) {
+  await sleep(ms - (after.at(-1)?.ms ?? 0));
+  const s = await evaluate(SHEET);
+  after.push({ ms, open: !!s, top: s ? s.top - start.top : null, height: s?.height ?? null });
+}
+console.log(JSON.stringify({ start: { top: start.top, height: start.height }, during, after }));
+ws.close();

@@ -1,0 +1,88 @@
+---
+import { content, type Locale, locales, paths, type Section } from '../content';
+import { languages } from './languages';
+
+interface Props {
+  locale: Locale;
+  label: string;
+  size: 'header' | 'menu';
+}
+const { locale, label, size } = Astro.props;
+const sizes = {
+  header: { root: 'phone:hidden', trigger: 'h-7.5 px-2', item: 'h-9' },
+  menu: { root: '', trigger: 'h-11 px-2', item: 'h-11' },
+}[size];
+// For each locale, this page's section hashes mapped to that page's, so a switch keeps the section in view.
+const sectionKeys = Object.keys(content[locale].sections) as Section[];
+const hashes = (to: Locale) =>
+  JSON.stringify(
+    Object.fromEntries(
+      sectionKeys.map((k) => [`#${content[locale].sections[k]}`, `#${content[to].sections[k]}`]),
+    ),
+  );
+const flag = 'inline-flex h-3 w-4 shrink-0 overflow-hidden rounded-xs ring-1 ring-line *:size-full';
+---
+
+<details data-lang-menu class:list={['group relative', sizes.root]}>
+  <summary aria-label={`${label}: ${languages[locale].name}`} class:list={['flex cursor-pointer list-none items-center gap-1.5 rounded-md text-ui-strong text-soft transition-colors hover:bg-raised hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none [&::-webkit-details-marker]:hidden', sizes.trigger]}>
+    <span class={flag} set:html={languages[locale].flag} />
+    {languages[locale].name}
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 stroke-current transition-transform group-open:rotate-180 motion-reduce:transition-none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+  </summary>
+  <ul class="absolute top-full right-0 z-10 mt-1 flex min-w-40 flex-col rounded-lg border border-line bg-ground p-1 shadow-float">
+    {locales.map((l) => (
+      <li>
+        <a href={paths[l]} data-hashes={hashes(l)} hreflang={l} lang={l} aria-current={l === locale ? 'page' : undefined} class:list={['flex items-center gap-2 rounded-md px-2 hover:bg-raised hover:text-ink focus-visible:bg-raised focus-visible:text-ink focus-visible:outline-none', l === locale ? 'text-ui-strong text-ink' : 'text-ui text-soft', sizes.item]}>
+          <span class={flag} set:html={languages[l].flag} />
+          <span class="flex-1">{languages[l].name}</span>
+          {l === locale && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>}
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<script>
+  const menus = Array.from(document.querySelectorAll<HTMLDetailsElement>('details[data-lang-menu]'));
+  const steps: Record<string, (i: number, last: number) => number> = {
+    ArrowDown: (i, last) => (i < 0 || i === last ? 0 : i + 1),
+    ArrowUp: (i, last) => (i <= 0 ? last : i - 1),
+    Home: () => 0,
+    End: (_, last) => last,
+  };
+
+  for (const menu of menus) {
+    const summary = menu.querySelector('summary');
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        // Cancelled, so an open #site-menu sheet stays open while the list closes.
+        event.preventDefault();
+        menu.open = false;
+        summary?.focus();
+        return;
+      }
+      const step = steps[event.key];
+      if (!step) return;
+      event.preventDefault();
+      menu.open = true;
+      const items = Array.from(menu.querySelectorAll('a'));
+      const index = items.indexOf(document.activeElement as HTMLAnchorElement);
+      items[step(index, items.length - 1)]?.focus();
+    });
+  }
+
+  const switches = Array.from(document.querySelectorAll<HTMLAnchorElement>('details[data-lang-menu] a[data-hashes]'));
+  function keepSection() {
+    for (const link of switches) {
+      link.hash = (JSON.parse(link.dataset.hashes ?? '{}') as Record<string, string>)[location.hash] ?? '';
+    }
+  }
+  keepSection();
+  window.addEventListener('hashchange', keepSection);
+
+  document.addEventListener('click', (event) => {
+    for (const menu of menus) {
+      if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+    }
+  });
+</script>

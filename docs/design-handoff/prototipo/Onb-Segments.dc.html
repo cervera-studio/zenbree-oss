@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Onboarding, il primo segmento</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-seg{transition:border-color 190ms cubic-bezier(0.4,0,1,1)}
+.zb-seg:hover{border-color:var(--zb-ink) !important;transition-duration:110ms}
+.zb-cta:hover{background:var(--zb-brand-hover) !important;color:var(--zb-on-brand) !important}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; display: flex; flex-direction: column; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="OnbHeader" theme="{{theme}}" step="3" hint-size="100%,64px"></dc-import>
+
+  <main style="flex-grow: 1; display: flex; justify-content: center; padding: 48px 32px">
+    <div style="width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 28px">
+      <div style="display: flex; align-items: flex-end; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 10px; flex-grow: 1">
+          <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.18; letter-spacing: 0">Scegli il primo segmento</h1>
+          <p style="margin: 0; font-size: 17px; line-height: 1.5; color: var(--zb-muted-fg)">Ogni segmento diventa una ricerca: scegline uno e creiamo la tua prima lista.</p>
+        </div>
+        <a href="{{nav.ob2}}" style="height: 40px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; white-space: nowrap">Modifica il profilo</a>
+        <button type="button" onClick="{{regen}}" style="height: 40px; padding: 0 14px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"></path></svg>
+          Proponi altri segmenti
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+        <sc-for list="{{segments}}" as="s" hint-placeholder-count="3">
+          <article class="zb-seg" style="display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 17.5px; background: var(--zb-card); border: 1px solid {{s.border}}">
+            <div style="display: flex; flex-direction: column; gap: 8px; min-height: 76px">
+              <sc-if value="{{s.badge}}" hint-placeholder-val="{{false}}">
+                <span style="align-self: flex-start; height: 22px; padding: 0 8px; border-radius: 999px; background: rgba(0,184,219,0.12); color: var(--zb-social-fg); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{s.badge}}</span>
+              </sc-if>
+              <h2 style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3">{{s.name}}</h2>
+            </div>
+            <dl style="margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.5">
+              <div><dt style="font-size: 12px; color: var(--zb-muted-fg)">Chi</dt><dd style="margin: 2px 0 0">{{s.who}}</dd></div>
+              <div><dt style="font-size: 12px; color: var(--zb-muted-fg)">Problema</dt><dd style="margin: 2px 0 0">{{s.problem}}</dd></div>
+              <div><dt style="font-size: 12px; color: var(--zb-muted-fg)">Risultato</dt><dd style="margin: 2px 0 0">{{s.outcome}}</dd></div>
+            </dl>
+            <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--zb-border)">
+              <span style="font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Criteri di ricerca</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                <sc-for list="{{s.criteria}}" as="c" hint-placeholder-count="5">
+                  <span style="height: 24px; padding: 0 9px; border-radius: 999px; background: var(--zb-rail); font-size: 12px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap"><span style="color: var(--zb-muted-fg)">{{c.k}}</span>{{c.v}}</span>
+                </sc-for>
+              </div>
+            </div>
+            <span style="flex-grow: 1"></span>
+            <a href="{{nav.question}}" class="zb-cta" style="height: 42px; border-radius: 10.5px; background: {{s.ctaBg}}; color: {{s.ctaFg}}; border: 1px solid {{s.ctaBorder}}; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px">Crea la prima lista
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+            </a>
+          </article>
+        </sc-for>
+      </div>
+
+      <p style="margin: 0; font-size: 14px; color: var(--zb-muted-fg); text-align: center">Hai già in mente chi cercare? <a href="{{nav.home}}" style="font-weight: 600; text-decoration: none">Scrivilo in chat</a>. La prima lista parte sempre da un piano che approvi tu.</p>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { round: 0 };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const C = (k, v) => ({ k, v });
+    const sets = [[
+      { name: 'Agenzie di marketing che assumono SDR', badge: 'Segnale forte: annunci aperti',
+        who: 'CEO e responsabili commerciali di agenzie di marketing, 10–50 dipendenti.',
+        problem: 'Vogliono crescere con l’outbound ma non hanno chi lo faccia.',
+        outcome: 'Un SDR operativo subito, senza un’assunzione.',
+        criteria: [C('Ruoli', 'CEO, Resp. commerciale'), C('Settori', 'Marketing e pubblicità'), C('Dip.', '10–50'), C('Paesi', 'Italia'), C('Parole chiave', 'SDR, BDR')] },
+      { name: 'SaaS italiane che costruiscono il team sales', badge: '',
+        who: 'Founder e head of sales di SaaS B2B, 20–100 dipendenti.',
+        problem: 'Il founder vende ancora da solo e non ha un metodo.',
+        outcome: 'Un prospecting ripetibile, documentato in un playbook.',
+        criteria: [C('Ruoli', 'Founder, Head of sales'), C('Settori', 'Software'), C('Dip.', '20–100'), C('Paesi', 'Italia'), C('Segnale', 'Round recente')] },
+      { name: 'Distributori industriali verso l’estero', badge: '',
+        who: 'Direttori commerciali di distributori B2B, 50–250 dipendenti.',
+        problem: 'Entrano in nuovi mercati senza contatti locali.',
+        outcome: 'I primi appuntamenti nei nuovi paesi.',
+        criteria: [C('Ruoli', 'Direttore commerciale, Export manager'), C('Settori', 'Distribuzione industriale'), C('Dip.', '50–250'), C('Paesi', 'Italia, Svizzera')] }
+    ], [
+      { name: 'Studi di consulenza con nuovo direttore commerciale', badge: 'Segnale: cambio ruolo',
+        who: 'Nuovi direttori commerciali in società di consulenza, 20–200 dipendenti.',
+        problem: 'Devono portare risultati nei primi mesi.',
+        outcome: 'Pipeline in poche settimane, senza assumere.',
+        criteria: [C('Ruoli', 'Direttore commerciale'), C('Settori', 'Consulenza'), C('Dip.', '20–200'), C('Segnale', 'Nuovo nel ruolo')] },
+      { name: 'Aziende che aprono una nuova sede', badge: '',
+        who: 'CEO di PMI B2B che hanno appena aperto una sede.',
+        problem: 'Nella nuova città non conoscono nessuno.',
+        outcome: 'Un calendario di incontri con aziende locali.',
+        criteria: [C('Ruoli', 'CEO'), C('Dip.', '10–250'), C('Paesi', 'Italia'), C('Segnale', 'Nuova sede')] },
+      { name: 'Software house con un solo commerciale', badge: '',
+        who: 'Titolari di software house, 10–50 dipendenti.',
+        problem: 'Un commerciale solo non riesce a fare anche prospecting.',
+        outcome: 'Appuntamenti qualificati ogni settimana.',
+        criteria: [C('Ruoli', 'Titolare, CEO'), C('Settori', 'Software'), C('Dip.', '10–50'), C('Paesi', 'Italia')] }
+    ]];
+    const segments = sets[this.state.round % 2].map((s, i) => ({
+      ...s, badge: s.badge || false,
+      border: i === 0 ? 'var(--zb-ink)' : 'var(--zb-border)',
+      ctaBg: i === 0 ? 'var(--zb-brand)' : 'var(--zb-bg)',
+      ctaFg: i === 0 ? 'var(--zb-on-brand)' : 'var(--zb-fg)',
+      ctaBorder: i === 0 ? 'var(--zb-brand)' : 'var(--zb-border)'
+    }));
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { ob2: h('Onb-Profile.dc.html'), question: h('Chat-Question.dc.html'), home: h('Empty-Home.dc.html') },
+      segments,
+      regen: () => this.setState({ round: this.state.round + 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

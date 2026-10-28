@@ -1,0 +1,76 @@
+{
+  "reports": {
+    "link": "Rapport",
+    "title": "Rapport des campagnes",
+    "breadcrumb": "Chemin",
+    "subtitle": "Ce que chaque campagne a fait aux dates que vous choisissez.",
+    "loadError": "Impossible de charger le rapport.",
+    "empty": "Aucune campagne n'a encore démarré.",
+    "range": {
+      "label": "Dates",
+      "from": "Du",
+      "to": "Au",
+      "apply": "Afficher",
+      "presets": "Périodes rapides",
+      "last": "{days, plural, one {Dernier jour} other {{days, number, credits} derniers jours}}"
+    },
+    "columns": {
+      "campaign": "Campagne",
+      "contacted": "Contactés",
+      "sent": "Envoyés",
+      "replied": "Réponses",
+      "positive": "Positifs",
+      "bounced": "Rebonds",
+      "meetings": "Rendez-vous",
+      "deals": "Affaires"
+    },
+    "sender": {
+      "native": "Zenbree",
+      "instantly": "Instantly"
+    },
+    "channels": "{email, plural, one {# e-mail} other {{email, number, credits} e-mails}} · {invites, plural, one {# invitation} other {{invites, number, credits} invitations}} · {messages, plural, one {# message} other {{messages, number, credits} messages}}",
+    "replied": "{replied, number, credits} sur {contacted, plural, one {# contacté} other {{contacted, number, credits} contactés}}",
+    "positive": "{positive, number, credits} sur {replied, plural, one {# réponse} other {{replied, number, credits} réponses}}",
+    "unknown": "Inconnu",
+    "lineage": {
+      "summary": "D'où viennent les personnes",
+      "noList": "Aucune liste",
+      "signal": "{watchlist} ({type, select, job_posting {offres d'emploi} other {{type}}})",
+      "counts": "{contacted, plural, one {# contacté} other {{contacted, number, credits} contactés}} · {replied, plural, one {# réponse} other {{replied, number, credits} réponses}} · {positive, plural, one {# positif} other {{positive, number, credits} positifs}}",
+      "source": {
+        "onboarding": "Onboarding",
+        "manual": "Ajoutées à la main",
+        "csv": "Import CSV",
+        "refill": "Réapprovisionnement",
+        "signal": "Signal",
+        "unknown": "Personne non associée ou supprimée"
+      }
+    },
+    "variants": {
+      "summary": "Résultats par variante",
+      "group": {
+        "a": "Variante A",
+        "b": "Variante B",
+        "outside": "Hors test",
+        "unknown": "Non attribués"
+      },
+      "enrolled": "Personnes du groupe aujourd'hui",
+      "contacted": "Personnes contactées",
+      "sent": "Messages envoyés",
+      "replied": "Réponses",
+      "repliedOf": "{replied, number, credits} sur {contacted, plural, one {# personne contactée} other {{contacted, number, credits} personnes contactées}}",
+      "positive": "Réponses positives",
+      "positiveOf": "{positive, number, credits} sur {replied, plural, one {# réponse} other {{replied, number, credits} réponses}}"
+    },
+    "notes": {
+      "people": "Les comptes sont des personnes, à la date de leur premier événement : une personne qui répond deux fois compte une fois.",
+      "before": "Une réponse à ces dates peut venir d'une personne contactée avant.",
+      "positiveBefore": "Une réponse positive à ces dates peut venir d'une personne qui avait déjà répondu avant.",
+      "unknown": "Inconnu veut dire pas encore mesuré : Zenbree n'enregistre pas encore ses propres rebonds, et les rendez-vous et les affaires viendront de HubSpot.",
+      "variants": "Dans un test A/B, Zenbree ne désigne aucune variante gagnante et n'affiche aucun pourcentage : une variante peut compter peu de personnes, et un petit écart peut relever du hasard.",
+      "variantGroups": "Hors test : les personnes arrivées pendant la pause du test, qui reçoivent les textes de la variante A. Non attribués : les envois et les réponses de personnes qui ne sont plus dans la campagne, ou d'expéditeurs qui ne correspondent à personne.",
+      "instantlyPartial": "Les comptes d'Instantly sont complets jusqu'au {at}.",
+      "instantlyPending": "Les comptes d'Instantly ne sont pas encore complets : la première lecture complète d'Instantly n'est pas terminée."
+    }
+  }
+}
