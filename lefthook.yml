@@ -19,6 +19,8 @@ pre-commit:
       glob: "*.{ts,mjs,json,css,astro}"
       run: ./node_modules/.bin/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
       stage_fixed: true
+    - name: secrets
+      run: gitleaks git --staged --no-banner --redact
     - name: web oxlint
       root: web/
       glob: "*.{ts,tsx,js,jsx,mjs,cjs}"
