@@ -1,7 +1,7 @@
 import type { Content } from '../content';
 
 export const fr: Content = {
-  sections: { how: 'fonctionnement', why: 'pourquoi', pricing: 'tarifs', faq: 'faq' },
+  sections: { how: 'fonctionnement', why: 'pourquoi', openSource: 'open-source', faq: 'faq' },
   meta: {
     title: 'Zenbree · Agent IA pour la prospection B2B',
     description:
@@ -12,10 +12,10 @@ export const fr: Content = {
     label: 'Sections',
     how: 'Fonctionnement',
     why: 'Pourquoi',
-    pricing: 'Tarifs',
+    openSource: 'Open source',
     faq: 'FAQ',
     signIn: 'Se connecter',
-    tryFree: 'Essayer gratuitement',
+    contact: 'Nous contacter',
   },
   menu: {
     open: 'Ouvrir le menu',
@@ -27,9 +27,9 @@ export const fr: Content = {
     eyebrow: 'Agent IA pour la prospection B2B',
     titleLine: 'Décrivez votre client idéal.',
     titleEm: 'Zenbree trouve qui contacter.',
-    createList: 'Créer votre première liste',
+    cta: 'Demander l’accès',
     seeHow: 'Voir le fonctionnement',
-    fine: 'Le plan est gratuit · Vous ne payez que les lignes livrées · 25 crédits pour essayer',
+    fine: 'Le plan est gratuit · Vous ne payez que les lignes livrées',
   },
   stage: {
     label: 'Aperçu du produit',
@@ -124,7 +124,6 @@ export const fr: Content = {
       confirm: 'Au-delà de 500 crédits, nous demandons aussi une seconde confirmation.',
     },
     note: 'Les entreprises et personnes trouvées sont gratuites. Une ligne sans champ obligatoire n’est pas livrée et vous ne la payez pas.',
-    start: 'Créer cette liste',
   },
   how: {
     eyebrow: 'Fonctionnement',
@@ -268,58 +267,17 @@ export const fr: Content = {
       body: 'Cherchez dans n’importe quel pays. L’app et l’agent parlent français, anglais, italien et espagnol, dans la langue que vous choisissez, et les brouillons de réponse de la boîte de réception suivent la langue de la personne qui vous écrit. Les exclusions (clients, concurrents, toute personne désinscrite) sont définitives.',
     },
   },
-  pricing: {
-    eyebrow: 'Tarifs',
-    title: 'Connaissez le coût avant de commencer.',
-    sub: 'Jusqu’à 100 crédits, une recherche démarre tout de suite ; au-delà, l’agent vous montre le plan avec son coût maximal, et vous l’approuvez. Prix hors TVA. Autoliquidation pour les entreprises de l’UE hors d’Italie disposant d’un numéro de TVA valide ; hors UE, les taxes éventuelles sont calculées au paiement.',
-    perMonth: '/mois',
-    plans: [
-      {
-        name: 'Starter',
-        price: '29 €',
-        credits: '500 crédits par mois',
-        equivalent: '≈ 500 e-mails contrôlés',
-        cta: 'Commencer avec Starter',
-      },
-      {
-        name: 'Pro',
-        badge: 'pour lancer des campagnes',
-        price: '79 €',
-        credits: '1 500 crédits par mois',
-        equivalent: '≈ 1 500 e-mails contrôlés',
-        cta: 'Commencer avec Pro',
-        highlight: true,
-      },
-    ],
-    costsTitle: 'Ce que coûtent les choses',
-    costs: [
-      { label: 'Plan et questions de l’agent', value: 'gratuit' },
-      {
-        label: 'Entreprises et personnes trouvées (jusqu’à 1 000 lignes par jour)',
-        value: 'gratuit',
-      },
-      { label: 'E-mail trouvé et contrôlé', value: '1 crédit' },
-      { label: 'Numéro de téléphone trouvé', value: '8 crédits' },
-      { label: 'Cellule IA avec source', value: '1 crédit' },
-    ],
-    packsTitle: 'Recharges sans abonnement',
-    packs: [
-      { label: '350 crédits', value: '19 €' },
-      { label: '1 000 crédits', value: '49 €' },
-      { label: '3 000 crédits', value: '149 €' },
-    ],
-    packsNote: 'Elles n’expirent jamais.',
-    welcome: 'À l’inscription, 25 crédits offerts, sans carte bancaire.',
-    example: {
-      title: 'Exemple : 500 personnes avec e-mail et téléphone',
-      cost: '500 × (1 + 8) = jusqu’à 4 500 crédits',
-      buy: 'Starter + recharges de 3 000 et 1 000 = 227 € HT',
-      note: 'Vous ne payez que les e-mails et téléphones trouvés : les crédits non utilisés reviennent sur votre solde.',
-    },
-    expiry:
-      'Les crédits du forfait expirent à la fin de la période et se renouvellent chaque mois ; ceux des recharges restent. Les crédits du forfait sont dépensés en premier.',
-    agencies:
-      'Agences et consultants : un projet par client, chacun avec ses listes, exclusions, boîtes mail, campagnes et boîte de réception.',
+  openSource: {
+    eyebrow: 'Open source',
+    title: 'Open source. Hébergez-le vous-même, ou on s’en occupe.',
+    sub: 'Zenbree est sous licence MIT. Clonez-le, utilisez vos propres clés de fournisseurs et adaptez-le à votre façon de travailler.',
+    selfHostTitle: 'Auto-hébergement',
+    selfHostBody: 'Docker Compose lance toute la pile : API, worker, web et base de données.',
+    repoCta: 'Voir sur GitHub',
+    hostedTitle: 'Hébergé par nous',
+    hostedBody:
+      'Vous ne voulez pas gérer serveurs et comptes fournisseurs ? Nous proposons un service hébergé payant. Écrivez-nous et nous l’activons.',
+    hostedCta: 'Nous écrire',
   },
   faq: {
     eyebrow: 'FAQ',
@@ -352,10 +310,6 @@ export const fr: Content = {
         a: 'De fournisseurs de données professionnelles et de pages publiques, toujours avec la source. Chaque e-mail de campagne permet de se désinscrire, et toute personne qui le fait entre définitivement dans les exclusions du projet. Les exclusions s’appliquent à toutes les campagnes du projet. La base légale et l’information de l’art. 14 du RGPD relèvent de l’expéditeur : Zenbree ne donne pas de conseil juridique.',
       },
       {
-        q: 'Les crédits expirent-ils ?',
-        a: 'Ceux de l’abonnement, oui : ce qui n’est pas utilisé à la fin de la période expire, et de nouveaux crédits arrivent chaque mois. Les crédits des recharges n’expirent jamais. Les crédits du forfait sont dépensés en premier.',
-      },
-      {
         q: 'Si un e-mail rebondit, suis-je remboursé du crédit ?',
         a: 'Un crédit est débité quand une adresse est trouvée et que le vérificateur ne la rejette pas, catch-all compris. Une adresse rejetée n’est pas débitée. Après l’envoi, nous ne lisons pas les rebonds aujourd’hui (les réponses arrivent toujours dans votre boîte Zenbree), et le crédit d’un e-mail qui rebondit plus tard n’est pas remboursé.',
       },
@@ -369,17 +323,14 @@ export const fr: Content = {
       },
       {
         q: 'Puis-je fixer un plafond de dépenses ?',
-        a: 'Le plafond est par recherche : le plan montre le coût maximal et, au-delà de 100 crédits, il ne démarre qu’après votre accord (au-delà de 500, nous demandons une confirmation de plus). Il n’y a pas de limite mensuelle, mais vous ne pouvez pas dépenser plus que votre solde. La recharge automatique reste désactivée tant que vous ne l’activez pas.',
+        a: 'Le plafond est par recherche : le plan montre le coût maximal et, au-delà de 100 crédits, il ne démarre qu’après votre accord (au-delà de 500, nous demandons une confirmation de plus). Il n’y a pas de limite mensuelle, mais vous ne pouvez pas dépenser plus que votre solde.',
       },
     ],
   },
   final: {
     title: 'Qui voulez-vous atteindre ?',
-    lede: 'Écrivez-le en une phrase. Le plan est gratuit, et vous ne payez la liste que si elle arrive.',
-    inputLabel: 'Décrivez votre client idéal',
-    placeholder: 'Ex. : cabinets d’architecture à Turin de plus de 10 personnes',
-    button: 'Commencer gratuitement',
-    fine: 'Nous ne demandons que votre e-mail pour enregistrer la conversation et vos 25 crédits d’essai.',
+    lede: 'Écrivez-nous et nous activons votre accès.',
+    button: 'Demander l’accès',
   },
   footer: {
     legalLabel: 'Liens légaux',

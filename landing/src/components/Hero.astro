@@ -20,7 +20,7 @@ const { t } = Astro.props;
     <div class="flex flex-col gap-6 text-soft phone:gap-5">
       <p class="text-body">{t.meta.description}</p>
       <div class="flex flex-wrap items-center gap-2.5 phone:flex-col phone:items-stretch">
-        <a href={links.signUp} class={btn('primary', 'lg')}>{t.hero.createList}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href={links.contact} class={btn('primary', 'lg')}>{t.hero.cta}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         <a href={`#${t.sections.how}`} class={btn('outline', 'lg')}>{t.hero.seeHow}</a>
       </div>
       <p class="text-small text-muted">{t.hero.fine}</p>

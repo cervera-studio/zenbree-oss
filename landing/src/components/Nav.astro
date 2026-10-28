@@ -23,7 +23,7 @@ const { t, locale } = Astro.props;
       <ThemeToggle labels={t.menu} size="header" />
       <LangMenu locale={locale} label={t.footer.langLabel} size="header" />
       <a href={links.signIn} class:list={[btn('ghost'), 'phone:hidden']}>{t.nav.signIn}</a>
-      <a href={links.signUp} class:list={[btn('primary'), 'phone:h-6.5 phone:px-2']}>{t.nav.tryFree}</a>
+      <a href={links.contact} class:list={[btn('primary'), 'phone:h-6.5 phone:px-2']}>{t.nav.contact}</a>
       <button type="button" popovertarget="site-menu" class="-mr-2.5 hidden size-11 cursor-pointer items-center justify-center rounded-md text-ink hover:bg-raised phone:inline-flex" aria-label={t.menu.open}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="stroke-current" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>

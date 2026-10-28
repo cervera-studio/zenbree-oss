@@ -1,5 +1,5 @@
 ---
-import type { Content } from '../content';
+import { type Content, links } from '../content';
 import { h2, section } from '../styles/classes';
 import Eyebrow from './Eyebrow.astro';
 
@@ -14,7 +14,7 @@ const { faq } = t;
   <div class="flex w-90 shrink-0 flex-col gap-5 tablet:w-auto">
     <Eyebrow>{faq.eyebrow}</Eyebrow>
     <h2 class={h2}>{faq.title}</h2>
-    <p class="text-small text-soft">{faq.moreBefore}<a href="mailto:supporto@zenbree.com" class="font-bold text-accent-ink hover:underline">supporto@zenbree.com</a>{faq.moreAfter}</p>
+    <p class="text-small text-soft">{faq.moreBefore}<a href={links.contact} class="font-bold text-accent-ink hover:underline">supporto@zenbree.com</a>{faq.moreAfter}</p>
   </div>
   <div class="flex min-w-0 flex-1 flex-col border-t border-line">
     {faq.items.map((item) => (
