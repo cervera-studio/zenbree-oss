@@ -35,7 +35,7 @@ export type Person = {
 
 export type StepArt =
   | { kind: 'brief'; brief: string; question: string; choices: readonly [string, string] }
-  | { kind: 'plan'; title: string; budget: string; steps: readonly string[]; note: string }
+  | { kind: 'plan'; title: string; steps: readonly string[]; note: string }
   | {
       kind: 'list';
       delivered: string;
@@ -93,10 +93,9 @@ export type Content = {
   stage: {
     label: string;
     emailFloat: Float;
-    refundFloat: Float;
+    fieldsFloat: Float;
     brief: string;
     planTitle: string;
-    planBudget: string;
     columns: readonly [string, string, string];
     aiColumn: string;
     planFooter: string;

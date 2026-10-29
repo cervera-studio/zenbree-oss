@@ -38,18 +38,17 @@ export const es: Content = {
       value: 'giulia@officinanove.it',
       source: 'Fuente: officinanove.it/team',
     },
-    refundFloat: {
-      key: '+6 créditos devueltos',
-      value: '3 filas no entregadas',
-      source: 'Sin email, sin cargo',
+    fieldsFloat: {
+      key: 'Campos obligatorios',
+      value: 'Nombre, cargo, email',
+      source: 'Solo filas completas',
     },
     brief:
       'Agencias de marketing independientes en Milán, de 10 a 50 empleados. Quiero al CEO, con email comprobado.',
     planTitle: 'Plan · 60 filas',
-    planBudget: 'hasta 120 créditos',
     columns: ['Nombre *', 'Cargo *', 'Email comprobado *'],
     aiColumn: 'Sector · IA',
-    planFooter: 'Solo pagas las filas con los campos *',
+    planFooter: 'Solo filas con los campos *',
     rowsSummary: '57 entregadas · 31 empresas',
   },
   ui: {
@@ -121,7 +120,7 @@ export const es: Content = {
       {
         n: '02',
         title: 'Aprueba el plan',
-        short: 'Coste máximo, por adelantado',
+        short: 'Filas, columnas y pasos',
         body: 'Ves el plan, con filas y columnas, y lo apruebas. Las columnas marcadas con asterisco deciden qué se entrega.',
         points: [
           'No empieza nada hasta que apruebas',
@@ -131,7 +130,6 @@ export const es: Content = {
         art: {
           kind: 'plan',
           title: 'Plan · 80 filas',
-          budget: 'hasta 160 créditos',
           steps: [
             '1 · Buscar 40 cadenas en el noreste de Italia',
             '2 · 2 responsables de compras por cadena',
@@ -197,8 +195,8 @@ export const es: Content = {
   },
   why: {
     eyebrow: 'Por qué Zenbree',
-    titleLine: 'Hecho para quien vende,',
-    titleRest: 'no para quien compra listas.',
+    titleLine: 'Encuentra a las personas adecuadas,',
+    titleRest: 'con los datos para contactarlas.',
     source: {
       title: 'Cada dato tiene su fuente',
       body: 'Las columnas de IA solo conservan un valor si está escrito en una página que puedes abrir.',
@@ -235,7 +233,7 @@ export const es: Content = {
     repoCta: 'Ver en GitHub',
     hostedTitle: 'Alojado por nosotros',
     hostedBody:
-      '¿Prefieres no gestionar servidores ni cuentas de proveedores? Ofrecemos un servicio alojado de pago. Escríbenos y lo activamos.',
+      '¿Prefieres no gestionar servidores ni cuentas de proveedores? Ofrecemos un servicio alojado. Escríbenos y lo activamos.',
     hostedCta: 'Escríbenos',
   },
   faq: {

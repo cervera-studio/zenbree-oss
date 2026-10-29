@@ -25,7 +25,7 @@ const prose = 'font-sans text-small';
   )}
   {art.kind === 'plan' && (
     <>
-      <div class={line}><span class:list={[key, 'text-ink']}>{art.title}</span><span class:list={[value, 'text-accent-ink']}>{art.budget}</span></div>
+      <div class={line}><span class:list={[key, 'text-ink']}>{art.title}</span></div>
       {art.steps.map((step) => <span class="text-soft">{step}</span>)}
       <span class="text-positive">{art.note}</span>
     </>
