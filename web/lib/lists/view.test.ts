@@ -160,10 +160,13 @@ describe('missingRequired (#531)', () => {
 
 describe('tabs and search', () => {
   const rows = [
-    row('a', { cells: { full_name: 'Giulia Ferri', company_domain: 'officinanove.it' } }),
-    row('b', { cells: { full_name: 'Paolo Marchi', email: 'p@retesei.it' }, delivered: false }),
+    row('a', { cells: { full_name: 'Giulia Ferri', company_domain: 'officinanove.example' } }),
+    row('b', {
+      cells: { full_name: 'Paolo Marchi', email: 'p@retesei.example' },
+      delivered: false,
+    }),
     row('c', { cells: { full_name: 'Sara Villa' }, excluded: true, delivered: false }),
-    row('d', { cells: { name: 'Nodo Agency', domain: 'nodoagency.com' } }),
+    row('d', { cells: { name: 'Nodo Agency', domain: 'nodoagency.example' } }),
   ];
 
   it('counts each tab; an excluded row is neither delivered nor pending', () => {
@@ -185,7 +188,7 @@ describe('tabs and search', () => {
   it('searches name, domain and email case-insensitively inside the tab', () => {
     expect(visibleRows(rows, 'all', ' FERRI ').map((r) => r.id)).toEqual(['a']);
     expect(visibleRows(rows, 'all', 'nodoagency').map((r) => r.id)).toEqual(['d']);
-    expect(visibleRows(rows, 'all', 'retesei.it').map((r) => r.id)).toEqual(['b']);
+    expect(visibleRows(rows, 'all', 'retesei.example').map((r) => r.id)).toEqual(['b']);
     expect(visibleRows(rows, 'delivered', 'retesei')).toEqual([]);
   });
 

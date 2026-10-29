@@ -35,8 +35,8 @@ export const fr: Content = {
     label: 'Aperçu du produit',
     emailFloat: {
       key: 'E-mail vérifié',
-      value: 'giulia@officinanove.it',
-      source: 'Source : officinanove.it/team',
+      value: 'giulia@officinanove.example',
+      source: 'Source : officinanove.example/team',
     },
     fieldsFloat: {
       key: 'Champs obligatoires',

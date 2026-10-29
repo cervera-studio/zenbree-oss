@@ -86,7 +86,7 @@ describe('identity', () => {
           full_name: 'Giulia Ferri',
           title: 'CEO',
           company_name: 'Officina Nove',
-          company_domain: 'officinanove.it',
+          company_domain: 'officinanove.example',
         }),
         'person',
       ),
@@ -94,7 +94,7 @@ describe('identity', () => {
       name: 'Giulia Ferri',
       role: 'CEO',
       company: 'Officina Nove',
-      domain: 'officinanove.it',
+      domain: 'officinanove.example',
     });
     expect(identity(r({ first_name: 'Luca', last_name: 'Conti' }), 'person').name).toBe(
       'Luca Conti',
@@ -103,12 +103,12 @@ describe('identity', () => {
 
   it('reads a company as its own name, with the website when there is no domain', () => {
     expect(
-      identity(r({ name: 'Nodo Agency', website: 'https://nodoagency.com' }), 'company'),
+      identity(r({ name: 'Nodo Agency', website: 'https://nodoagency.example' }), 'company'),
     ).toEqual({
       name: 'Nodo Agency',
       role: '',
       company: 'Nodo Agency',
-      domain: 'https://nodoagency.com',
+      domain: 'https://nodoagency.example',
     });
   });
 });

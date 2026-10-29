@@ -9,6 +9,6 @@ description = "fake keys in tests and in the docs that describe them"
 paths = [
   '''^api/tests/''',
   '''\.test\.tsx?$''',
-  '''^docs/''',
   '''^\.claude/skills/''',
+  '''^docs/recipes\.md$''',
 ]
