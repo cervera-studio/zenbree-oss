@@ -4,7 +4,7 @@ export const en: Content = {
   meta: {
     title: 'Zenbree · AI agent for B2B outbound',
     description:
-      'Tell the chat who you want to reach. Up to 100 credits a search starts at once; above that the agent shows you the plan with the most it can cost, and you approve it. Then it delivers people with an email checked by a verifier and the source of every data point.',
+      'Tell the chat who you want to reach. The agent shows you the plan and you approve it. Then it delivers people with an email checked by a verifier and the source of every data point.',
   },
   sections: { how: 'how', why: 'why', openSource: 'open-source', faq: 'faq' },
   nav: {
@@ -29,7 +29,7 @@ export const en: Content = {
     titleEm: 'Zenbree finds who to contact.',
     cta: 'Request access',
     seeHow: 'See how it works',
-    fine: 'The plan is free · You only pay for delivered rows',
+    fine: 'Open source · Self-host or a managed service on request',
   },
   stage: {
     label: 'Product preview',
@@ -95,36 +95,6 @@ export const en: Content = {
     line: 'A good list is not a longer one.',
     em: 'It is shorter, and every row has a source you can open.',
   },
-  plan: {
-    eyebrow: 'Estimate',
-    title: 'Try a plan.',
-    lead: 'Write who you are looking for and pick rows and columns: you read the maximum cost before anything starts.',
-    inputLabel: 'Who you want to reach',
-    examplesLabel: 'More examples',
-    examples: [
-      { brief: 'Marketing agencies in Milan', rows: 50, columns: ['email', 'ai'] },
-      { brief: 'Grocery buyers in northern Italy', rows: 80, columns: ['email', 'ai'] },
-      { brief: 'CFOs at SaaS companies in Germany', rows: 60, columns: ['email', 'phone'] },
-    ],
-    rows: 'Rows',
-    columns: 'Required columns',
-    column: {
-      email: 'Checked email',
-      phone: 'Phone',
-      ai: 'AI column with source',
-    },
-    credit: 'credit',
-    credits: 'credits',
-    perRow: 'per row',
-    max: 'Maximum cost',
-    rules: {
-      instant: 'Up to 100 credits, the search starts at once.',
-      approve:
-        'Over 100 credits, the agent shows you the plan and starts only when you approve it.',
-      confirm: 'Over 500 credits, we also ask for a second confirmation.',
-    },
-    note: 'Companies and people found are free. A row without a required field is not delivered, and you do not pay for it.',
-  },
   how: {
     eyebrow: 'How it works',
     titleLine: 'From brief to first reply,',
@@ -152,10 +122,10 @@ export const en: Content = {
         n: '02',
         title: 'Approve the plan',
         short: 'Maximum cost, upfront',
-        body: 'Up to 100 credits the search starts at once. Above that you see the plan, with rows, columns and the most it can cost, and approve it. The columns marked with an asterisk decide what gets delivered.',
+        body: 'You see the plan, with rows and columns, and approve it. The columns marked with an asterisk decide what gets delivered.',
         points: [
-          'The plan and the questions are free',
-          'Above 100 credits nothing starts until you approve, above 500 we ask for one more confirmation',
+          'Nothing starts until you approve',
+          'You see rows and columns before it starts',
           'You set the rows in the plan; ask the agent for other columns or steps',
         ],
         art: {
@@ -167,7 +137,7 @@ export const en: Content = {
             '2 · 2 purchasing managers per chain',
             '3 · Verify the emails and one AI column',
           ],
-          note: 'Above 100 credits, nothing until you approve',
+          note: 'Nothing starts until you approve',
         },
       },
       {
@@ -177,7 +147,7 @@ export const en: Content = {
         body: 'Two linked lists, people and companies, with an email checked by a verifier and a score for how well each one fits. Every researched data point has its source.',
         points: [
           'The first rows arrive while the agent works',
-          'Incomplete rows are not delivered and not charged',
+          'Incomplete rows are not delivered',
           'Export to CSV or Excel whenever you like',
         ],
         art: {
@@ -229,16 +199,6 @@ export const en: Content = {
     eyebrow: 'Why Zenbree',
     titleLine: 'Made for people who sell,',
     titleRest: 'not for people who buy lists.',
-    pay: {
-      title: 'You pay only for what arrives',
-      body: 'A row without the required fields is not delivered. Its credits go back to your balance when the search ends.',
-      ledgerSearch: 'Marketing agencies Milan',
-      ledgerSearchValue: '−120',
-      ledgerRefund: 'Rows not delivered',
-      ledgerRefundValue: '+6',
-      ledgerBalance: 'Balance',
-      ledgerBalanceValue: '886 credits',
-    },
     source: {
       title: 'Every data point has a source',
       body: 'AI columns keep a value only if it is written on a page you can open.',
@@ -285,12 +245,8 @@ export const en: Content = {
     moreAfter: '.',
     items: [
       {
-        q: 'What is a credit?',
-        a: 'The unit you use to pay for the agent’s work: emails and phone numbers found, AI columns. Up to 100 credits a search starts at once; above that the agent shows you the plan with the most it can cost, and you approve it. Undelivered rows go back to your balance.',
-      },
-      {
         q: 'What if an email cannot be found?',
-        a: 'If the email is required in the plan, that row is not delivered and you do not pay for it. We flag “catch-all” emails as needing verification.',
+        a: 'If the email is required in the plan, that row is not delivered. We flag “catch-all” emails as needing verification.',
       },
       {
         q: 'Do I have to connect LinkedIn or my email?',
@@ -302,15 +258,11 @@ export const en: Content = {
       },
       {
         q: 'Can I upload a list I already have?',
-        a: 'Yes: upload a CSV and the agent completes it with emails, phone numbers and research columns. Rows in your exclusions are discarded. Importing is free.',
+        a: 'Yes: upload a CSV and the agent completes it with emails, phone numbers and research columns. Rows in your exclusions are discarded.',
       },
       {
         q: 'Where does the data come from, and is it GDPR compliant?',
         a: 'From professional data providers and public pages, always with the source. Every campaign email lets people unsubscribe, and anyone who does goes into the project’s exclusions forever. Exclusions apply to every campaign of the project. The legal basis and the GDPR art. 14 notice stay with the sender: Zenbree gives no legal advice.',
-      },
-      {
-        q: 'If an email bounces, do I get the credit back?',
-        a: 'A credit is charged when an address is found and the verifier does not reject it, catch-all included. A rejected address is not charged. After sending, we do not read bounces today (replies still reach your Zenbree inbox), and the credit for an email that later bounces is not refunded.',
       },
       {
         q: 'How many emails and messages can I send a day?',
@@ -319,10 +271,6 @@ export const en: Content = {
       {
         q: 'Can I keep my clients separate?',
         a: 'Yes. Each client is a project with its own lists, exclusions, mailboxes and LinkedIn, campaigns and inbox. One project’s exclusions do not touch the others.',
-      },
-      {
-        q: 'Can I set a spending cap?',
-        a: 'The cap is per search: the plan shows the maximum cost and, above 100 credits, it only starts after you approve (above 500 we ask for one more confirmation). There is no monthly limit, but you cannot spend more than your balance.',
       },
     ],
   },

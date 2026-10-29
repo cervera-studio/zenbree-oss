@@ -5,7 +5,7 @@ export const es: Content = {
   meta: {
     title: 'Zenbree · Agente de IA para outbound B2B',
     description:
-      'Dile al chat a quién quieres llegar. Hasta 100 créditos, la búsqueda empieza enseguida; por encima, el agente te enseña el plan con lo máximo que puede costar y lo apruebas tú. Después te entrega personas con un email comprobado por un verificador y la fuente de cada dato.',
+      'Dile al chat a quién quieres llegar. El agente te enseña el plan y lo apruebas tú. Después te entrega personas con un email comprobado por un verificador y la fuente de cada dato.',
   },
   nav: {
     homeLabel: 'Zenbree, inicio',
@@ -29,7 +29,7 @@ export const es: Content = {
     titleEm: 'Zenbree encuentra a quién contactar.',
     cta: 'Solicita acceso',
     seeHow: 'Ver cómo funciona',
-    fine: 'El plan es gratis · Solo pagas las filas entregadas',
+    fine: 'Código abierto · Self-host o servicio gestionado bajo petición',
   },
   stage: {
     label: 'Vista previa del producto',
@@ -95,36 +95,6 @@ export const es: Content = {
     line: 'Una buena lista no es una más larga.',
     em: 'Es más corta, y cada fila tiene una fuente que puedes abrir.',
   },
-  plan: {
-    eyebrow: 'Estimación',
-    title: 'Prueba un plan.',
-    lead: 'Escribe a quién buscas y elige filas y columnas: lees el coste máximo antes de empezar.',
-    inputLabel: 'A quién quieres llegar',
-    examplesLabel: 'Más ejemplos',
-    examples: [
-      { brief: 'Agencias de marketing en Madrid', rows: 50, columns: ['email', 'ai'] },
-      { brief: 'Compradores de supermercados en Cataluña', rows: 80, columns: ['email', 'ai'] },
-      { brief: 'CFO de empresas SaaS en Alemania', rows: 60, columns: ['email', 'phone'] },
-    ],
-    rows: 'Filas',
-    columns: 'Columnas obligatorias',
-    column: {
-      email: 'Email comprobado',
-      phone: 'Teléfono',
-      ai: 'Columna de IA con fuente',
-    },
-    credit: 'crédito',
-    credits: 'créditos',
-    perRow: 'por fila',
-    max: 'Coste máximo',
-    rules: {
-      instant: 'Hasta 100 créditos, la búsqueda empieza al momento.',
-      approve:
-        'Por encima de 100 créditos, el agente te muestra el plan y empieza solo cuando lo apruebas.',
-      confirm: 'Por encima de 500 créditos, te pedimos también una segunda confirmación.',
-    },
-    note: 'Las empresas y personas encontradas son gratis. Una fila sin un campo obligatorio no se entrega y no la pagas.',
-  },
   how: {
     eyebrow: 'Cómo funciona',
     titleLine: 'Del brief a la primera respuesta,',
@@ -152,10 +122,10 @@ export const es: Content = {
         n: '02',
         title: 'Aprueba el plan',
         short: 'Coste máximo, por adelantado',
-        body: 'Hasta 100 créditos, la búsqueda empieza enseguida. Por encima, ves el plan, con filas, columnas y lo máximo que puede costar, y lo apruebas. Las columnas marcadas con asterisco deciden qué se entrega.',
+        body: 'Ves el plan, con filas y columnas, y lo apruebas. Las columnas marcadas con asterisco deciden qué se entrega.',
         points: [
-          'El plan y las preguntas son gratis',
-          'Por encima de 100 créditos nada empieza hasta que apruebas; por encima de 500 pedimos una confirmación más',
+          'No empieza nada hasta que apruebas',
+          'Ves filas y columnas antes de empezar',
           'Las filas las cambias en el plan; columnas y pasos se los pides al agente',
         ],
         art: {
@@ -167,7 +137,7 @@ export const es: Content = {
             '2 · 2 responsables de compras por cadena',
             '3 · Verificar los emails y una columna IA',
           ],
-          note: 'Por encima de 100 créditos, nada hasta que apruebes',
+          note: 'No empieza nada hasta que apruebes',
         },
       },
       {
@@ -177,7 +147,7 @@ export const es: Content = {
         body: 'Dos listas vinculadas, personas y empresas, con un email comprobado por un verificador y una puntuación de cuánto encaja cada una. Cada dato investigado tiene su fuente.',
         points: [
           'Las primeras filas llegan mientras el agente trabaja',
-          'Las filas incompletas no se entregan ni se cobran',
+          'Las filas incompletas no se entregan',
           'Exporta a CSV o Excel cuando quieras',
         ],
         art: {
@@ -229,16 +199,6 @@ export const es: Content = {
     eyebrow: 'Por qué Zenbree',
     titleLine: 'Hecho para quien vende,',
     titleRest: 'no para quien compra listas.',
-    pay: {
-      title: 'Pagas solo lo que llega',
-      body: 'Una fila sin los campos obligatorios no se entrega. Sus créditos vuelven a tu saldo cuando termina la búsqueda.',
-      ledgerSearch: 'Agencias de marketing Milán',
-      ledgerSearchValue: '−120',
-      ledgerRefund: 'Filas no entregadas',
-      ledgerRefundValue: '+6',
-      ledgerBalance: 'Saldo',
-      ledgerBalanceValue: '886 créditos',
-    },
     source: {
       title: 'Cada dato tiene su fuente',
       body: 'Las columnas de IA solo conservan un valor si está escrito en una página que puedes abrir.',
@@ -285,12 +245,8 @@ export const es: Content = {
     moreAfter: '.',
     items: [
       {
-        q: '¿Qué es un crédito?',
-        a: 'La unidad con la que pagas el trabajo del agente: emails y teléfonos encontrados, columnas de IA. Hasta 100 créditos, la búsqueda empieza enseguida; por encima, el agente te enseña el plan con lo máximo que puede costar y lo apruebas tú. Las filas no entregadas vuelven a tu saldo.',
-      },
-      {
         q: '¿Y si no se encuentra un email?',
-        a: 'Si el email es obligatorio en el plan, esa fila no se entrega y no la pagas. Marcamos los emails «catch-all» como pendientes de verificar.',
+        a: 'Si el email es obligatorio en el plan, esa fila no se entrega. Marcamos los emails «catch-all» como pendientes de verificar.',
       },
       {
         q: '¿Tengo que conectar LinkedIn o mi email?',
@@ -302,15 +258,11 @@ export const es: Content = {
       },
       {
         q: '¿Puedo subir una lista que ya tengo?',
-        a: 'Sí: sube un CSV y el agente lo completa con emails, teléfonos y columnas de investigación. Las filas que están en tus exclusiones se descartan. Importar es gratis.',
+        a: 'Sí: sube un CSV y el agente lo completa con emails, teléfonos y columnas de investigación. Las filas que están en tus exclusiones se descartan.',
       },
       {
         q: '¿De dónde vienen los datos? ¿Cumple el RGPD?',
         a: 'De proveedores de datos profesionales y de páginas públicas, siempre con la fuente. Cada email de campaña permite darse de baja, y quien lo hace entra para siempre en las exclusiones del proyecto. Las exclusiones valen para todas las campañas del proyecto. La base legal y el aviso del art. 14 del RGPD corresponden a quien envía: Zenbree no ofrece asesoramiento legal.',
-      },
-      {
-        q: 'Si un email rebota, ¿recupero el crédito?',
-        a: 'Un crédito se cobra cuando se encuentra una dirección y el verificador no la rechaza, catch-all incluido. Una dirección rechazada no se cobra. Después del envío, hoy no leemos los rebotes (las respuestas siguen llegando a tu bandeja de Zenbree), y el crédito de un email que rebota más tarde no se devuelve.',
       },
       {
         q: '¿Cuántos emails y mensajes puedo enviar al día?',
@@ -319,10 +271,6 @@ export const es: Content = {
       {
         q: '¿Puedo mantener separados a mis clientes?',
         a: 'Sí. Cada cliente es un proyecto con sus listas, exclusiones, buzones y LinkedIn, campañas y bandeja de entrada. Las exclusiones de un proyecto no afectan a los demás.',
-      },
-      {
-        q: '¿Puedo fijar un límite de gasto?',
-        a: 'El límite es por búsqueda: el plan muestra el coste máximo y, por encima de 100 créditos, solo empieza cuando lo apruebas (por encima de 500 pedimos una confirmación más). No hay límite mensual, pero no puedes gastar más que tu saldo.',
       },
     ],
   },

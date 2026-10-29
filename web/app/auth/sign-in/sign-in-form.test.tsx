@@ -33,14 +33,14 @@ async function submit(c: HTMLElement, email: string) {
 describe('SignInForm notices', () => {
   it('shows the expired notice as a status and prefills the last email', async () => {
     localStorage.setItem(LAST_EMAIL_KEY, 'me@example.com');
-    const c = await render(<SignInForm expired callbackUrl="/" />);
+    const c = await render(<SignInForm expired callbackUrl="/" canSignUp />);
     expect(status(c)).toContain('Sessione scaduta');
     expect(alert(c)).toBeNull();
     expect(field(c, 'Email').value).toBe('me@example.com');
   });
 
   it('keeps text typed before the stored email arrives', async () => {
-    const c = await render(<SignInForm expired callbackUrl="/" />);
+    const c = await render(<SignInForm expired callbackUrl="/" canSignUp />);
     const input = field(c, 'Email');
     await act(async () => {
       Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set?.call(
@@ -55,13 +55,15 @@ describe('SignInForm notices', () => {
 
   it('does not prefill outside the expired notice', async () => {
     localStorage.setItem(LAST_EMAIL_KEY, 'me@example.com');
-    const c = await render(<SignInForm expired={false} callbackUrl="/" />);
+    const c = await render(<SignInForm expired={false} callbackUrl="/" canSignUp />);
     expect(status(c)).toBeNull();
     expect(field(c, 'Email').value).toBe('');
   });
 
   it('shows only the generic ban for an OAuth ban, with the support address', async () => {
-    const c = await render(<SignInForm expired callbackUrl="/" oauthError="BANNED_USER" />);
+    const c = await render(
+      <SignInForm expired callbackUrl="/" canSignUp oauthError="BANNED_USER" />,
+    );
     expect(alert(c)).toContain('Account sospeso');
     expect(alert(c)).toContain('La sospensione non ha una data di fine.');
     expect(alert(c)).not.toContain('Motivo');
@@ -72,7 +74,7 @@ describe('SignInForm notices', () => {
 
   it('shows the ban the server found instead of the expired notice (#762)', async () => {
     const ban = { reason: 'Spam', expires: '2026-12-01T09:00:00.000Z' };
-    const c = await render(<SignInForm expired ban={ban} callbackUrl="/" />);
+    const c = await render(<SignInForm expired ban={ban} callbackUrl="/" canSignUp />);
     expect(alert(c)).toContain('Account sospeso');
     expect(alert(c)).toContain('Motivo: Spam');
     expect(alert(c)).toContain('1 dicembre 2026');
@@ -81,21 +83,33 @@ describe('SignInForm notices', () => {
 
   it('shows the generic error and re-enables submit when the request fails', async () => {
     signIn.mockRejectedValueOnce(new TypeError('Failed to fetch'));
-    const c = await render(<SignInForm expired={false} callbackUrl="/" />);
+    const c = await render(<SignInForm expired={false} callbackUrl="/" canSignUp />);
     await submit(c, 'me@example.com');
     expect(alert(c)).toBe('Qualcosa è andato storto. Riprova.');
     expect(control(c, 'Accedi').hasAttribute('disabled')).toBe(false);
     expect(push).not.toHaveBeenCalled();
   });
 
+  it('hides the sign-up link when sign-up is closed', async () => {
+    const c = await render(<SignInForm expired={false} callbackUrl="/" canSignUp={false} />);
+    expect(c.querySelector('a[href^="/auth/sign-up"]')).toBeNull();
+  });
+
   it('shows any other OAuth error as the generic error', async () => {
-    const c = await render(<SignInForm expired={false} callbackUrl="/" oauthError="nope" />);
+    const c = await render(
+      <SignInForm expired={false} callbackUrl="/" canSignUp oauthError="nope" />,
+    );
     expect(alert(c)).toBe('Qualcosa è andato storto. Riprova.');
   });
 
   it('tells a Microsoft sign-up with an unverified address to sign up with email first', async () => {
     const c = await render(
-      <SignInForm expired={false} callbackUrl="/" oauthError="MICROSOFT_EMAIL_UNVERIFIED" />,
+      <SignInForm
+        expired={false}
+        callbackUrl="/"
+        canSignUp
+        oauthError="MICROSOFT_EMAIL_UNVERIFIED"
+      />,
     );
     expect(alert(c)).toMatch(/^Questo indirizzo Microsoft non è verificato\./);
   });
@@ -110,7 +124,7 @@ describe('SignInForm notices', () => {
         statusText: 'Forbidden',
       },
     });
-    const c = await render(<SignInForm expired callbackUrl="/" />);
+    const c = await render(<SignInForm expired callbackUrl="/" canSignUp />);
     await submit(c, 'me@example.com');
     expect(alert(c)).toContain('Motivo: Spam');
     expect(alert(c)).toContain('1 dicembre 2026');
@@ -122,7 +136,7 @@ describe('SignInForm notices', () => {
 describe('SignInForm', () => {
   it('signs in, remembers the email and returns to the callback', async () => {
     signIn.mockResolvedValue({ data: null, error: null });
-    const c = await render(<SignInForm expired={false} callbackUrl="/lists/1" />);
+    const c = await render(<SignInForm expired={false} callbackUrl="/lists/1" canSignUp />);
     await submit(c, 'me@example.com');
     expect(signIn).toHaveBeenCalledWith({
       email: 'me@example.com',
@@ -134,7 +148,7 @@ describe('SignInForm', () => {
   });
 
   it('sends a failed social sign-in back to the sign-in page', async () => {
-    const c = await render(<SignInForm expired={false} callbackUrl="/lists/1" />);
+    const c = await render(<SignInForm expired={false} callbackUrl="/lists/1" canSignUp />);
     await click(control(c, 'Continua con Google'));
     expect(authClient.signIn.social).toHaveBeenCalledWith({
       provider: 'google',

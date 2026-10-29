@@ -1,10 +1,9 @@
 ---
 interface Props {
-  name: 'pay' | 'source' | 'approve' | 'replies' | 'market';
+  name: 'source' | 'approve' | 'replies' | 'market';
 }
 const { name } = Astro.props;
 const paths = {
-  pay: 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6',
   source:
     'M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7',
   approve: 'M20 6 9 17l-5-5',

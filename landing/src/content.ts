@@ -1,4 +1,3 @@
-import type { PlanColumn, PlanRules } from './components/estimate';
 import { en } from './i18n/en';
 import { es } from './i18n/es';
 import { fr } from './i18n/fr';
@@ -116,23 +115,6 @@ export type Content = {
   people: readonly Person[];
   works: { label: string; items: readonly { name: string; logo: WorksLogo; soon?: true }[] };
   statement: { line: string; em: string };
-  plan: {
-    eyebrow: string;
-    title: string;
-    lead: string;
-    inputLabel: string;
-    examplesLabel: string;
-    examples: readonly { brief: string; rows: number; columns: readonly PlanColumn[] }[];
-    rows: string;
-    columns: string;
-    column: Record<PlanColumn, string>;
-    credit: string;
-    credits: string;
-    perRow: string;
-    max: string;
-    rules: PlanRules;
-    note: string;
-  };
   how: {
     eyebrow: string;
     titleLine: string;
@@ -144,14 +126,6 @@ export type Content = {
     eyebrow: string;
     titleLine: string;
     titleRest: string;
-    pay: Card & {
-      ledgerSearch: string;
-      ledgerSearchValue: string;
-      ledgerRefund: string;
-      ledgerRefundValue: string;
-      ledgerBalance: string;
-      ledgerBalanceValue: string;
-    };
     source: Card & { cellValue: string; cellSource: string };
     approve: Card & { caption: string };
     replies: Card & { labels: readonly { label: string; tone?: 'pos' | 'info' | 'neg' }[] };
