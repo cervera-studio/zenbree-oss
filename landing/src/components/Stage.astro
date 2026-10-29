@@ -1,6 +1,6 @@
 ---
 import type { Content } from '../content';
-import { btn, dataSm, panel, panelHead, tag } from '../styles/classes';
+import { btn, dataSm, panel, panelHead } from '../styles/classes';
 import PersonRow from './PersonRow.astro';
 
 interface Props {
@@ -11,7 +11,7 @@ const { stage, ui } = t;
 const chip = 'inline-flex h-6.5 items-center rounded-md border px-2 text-ui whitespace-nowrap';
 const floats = [
   [stage.emailFloat, 'text-accent-ink'],
-  [stage.refundFloat, 'text-positive'],
+  [stage.fieldsFloat, 'text-positive'],
 ] as const;
 ---
 
@@ -25,7 +25,7 @@ const floats = [
       <div class="flex flex-col gap-4 border-r border-line p-6 tablet:border-r-0 tablet:border-b phone:p-4">
         <p class="max-w-15/16 self-end rounded-lg bg-accent-tint px-3 py-2.5 text-ui text-ink">{stage.brief}</p>
         <div class={panel}>
-          <div class={panelHead}><strong class="flex-1 text-ui-strong">{stage.planTitle}</strong><span class={tag('accent')}>{stage.planBudget}</span></div>
+          <div class={panelHead}><strong class="flex-1 text-ui-strong">{stage.planTitle}</strong></div>
           <div class="flex flex-col gap-3 p-3">
             <div class="flex flex-wrap gap-1.5">
               {stage.columns.map((column) => <span class:list={[chip, 'border-line text-soft']}>{column}</span>)}<span class:list={[chip, 'border-accent-tint bg-accent-tint text-accent-ink']}>{stage.aiColumn}</span>

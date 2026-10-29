@@ -38,18 +38,17 @@ export const fr: Content = {
       value: 'giulia@officinanove.it',
       source: 'Source : officinanove.it/team',
     },
-    refundFloat: {
-      key: '+6 crédits restitués',
-      value: '3 lignes non livrées',
-      source: 'Pas d’e-mail, pas de débit',
+    fieldsFloat: {
+      key: 'Champs obligatoires',
+      value: 'Nom, fonction, e-mail',
+      source: 'Lignes complètes uniquement',
     },
     brief:
       'Agences de marketing indépendantes à Milan, 10 à 50 salariés. Je veux le CEO, avec un e-mail contrôlé.',
     planTitle: 'Plan · 60 lignes',
-    planBudget: 'jusqu’à 120 crédits',
     columns: ['Nom *', 'Fonction *', 'E-mail contrôlé *'],
     aiColumn: 'Secteur · IA',
-    planFooter: 'Vous ne payez que les lignes avec les champs *',
+    planFooter: 'Uniquement les lignes avec les champs *',
     rowsSummary: '57 livrées · 31 entreprises',
   },
   ui: {
@@ -122,7 +121,7 @@ export const fr: Content = {
       {
         n: '02',
         title: 'Approuvez le plan',
-        short: 'Coût maximal, annoncé d’avance',
+        short: 'Lignes, colonnes et étapes',
         body: 'Vous voyez le plan, avec les lignes et les colonnes, et vous l’approuvez. Les colonnes marquées d’un astérisque décident de ce qui est livré.',
         points: [
           'Rien ne démarre sans votre accord',
@@ -132,7 +131,6 @@ export const fr: Content = {
         art: {
           kind: 'plan',
           title: 'Plan · 80 lignes',
-          budget: 'jusqu’à 160 crédits',
           steps: [
             '1 · Trouver 40 chaînes dans le nord-est de l’Italie',
             '2 · 2 responsables achats par chaîne',
@@ -198,8 +196,8 @@ export const fr: Content = {
   },
   why: {
     eyebrow: 'Pourquoi Zenbree',
-    titleLine: 'Conçu pour ceux qui vendent,',
-    titleRest: 'pas pour ceux qui achètent des listes.',
+    titleLine: 'Trouvez les bonnes personnes,',
+    titleRest: 'avec les données pour les contacter.',
     source: {
       title: 'Chaque donnée a sa source',
       body: 'Les colonnes IA ne gardent une valeur que si elle est écrite sur une page que vous pouvez ouvrir.',
@@ -236,7 +234,7 @@ export const fr: Content = {
     repoCta: 'Voir sur GitHub',
     hostedTitle: 'Hébergé par nous',
     hostedBody:
-      'Vous ne voulez pas gérer serveurs et comptes fournisseurs ? Nous proposons un service hébergé payant. Écrivez-nous et nous l’activons.',
+      'Vous ne voulez pas gérer serveurs et comptes fournisseurs ? Nous proposons un service hébergé. Écrivez-nous et nous l’activons.',
     hostedCta: 'Nous écrire',
   },
   faq: {

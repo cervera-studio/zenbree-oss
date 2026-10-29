@@ -38,18 +38,17 @@ export const en: Content = {
       value: 'giulia@officinanove.it',
       source: 'Source: officinanove.it/team',
     },
-    refundFloat: {
-      key: '+6 credits refunded',
-      value: '3 rows not delivered',
-      source: 'No email, no charge',
+    fieldsFloat: {
+      key: 'Required fields',
+      value: 'Name, role, email',
+      source: 'Complete rows only',
     },
     brief:
       'Independent marketing agencies in Milan, 10–50 employees. I want the CEO, with a checked email.',
     planTitle: 'Plan · 60 rows',
-    planBudget: 'up to 120 credits',
     columns: ['Name *', 'Role *', 'Checked email *'],
     aiColumn: 'Industry · AI',
-    planFooter: 'You only pay for rows with the * fields',
+    planFooter: 'Only rows with the * fields',
     rowsSummary: '57 delivered · 31 companies',
   },
   ui: {
@@ -121,7 +120,7 @@ export const en: Content = {
       {
         n: '02',
         title: 'Approve the plan',
-        short: 'Maximum cost, upfront',
+        short: 'Rows, columns and steps',
         body: 'You see the plan, with rows and columns, and approve it. The columns marked with an asterisk decide what gets delivered.',
         points: [
           'Nothing starts until you approve',
@@ -131,7 +130,6 @@ export const en: Content = {
         art: {
           kind: 'plan',
           title: 'Plan · 80 rows',
-          budget: 'up to 160 credits',
           steps: [
             '1 · Find 40 chains in North-East Italy',
             '2 · 2 purchasing managers per chain',
@@ -197,8 +195,8 @@ export const en: Content = {
   },
   why: {
     eyebrow: 'Why Zenbree',
-    titleLine: 'Made for people who sell,',
-    titleRest: 'not for people who buy lists.',
+    titleLine: 'Find the right people,',
+    titleRest: 'with the data to contact them.',
     source: {
       title: 'Every data point has a source',
       body: 'AI columns keep a value only if it is written on a page you can open.',
@@ -235,7 +233,7 @@ export const en: Content = {
     repoCta: 'View on GitHub',
     hostedTitle: 'Hosted by us',
     hostedBody:
-      'Prefer not to run servers and provider accounts? We offer a paid hosted service. Write to us and we will set it up.',
+      'Prefer not to run servers and provider accounts? We offer a hosted service. Write to us and we will set it up.',
     hostedCta: 'Contact us',
   },
   faq: {

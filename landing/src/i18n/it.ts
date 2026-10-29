@@ -38,18 +38,17 @@ export const it: Content = {
       value: 'giulia@officinanove.it',
       source: 'Fonte: officinanove.it/team',
     },
-    refundFloat: {
-      key: '+6 crediti resi',
-      value: '3 righe non consegnate',
-      source: 'Senza email non le paghi',
+    fieldsFloat: {
+      key: 'Campi obbligatori',
+      value: 'Nome, ruolo, email',
+      source: 'Solo righe complete',
     },
     brief:
       'Agenzie di marketing indipendenti a Milano, 10–50 dipendenti. Voglio il CEO, con email controllata.',
     planTitle: 'Piano · 60 righe',
-    planBudget: 'fino a 120 crediti',
     columns: ['Nome *', 'Ruolo *', 'Email controllata *'],
     aiColumn: 'Settore · AI',
-    planFooter: 'Paghi solo le righe con i campi *',
+    planFooter: 'Solo righe con i campi *',
     rowsSummary: '57 consegnate · 31 aziende',
   },
   ui: {
@@ -121,7 +120,7 @@ export const it: Content = {
       {
         n: '02',
         title: 'Approva il piano',
-        short: 'Costo massimo, prima',
+        short: 'Righe, colonne e passaggi',
         body: 'Vedi il piano, con righe e colonne, e lo approvi. Le colonne con l’asterisco decidono cosa ti viene consegnato.',
         points: [
           'Non parte nulla finché non approvi',
@@ -131,7 +130,6 @@ export const it: Content = {
         art: {
           kind: 'plan',
           title: 'Piano · 80 righe',
-          budget: 'fino a 160 crediti',
           steps: [
             '1 · Trova 40 insegne nel Nord Est',
             '2 · 2 responsabili acquisti per insegna',
@@ -197,8 +195,8 @@ export const it: Content = {
   },
   why: {
     eyebrow: 'Perché Zenbree',
-    titleLine: 'Fatto per chi vende,',
-    titleRest: 'non per chi compra liste.',
+    titleLine: 'Trova le persone giuste,',
+    titleRest: 'con i dati per contattarle.',
     source: {
       title: 'Ogni dato con la fonte',
       body: 'Le colonne AI tengono un valore solo se è scritto in una pagina che puoi aprire.',
@@ -235,7 +233,7 @@ export const it: Content = {
     repoCta: 'Vedi su GitHub',
     hostedTitle: 'Gestito da noi',
     hostedBody:
-      'Non vuoi occuparti di server e account dei fornitori? Offriamo un servizio a pagamento già gestito. Scrivici e lo attiviamo.',
+      'Non vuoi occuparti di server e account dei fornitori? Offriamo un servizio già gestito. Scrivici e lo attiviamo.',
     hostedCta: 'Scrivici',
   },
   faq: {
