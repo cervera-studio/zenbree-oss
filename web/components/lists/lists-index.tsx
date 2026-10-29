@@ -150,25 +150,23 @@ function IndexBody({ lists, onDelete }: { lists: List[]; onDelete: (list: List) 
   const active = tab === 'all' || present.includes(tab) ? tab : 'all';
   const shown = active === 'all' ? lists : lists.filter((l) => listKind(l) === active);
   return (
-    <>
-      <Tabs value={active} onValueChange={(v) => setTab(v as 'all' | ListKind)}>
-        <TabsList aria-label={t('indexTabsLabel')}>
-          <TabsTrigger value="all" count={format.number(lists.length, 'credits')}>
-            {t('tab.all')}
+    <Tabs value={active} onValueChange={(v) => setTab(v as 'all' | ListKind)}>
+      <TabsList aria-label={t('indexTabsLabel')}>
+        <TabsTrigger value="all" count={format.number(lists.length, 'credits')}>
+          {t('tab.all')}
+        </TabsTrigger>
+        {present.map((k) => (
+          <TabsTrigger key={k} value={k} count={format.number(count(k), 'credits')}>
+            {t(`kind.${k}`)}
           </TabsTrigger>
-          {present.map((k) => (
-            <TabsTrigger key={k} value={k} count={format.number(count(k), 'credits')}>
-              {t(`kind.${k}`)}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        <TabsContent value={active} className="flex flex-col gap-4">
-          <IndexTable lists={shown} onDelete={onDelete} />
-          <IndexCards lists={shown} onDelete={onDelete} />
-          <IndexCount count={shown.length} />
-        </TabsContent>
-      </Tabs>
-    </>
+        ))}
+      </TabsList>
+      <TabsContent value={active} className="flex flex-col gap-4">
+        <IndexTable lists={shown} onDelete={onDelete} />
+        <IndexCards lists={shown} onDelete={onDelete} />
+        <IndexCount count={shown.length} />
+      </TabsContent>
+    </Tabs>
   );
 }
 
