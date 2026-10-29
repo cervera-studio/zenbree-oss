@@ -90,7 +90,7 @@ _HUNTER_EMAIL_FIND_ENDPOINT_ID: Final[str] = 'hunter.people.email.find'
 # ONLY a LinkedIn profile URL and returns ONLY profile data: name, title,
 # employer, tenure, location, work history. The full catalog example
 # carries no email and no phone (checked field by field against
-# ``https://treg.superdesign.dev/catalog/examples/leadmagic.people.enrich``),
+# Treg's catalog example for ``leadmagic.people.enrich``),
 # and the ``profile_url`` it echoes back is the anchor we passed IN, so
 # surfacing it as a revealed LinkedIn would bill the user for data they
 # already had. A LeadMagic call can therefore never satisfy

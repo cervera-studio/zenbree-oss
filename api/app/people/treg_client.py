@@ -1,6 +1,6 @@
 """Treg HTTP client — pay-per-call proxy in front of many data providers.
 
-Treg (``treg.superdesign.dev``) fronts Lusha, People Data Labs, Hunter,
+Treg fronts Lusha, People Data Labs, Hunter,
 LeadMagic and others behind one credential and one prepaid balance. It is
 a **pass-through proxy**, not an API of its own:
 
@@ -8,7 +8,7 @@ a **pass-through proxy**, not an API of its own:
   query and body pass through to the upstream provider unchanged, so a
   provider whose endpoint is ``POST /v3/contacts/search-and-enrich`` is
   reached by POSTing a JSON body to the same ``/call/<endpoint-id>`` URL.
-  Verified live against ``treg.superdesign.dev`` on 2026-08-12: a POST
+  Verified live against Treg on 2026-08-12: a POST
   with a JSON body reaches Treg's router (it answers with the endpoint's
   own credential/permission verdict, not ``405 Method Not Allowed``).
 - The response is the upstream provider's response **verbatim** — no

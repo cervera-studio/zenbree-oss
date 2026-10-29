@@ -60,7 +60,7 @@ class Settings(BaseSettings):
     aiark_api_key: str = ''
     aiark_base_url: str = 'https://api.ai-ark.com/api/developer-portal'
     treg_api_key: str = ''
-    treg_base_url: str = 'https://treg.superdesign.dev'
+    treg_base_url: str = ''  # the proxy's URL; empty = Treg inert
     serper_api_key: str = ''
     millionverifier_api_key: str = ''  # empty → MX-only email check
     unipile_dsn: str = ''  # e.g. https://api8.unipile.com:13851

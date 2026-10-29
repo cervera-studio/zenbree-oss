@@ -627,6 +627,7 @@ def keys(monkeypatch):
     for name in ('apollo_api_key', 'serper_api_key', 'unipile_api_key'):
         monkeypatch.setattr(settings, name, 'test-key')
     monkeypatch.setattr(settings, 'unipile_dsn', 'https://unipile.test')
+    monkeypatch.setattr(settings, 'treg_base_url', 'https://treg.test')
     for name in ('treg_api_key', 'aiark_api_key', 'millionverifier_api_key'):
         monkeypatch.setattr(settings, name, '')
 

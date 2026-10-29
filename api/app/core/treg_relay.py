@@ -1,6 +1,6 @@
 """How to read a Treg response: the rules the three clients share.
 
-Treg (``treg.superdesign.dev``) is a pass-through proxy. Every context
+Treg is a pass-through proxy. Every context
 that buys through it (``app.people``, ``app.seo``, ``app.commerce``) has
 its own client, for the reasons each of those modules gives, and they
 are right to: the error codes are domain vocabulary and the request
@@ -21,7 +21,7 @@ is what produced #1923.
 
 The header contract
 -------------------
-Measured live against ``treg.superdesign.dev`` on 2026-08-25, over the
+Measured live against Treg on 2026-08-25, over the
 five endpoints the SEO and commerce contexts call plus one that does not
 exist, and it holds identically on all of them:
 

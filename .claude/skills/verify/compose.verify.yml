@@ -28,7 +28,7 @@ x-api-env: &api-env
     AIARK_API_KEY: ${AIARK_API_KEY:-}
     AIARK_BASE_URL: ${AIARK_BASE_URL:-https://api.ai-ark.com/api/developer-portal}
     TREG_API_KEY: ${TREG_API_KEY:-}
-    TREG_BASE_URL: ${TREG_BASE_URL:-https://treg.superdesign.dev}
+    TREG_BASE_URL: ${TREG_BASE_URL:-}
     MILLIONVERIFIER_API_KEY: ${MILLIONVERIFIER_API_KEY:-}
     EXA_API_KEY: ${EXA_API_KEY:-}
     EXA_ENABLED: ${EXA_ENABLED:-false}
