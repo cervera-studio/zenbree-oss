@@ -105,13 +105,13 @@ class Component extends DCLogic {
     const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
     const S = this.state;
     const D = [
-      ['r1', 'Giulia Ferri', 'CEO', 'Officina Nove', 'giulia.ferri@officinanove.it', 'ok', 92, 'Cerca il primo SDR per l’outbound verso aziende industriali lombarde.', 'officinanove.it/lavora-con-noi'],
-      ['r2', 'Marco Bellini', 'Resp. commerciale', 'Studio Brezza', 'm.bellini@studiobrezza.com', 'ok', 88, 'Ha aperto una sede a Torino e sta allargando il team new business.', 'studiobrezza.com/news'],
-      ['r3', 'Chiara Gallo', 'Founder e CEO', 'Lanterna Digital', 'chiara@lanternadigital.it', 'ok', 85, 'Agenzia performance in crescita: 6 assunzioni negli ultimi 12 mesi.', 'linkedin.com/company/lanterna-digital'],
-      ['r4', 'Elena Moretti', 'CEO', 'Ponte Creativo', 'e.moretti@pontecreativo.it', 'ok', 81, 'Vende progetti di brand a PMI, cerca SDR con inglese per l’estero.', 'pontecreativo.it/careers'],
-      ['r7', 'Davide Rinaldi', 'Head of sales', 'Quadrante Media', 'd.rinaldi@quadrantemedia.it', 'catch', 76, 'Team commerciale di 3 persone, cerca il quarto profilo junior.', 'quadrantemedia.it/jobs'],
-      ['r5', 'Luca Conti', 'Business director', 'Nodo Agency', 'luca.conti@nodoagency.com', 'ok', 79, 'Agenzia HubSpot partner: vende retainer a software house italiane.', 'nodoagency.com/partner'],
-      ['r10', 'Paolo Marchi', 'Sales manager', 'Rete Sei', 'Email non trovata', 'none', 70, 'Lavora con catene di ristorazione nel Nord Italia.', 'retesei.it/casi']
+      ['r1', 'Giulia Ferri', 'CEO', 'Officina Nove', 'giulia.ferri@officinanove.example', 'ok', 92, 'Cerca il primo SDR per l’outbound verso aziende industriali lombarde.', 'officinanove.example/lavora-con-noi'],
+      ['r2', 'Marco Bellini', 'Resp. commerciale', 'Studio Brezza', 'm.bellini@studiobrezza.example', 'ok', 88, 'Ha aperto una sede a Torino e sta allargando il team new business.', 'studiobrezza.example/news'],
+      ['r3', 'Chiara Gallo', 'Founder e CEO', 'Lanterna Digital', 'chiara@lanternadigital.example', 'ok', 85, 'Agenzia performance in crescita: 6 assunzioni negli ultimi 12 mesi.', 'linkedin.com/company/lanterna-digital'],
+      ['r4', 'Elena Moretti', 'CEO', 'Ponte Creativo', 'e.moretti@pontecreativo.example', 'ok', 81, 'Vende progetti di brand a PMI, cerca SDR con inglese per l’estero.', 'pontecreativo.example/careers'],
+      ['r7', 'Davide Rinaldi', 'Head of sales', 'Quadrante Media', 'd.rinaldi@quadrantemedia.example', 'catch', 76, 'Team commerciale di 3 persone, cerca il quarto profilo junior.', 'quadrantemedia.example/jobs'],
+      ['r5', 'Luca Conti', 'Business director', 'Nodo Agency', 'luca.conti@nodoagency.example', 'ok', 79, 'Agenzia HubSpot partner: vende retainer a software house italiane.', 'nodoagency.example/partner'],
+      ['r10', 'Paolo Marchi', 'Sales manager', 'Rete Sei', 'Email non trovata', 'none', 70, 'Lavora con catene di ristorazione nel Nord Italia.', 'retesei.example/casi']
     ];
     const C = { ok: ['Verificata', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)'], catch: ['Catch-all', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)'], none: ['Da completare', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)'] };
     const all = D.map(([id, name, role, company, email, st, fit, why, src]) => ({

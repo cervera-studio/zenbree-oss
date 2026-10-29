@@ -68,7 +68,7 @@ details>summary::-webkit-details-marker{display:none}
     <sc-if value="{{is.confirm}}" hint-placeholder-val="{{true}}">
       <div style="display: flex; flex-direction: column; gap: 18px">
         <h1 style="margin: 0; font-size: 26px; line-height: 1.25; font-weight: 700">Non vuoi più ricevere email da Ritmo Sales?</h1>
-        <p style="margin: 0; line-height: 1.6; color: var(--zb-muted-fg)">Ti ha scritto Ale Poli il 2 ottobre, con oggetto <span style="color: var(--zb-fg)">«Un'idea per Vela Studio»</span>. Se confermi, <strong style="color: var(--zb-fg)">martina@velastudio.it</strong> non riceverà più messaggi da Ritmo Sales, nemmeno quelli già programmati.</p>
+        <p style="margin: 0; line-height: 1.6; color: var(--zb-muted-fg)">Ti ha scritto Ale Poli il 2 ottobre, con oggetto <span style="color: var(--zb-fg)">«Un'idea per Vela Studio»</span>. Se confermi, <strong style="color: var(--zb-fg)">martina@velastudio.example</strong> non riceverà più messaggi da Ritmo Sales, nemmeno quelli già programmati.</p>
         <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
           <legend style="font-size: 13px; font-weight: 600; margin-bottom: 8px">Vuoi dirci perché? <span style="font-weight: 500; color: var(--zb-muted-fg)">(facoltativo)</span></legend>
           <sc-for list="{{reasons}}" as="r" hint-placeholder-count="4">
@@ -87,14 +87,14 @@ details>summary::-webkit-details-marker{display:none}
       <div role="status" style="display: flex; flex-direction: column; gap: 16px">
         <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 999px; background: rgba(0,188,125,0.14); color: var(--zb-pos-fg); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
         <h1 style="margin: 0; font-size: 26px; line-height: 1.25; font-weight: 700">Fatto: non riceverai più email da Ritmo Sales</h1>
-        <p style="margin: 0; line-height: 1.6; color: var(--zb-muted-fg)"><strong style="color: var(--zb-fg)">martina@velastudio.it</strong> è nella lista di esclusione di Ritmo Sales. I messaggi già programmati sono stati annullati. Non serve fare altro.</p>
+        <p style="margin: 0; line-height: 1.6; color: var(--zb-muted-fg)"><strong style="color: var(--zb-fg)">martina@velastudio.example</strong> è nella lista di esclusione di Ritmo Sales. I messaggi già programmati sono stati annullati. Non serve fare altro.</p>
         <sc-if value="{{undoable}}" hint-placeholder-val="{{true}}">
           <p style="margin: 0; font-size: 14px">Ti sei sbagliata? <button type="button" onClick="{{undo}}" style="border: 0; background: transparent; padding: 0; color: var(--zb-ink); font-family: inherit; font-size: 14px; font-weight: 600; text-decoration: underline; cursor: pointer">Annulla la disiscrizione</button></p>
         </sc-if>
         <div style="padding: 14px 16px; border-radius: 14px; background: var(--zb-card); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.55">
           <strong>I tuoi dati</strong>
           <span style="color: var(--zb-muted-fg)">Ritmo Sales ha trovato il tuo contatto da fonti professionali pubbliche. Puoi chiedere di cancellarlo del tutto.</span>
-          <sc-if value="{{erasureSent}}" hint-placeholder-val="{{false}}"><span style="font-weight: 600; color: var(--zb-pos-fg)">Richiesta inviata a Ritmo Sales. Ti rispondono entro 30 giorni a martina@velastudio.it.</span></sc-if>
+          <sc-if value="{{erasureSent}}" hint-placeholder-val="{{false}}"><span style="font-weight: 600; color: var(--zb-pos-fg)">Richiesta inviata a Ritmo Sales. Ti rispondono entro 30 giorni a martina@velastudio.example.</span></sc-if>
           <sc-if value="{{erasureOpen}}" hint-placeholder-val="{{true}}"><button type="button" class="b2" onClick="{{erase}}" style="align-self: flex-start">Chiedi di cancellare i miei dati</button></sc-if>
         </div>
       </div>
@@ -103,7 +103,7 @@ details>summary::-webkit-details-marker{display:none}
     <sc-if value="{{is.already}}" hint-placeholder-val="{{false}}">
       <div role="status" style="display: flex; flex-direction: column; gap: 14px">
         <h1 style="margin: 0; font-size: 26px; line-height: 1.25; font-weight: 700">Sei già disiscritta</h1>
-        <p style="margin: 0; line-height: 1.6; color: var(--zb-muted-fg)">Dal 2 ottobre <strong style="color: var(--zb-fg)">martina@velastudio.it</strong> non riceve email da Ritmo Sales. Se ti è arrivato un messaggio dopo questa data, rispondi pure «no grazie»: lo leggiamo e blocchiamo anche quello.</p>
+        <p style="margin: 0; line-height: 1.6; color: var(--zb-muted-fg)">Dal 2 ottobre <strong style="color: var(--zb-fg)">martina@velastudio.example</strong> non riceve email da Ritmo Sales. Se ti è arrivato un messaggio dopo questa data, rispondi pure «no grazie»: lo leggiamo e blocchiamo anche quello.</p>
       </div>
     </sc-if>
 

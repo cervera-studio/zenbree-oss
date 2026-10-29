@@ -202,11 +202,11 @@ class Component extends DCLogic {
       panelMeta: tab === 'people' ? '12 consegnate · cerco ancora 26' : 'Completata · base della lista Persone',
       showPeople: () => this.setState({ tab: 'people' }), showCompanies: () => this.setState({ tab: 'companies' }),
       companies: [
-        C('Officina Nove', 'officinanove.it', '24', 'SDR · 6 gg fa', '2'), C('Studio Brezza', 'studiobrezza.com', '38', 'BDR · 11 gg fa', '2'),
-        C('Lanterna Digital', 'lanternadigital.it', '17', 'SDR · 3 gg fa', '1'), C('Ponte Creativo', 'pontecreativo.it', '42', 'SDR · 19 gg fa', '2'),
-        C('Nodo Agency', 'nodoagency.com', '29', '', '1'), C('Fiordaliso Comunicazione', 'fiordalisocom.it', '15', 'BDR · 24 gg fa', '1'),
-        C('Quadrante Media', 'quadrantemedia.it', '33', 'SDR · 8 gg fa', '—'), C('Bottega Pixel', 'bottegapixel.it', '12', '', '1'),
-        C('Arco Brand Lab', 'arcobrandlab.it', '46', 'SDR · 27 gg fa', '1'), C('Rete Sei', 'retesei.it', '21', '', '—'), C('Vela Studio', 'velastudio.it', '11', '', '—')
+        C('Officina Nove', 'officinanove.example', '24', 'SDR · 6 gg fa', '2'), C('Studio Brezza', 'studiobrezza.example', '38', 'BDR · 11 gg fa', '2'),
+        C('Lanterna Digital', 'lanternadigital.example', '17', 'SDR · 3 gg fa', '1'), C('Ponte Creativo', 'pontecreativo.example', '42', 'SDR · 19 gg fa', '2'),
+        C('Nodo Agency', 'nodoagency.example', '29', '', '1'), C('Fiordaliso Comunicazione', 'fiordalisocom.example', '15', 'BDR · 24 gg fa', '1'),
+        C('Quadrante Media', 'quadrantemedia.example', '33', 'SDR · 8 gg fa', '—'), C('Bottega Pixel', 'bottegapixel.example', '12', '', '1'),
+        C('Arco Brand Lab', 'arcobrandlab.example', '46', 'SDR · 27 gg fa', '1'), C('Rete Sei', 'retesei.example', '21', '', '—'), C('Vela Studio', 'velastudio.example', '11', '', '—')
       ]
     };
     return Object.assign(extra, this._rows());
@@ -218,17 +218,17 @@ class Component extends DCLogic {
     });
     return {
       rows: [
-        R('Giulia Ferri', 'CEO', 'Officina Nove', 'officinanove.it', 'giulia.ferri@officinanove.it', '92'),
-        R('Marco Bellini', 'Resp. commerciale', 'Studio Brezza', 'studiobrezza.com', 'm.bellini@studiobrezza.com', '88'),
-        R('Chiara Gallo', 'Founder e CEO', 'Lanterna Digital', 'lanternadigital.it', 'chiara@lanternadigital.it', '85'),
-        R('Elena Moretti', 'CEO', 'Ponte Creativo', 'pontecreativo.it', 'e.moretti@pontecreativo.it', '81'),
-        R('Luca Conti', 'Business director', 'Nodo Agency', 'nodoagency.com', 'luca.conti@nodoagency.com', '79'),
-        R('Sara Villa', 'CEO', 'Fiordaliso Comunicazione', 'fiordalisocom.it', 'sara.villa@fiordalisocom.it', '77'),
-        R('Francesca Testa', 'Co-founder', 'Bottega Pixel', 'bottegapixel.it', 'f.testa@bottegapixel.it', '74'),
-        R('Andrea Lombardi', 'Direttore commerciale', 'Arco Brand Lab', 'arcobrandlab.it', 'a.lombardi@arcobrandlab.it', '72'),
-        R('Davide Rinaldi', 'Head of sales', 'Quadrante Media', 'quadrantemedia.it', '', '', true),
-        R('Paolo Marchi', 'Sales manager', 'Rete Sei', 'retesei.it', '', '', true),
-        R('Martina Greco', 'CEO', 'Vela Studio', 'velastudio.it', '', '', true)
+        R('Giulia Ferri', 'CEO', 'Officina Nove', 'officinanove.example', 'giulia.ferri@officinanove.example', '92'),
+        R('Marco Bellini', 'Resp. commerciale', 'Studio Brezza', 'studiobrezza.example', 'm.bellini@studiobrezza.example', '88'),
+        R('Chiara Gallo', 'Founder e CEO', 'Lanterna Digital', 'lanternadigital.example', 'chiara@lanternadigital.example', '85'),
+        R('Elena Moretti', 'CEO', 'Ponte Creativo', 'pontecreativo.example', 'e.moretti@pontecreativo.example', '81'),
+        R('Luca Conti', 'Business director', 'Nodo Agency', 'nodoagency.example', 'luca.conti@nodoagency.example', '79'),
+        R('Sara Villa', 'CEO', 'Fiordaliso Comunicazione', 'fiordalisocom.example', 'sara.villa@fiordalisocom.example', '77'),
+        R('Francesca Testa', 'Co-founder', 'Bottega Pixel', 'bottegapixel.example', 'f.testa@bottegapixel.example', '74'),
+        R('Andrea Lombardi', 'Direttore commerciale', 'Arco Brand Lab', 'arcobrandlab.example', 'a.lombardi@arcobrandlab.example', '72'),
+        R('Davide Rinaldi', 'Head of sales', 'Quadrante Media', 'quadrantemedia.example', '', '', true),
+        R('Paolo Marchi', 'Sales manager', 'Rete Sei', 'retesei.example', '', '', true),
+        R('Martina Greco', 'CEO', 'Vela Studio', 'velastudio.example', '', '', true)
       ]
     };
   }

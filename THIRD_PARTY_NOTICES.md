@@ -11,6 +11,7 @@ Zenbree is distributed under the [MIT License](LICENSE). Third-party software an
 | Atkinson Hyperlegible Mono | `docs/design-handoff/prototipo/fonts/` | [SIL OFL 1.1](docs/third-party-licenses/atkinson-hyperlegible-mono-OFL.txt) |
 | Newsreader | `docs/design-handoff/prototipo/fonts/` | [SIL OFL 1.1](docs/third-party-licenses/newsreader-OFL.txt) |
 | IBM Plex Mono | `landing/public/fonts/` | [SIL OFL 1.1](docs/third-party-licenses/ibm-plex-OFL.txt) |
+| LiteLLM model price map | `api/app/llm/data/litellm_model_prices.json` | [MIT](https://github.com/BerriAI/litellm/blob/main/LICENSE) |
 
 The dependency lockfiles identify the Python and JavaScript packages used by the application and its development tools. Their licenses are distributed with the respective packages; Zenbree's license does not replace them.
 

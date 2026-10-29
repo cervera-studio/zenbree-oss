@@ -149,17 +149,17 @@ class Component extends DCLogic {
     const P = (name, role) => ({ name, role, href: nav.list });
     const C = (name, domain, emp, job, clients, people) => ({ name, domain, emp, job: job || false, noJob: !job, clients, people, hasPeople: people.length > 0, noPeople: people.length === 0 });
     const all = [
-      C('Officina Nove', 'officinanove.it', '24', 'SDR · 6 gg fa', 'Manifattura B2B, packaging', [P('Giulia Ferri', 'CEO')]),
-      C('Studio Brezza', 'studiobrezza.com', '38', 'BDR · 11 gg fa', 'Retail, GDO, food', [P('Marco Bellini', 'Resp. commerciale')]),
-      C('Lanterna Digital', 'lanternadigital.it', '17', 'SDR · 3 gg fa', 'E-commerce, moda', [P('Chiara Gallo', 'Founder e CEO')]),
-      C('Ponte Creativo', 'pontecreativo.it', '42', 'SDR · 19 gg fa', 'PMI manifatturiere, export', [P('Elena Moretti', 'CEO')]),
-      C('Nodo Agency', 'nodoagency.com', '29', '', 'SaaS, software house', [P('Luca Conti', 'Business director')]),
-      C('Fiordaliso Comunicazione', 'fiordalisocom.it', '15', 'BDR · 24 gg fa', 'PA, sanità', [P('Sara Villa', 'CEO')]),
-      C('Quadrante Media', 'quadrantemedia.it', '33', 'SDR · 8 gg fa', 'Automotive, mobilità', [P('Davide Rinaldi', 'Head of sales')]),
-      C('Bottega Pixel', 'bottegapixel.it', '12', '', 'Banche, assicurazioni', [P('Francesca Testa', 'Co-founder')]),
-      C('Arco Brand Lab', 'arcobrandlab.it', '46', 'SDR · 27 gg fa', 'Tech B2B, startup', [P('Andrea Lombardi', 'Direttore commerciale')]),
-      C('Rete Sei', 'retesei.it', '21', '', 'Ristorazione, hospitality', [P('Paolo Marchi', 'Sales manager')]),
-      C('Vela Studio', 'velastudio.it', '11', '', 'Eventi, fiere', [P('Martina Greco', 'CEO')]),
+      C('Officina Nove', 'officinanove.example', '24', 'SDR · 6 gg fa', 'Manifattura B2B, packaging', [P('Giulia Ferri', 'CEO')]),
+      C('Studio Brezza', 'studiobrezza.example', '38', 'BDR · 11 gg fa', 'Retail, GDO, food', [P('Marco Bellini', 'Resp. commerciale')]),
+      C('Lanterna Digital', 'lanternadigital.example', '17', 'SDR · 3 gg fa', 'E-commerce, moda', [P('Chiara Gallo', 'Founder e CEO')]),
+      C('Ponte Creativo', 'pontecreativo.example', '42', 'SDR · 19 gg fa', 'PMI manifatturiere, export', [P('Elena Moretti', 'CEO')]),
+      C('Nodo Agency', 'nodoagency.example', '29', '', 'SaaS, software house', [P('Luca Conti', 'Business director')]),
+      C('Fiordaliso Comunicazione', 'fiordalisocom.example', '15', 'BDR · 24 gg fa', 'PA, sanità', [P('Sara Villa', 'CEO')]),
+      C('Quadrante Media', 'quadrantemedia.example', '33', 'SDR · 8 gg fa', 'Automotive, mobilità', [P('Davide Rinaldi', 'Head of sales')]),
+      C('Bottega Pixel', 'bottegapixel.example', '12', '', 'Banche, assicurazioni', [P('Francesca Testa', 'Co-founder')]),
+      C('Arco Brand Lab', 'arcobrandlab.example', '46', 'SDR · 27 gg fa', 'Tech B2B, startup', [P('Andrea Lombardi', 'Direttore commerciale')]),
+      C('Rete Sei', 'retesei.example', '21', '', 'Ristorazione, hospitality', [P('Paolo Marchi', 'Sales manager')]),
+      C('Vela Studio', 'velastudio.example', '11', '', 'Eventi, fiere', [P('Martina Greco', 'CEO')]),
       C('Carta Bianca Lab', 'cartabiancalab.it', '14', '', 'Editoria, cultura', [])
     ];
     const tab = this.state.tab;

@@ -35,8 +35,8 @@ export const it: Content = {
     label: 'Anteprima del prodotto',
     emailFloat: {
       key: 'Email verificata',
-      value: 'giulia@officinanove.it',
-      source: 'Fonte: officinanove.it/team',
+      value: 'giulia@officinanove.example',
+      source: 'Fonte: officinanove.example/team',
     },
     refundFloat: {
       key: '+6 crediti resi',
