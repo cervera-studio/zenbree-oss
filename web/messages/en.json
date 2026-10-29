@@ -1,0 +1,702 @@
+{
+  "common": {
+    "appName": "Zenbree",
+    "hello": "Hi {name}",
+    "credits": "Credits remaining: {credits}",
+    "apiDown": "Service unreachable, try again shortly.",
+    "signOut": "Sign out",
+    "retry": "Retry",
+    "loading": "Loading…",
+    "empty": "Nothing to show.",
+    "save": "Save",
+    "close": "Close",
+    "cancel": "Cancel",
+    "undo": "Undo",
+    "dismissNotice": "Dismiss notification"
+  },
+  "auth": {
+    "signInTitle": "Sign in",
+    "signInLede": "Welcome back. Your chats and lists are waiting.",
+    "signUpTitle": "Create an account",
+    "signUpLede": "Two minutes for your profile, then your first list.",
+    "email": "Email",
+    "workEmail": "Work email",
+    "workEmailHint": "We use the domain to tell which company you work for.",
+    "emailPlaceholder": "name@company.com",
+    "password": "Password",
+    "passwordHint": "At least 8 characters.",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "name": "Name",
+    "namePlaceholder": "First and last name",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "google": "Continue with Google",
+    "microsoft": "Continue with Microsoft",
+    "signUpWith": "Sign up with {provider}",
+    "withEmail": "or with email",
+    "noAccount": "No account? <link>Sign up</link>",
+    "haveAccount": "Already have an account? <link>Sign in</link>",
+    "forgot": "Forgot password?",
+    "consent": "By signing up you accept the <terms>Terms</terms> and the <privacy>Privacy policy</privacy>.",
+    "verifyTitle": "Check your email",
+    "verifyBody": "We sent you a link to verify your address. Open it to finish signing up.",
+    "verifySentTo": "We sent a link to <address>{email}</address>. Open it to finish signing up.",
+    "verifyResend": "Didn't get it? Check your spam folder, or <resend>send it again</resend>.",
+    "verifyCheckSpam": "Didn't get it? Check your spam folder.",
+    "verifyResent": "Sent again. Check your inbox.",
+    "verifyOtherAddress": "Use a different address",
+    "resetTitle": "Reset password",
+    "resetLede": "Enter your account email and we'll send you a link to choose a new one.",
+    "resetNewLede": "Choose a new password for your account.",
+    "setPasswordTitle": "Confirm your account",
+    "setPasswordLede": "Your email is verified. For your security, choose your password once more. You will use it to sign in.",
+    "setPasswordDone": "Password set. Sign in to continue.",
+    "resetSend": "Send link",
+    "resetSent": "If the address exists, you'll get an email with the link.",
+    "newPassword": "New password",
+    "resetSave": "Save password",
+    "resetDone": "Password updated. You can sign in now.",
+    "backToSignIn": "Back to sign in",
+    "expiredTitle": "Session expired",
+    "expiredNotice": "For security we sign you out after a period of inactivity or when you reset your password. Sign in again to pick up where you left off.",
+    "bannedTitle": "Account suspended",
+    "bannedUntil": "You can sign in again from {date}.",
+    "bannedIndefinite": "The suspension has no end date.",
+    "bannedReason": "Reason: {reason}",
+    "bannedSupport": "Think this is a mistake? <link>Write to {email}</link>",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "language": "Language",
+    "aside": {
+      "eyebrow": "Outbound agent",
+      "label": "What Zenbree does",
+      "title": "From brief to list, in one chat.",
+      "lede": "Describe who you want to reach. Zenbree finds the companies, the right people and their verified emails.",
+      "brief": "Marketing agencies in Milan hiring SDRs. I want the CEO, with their email.",
+      "plan": "Plan v1",
+      "planMeta": "50 rows · verified email required",
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "verified": "Verified",
+      "free": "The plan is free: up to 100 credits it starts at once, above that you approve it first.",
+      "delivered": "You only pay for delivered rows, with the required data.",
+      "sourced": "Every researched data point comes with its source.",
+      "footnote": "Data with a source, always."
+    }
+  },
+  "nav": {
+    "primary": "Main navigation",
+    "overview": "Overview",
+    "searches": "Chats",
+    "exclusions": "Exclusions",
+    "team": "Team and roles",
+    "integrations": "Integrations",
+    "workspace": "Workspace",
+    "roleAdmin": "Admin",
+    "chats": "Recent chats",
+    "campaigns": "Campaigns",
+    "automations": "Automations",
+    "segments": "Segments",
+    "inbox": "Inbox",
+    "lists": "Lists",
+    "settings": "Settings",
+    "credits": "Credits",
+    "creditsUnit": "credits",
+    "topUp": "Top up",
+    "yourProfile": "Your profile",
+    "accountMenu": "Account menu",
+    "profile": "Profile and settings",
+    "billing": "Credits",
+    "backoffice": "Back office",
+    "adminBadge": "admin",
+    "signOut": "Sign out",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchOrg": "Switch team",
+    "newTeam": "New team",
+    "newTeamBody": "A team has its own credits, clients and members. It starts with no credits: buy them on the Credits page.",
+    "newTeamName": "Team name",
+    "newTeamCreate": "Create team",
+    "approvals": "To approve",
+    "unread": "{count, number, credits} unread",
+    "help": "Help and guides",
+    "balanceOfPlan": "Balance {left, number, credits}. The plan gives {plan, plural, one {# credit} other {{plan, number, credits} credits}} each period.",
+    "creditsCount": "{count, plural, one {# credit} other {{count, number, credits} credits}}",
+    "search": "Search",
+    "searchPlaceholder": "Search lists, chats, campaigns, settings",
+    "searchEmpty": "Nothing found",
+    "search_lists": "Lists",
+    "search_chats": "Chats",
+    "search_campaigns": "Campaigns",
+    "search_settings": "Settings",
+    "views": "Saved views"
+  },
+  "chat": {
+    "transcript": "Conversation",
+    "jumpToLatest": "Jump to the latest message",
+    "newChat": "New chat",
+    "noSessions": "No conversations yet.",
+    "sessionsError": "Could not load conversations.",
+    "untitled": "Untitled",
+    "loadError": "Could not load the conversation.",
+    "breadcrumb": "Path",
+    "agent": "Agent",
+    "emptyTitle": "Who do you want to reach?",
+    "emptyBody": "Describe your ideal customer: industry, area, size, roles. I build the list.",
+    "home": {
+      "composerLabel": "Describe who you want to reach",
+      "attach": "Upload CSV",
+      "modeLabel": "What you want to do",
+      "planFree": "The plan is free: up to 100 credits it starts at once, above that you approve it",
+      "planFreeShort": "The plan is free",
+      "modes": {
+        "find": {
+          "label": "Find people",
+          "title": "Find people",
+          "body": "From a brief to a list with verified emails. A plan first, then you pay only for the rows delivered.",
+          "placeholder": "E.g. marketing agencies in Milan, 10-50 employees, hiring SDRs"
+        },
+        "enrich": {
+          "label": "Enrich data",
+          "title": "Enrich your data",
+          "body": "Upload a CSV: I find emails, phones and AI research columns with the source.",
+          "placeholder": "What do you want to add to your data? Then upload the CSV"
+        },
+        "contact": {
+          "label": "Find and contact",
+          "title": "Find and contact",
+          "body": "The list becomes an email and LinkedIn sequence, with schedules and limits per sender.",
+          "placeholder": "E.g. sales leads at SaaS companies in Italy to contact"
+        }
+      },
+      "chips": {
+        "agencies": {
+          "brief": "Marketing agencies in Milan hiring SDRs",
+          "short": "Agencies hiring SDRs"
+        },
+        "saas": {
+          "brief": "SaaS companies in Italy hiring for their sales team",
+          "short": "Italian SaaS hiring AEs"
+        },
+        "marketing": {
+          "brief": "Marketing leads at tech companies with 50–200 employees",
+          "short": "Tech marketing leads 50–200"
+        }
+      },
+      "todo": {
+        "title": "To do",
+        "approvals": "Messages to approve",
+        "replies": "Replies to read",
+        "running": "Search in progress"
+      },
+      "data": {
+        "greeting": "{part, select, morning {Good morning} afternoon {Good afternoon} other {Good evening}}{name, select, none {} other {, {name}}}",
+        "todo": {
+          "repliesTitle": "Replies for you",
+          "review": "Review",
+          "read": "Read",
+          "quiet": "Nothing waiting: no messages to approve and no new replies.",
+          "inCampaign": "{count, number, credits} in “{name}”",
+          "inOthers": "{count, number, credits} in other campaigns",
+          "latest": "Latest: {parts}"
+        },
+        "running": {
+          "title": "In progress",
+          "people": "{count, plural, one {{count, number, credits} person so far} other {{count, number, credits} people so far}}",
+          "companies": "{count, plural, one {{count, number, credits} company so far} other {{count, number, credits} companies so far}}",
+          "startedBy": "started by {name}",
+          "startedByYou": "started by you",
+          "steps": "{done, number, credits} of {total, plural, one {# step} other {{total, number, credits} steps}}",
+          "open": "Open the chat",
+          "progress": "Progress of {title}",
+          "donePeople": "Completed · {count, plural, one {# person} other {{count, number, credits} people}}",
+          "doneCompanies": "Completed · {count, plural, one {# company} other {{count, number, credits} companies}}",
+          "doneVerified": "Completed · {count, plural, one {# person} other {{count, number, credits} people}}, {verified, plural, one {# with a verified email} other {{verified, number, credits} with a verified email}}"
+        },
+        "lists": {
+          "empty": "No list for this client yet: the first one will appear here.",
+          "title": "Recent lists",
+          "all": "All lists",
+          "rowCount": "{count, plural, one {# row} other {{count, number, credits} rows}}",
+          "verifiedCount": "{count, plural, one {# verified email} other {{count, number, credits} verified emails}}",
+          "kind": {
+            "person": "People",
+            "company": "Companies",
+            "enrich": "Enrichment"
+          },
+          "today": "Today, {time}",
+          "yesterday": "Yesterday, {time}",
+          "formerMember": "Former member",
+          "fresh": "New"
+        },
+        "campaigns": {
+          "title": "Active campaigns",
+          "all": "All campaigns",
+          "status": {
+            "active": "Active",
+            "paused": "Paused"
+          },
+          "channels": {
+            "email": "Email",
+            "linkedin": "LinkedIn",
+            "hubspot": "HubSpot"
+          },
+          "channelsLabel": "Channels: {list}",
+          "sent": "{count, plural, other {sent}}",
+          "replies": "{count, plural, one {reply} other {replies}}",
+          "emptyTitle": "No active campaign",
+          "emptyHint": "“{name}” {count, plural, one {has # verified contact} other {has {count, number, credits} verified contacts}}. Turn it into an email and LinkedIn sequence: you approve every message before it goes out.",
+          "emptyGeneric": "Turn a list of people into an email and LinkedIn sequence: you approve every message before it goes out.",
+          "create": "Create a campaign"
+        },
+        "live": {
+          "reply": "New reply for you{name, select, none {} other { from {name}}}{intent, select, none {} other {, {intent}}}. {count, plural, one {# reply to read} other {{count, number, credits} replies to read}}.",
+          "approvals": "{added, plural, one {# new message to approve} other {{added, number, credits} new messages to approve}}. {total, number, credits} in total.",
+          "finishedPeople": "Search finished: {title}, {rows, plural, one {# person} other {{rows, number, credits} people}}.",
+          "finishedCompanies": "Search finished: {title}, {rows, plural, one {# company} other {{rows, number, credits} companies}}."
+        },
+        "stats": {
+          "kpi": {
+            "leads": "Leads",
+            "contacts": "Contacts",
+            "messagesSent": "Messages sent",
+            "replies": "Replies",
+            "positiveReplies": "Positive replies"
+          },
+          "period": "Last 30 days, change against the 30 days before",
+          "legend": {
+            "sent": "Sent",
+            "replies": "Replies"
+          },
+          "weeks": {
+            "title": "Weekly activity",
+            "meta": "8 weeks",
+            "column": "Week of {week}: {sent, plural, one {# message sent} other {{sent, number, credits} messages sent}}, {replies, plural, one {# reply} other {{replies, number, credits} replies}}"
+          },
+          "funnel": {
+            "title": "Funnel",
+            "meta": "30 days, not a cohort",
+            "leads": "Leads",
+            "contacts": "Contacts",
+            "contacted": "Contacted",
+            "replied": "Replied",
+            "positive": "Positive"
+          },
+          "activity": {
+            "title": "Activity",
+            "empty": "Nothing yet: searches, campaigns and replies show up here.",
+            "untitled": "Untitled",
+            "kind": {
+              "search_finished": "Search finished",
+              "campaign_started": "Campaign started",
+              "reply_received": "Reply received"
+            }
+          }
+        }
+      }
+    },
+    "placeholder": "E.g. marketing agencies in Milan, 10-50 employees, hiring SDRs",
+    "send": "Send",
+    "stop": "Stop",
+    "stopping": "Stopping…",
+    "answerPlaceholder": "Type your answer…",
+    "question": {
+      "label": "Question",
+      "hint": "Pick an option or type your own answer below.",
+      "hintFree": "Type your answer below.",
+      "skip": "Skip",
+      "skipMessage": "Skip this question: pick the most reasonable option yourself and carry on.",
+      "memory": "I saved this to memory: “{text}”.",
+      "memoryLink": "View memory"
+    },
+    "noResults": {
+      "title": "{entity, select, person {No person matches every filter} other {No company matches every filter}}",
+      "funnelLabel": "{entity, select, person {People left after each filter} other {Companies left after each filter}}",
+      "lead": "This search found no {entity, select, person {people} other {companies}}, so I added nothing to the list. Here is where they are lost:",
+      "leadFree": "This search found no {entity, select, person {people} other {companies}}: I added nothing to the list and charged you nothing. Here is where they are lost:",
+      "proceed": "How do you want to go on?",
+      "hint": "Or type what to change below.",
+      "step": {
+        "where": "{entity, select, person {Working in {values}} other {Based in {values}}}",
+        "what": "{entity, select, person {At {values} companies} other {In {values}}}",
+        "size": "{entity, select, person {At companies with {values} employees} other {{values} employees}}",
+        "money": "{entity, select, person {At companies with funding or revenue {values}} other {Funding or revenue {values}}}",
+        "signal": "{entity, select, person {At companies hiring for {values}} other {Hiring for {values}}}",
+        "who": "Titled {values}"
+      },
+      "drop": {
+        "where": {
+          "label": "Without the location filter",
+          "description": "Search everywhere and keep the other filters."
+        },
+        "what": {
+          "label": "Without the industry filter",
+          "description": "Every industry, same filters otherwise."
+        },
+        "size": {
+          "label": "Without the size filter",
+          "description": "Any number of employees."
+        },
+        "money": {
+          "label": "Without the funding and revenue filter",
+          "description": "Ignore funding and revenue."
+        },
+        "signal": {
+          "label": "Without the signal",
+          "description": "Only the other filters, no job posts or hiring."
+        },
+        "who": {
+          "label": "Without the role filter",
+          "description": "Any role, same filters otherwise."
+        }
+      }
+    },
+    "brief": {
+      "aria": "Brief",
+      "title": "What I understood",
+      "edit": "Edit",
+      "editPrefix": "Change the brief: ",
+      "stage": {
+        "brief": "Brief",
+        "plan": "Plan",
+        "search": "Search",
+        "list": "List"
+      },
+      "field": {
+        "who": "Who",
+        "companies": "Companies",
+        "where": "Where",
+        "signal": "Signal",
+        "email": "Email"
+      },
+      "excluded": "This is the rule that excludes everyone.",
+      "excludedFree": "A search with no results costs no credits.",
+      "undecided": "To decide",
+      "email": {
+        "required": "Required",
+        "if_found": "If I find it",
+        "not_needed": "Not needed"
+      }
+    },
+    "plan": {
+      "title": "Plan v{version, number, credits}",
+      "mode": {
+        "build": "New list",
+        "enrich": "Enrich your list"
+      },
+      "entity": {
+        "company": "Companies",
+        "person": "People"
+      },
+      "linkedList": "Adds the People list, linked to {count, plural, one {# company} other {the {count, number, credits} companies}}",
+      "columns": "Columns",
+      "required": "required",
+      "research": "AI research",
+      "researchHint": "AI columns are researched on the web for each row, with a source: 1 credit per filled cell, starting with the first rows.",
+      "requiredHint": "* Required: rows missing one are not delivered, and their per-row credits are refunded.",
+      "stages": "Steps",
+      "units": "{units, plural, one {# unit} other {{units, number, credits} units}}",
+      "cells": "{units, plural, one {# cell} other {{units, number, credits} cells}}",
+      "stageCost": "{credits, plural, =0 {free} one {# credit} other {{credits, number, credits} credits}}",
+      "columnsSummary": "{columns, plural, one {# column} other {{columns, number, credits} columns}} · {required, number, credits} required · {ai, plural, one {# AI} other {{ai, number, credits} AI}}",
+      "stagesSummary": "{count, plural, one {# step} other {{count, number, credits} steps}}",
+      "stageHint": "{credits, plural, =0 {free} one {# credit per unit found} other {{credits, number, credits} credits per unit found}}",
+      "rowsPreset": "{count, plural, one {# row} other {{count, number, credits} rows}}",
+      "researchStage": "AI research",
+      "researchNote": "{count, plural, one {# column} other {{count, number, credits} columns}}, delivered rows only",
+      "optional": "optional",
+      "dropped": "dropped",
+      "restore": "Put back {label}",
+      "rows": "Rows",
+      "rowsFound": "of ~{count, plural, one {# company} other {{count, number, credits} companies}} found",
+      "rowsOther": "Other number of rows",
+      "estimate": "Estimated cost: up to {credits, plural, one {# credit} other {{credits, number, credits} credits}}",
+      "noteSmall": "You only pay for delivered rows. What is left over is refunded.",
+      "noteLarge": "Over {threshold, plural, one {# credit} other {{threshold, number, credits} credits}}: I ask for a second confirmation before starting.",
+      "approve": "Approve and launch",
+      "edit": "Edit plan",
+      "approveMessage": "Approved plan v{version, number, credits}: {rows, plural, one {# row} other {{rows, number, credits} rows}}, up to {credits, plural, one {# credit} other {{credits, number, credits} credits}}. Go ahead.",
+      "approveMessageDropped": "Approved plan v{version, number, credits}: {rows, plural, one {# row} other {{rows, number, credits} rows}}, up to {credits, plural, one {# credit} other {{credits, number, credits} credits}}, without: {dropped}. Go ahead.",
+      "editPrefix": "Change the plan: ",
+      "pay": {
+        "title": "How you pay",
+        "body": "The plan is free. When the search starts, credits are reserved and charged row by row. Unused ones come back to you when the search ends.",
+        "balance": "Balance",
+        "after": "After, at most",
+        "credits": "{credits, plural, one {# credit} other {{credits, number, credits} credits}}"
+      },
+      "short": {
+        "gap": "You are {missing, plural, one {# credit} other {{missing, number, credits} credits}} short: your balance is {balance, number, credits}.",
+        "balance": "Balance {balance, number, credits}",
+        "need": "Needs {credits, number, credits}"
+      },
+      "fix": {
+        "title": "{count, plural, =1 {One way to start} =2 {Two ways to start} =3 {Three ways to start} other {{count, number, credits} ways to start}}",
+        "topUp": {
+          "title": "Top up credits",
+          "body": "The plan stays here and you approve it when you are back.",
+          "bodyPack": "{credits, plural, one {# credit} other {{credits, number, credits} credits}} for {price}. The plan stays here and you approve it when you are back."
+        },
+        "dropStage": {
+          "title": "Drop {label}",
+          "body": "The cost drops to {credits, plural, one {# credit} other {{credits, number, credits} credits}}."
+        },
+        "fitRows": {
+          "title": "Start with {rows, plural, one {# row} other {{rows, number, credits} rows}}",
+          "body": "As many as your balance covers. Add the rest later with “More rows”."
+        }
+      },
+      "confirm": {
+        "title": "Confirm a {credits, number, credits}-credit search?",
+        "body": "It is over the {threshold, number, credits}-credit threshold, so I ask a second time. I reserve {credits, plural, one {# credit} other {{credits, number, credits} credits}} from your balance; unused ones come back to you when the search ends.",
+        "rows": "Rows",
+        "max": "At most",
+        "after": "Balance after",
+        "confirm": "Confirm and launch"
+      }
+    },
+    "thinking": "Working…",
+    "sources": "Sources ({count, number, credits})",
+    "credits": "{count} credits",
+    "status": {
+      "running": "Running",
+      "planReady": "Plan to approve",
+      "needsAnswer": "Needs an answer",
+      "stepError": "A step failed",
+      "allFailed": "Search failed",
+      "done": "Done",
+      "offline": "Connection lost"
+    },
+    "creditsUsed": "{count, plural, one {# credit used} other {{count, number, credits} credits used}}",
+    "listsGroup": "Lists of this chat",
+    "openFullList": "Open full list",
+    "draftChip": "draft",
+    "panelMeta": {
+      "draft": "Draft",
+      "base": "Done · base of the People list",
+      "running": "{delivered, number, credits} delivered · {remaining, plural, one {# more} other {{remaining, number, credits} more}} to find",
+      "runningOpen": "{delivered, number, credits} delivered · search in progress",
+      "settled": "{delivered, number, credits} delivered of {total, number, credits}"
+    },
+    "hideList": "Hide list",
+    "backToChat": "Back to chat",
+    "resume": "Resume",
+    "interrupted": "The connection dropped. Reload the page to see the saved answer.",
+    "turnFailed": "I could not complete this request. {credits, plural, =0 {You were not charged.} one {It cost you # credit, for what I found before the error.} other {It cost you {credits, number, credits} credits, for what I found before the error.}} Send the message again to retry.",
+    "tools": {
+      "web_search": "Web search",
+      "fetch_page": "Reading page",
+      "search_companies": "Company search",
+      "search_people": "People search",
+      "search_jobs_signals": "Hiring signals",
+      "linkedin_search": "LinkedIn search",
+      "enrich_email": "Email lookup",
+      "enrich_phone": "Phone lookup",
+      "remember": "Memory updated",
+      "forget": "Memory entry removed",
+      "propose_plan": "Plan",
+      "more_rows": "More results",
+      "save_to_list": "Saving to list",
+      "list_row_feedback": "Row feedback",
+      "find_rows": "List lookup",
+      "schedule_check": "Scheduled search",
+      "cancel_schedule": "Schedule paused",
+      "list_schedules": "Scheduled searches",
+      "draft_campaign": "Campaign draft"
+    },
+    "errors": {
+      "networkError": "Network error. Please try again.",
+      "streamTimeout": "Timed out.",
+      "streamInterrupted": "Connection interrupted.",
+      "genericError": "Something went wrong.",
+      "creditsExhausted": "You are out of credits. Top up to continue.",
+      "creditsLow": "You are running low on credits.",
+      "upgradeCta": "Top up credits →",
+      "terminals": {
+        "max_turns_reached": "I stopped after the maximum number of steps. What I found is above: ask me to continue.",
+        "cancelled": "I stopped as you asked. You were charged only for what I had already found."
+      },
+      "stopFailed": "I couldn't stop the search. Try again."
+    },
+    "campaign": {
+      "title": "Campaign draft ready",
+      "detail": "{name} · {count, plural, one {# person} other {{count, number, credits} people}}",
+      "open": "Open"
+    },
+    "composerLabel": "Write to the agent",
+    "composerRunning": "You can write when I'm done…",
+    "dictation": {
+      "start": "Dictate",
+      "stop": "Stop dictation",
+      "denied": "Microphone blocked",
+      "error": {
+        "denied": "Microphone blocked. Allow it in your browser's site settings to dictate.",
+        "noMic": "No microphone found. Connect one and try again.",
+        "network": "Dictation isn't available right now. Check your connection and try again.",
+        "failed": "Dictation didn't work. Try again or type your message.",
+        "noSpeech": "Didn't hear anything. Check your microphone and try again."
+      }
+    },
+    "steps": {
+      "title": "Plan steps",
+      "progress": "Progress",
+      "credits": "{count, plural, one {# credit used} other {{count, number, credits} credits used}}",
+      "count": "{done, number, credits} of {units, number, credits}",
+      "queued": "Queued",
+      "error": "Error",
+      "retrying": "Trying again…",
+      "undelivered": "{count, plural, one {The missing {what} wasn't charged to you.} other {The {count, number, credits} missing {what} weren't charged to you.}}",
+      "unfound": {
+        "enrich_email": "{count, plural, one {The person without an email wasn't charged to you.} other {The {count, number, credits} people without an email weren't charged to you.}}",
+        "enrich_phone": "{count, plural, one {The person without a phone number wasn't charged to you.} other {The {count, number, credits} people without a phone number weren't charged to you.}}"
+      },
+      "retry": "Retry",
+      "unit": {
+        "searches": "{count, plural, one {search} other {searches}}",
+        "rows": "{count, plural, one {row} other {rows}}"
+      },
+      "allFailed": "{credits, plural, =0 {The search did not succeed and no credits were used. Please try again shortly.} other {The search did not succeed. Please try again shortly.}}",
+      "details": "Step details",
+      "openList": "Open the list as it is",
+      "state": {
+        "done": "Done",
+        "running": "Running",
+        "queued": "Queued",
+        "failed": "Error",
+        "stopped": "Stopped"
+      },
+      "errors": {
+        "provider": "The {what} provider isn't responding.",
+        "failed": "The step did not succeed.",
+        "disabled": "This data source is temporarily disabled.",
+        "not_connected": "Connect your LinkedIn account first, in Settings → Integrations.",
+        "no_credits": "Not enough credits for this step.",
+        "over_budget": "The step goes over the budget approved in the plan.",
+        "crashed": "The step stopped unexpectedly."
+      },
+      "noun": {
+        "search_companies": "{count, plural, one {company} other {companies}}",
+        "search_people": "{count, plural, one {person} other {people}}",
+        "linkedin_search": "{count, plural, one {person} other {people}}",
+        "enrich_email": "{count, plural, one {email} other {emails}}",
+        "default": "{count, plural, one {row} other {rows}}"
+      }
+    },
+    "connection": {
+      "banner": "The connection dropped. The agent keeps working: reload to see the saved answer.",
+      "reload": "Reload",
+      "composer": "Reconnect to write"
+    },
+    "welcome": {
+      "eyebrow": "{name, select, none {Welcome} other {Welcome, {name}}}",
+      "title": "Who do you want to reach first?",
+      "lede": "{from, select, website {I already know {company} from your website. Pick a segment or describe who you are after: I propose a plan, free.} description {I already know {company} from your description. Pick a segment or describe who you are after: I propose a plan, free.} other {Describe who you are after: I propose a plan, free.}}",
+      "placeholder": "E.g. marketing agencies in Milan, 10-50 employees, hiring SDRs",
+      "segments": "From your segments",
+      "otherLanguage": "These segments were written in another language.",
+      "dismiss": "Hide",
+      "dismissFailed": "Could not hide the first steps. Try again.",
+      "steps": {
+        "title": "First steps",
+        "progress": "{done, number, credits} of {total, number, credits}",
+        "profile": {
+          "label": "Create your sales profile",
+          "link": "See in Client"
+        },
+        "list": {
+          "label": "Create your first list",
+          "hint": "Describe who you are after: the plan is free, small searches start at once and you approve the larger ones.",
+          "action": "Start",
+          "link": "See lists"
+        },
+        "mailbox": {
+          "label": "Connect a mailbox",
+          "hint": "Only needed for campaigns. You can skip it for lists.",
+          "link": "Connect",
+          "manage": "Manage"
+        }
+      }
+    },
+    "sessionMeta": {
+      "running": "Running",
+      "runningProgress": "Running · {done, number, credits} of {total, number, credits}",
+      "error": "A step failed",
+      "errorProgress": "A step failed · {done, number, credits} of {total, number, credits}",
+      "asking": "Waiting for your answer",
+      "plan": "Plan to approve",
+      "done": "Answer ready",
+      "found": "{lists, plural, one {1 list} other {{lists, number, credits} lists}} · {people, plural, one {# person} other {{people, number, credits} people}}, {companies, plural, one {# company} other {{companies, number, credits} companies}}"
+    }
+  },
+  "chats": {
+    "title": "All chats",
+    "subtitle": "The active client’s chats: pinned first, then the newest.",
+    "search": "Search chats",
+    "searchPlaceholder": "Search by title",
+    "noMatch": "No chats for “{query}”.",
+    "pinChat": "Pin “{title}”",
+    "pinError": "Could not update the chat. Try again.",
+    "deleteChat": "Delete “{title}”",
+    "deleteTitle": "Delete “{title}”?",
+    "deleteBody": "The conversation is gone for the whole team. The lists it created stay in Lists.",
+    "delete": "Delete",
+    "deleted": "Chat deleted",
+    "deleteError": "Could not delete the chat. Try again.",
+    "deleteRunning": "Wait for the chat to finish answering before deleting it."
+  },
+  "projects": {
+    "label": "Client: {name}",
+    "new": "New client",
+    "rename": "Rename client",
+    "delete": "Delete client",
+    "name": "Client name",
+    "namePlaceholder": "E.g. Rossi Ltd",
+    "save": "Save",
+    "loadError": "Could not load clients.",
+    "deleteTitle": "Delete “{name}”?",
+    "deleteBody": "The client's conversations, lists, campaigns, replies, profile and exclusions will be deleted too. This cannot be undone.",
+    "cap": "{spent, number, credits}/{cap, plural, one {# credit} other {{cap, number, credits} credits}} this month",
+    "saveError": "Could not save the client.",
+    "switchError": "Could not switch the client. Reload the page.",
+    "deleteError": "Could not delete the client."
+  },
+  "toolSummary": {
+    "state": {
+      "running": "Running",
+      "done": "Done",
+      "none": "No result",
+      "retry": "To retry",
+      "error": "Error"
+    },
+    "count": {
+      "company": "{n, plural, one {# company} other {{n, number, credits} companies}}",
+      "person": "{n, plural, one {# person} other {{n, number, credits} people}}"
+    },
+    "nothingToSearch": "Nobody left to search",
+    "noRowMatch": "No row matches",
+    "email": {
+      "found": "{n, plural, one {# email} other {{n, number, credits} emails}}",
+      "invalid": "{n, plural, one {# invalid} other {{n, number, credits} invalid}}",
+      "notFound": "{n, plural, one {# not found} other {{n, number, credits} not found}}",
+      "failed": "{n, plural, one {# to retry} other {{n, number, credits} to retry}}",
+      "failedAll": "{n, plural, one {# lookup failed} other {{n, number, credits} lookups failed}}",
+      "noSource": "{n, plural, one {# lookup failed · no source is on} other {{n, number, credits} lookups failed · no source is on}}",
+      "noInput": "{n, plural, one {# row without the data to search} other {{n, number, credits} rows without the data to search}}",
+      "unmatched": "{n, plural, one {# id matches no row} other {{n, number, credits} ids match no row}}",
+      "refunded": "{n, plural, one {credit refunded for # incomplete row} other {credits refunded for {n, number, credits} incomplete rows}}"
+    },
+    "phone": {
+      "found": "{n, plural, one {# phone number} other {{n, number, credits} phone numbers}}",
+      "invalid": "{n, plural, one {# invalid} other {{n, number, credits} invalid}}",
+      "notFound": "{n, plural, one {# not found} other {{n, number, credits} not found}}",
+      "failed": "{n, plural, one {# to retry} other {{n, number, credits} to retry}}",
+      "failedAll": "{n, plural, one {# lookup failed} other {{n, number, credits} lookups failed}}",
+      "noSource": "{n, plural, one {# lookup failed · no source is on} other {{n, number, credits} lookups failed · no source is on}}",
+      "noInput": "{n, plural, one {# row without the data to search} other {{n, number, credits} rows without the data to search}}",
+      "unmatched": "{n, plural, one {# id matches no row} other {{n, number, credits} ids match no row}}",
+      "refunded": "{n, plural, one {credit refunded for # incomplete row} other {credits refunded for {n, number, credits} incomplete rows}}"
+    }
+  }
+}

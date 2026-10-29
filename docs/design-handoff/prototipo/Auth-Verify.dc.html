@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Controlla la tua email</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; display: flex; flex-direction: column; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; padding: 28px 40px; box-sizing: border-box">
+  <div style="display: flex; align-items: center; gap: 10px">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <span style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em">zenbree</span>
+  </div>
+
+  <main style="flex-grow: 1; display: flex; align-items: center; justify-content: center">
+    <div style="width: 100%; max-width: 460px; background: var(--zb-card); border: 1px solid var(--zb-border); border-radius: 21px; padding: 36px; display: flex; flex-direction: column; gap: 20px; text-align: center; align-items: center">
+      <span style="width: 56px; height: 56px; border-radius: 17.5px; background: var(--zb-tint); color: var(--zb-ink); display: flex; align-items: center; justify-content: center">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+      </span>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h1 style="margin: 0; font-size: 24px; font-weight: 700">Controlla la tua email</h1>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--zb-muted-fg)">Ti abbiamo inviato un link a <strong style="color: var(--zb-fg)">ale@ritmosales.it</strong>. Aprilo per completare la registrazione.</p>
+      </div>
+      <a href="{{nav.ob1}}" style="width: 100%; height: 44px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center">Ho aperto il link, continua</a>
+      <div role="status" style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--zb-muted-fg)">
+        <sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
+          <span>Non è arrivata? Guarda nello spam, oppure <button type="button" onClick="{{resend}}" style="border: 0; padding: 0; background: none; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--zb-ink); cursor: pointer">inviala di nuovo</button>.</span>
+        </sc-if>
+        <sc-if value="{{sent}}" hint-placeholder-val="{{false}}">
+          <span style="color: var(--zb-pos-fg); font-weight: 600">Inviata di nuovo. Il link vale 24 ore.</span>
+        </sc-if>
+        <a href="{{nav.signup}}" style="font-weight: 600; text-decoration: none">Usa un altro indirizzo</a>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sent: false };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const nav = { signup: h('Auth-SignUp.dc.html'), ob1: h('Onb-Company.dc.html') };
+    return {
+      theme, nav, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      sent: this.state.sent, notSent: !this.state.sent,
+      resend: () => this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

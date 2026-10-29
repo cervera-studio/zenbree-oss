@@ -1,0 +1,37 @@
+{
+  "notFound": {
+    "eyebrow": "Erreur 404",
+    "title": {
+      "list": "Cette liste n’existe plus",
+      "campaign": "Cette campagne n’existe plus",
+      "chat": "Cette conversation n’existe plus",
+      "page": "Cette page n’existe pas"
+    },
+    "body": {
+      "list": "Le lien mène à une liste qui a été supprimée ou qui appartient à un autre compte.",
+      "campaign": "Le lien mène à une campagne qui a été supprimée ou qui appartient à un autre compte.",
+      "chat": "Le lien mène à une conversation qui a été supprimée ou qui appartient à un autre compte.",
+      "page": "L’adresse est incorrecte ou la page a été déplacée."
+    },
+    "cta": {
+      "list": "Aller à vos listes",
+      "campaign": "Aller à vos campagnes",
+      "chat": "Démarrer une nouvelle conversation",
+      "page": "Retour à l’accueil"
+    },
+    "recentList": "{name} · {entity, select, person {{count, plural, one {# personne} other {{count, number, credits} personnes}}} other {{count, plural, one {# entreprise} other {{count, number, credits} entreprises}}}}",
+    "lookingFor": "Vous cherchiez peut-être",
+    "destination": {
+      "list": "Vos listes",
+      "campaign": "Vos campagnes"
+    }
+  },
+  "forbidden": {
+    "eyebrow": "Erreur 403 · accès refusé",
+    "title": "Cette page est réservée à l’équipe Zenbree",
+    "body": "Vous êtes connecté en tant que <strong>{email}</strong>, qui n’a pas le rôle d’administrateur. Si vous avez besoin d’un accès, demandez-le à un administrateur : il n’y a rien à corriger dans votre compte.",
+    "back": "Retour à l’application",
+    "switchAccount": "Se connecter avec un autre compte",
+    "supportCode": "Code d’assistance :"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "public": {
+    "signIn": "Accedi",
+    "tryFree": "Prova gratis",
+    "legalLanguageNote": "Questo documento è disponibile solo in inglese e in italiano.",
+    "footer": {
+      "terms": "Termini",
+      "privacy": "Privacy",
+      "apiDocs": "Documentazione API"
+    },
+    "meta": {
+      "title": "Zenbree · Descrivi il cliente ideale, Zenbree trova chi contattare",
+      "description": "Scrivi in chat chi vuoi raggiungere: fino a 100 crediti la ricerca parte subito; oltre, l'agente ti mostra il piano e il massimo che può costare, e lo approvi tu. Poi consegna persone con email verificata e la fonte di ogni dato. Il piano è gratis, paghi solo le righe consegnate."
+    },
+    "unsubscribe": {
+      "pageTitle": "Annulla iscrizione",
+      "fallbackSender": "questo mittente",
+      "askTitle": "Non vuoi più ricevere email da {sender}?",
+      "lastEmail": "Ti ha scritto {name} il {date}, con oggetto «{subject}».",
+      "askBody": "Se confermi, <strong>{email}</strong> non riceverà più messaggi da {sender}, nemmeno quelli già programmati.",
+      "reason": "Vuoi dirci perché?",
+      "optional": "(facoltativo)",
+      "reasons": {
+        "not_interested": "Non mi interessa",
+        "wrong_person": "Non sono la persona giusta in azienda",
+        "too_many": "Ricevo troppe email",
+        "other": "Altro"
+      },
+      "confirm": "Sì, non scrivetemi più",
+      "mistake": "Hai aperto il link per sbaglio? Chiudi questa pagina: non cambia niente.",
+      "doneTitle": "Fatto: non riceverai più email da {sender}",
+      "doneBody": "<strong>{email}</strong> è nella lista di esclusione di {sender}. I messaggi già programmati sono stati annullati. Non serve fare altro.",
+      "undoAsk": "Hai cliccato per sbaglio?",
+      "undo": "Annulla la disiscrizione",
+      "dataTitle": "I tuoi dati",
+      "dataBody": "{sender} ha trovato il tuo contatto da fonti professionali pubbliche. Puoi chiedere di cancellarlo del tutto.",
+      "erasure": "Chiedi di cancellare i miei dati",
+      "erasureSent": "Richiesta inviata a {sender}, che risponderà entro un mese.",
+      "erasureFailed": "Non è stato possibile inviare la richiesta. Rispondi all'email di {sender} chiedendo la cancellazione dei tuoi dati.",
+      "alreadyTitle": "Disiscrizione già fatta",
+      "alreadyBody": "Dal {date} <strong>{email}</strong> non riceve email da {sender}. Se ti è arrivato un messaggio dopo questa data, rispondi pure «no grazie»: lo leggiamo e blocchiamo anche quello.",
+      "alreadyBodyUndated": "<strong>{email}</strong> non riceve più email da {sender}. Se ti è arrivato un altro messaggio, rispondi pure «no grazie»: lo leggiamo e blocchiamo anche quello.",
+      "failed": "Qualcosa non ha funzionato. Riprova, oppure rispondi «no grazie» all'email.",
+      "invalidTitle": "Questo link non funziona più",
+      "invalidBody": "Forse è incompleto (succede quando l'email viene inoltrata o il link va a capo). Per smettere di ricevere messaggi basta <strong>rispondere «no grazie»</strong> all'email: funziona sempre.",
+      "controller": "Titolare del trattamento: {sender}. Invio gestito con Zenbree per conto di {sender}.",
+      "controllerUnknown": "Invio gestito con Zenbree per conto del mittente.",
+      "privacy": "Informativa privacy"
+    }
+  }
+}

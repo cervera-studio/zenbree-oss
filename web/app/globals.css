@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "./theme.css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/* The phone layout's one breakpoint, as `usePhone()`: below 760px. */
+@custom-variant phone (@media (max-width: 759px));
+@custom-variant desktop (@media (min-width: 760px));
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+@utility max-h-dropdown-available {
+  max-height: var(--radix-dropdown-menu-content-available-height);
+}
+@utility max-h-popover-available {
+  max-height: var(--radix-popover-content-available-height);
+}
+@utility origin-dropdown {
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+}
+
+/* Tailwind v4 defaults borders to currentColor; without this every bare `border` paints in the text colour. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-line);
+  }
+}
+
+/* Where the toasts sit above the bottom edge. A page with a fixed bar at the bottom (the list
+ * page's phone bar: 83px) raises it so a toast clears the bar at every width the bar shows.
+ * Mark that bar with `data-phone-bar`. */
+:root {
+  --toast-bottom: 1.5rem;
+}
+body:has([data-phone-bar]) {
+  --toast-bottom: 6.75rem;
+}

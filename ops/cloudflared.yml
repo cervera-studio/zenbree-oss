@@ -1,0 +1,19 @@
+# Cloudflare Tunnel "zenbree" (creato con `cloudflared tunnel login/create` dalla VPS).
+# Le credenziali stanno solo sul server in /opt/zenbree/cloudflared/ (mai nel repo).
+# Replace the tunnel ID, credentials path and hostnames with your own before enabling the prod profile.
+tunnel: 00000000-0000-0000-0000-000000000000
+credentials-file: /home/nonroot/.cloudflared/00000000-0000-0000-0000-000000000000.json
+ingress:
+  # The marketing site; any path it does not have answers 308 to the app (landing/nginx.conf).
+  - hostname: zenbree.com
+    service: http://landing:8080
+  - hostname: www.zenbree.com
+    service: http://landing:8080
+  - hostname: app.zenbree.com
+    service: http://web:3000
+  - hostname: api.zenbree.com
+    service: http://api:8000
+  # Unsubscribe links in campaign emails (#220): web serves only /x/<token> on this host (proxy.ts).
+  - hostname: u.zenbree.com
+    service: http://web:3000
+  - service: http_status:404

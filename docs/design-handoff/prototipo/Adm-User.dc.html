@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Backoffice · Dettaglio utente</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+:root{--zb-chart-1:#223034;--zb-chart-2:#006679}
+.zb-dark{--zb-chart-1:#c7d0cf;--zb-chart-2:#3fb5d1}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;height:40px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg);padding:0 12px}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.h1{margin:0;font-family:Newsreader,'Iowan Old Style',Georgia,serif;font-weight:400;font-size:44px;line-height:1.18;letter-spacing:0}
+.h2{margin:0;font-size:16px;font-weight:700}
+.sub{margin:0;color:var(--zb-muted-fg);line-height:1.5}
+.mono{font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace}
+.tw{border:1px solid var(--zb-border);border-radius:14px;overflow:hidden}
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{padding:10px 14px;font-weight:600;font-size:12px;color:var(--zb-muted-fg);text-align:left;background:var(--zb-rail);white-space:nowrap}
+.t td{padding:9px 14px;border-top:1px solid var(--zb-muted);vertical-align:middle}
+.t tbody tr:hover{background:var(--zb-muted)}
+.t .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b1{height:36px;padding:0 14px;border:0;border-radius:10.5px;background:var(--zb-brand);color:var(--zb-on-brand);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b1:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.b1:disabled{opacity:.45;cursor:not-allowed}
+.b2{height:36px;padding:0 12px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b2:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.bd{background:var(--zb-neg-fg);color:var(--zb-bg)}
+.bd:hover{background:var(--zb-neg-fg);opacity:.9;color:var(--zb-bg)}
+.pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;box-sizing:border-box}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed=true]{background:var(--zb-tint);border-color:transparent;color:var(--zb-ink)}
+.card{border:1px solid var(--zb-border);border-radius:17.5px;background:var(--zb-card);padding:16px}
+.kpi dt{font-size:12px;color:var(--zb-muted-fg);font-weight:600}
+.kpi dd{margin:4px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:var(--zb-fg);font-family:inherit;font-size:13px;text-align:left;cursor:pointer;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.ib{width:32px;height:32px;border:0;border-radius:7px;background:transparent;color:var(--zb-muted-fg);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ib:hover{background:var(--zb-rail-hover);color:var(--zb-fg)}
+.tab{height:44px;padding:0 4px;border:0;border-bottom:2px solid transparent;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--zb-muted-fg);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tab[aria-selected=true]{color:var(--zb-fg);border-bottom-color:var(--zb-ink)}
+details>summary{cursor:pointer;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+.sw{position:relative;width:40px;height:24px;border-radius:999px;border:0;cursor:pointer;flex-shrink:0;padding:0}
+.sw span{position:absolute;top:3px;width:18px;height:18px;border-radius:999px;background:var(--zb-bg);transition:left .15s}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="AdminShell" theme="{{theme}}" active="users" hint-size="232px,100vh"></dc-import>
+  <main style="min-width: 0; padding: 24px 40px 40px; display: flex; flex-direction: column; gap: 20px">
+    <nav aria-label="Percorso" style="font-size: 13px; color: var(--zb-muted-fg); display: flex; gap: 6px">
+      <a href="{{nav.users}}" style="text-decoration: none">Utenti</a><span aria-hidden="true">/</span><span>ale@ritmosales.it</span>
+    </nav>
+
+    <header style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+      <span style="width: 56px; height: 56px; border-radius: 999px; background: var(--zb-tint); color: var(--zb-ink); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; flex-shrink: 0">AP</span>
+      <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.2">Ale Poli</h1>
+        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; color: var(--zb-muted-fg)">
+          <span>ale@ritmosales.it</span><span aria-hidden="true">·</span><span>Ritmo Sales</span><span aria-hidden="true">·</span><span>dal 14 set 2026</span>
+          <span class="pill" style="background: var(--zb-rail); color: var(--zb-fg); margin-left: 4px">{{roleLabel}}</span>
+          <span class="pill" style="background: {{st.bg}}; color: {{st.fg}}"><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 999px; background: currentColor"></span>{{st.label}}</span>
+          <span class="pill" style="background: var(--zb-tint); color: var(--zb-ink)">Starter · rinnovo 1 nov</span>
+        </div>
+      </div>
+      <span style="flex-grow: 1"></span>
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; padding-right: 8px">
+        <span style="font-size: 12px; font-weight: 600; color: var(--zb-muted-fg)">Saldo</span>
+        <span style="font-family: Newsreader, Georgia, serif; font-size: 40px; line-height: 1; font-variant-numeric: tabular-nums">{{balStr}}</span>
+        <span style="font-size: 12px; color: var(--zb-muted-fg)">crediti</span>
+      </div>
+      <div style="display: flex; gap: 8px; position: relative">
+        <a class="b2" href="{{nav.imp}}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Impersona
+        </a>
+        <button type="button" class="b1" onClick="{{goAdjust}}">Rettifica crediti</button>
+        <button type="button" class="b2" aria-haspopup="menu" aria-expanded="{{menuStr}}" aria-label="Altre azioni" onClick="{{toggleMenu}}" style="width: 36px; padding: 0; justify-content: center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg>
+        </button>
+        <sc-if value="{{menu}}" hint-placeholder-val="{{false}}">
+          <div role="menu" aria-label="Altre azioni" style="position: absolute; right: 0; top: calc(100% + 6px); z-index: 10; width: 210px; padding: 6px; border-radius: 14px; background: var(--zb-card); border: 1px solid var(--zb-border); box-shadow: 0 12px 32px -12px rgba(7,25,29,0.3)">
+            <button type="button" role="menuitem" class="mi" onClick="{{makeAdmin}}">{{roleAction}}</button>
+            <button type="button" role="menuitem" class="mi" onClick="{{revoke}}">Revoca sessioni</button>
+            <div style="height: 1px; background: var(--zb-border); margin: 4px 0"></div>
+            <button type="button" role="menuitem" class="mi" onClick="{{toggleBan}}" style="color: var(--zb-neg-fg)">{{banLabel}}</button>
+          </div>
+        </sc-if>
+      </div>
+    </header>
+    <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+      <span role="status" style="font-size: 13px; font-weight: 600; color: var(--zb-pos-fg)">{{toast}}</span>
+    </sc-if>
+
+    <div role="tablist" aria-label="Sezioni utente" style="display: flex; gap: 24px; border-bottom: 1px solid var(--zb-border)">
+      <button type="button" role="tab" class="tab" aria-selected="{{t.usage}}" onClick="{{t.goUsage}}">Utilizzo</button>
+      <button type="button" role="tab" class="tab" aria-selected="{{t.ledger}}" onClick="{{t.goLedger}}">Movimenti <span style="color: var(--zb-muted-fg); font-weight: 500">{{ledgerCount}}</span></button>
+      <button type="button" role="tab" class="tab" aria-selected="{{t.adjust}}" onClick="{{t.goAdjust}}">Rettifica crediti</button>
+      <button type="button" role="tab" class="tab" aria-selected="{{t.chats}}" onClick="{{t.goChats}}">Sessioni chat <span style="color: var(--zb-muted-fg); font-weight: 500">3</span></button>
+    </div>
+
+    <sc-if value="{{show.usage}}" hint-placeholder-val="{{true}}">
+      <section style="display: flex; flex-direction: column; gap: 20px">
+        <p class="sub" style="font-size: 13px">Ultimi 30 giorni · costi in USD convertiti a 0,86 EUR/USD per il margine</p>
+        <dl class="kpi" style="margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+          <div class="card"><dt>Costo LLM</dt><dd>$4,18</dd></div>
+          <div class="card"><dt>Costo fornitori</dt><dd>$11,62</dd></div>
+          <div class="card"><dt>Ricavi</dt><dd>€48,00</dd></div>
+          <div class="card"><dt>Margine</dt><dd>€34,41 <span style="font-size: 14px; font-weight: 600; color: var(--zb-pos-fg)">71,7%</span></dd></div>
+          <div class="card"><dt>Crediti spesi</dt><dd>1.838</dd></div>
+        </dl>
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 20px; align-items: start">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <h2 class="h2">Per fornitore</h2>
+            <div class="tw"><table class="t">
+              <thead><tr><th scope="col">Fornitore</th><th scope="col" class="n">Chiamate</th><th scope="col" class="n">Costo</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">apollo</td><td class="n">38</td><td class="n">$5,32</td></tr>
+                <tr><td class="mono">pdl</td><td class="n">22</td><td class="n">$2,64</td></tr>
+                <tr><td class="mono">hunter</td><td class="n">61</td><td class="n">$2,44</td></tr>
+                <tr><td class="mono">treg</td><td class="n">9</td><td class="n">$1,22</td></tr>
+                <tr style="background: var(--zb-rail)"><td style="font-weight: 600">Totale</td><td class="n" style="font-weight: 600">130</td><td class="n" style="font-weight: 600">$11,62</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <h2 class="h2">Acquisti</h2>
+            <div class="tw"><table class="t">
+              <thead><tr><th scope="col">Data</th><th scope="col">Pacchetto</th><th scope="col" class="n">Crediti</th><th scope="col" class="n">Pagato</th><th scope="col" class="n">Rimborsato</th></tr></thead>
+              <tbody>
+                <tr><td>1 ott 2026</td><td>Piano Starter · mensile</td><td class="n">2.000</td><td class="n">€29,00</td><td class="n" style="color: var(--zb-muted-fg)">—</td></tr>
+                <tr><td>28 set 2026</td><td>Ricarica 1.000</td><td class="n">1.000</td><td class="n">€19,00</td><td class="n" style="color: var(--zb-muted-fg)">—</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{show.ledger}}" hint-placeholder-val="{{false}}">
+      <div class="tw"><table class="t">
+        <thead><tr><th scope="col">Data</th><th scope="col">Tipo</th><th scope="col">Stato</th><th scope="col" class="n">Importo</th><th scope="col" class="n">Saldo dopo</th><th scope="col">Descrizione</th></tr></thead>
+        <tbody>
+          <sc-for list="{{ledger}}" as="x" hint-placeholder-count="8">
+            <tr>
+              <td style="white-space: nowrap; color: var(--zb-muted-fg)">{{x.date}}</td>
+              <td><span class="pill" style="background: {{x.bg}}; color: {{x.fg}}">{{x.type}}</span></td>
+              <td style="color: var(--zb-muted-fg)">{{x.status}}</td>
+              <td class="n" style="font-weight: 600; color: {{x.amtColor}}">{{x.amount}}</td>
+              <td class="n">{{x.after}}</td>
+              <td style="max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap" title="{{x.desc}}">{{x.desc}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table></div>
+    </sc-if>
+
+    <sc-if value="{{show.adjust}}" hint-placeholder-val="{{false}}">
+      <section style="display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 24px; align-items: start">
+        <form class="card" style="display: flex; flex-direction: column; gap: 14px; background: var(--zb-bg)" onSubmit="{{noop}}">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h2 class="h2">Rettifica crediti</h2>
+            <p class="sub" style="font-size: 13px">Aggiunge o toglie crediti a mano. Il movimento compare nel registro dell'utente come «Rettifica (admin)» con il motivo.</p>
+          </div>
+          <div role="group" aria-label="Scorciatoie" style="display: flex; gap: 6px; flex-wrap: wrap">
+            <button type="button" class="chip" onClick="{{q100}}">+100</button>
+            <button type="button" class="chip" onClick="{{q500}}">+500</button>
+            <button type="button" class="chip" onClick="{{qRefund}}">+50 · cortesia</button>
+            <button type="button" class="chip" onClick="{{qMinus}}">−100</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="amt" style="font-size: 13px; font-weight: 600">Importo <span style="font-weight: 500; color: var(--zb-muted-fg)">(negativo = addebito)</span></label>
+            <input id="amt" class="zb-field" type="number" step="1" value="{{amount}}" onChange="{{setAmount}}" placeholder="Es. 200 oppure -50" style="width: 220px; font-variant-numeric: tabular-nums">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="why" style="font-size: 13px; font-weight: 600">Motivo</label>
+            <input id="why" class="zb-field" type="text" value="{{reason}}" onChange="{{setReason}}" placeholder="Es. credito di cortesia per il ritardo del 2 ott" style="width: 100%">
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--zb-card); font-variant-numeric: tabular-nums">
+            <span style="display: flex; flex-direction: column"><span style="font-size: 12px; color: var(--zb-muted-fg)">Saldo attuale</span><strong style="font-size: 18px">{{balStr}}</strong></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="color: var(--zb-muted-fg)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            <span style="display: flex; flex-direction: column"><span style="font-size: 12px; color: var(--zb-muted-fg)">Dopo la rettifica</span><strong style="font-size: 18px; color: {{afterColor}}">{{afterStr}}</strong></span>
+          </div>
+          <sc-if value="{{adjErr}}" hint-placeholder-val="{{false}}"><span role="alert" style="font-size: 13px; font-weight: 600; color: var(--zb-neg-fg)">{{adjErr}}</span></sc-if>
+          <div style="display: flex; gap: 8px">
+            <button type="button" class="b1" disabled="{{applyDisabled}}" onClick="{{apply}}">{{applyLabel}}</button>
+            <button type="button" class="b2" onClick="{{resetAdj}}">Annulla</button>
+          </div>
+        </form>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.55; color: var(--zb-muted-fg)">
+          <h2 class="h2" style="color: var(--zb-fg)">Quando usarla</h2>
+          <p style="margin: 0">Rimborsi per job falliti che il sistema non ha già riaccreditato, crediti di cortesia, correzioni dopo un errore di fatturazione.</p>
+          <p style="margin: 0">I rimborsi in denaro si fanno da Stripe: questa schermata muove solo crediti.</p>
+          <a href="{{nav.jobs}}" style="font-weight: 600; text-decoration: none">Vedi il job in attesa di oggi (09:15) →</a>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{show.chats}}" hint-placeholder-val="{{false}}">
+      <div class="tw"><table class="t">
+        <thead><tr><th scope="col">Titolo</th><th scope="col">Esito</th><th scope="col" class="n">Messaggi</th><th scope="col" class="n">Crediti</th><th scope="col">Aggiornata</th></tr></thead>
+        <tbody>
+          <tr><td><a href="{{nav.chat}}" style="font-weight: 600; text-decoration: none">Trova CEO di agenzie marketing a Milano</a></td><td><span class="pill" style="background: rgba(0,188,125,0.12); color: var(--zb-pos-fg)">2 liste · 47 persone</span></td><td class="n">12</td><td class="n">298</td><td style="color: var(--zb-muted-fg)">Oggi, 11:42</td></tr>
+          <tr><td style="font-weight: 600">Responsabili marketing nel tech</td><td><span class="pill" style="background: rgba(254,154,0,0.16); color: var(--zb-warn-fg)">Fermo · fornitore email</span></td><td class="n">7</td><td class="n">412</td><td style="color: var(--zb-muted-fg)">Oggi, 09:15</td></tr>
+          <tr><td style="font-weight: 600">SaaS italiane che assumono AE</td><td><span class="pill" style="background: var(--zb-rail); color: var(--zb-fg)">Nessun risultato</span></td><td class="n">4</td><td class="n">0</td><td style="color: var(--zb-muted-fg)">Ieri, 17:30</td></tr>
+        </tbody>
+      </table></div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"tab":{"editor":"enum","options":["usage","ledger","adjust","chats"],"default":"usage"},"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: props.tab ?? 'usage', bal: 942, amount: '', reason: '', adj: [], menu: false, admin: false, banned: false, toast: '' };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const S = this.state;
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const fmt = (n) => n.toLocaleString('it-IT');
+    const set = (p) => this.setState(p);
+    const T = {
+      use: ['Utilizzo', 'var(--zb-rail)', 'var(--zb-fg)'], refund: ['Rimborso', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)'],
+      renewal: ['Rinnovo piano', 'var(--zb-tint)', 'var(--zb-ink)'], purchase: ['Ricarica', 'var(--zb-tint)', 'var(--zb-ink)'],
+      expiry: ['Scadenza', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)'], admin: ['Rettifica (admin)', 'rgba(130,0,219,0.10)', 'var(--zb-ai-fg)']
+    };
+    const X = (date, k, desc, amount, after, status) => ({ date, type: T[k][0], bg: T[k][1], fg: T[k][2], desc, status: status || 'confermato',
+      amount: (amount > 0 ? '+' : '−') + fmt(Math.abs(amount)), amtColor: amount > 0 ? 'var(--zb-pos-fg)' : 'var(--zb-fg)', after: fmt(after) });
+    const ledger = [
+      ...S.adj.map((a) => X('Adesso', 'admin', a.reason + ' · Giorgia Neri', a.amount, a.after)),
+      X('Oggi, 11:42', 'refund', 'Righe non consegnate · Agenzie marketing Milano · SDR', 14, 942),
+      X('Oggi, 11:05', 'use', 'Agenzie marketing Milano · SDR · job 7f3a91c2', -312, 928),
+      X('Oggi, 09:15', 'use', 'Resp. marketing tech 50–200 · job c04e2b19', -412, 1240),
+      X('1 ott', 'use', 'Software house Torino', -548, 1652),
+      X('1 ott', 'renewal', 'Piano Starter', 2000, 2200),
+      X('1 ott', 'expiry', 'Crediti del piano di settembre', -450, 200),
+      X('29 set', 'use', 'fiere_2026.csv', -580, 650),
+      X('28 set', 'purchase', 'Ricarica 1.000 crediti · Stripe', 1000, 1230)
+    ];
+    const n = parseInt(S.amount, 10);
+    const valid = Number.isFinite(n) && n !== 0;
+    const after = valid ? S.bal + n : S.bal;
+    const err = valid && after < 0 ? 'Il saldo non può andare sotto zero: puoi togliere al massimo ' + fmt(S.bal) + ' crediti.' : (valid && !S.reason.trim() ? 'Scrivi il motivo: resta nel registro.' : '');
+    const tab = (k) => () => set({ tab: k, menu: false });
+    const sel = (k) => S.tab === k ? 'true' : 'false';
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { users: h('Adm-Users.dc.html'), imp: h('Adm-Impersonating.dc.html'), chat: h('Adm-Chat.dc.html'), jobs: h('Adm-Jobs.dc.html') },
+      balStr: fmt(S.bal), ledgerCount: String(ledger.length),
+      roleLabel: S.admin ? 'Admin' : 'Utente', roleAction: S.admin ? 'Rimuovi admin' : 'Rendi admin',
+      st: S.banned ? { label: 'Bannato', bg: 'rgba(251,44,54,0.12)', fg: 'var(--zb-neg-fg)' } : { label: 'Attivo', bg: 'rgba(0,188,125,0.12)', fg: 'var(--zb-pos-fg)' },
+      banLabel: S.banned ? 'Rimuovi ban' : 'Banna…',
+      menu: S.menu, menuStr: S.menu ? 'true' : 'false', toggleMenu: () => set({ menu: !S.menu }),
+      makeAdmin: () => set({ admin: !S.admin, menu: false, toast: S.admin ? 'Ruolo admin rimosso.' : 'Ora è admin.' }),
+      revoke: () => set({ menu: false, toast: 'Sessioni revocate: dovrà accedere di nuovo.' }),
+      toggleBan: () => set({ banned: !S.banned, menu: false, toast: S.banned ? 'Ban rimosso.' : 'Utente bannato e disconnesso. Motivo: da indicare nella lista utenti.' }),
+      toast: S.toast || false,
+      goAdjust: tab('adjust'),
+      t: { usage: sel('usage'), ledger: sel('ledger'), adjust: sel('adjust'), chats: sel('chats'), goUsage: tab('usage'), goLedger: tab('ledger'), goAdjust: tab('adjust'), goChats: tab('chats') },
+      show: { usage: S.tab === 'usage', ledger: S.tab === 'ledger', adjust: S.tab === 'adjust', chats: S.tab === 'chats' },
+      ledger,
+      amount: S.amount, reason: S.reason, noop: (e) => e.preventDefault(),
+      setAmount: (e) => set({ amount: e.target.value }), setReason: (e) => set({ reason: e.target.value }),
+      q100: () => set({ amount: '100' }), q500: () => set({ amount: '500' }), qMinus: () => set({ amount: '-100' }),
+      qRefund: () => set({ amount: '50', reason: S.reason || 'Credito di cortesia per il job fermo su hunter del 2 ott' }),
+      afterStr: valid ? fmt(after) : '—', afterColor: !valid ? 'var(--zb-muted-fg)' : after < 0 ? 'var(--zb-neg-fg)' : n > 0 ? 'var(--zb-pos-fg)' : 'var(--zb-fg)',
+      adjErr: err || false,
+      applyDisabled: !valid || !!err,
+      applyLabel: valid && n < 0 ? 'Togli ' + fmt(-n) + ' crediti' : valid ? 'Aggiungi ' + fmt(n) + ' crediti' : 'Applica',
+      apply: () => { if (!valid || err) return; set({ bal: after, adj: [{ amount: n, after, reason: S.reason.trim() }, ...S.adj], amount: '', reason: '', tab: 'ledger', toast: 'Rettifica applicata: ' + (n > 0 ? '+' : '−') + fmt(Math.abs(n)) + ' crediti. Saldo ' + fmt(after) + '.' }); },
+      resetAdj: () => set({ amount: '', reason: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

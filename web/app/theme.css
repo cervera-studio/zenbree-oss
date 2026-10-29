@@ -1,0 +1,458 @@
+/* Design tokens, imported by globals.css. Change a value here and it lands
+ * everywhere: dashboard, chat, admin.
+ *
+ * Token families, one lever each:
+ *   colour      --color-*      the design palette, light + `.dark`
+ *   radius      --radius-*     the design radius steps
+ *   typeface    --font-*       bound to the font variables on <html>
+ *   size        --text-*       the design text styles, and the steps Tailwind's scale is missing
+ *   spacing     --spacing-*    the design section, control, row, topbar and sidebar sizes,
+ *                              and the app screens' thread, chat rail, composer, chart, avatar and meter sizes
+ *   tracking    --tracking-*   uppercase label letter-spacing
+ *   leading     --leading-*    the display-headline line-height
+ *   shadow      --shadow-*     the design drop shadows and the inset tab hairline
+ *   motion      --ease-* --transition-duration-*  how every surface responds to being touched
+ */
+
+/* The ~86 `animate-in` / `fade-in-0` / `zoom-in-95` / `slide-in-from-*` class
+ * names already shipped across the shadcn components resolve to NOTHING without
+ * this: they come from tailwindcss-animate, Tailwind v4 core defines none of
+ * them, and nothing imported it. Every popover, dropdown, tooltip, dialog,
+ * sheet, select and accordion has therefore been opening and closing
+ * instantly — the classes were on the elements the whole time.
+ * `tw-animate-css` is the v4 successor and reads the same class names, so this
+ * one line is what turns all 86 of them on.
+ *
+ * It also honours `duration-*` / `ease-*` utilities on the same element, which
+ * is what lets the motion tokens below tune every one of them. */
+@import "tw-animate-css";
+
+@theme {
+  /* Colour: the Zenbree Enterprise palette of the design file's `Color`
+   * collection, with its hex values. What each colour is for is its
+   * description in the file. theme.test.ts enforces the contrast floors
+   * (WCAG AA for text, 3:1 for the ring and the charts it pins). */
+  --color-ground: oklch(0.988 0.003 264.5);
+  --color-side: oklch(0.968 0.005 275);
+  --color-raised: oklch(0.968 0.005 275);
+  --color-selected: oklch(0.958 0.019 279.5);
+  --color-ink: oklch(0.159 0.011 268);
+  --color-soft: oklch(0.378 0.026 273.4);
+  --color-muted: oklch(0.533 0.026 271.8);
+  --color-line: oklch(0.919 0.006 275);
+  --color-line-strong: oklch(0.631 0.019 271.1);
+  --color-hair: oklch(0.952 0.004 271.4);
+  --color-accent: oklch(0.482 0.236 270);
+  --color-on-accent: oklch(1 0 0);
+  --color-accent-ink: oklch(0.433 0.215 269.9);
+  --color-accent-soft: oklch(0.643 0.157 277.8);
+  --color-accent-tint: oklch(0.957 0.018 279.1);
+  --color-inverse: oklch(0.159 0.011 268);
+  --color-on-inverse: oklch(1 0 0);
+  --color-inverse-soft: oklch(0.706 0.024 269.3);
+  --color-positive: oklch(0.511 0.128 151.3);
+  --color-positive-tint: oklch(0.957 0.019 157.9);
+  --color-warning: oklch(0.531 0.119 65.1);
+  --color-warning-tint: oklch(0.967 0.026 82.4);
+  --color-negative: oklch(0.5 0.182 29.5);
+  --color-negative-tint: oklch(0.956 0.019 25.6);
+  --color-neutral-dot: oklch(0.637 0.019 267.7);
+  --color-lime: oklch(0.798 0.172 127.9);
+  --color-on-lime: oklch(0.159 0.011 268);
+  --color-on-negative: oklch(1 0 0);
+
+  /* Typeface. Atkinson Hyperlegible Next: a humanist sans drawn so that I, l
+   * and 1, or 0 and O, never look alike, which matters in a product whose
+   * tables are mostly domains and email addresses. The `--font-ui-*` and
+   * `--font-display-serif` variables are set on <html> by the root layout;
+   * nothing downstream names a font. */
+  --font-sans: var(--font-ui-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ui-mono), ui-monospace, monospace;
+
+  /* Display. Newsreader, with optical sizes so it stays crisp at headline
+   * size: a serif for page titles and showcase numbers.
+   *
+   * The design has no serif, so only one screen not yet ported uses
+   * it: the admin organization credits (`admin/organizations/[id]/page.tsx`,
+   * issue #870). It moves to sans when that screen is ported, and the face
+   * goes with it. It is for page
+   * titles and showcase numbers, never for anything interactive, a label or a
+   * table row.
+   *
+   * Metrics matter more than the face here. A display serif wants
+   * `letter-spacing: 0` — the negative tracking that flatters a sans closes up
+   * the serifs and reads as squashed — and `line-height` around 1.18, because
+   * long ascenders and descenders touch at 1.05. Below ~34px these faces read
+   * compressed rather than large, so `--text-display-*` starts high. */
+  --font-display: var(--font-display-serif), "Iowan Old Style", Georgia, serif;
+
+  /* Size. Tailwind's stock scale starts at `text-xs` (12px) and steps by 2px,
+   * which leaves the product's four most-used sizes unnameable — so 253 call
+   * sites spelled them as arbitrary values instead (`text-[11px]` alone
+   * appeared 109 times, and the drift that follows from having no name showed
+   * up as `text-[11.5px]`, `[12.5px]`, `[13.5px]`, `[14.5px]`).
+   *
+   * These four are the sizes that were already there, named — not new design.
+   * Every value below is byte-identical to what the call sites hardcoded, so
+   * wiring this changed no pixels; it only made the scale addressable.
+   *
+   *   3xs / 2xs   dense meta and uppercase labels — the eyebrow family
+   *   xs-plus     compact UI rows: sidebar entries, nav links, small buttons
+   *   sm-plus     comfortable body: chat messages, composer and textarea input
+   *
+   * `xs` (12px), `sm` (14px) and `base` (16px) are Tailwind's own and are
+   * deliberately NOT redefined here — 377 `text-xs` and 442 `text-sm` call
+   * sites already depend on those values, so a redefinition would silently
+   * resize most of the product. The `-plus` steps sit between them.
+   *
+   * Custom names are invisible to tailwind-merge unless they are registered
+   * with it; `lib/utils.ts` does that, and says why it matters. */
+  --text-3xs: 0.625rem; /* 10px */
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-xs-plus: 0.8125rem; /* 13px */
+  --text-sm-plus: 0.9375rem; /* 15px */
+
+  /* The editorial end of the scale: a hero lede and two display numbers, past
+   * `text-xl` — `text-[17px]`, `text-[44px]`, `text-[64px]`, named.
+   *
+   * Like the four steps above these declare font-size only; the call sites
+   * that need a tight display leading already pass `leading-none`. */
+  --text-lede: 1.0625rem; /* 17px — hero paragraph under the headline */
+  --text-display-sm: 2.75rem; /* 44px — the price on a pricing card */
+
+  --text-detail-title: 1.375rem; /* 22px — the title of a detail page */
+
+  /* Text styles: the design text styles, as `text-ui`, `text-label` and so
+   * on: size, line height, weight and tracking. A style design sets in mono
+   * (metric, kpi, data, data-sm, eyebrow) also takes `font-mono tabular-nums`, and
+   * label and eyebrow take `uppercase`: a font-size token cannot carry those. */
+  --text-display: 4.75rem; /* 76px */
+  --text-display--line-height: 0.98;
+  --text-display--font-weight: 800;
+  --text-display--letter-spacing: -0.045em;
+  --text-headline: 2.75rem; /* 44px */
+  --text-headline--line-height: 1.08;
+  --text-headline--font-weight: 700;
+  --text-headline--letter-spacing: -0.03em;
+  --text-title: 1.375rem; /* 22px */
+  --text-title--line-height: 1.2;
+  --text-title--font-weight: 700;
+  --text-title--letter-spacing: -0.02em;
+  --text-feature: 1.25rem; /* 20px */
+  --text-feature--line-height: 1.3;
+  --text-feature--font-weight: 700;
+  --text-feature--letter-spacing: -0.01em;
+  --text-lead: 1.125rem; /* 18px */
+  --text-lead--line-height: 1.55;
+  --text-lead--font-weight: 400;
+  --text-body: 1rem; /* 16px */
+  --text-body--line-height: 1.55;
+  --text-body--font-weight: 400;
+  --text-ui: 0.84375rem; /* 13.5px */
+  --text-ui--line-height: 1.45;
+  --text-ui--font-weight: 400;
+  --text-ui-strong: 0.84375rem; /* 13.5px */
+  --text-ui-strong--line-height: 1.45;
+  --text-ui-strong--font-weight: 700;
+  --text-small: 0.78125rem; /* 12.5px */
+  --text-small--line-height: 1.45;
+  --text-small--font-weight: 400;
+  --text-label: 0.6875rem; /* 11px */
+  --text-label--line-height: 1.3;
+  --text-label--font-weight: 700;
+  --text-label--letter-spacing: 0.06em;
+  --text-metric: 2.75rem; /* 44px */
+  --text-metric--line-height: 1;
+  --text-metric--font-weight: 500;
+  --text-metric--letter-spacing: -0.04em;
+  --text-kpi: 1.625rem; /* 26px */
+  --text-kpi--line-height: 1.1;
+  --text-kpi--font-weight: 500;
+  --text-kpi--letter-spacing: -0.02em;
+  --text-data: 0.8125rem; /* 13px */
+  --text-data--line-height: 1.45;
+  --text-data--font-weight: 400;
+  --text-data-sm: 0.71875rem; /* 11.5px */
+  --text-data-sm--line-height: 1.4;
+  --text-data-sm--font-weight: 400;
+  --text-eyebrow: 0.75rem; /* 12px */
+  --text-eyebrow--line-height: 1.3;
+  --text-eyebrow--font-weight: 500;
+  --text-eyebrow--letter-spacing: 0.04em;
+
+  /* design text style -> Tailwind utility (html/tokens.css:93-107). The utility
+   * sets size, line height, weight and tracking; the sans styles take the body
+   * face, `font-sans`.
+   *
+   *   t-display     text-display
+   *   t-headline    text-headline
+   *   t-title       text-title
+   *   t-feature     text-feature
+   *   t-lead        text-lead
+   *   t-body        text-body
+   *   t-ui          text-ui
+   *   t-ui-strong   text-ui-strong
+   *   t-small       text-small
+   *   t-label       text-label uppercase
+   *   t-metric      text-metric font-mono tabular-nums
+   *   t-kpi         text-kpi font-mono tabular-nums
+   *   t-data        text-data font-mono tabular-nums
+   *   t-data-sm     text-data-sm font-mono tabular-nums
+   *   t-eyebrow     text-eyebrow font-mono tabular-nums uppercase
+   *
+   * No design style lacks a utility. `text-lead` (18px) is not `text-lede`
+   * (17px, the landing hero paragraph). */
+
+  /* Tracking. The one letter-spacing step for the uppercase mono meta labels
+   * that don't go through the `Eyebrow` atom (the atom has its own, `tracking-
+   * wide`, on a sans face).
+   *
+   * There used to be two, 0.16em and 0.18em, across 50 call sites. They were
+   * drift, not two steps: `company-detail-sheet.tsx` used both at the same
+   * size, in the same muted tone, for the same kind of label, 125 lines apart.
+   * Collapsed onto 0.16em — the majority, and the more conservative value.
+   *
+   * Note what did NOT collapse. The 10px/11px split across those same sites is
+   * real: 11px is the section-level label, usually with an icon beside it
+   * (`flex items-center gap-2`), and 10px is the label nested under it, often
+   * at reduced opacity. That is a hierarchy, so it keeps two steps. */
+  --tracking-label: 0.16em;
+
+  /* Leading. Display headlines sit tighter than `leading-tight` (1.25): Newsreader's
+   * long ascenders and descenders want 1.18, and every page title shares it. */
+  --leading-display: 1.18; /* 1.18 — Newsreader page and hero headlines */
+
+  /* Shadow. The hairline under a tab strip. It is an inset shadow because the strip
+   * clips overflow, which would cut a real border the active underline overlaps; no
+   * stock shadow draws an inside bottom edge. */
+  --shadow-tab-rule: inset 0 -1px 0 var(--color-line); /* 1px — the rule under the settings tabs */
+
+  /* Radius: the design `Radius` collection. `rounded-full` and the stock
+   * `2xl`/`3xl` steps are Tailwind's own; design has no step past xl. */
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  /* shadcn's knob, which input-group's kbd still reads. */
+  --radius: var(--radius-lg);
+
+  /* Space and Size: the design `Space` and `Size` collections. space-1 to
+   * space-16 are Tailwind's own 4px scale (`p-1.5` is design space-1.5);
+   * the rest are named steps, as in `py-section`, `h-control`, `w-sidebar`. */
+  --spacing-section: 6.5rem; /* 104px */
+  --spacing-control-sm: 1.625rem; /* 26px */
+  --spacing-control: 1.875rem; /* 30px */
+  --spacing-control-md: 2.25rem; /* 36px */
+  --spacing-control-lg: 2.875rem; /* 46px */
+  --spacing-row: 2.375rem; /* 38px */
+  --spacing-row-head: 2.125rem; /* 34px */
+  --spacing-chart: 13.125rem; /* 210px: home.html:31 draws it, components.css:167 says 220px; design to confirm (#826) */
+  --spacing-topbar: 3.25rem; /* 52px */
+  --spacing-sidebar: 14.5rem; /* 232px */
+
+  /* The app screens' own sizes. design keeps them in the screen CSS, not in
+   * its Size collection, so each cites its source (html/ in the design repo).
+   * A named design part gets a token. A one-off size uses Tailwind's scale,
+   * which takes any 0.25 step: the 3px stage bar is `h-0.75`, the 34px chat
+   * tool step (`.cstep`) is `h-8.5`. */
+  --spacing-thread: 23.75rem; /* 380px, beside the table (screens/chat.html:189) */
+  --spacing-chat-column: 41.25rem; /* 660px, the chat column and composer of the in-run screens (screens/chat.html:14,16) */
+  --spacing-bubble: 40rem; /* 640px (screens/screens.css:47) */
+  --spacing-chat-rail: 18.75rem; /* 300px (screens/chat.html:18) */
+  --spacing-composer: 2.75rem; /* 44px: 26px icon button, 2 × 8px padding and a 2px border (screens/chat.html:16) */
+  --spacing-avatar-sm: 1.375rem; /* 22px (components.css:71) */
+  --spacing-avatar-md: 1.625rem; /* 26px (components.css:72) */
+  --spacing-avatar-lg: 2.5rem; /* 40px (components.css:73) */
+  --spacing-meter-bar: 0.25rem; /* 4px (components.css:88) */
+  --spacing-meter-ticks: 0.375rem; /* 6px (components.css:86) */
+
+  /* Effects: the design drop shadows, one colour in both modes. */
+  --shadow-float: 0 16px 40px -12px oklch(0.159 0.011 268 / 0.45);
+  --shadow-frame: 0 30px 80px -40px oklch(0.159 0.011 268 / 0.45);
+  --shadow-snippet: 0 10px 24px -18px oklch(0.159 0.011 268 / 0.5);
+
+  /* Chart series. design names two, accent then accent-soft; the rest
+   * follow the state colours. Consumed as `var(--chart-N)` and as
+   * `bg-chart-N` utilities, so both forms exist. */
+  --chart-1: var(--color-accent);
+  --chart-2: var(--color-accent-soft);
+  --chart-3: var(--color-positive);
+  --chart-4: var(--color-warning);
+  --chart-5: var(--color-muted);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Motion. The sixth family, and the one that did not exist: every transition
+   * ran on Tailwind's stock `ease` at a stock duration, so a hover, a menu
+   * opening, a row being selected and a panel closing all moved at
+   * exactly the same speed. That sameness is what reads as cheap — not the
+   * absence of animation. A vocabulary is the fix; individual tuned numbers
+   * scattered across components would drift on the next component.
+   *
+   * Three curves, and the asymmetry between them is the whole point:
+   *
+   *   --ease-snap    entering. Leaves instantly, decelerates hard into place.
+   *                  An interface that starts moving the moment you touch it
+   *                  reads as responsive even when the total duration is
+   *                  unchanged.
+   *   --ease-exit    leaving, and releasing. Accelerates away — nothing on its
+   *                  way out should hold the eye.
+   *   --ease-spring  release of a press. Overshoots ~4% and settles. Used only
+   *                  on `active:` returns and on things that pop into being
+   *                  under the pointer; on a moving panel it reads as wobble.
+   *
+   * Three durations, and the asymmetry between --transition-duration-in and --transition-duration-out is the
+   * other half of the point:
+   *
+   *   --transition-duration-press   90ms  press feedback, and overlays leaving. Under the
+   *                       ~100ms that reads as contact rather than as an
+   *                       animation of contact.
+   *   --transition-duration-in     110ms  anything responding to the pointer: a hover arriving,
+   *                       an overlay opening, a control revealing itself.
+   *   --transition-duration-out    190ms  a hover RELEASING, and only that. React immediately,
+   *                       let go gently — a fill that fades out at the speed it
+   *                       arrived reads as flicker when the pointer crosses a
+   *                       grid of forty rows.
+   *
+   * The reduced-motion floor at the bottom of this file flattens all of it to
+   * 0.01ms, so nothing here needs a `motion-safe:` variant at the call site. */
+  --ease-snap: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --transition-duration-press: 90ms;
+  --transition-duration-in: 110ms;
+  --transition-duration-out: 190ms;
+  --transition-duration-progress: 600ms;
+
+  --animate-home-pop: home-pop 420ms var(--ease-spring);
+  --animate-home-glow: home-glow 2.4s var(--ease-exit);
+  --animate-home-leave: home-leave 700ms var(--ease-exit) 1500ms both;
+  --animate-home-arrive: home-arrive 300ms var(--ease-snap) both;
+  --animate-home-row-glow: home-row-glow 3s var(--ease-exit);
+
+  @keyframes home-pop {
+    0% {
+      transform: scale(1);
+    }
+    35% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes home-glow {
+    0% {
+      box-shadow:
+        0 0 0 2px var(--color-accent-ink),
+        0 0 0 6px var(--color-accent-tint);
+    }
+    100% {
+      box-shadow:
+        0 0 0 0 transparent,
+        0 0 0 0 transparent;
+    }
+  }
+  @keyframes home-leave {
+    0% {
+      opacity: 1;
+      grid-template-rows: 1fr;
+    }
+    60% {
+      opacity: 0;
+      grid-template-rows: 1fr;
+    }
+    100% {
+      opacity: 0;
+      grid-template-rows: 0fr;
+      margin-top: 0;
+    }
+  }
+  @keyframes home-arrive {
+    from {
+      opacity: 0;
+      transform: translateY(-0.375rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes home-row-glow {
+    from {
+      background-color: var(--color-accent-tint);
+    }
+    to {
+      background-color: transparent;
+    }
+  }
+}
+
+.dark {
+  --color-ground: oklch(0.155 0.009 274.3);
+  --color-side: oklch(0.169 0.008 274.4);
+  --color-raised: oklch(0.2 0.01 268.2);
+  --color-selected: oklch(0.226 0.054 275.1);
+  --color-ink: oklch(0.946 0.004 271.4);
+  --color-soft: oklch(0.827 0.013 271.3);
+  --color-muted: oklch(0.657 0.017 269.9);
+  --color-line: oklch(0.261 0.013 272.8);
+  --color-line-strong: oklch(0.524 0.015 266.6);
+  --color-hair: oklch(0.227 0.012 270.8);
+  --color-accent: oklch(0.58 0.207 274.2);
+  --color-on-accent: oklch(1 0 0);
+  --color-accent-ink: oklch(0.784 0.111 279);
+  --color-accent-soft: oklch(0.762 0.112 279.4);
+  --color-accent-tint: oklch(0.247 0.053 275.6);
+  --color-inverse: oklch(0.946 0.004 271.4);
+  --color-on-inverse: oklch(0.159 0.011 268);
+  --color-inverse-soft: oklch(0.425 0.021 270.9);
+  --color-positive: oklch(0.729 0.149 153.5);
+  --color-positive-tint: oklch(0.247 0.035 156.4);
+  --color-warning: oklch(0.815 0.124 74.1);
+  --color-warning-tint: oklch(0.26 0.035 79.9);
+  --color-negative: oklch(0.709 0.17 26.5);
+  --color-negative-tint: oklch(0.231 0.041 25.5);
+  --color-neutral-dot: oklch(0.532 0.019 271);
+  --color-lime: oklch(0.798 0.172 127.9);
+  --color-on-lime: oklch(0.159 0.011 268);
+  --color-on-negative: oklch(0.159 0.011 268);
+}
+
+/* Motion floor, for every surface that imports this file.
+ *
+ * The `animate-*` call sites carry no `motion-safe:` / `motion-reduce:`
+ * variants. One rule here covers all of it, which is the
+ * right shape for a floor: a per-component sweep would drift on the next
+ * component.
+ *
+ * The overlays (dialogs, sheets, menus) are the exception, and only for
+ * opacity: they keep their fade and lose their slide and zoom. A crossfade
+ * carries "this opened" without moving anything, and it matches the Motion
+ * panels, which `MotionConfig reducedMotion="user"` already reduces to a fade.
+ * Their enter and exit run on tw-animate's `enter` / `exit` keyframes, which
+ * read the offsets below; Radix marks them with `data-state`. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  :is([data-state="open"], [data-state="closed"]) {
+    --tw-enter-translate-x: 0 !important;
+    --tw-enter-translate-y: 0 !important;
+    --tw-exit-translate-x: 0 !important;
+    --tw-exit-translate-y: 0 !important;
+    --tw-enter-scale: 1 !important;
+    --tw-exit-scale: 1 !important;
+    animation-duration: var(--tw-duration, 150ms) !important;
+  }
+}

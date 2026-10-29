@@ -1,0 +1,14 @@
+Zenbree · prototipo cliccabile (design del 7 ottobre 2026)
+
+Le schermate caricano i file vicini, quindi la cartella va aperta da un piccolo server web,
+non con doppio clic (file://).
+
+Modi semplici:
+1. Sul tuo computer: apri un terminale in questa cartella e lancia
+     python3 -m http.server 8080
+   poi apri http://localhost:8080
+2. Da condividere con il team: trascina la cartella su https://app.netlify.com/drop
+   (gratis, crea un indirizzo da mandare), oppure pubblicala con GitHub Pages
+   o Cloudflare Pages.
+
+Nessun dato reale: i nomi e i numeri sono esempi.

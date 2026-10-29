@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+:root{--lp-sky1:#cfe9f1;--lp-sky2:#e8f3f1;--lp-sky3:#f5eedd;--lp-shadow:0 30px 80px -40px rgba(7,25,29,0.45)}
+.zb-dark{--lp-sky1:#0b2a32;--lp-sky2:#0f1b1b;--lp-sky3:#1d1a12;--lp-shadow:0 30px 80px -40px rgba(0,0,0,0.8)}
+.lp a{color:inherit;text-decoration:none}
+.lp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lp-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.lp-frame-wrap{padding:16px}
+.lp-frame{position:relative;border-radius:32px;overflow:hidden;padding:20px 28px 0;box-sizing:border-box}
+.lp-sky{background:radial-gradient(120% 70% at 50% 0%,var(--lp-sky1) 0%,var(--lp-sky2) 55%,var(--lp-sky3) 100%)}
+.lp-top{display:flex;align-items:center;gap:16px;height:56px}
+.lp-logo{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:18px;letter-spacing:-0.01em}
+.lp-pill{margin:0 auto;display:flex;gap:2px;padding:4px;border-radius:999px;background:color-mix(in srgb,var(--zb-bg) 70%,transparent);border:1px solid color-mix(in srgb,var(--zb-border) 70%,transparent);backdrop-filter:blur(8px)}
+.lp-pill a{height:34px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;color:var(--zb-fg)}
+.lp-pill a:hover{background:var(--zb-bg)}
+.lp-top-cta{display:flex;align-items:center;gap:16px}
+.lp-link{font-size:14px;font-weight:600}
+.lp-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;font-family:inherit;font-weight:600;font-size:14px;white-space:nowrap;cursor:pointer;border:1px solid transparent;transition:transform 90ms cubic-bezier(0.34,1.4,0.64,1),background 120ms}
+.lp-btn:active{transform:scale(0.98)}
+.lp .lp-dark{background:var(--zb-fg);color:var(--zb-bg)}
+.lp .lp-primary{background:var(--zb-brand);color:var(--zb-on-brand)}
+.lp .lp-primary:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.lp .lp-ghost{background:color-mix(in srgb,var(--zb-bg) 75%,transparent);border-color:var(--zb-border);color:var(--zb-fg)}
+.lp .lp-ghost:hover{background:var(--zb-bg)}
+.lp-lg{height:50px;padding:0 24px;font-size:16px}
+.lp-sm{height:32px;padding:0 14px;font-size:13px}
+.lp-hero-copy{max-width:880px;margin:0 auto;padding:72px 0 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+.lp-eyebrow{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 14px;border-radius:999px;background:color-mix(in srgb,var(--zb-bg) 70%,transparent);border:1px solid color-mix(in srgb,var(--zb-border) 70%,transparent);font-size:13px;font-weight:600}
+.lp-dot{width:7px;height:7px;border-radius:999px;background:var(--zb-pos-fg)}
+.lp-display{margin:0;font-family:Newsreader,'Iowan Old Style',Georgia,serif;font-weight:400;font-size:84px;line-height:1.02;letter-spacing:-0.02em;text-wrap:balance}
+.lp-display em{font-style:italic;color:var(--zb-ink)}
+.lp-display-sm{font-size:64px}
+.lp-lede{margin:0;max-width:620px;font-size:19px;line-height:1.55;color:var(--zb-muted-fg);text-wrap:pretty}
+.lp-cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.lp-fine{margin:0;font-size:13px;color:var(--zb-muted-fg)}
+.lp-stage{position:relative;max-width:1000px;margin:56px auto 0}
+.lp-app{position:relative;z-index:1;border-radius:20px 20px 0 0;background:var(--zb-bg);border:1px solid var(--zb-border);border-bottom:0;box-shadow:var(--lp-shadow);overflow:hidden}
+.lp-app-bar{display:flex;align-items:center;gap:6px;height:38px;padding:0 14px;border-bottom:1px solid var(--zb-border);background:var(--zb-card)}
+.lp-app-bar>span:not(.lp-app-url){width:10px;height:10px;border-radius:999px;background:var(--zb-border)}
+.lp-app-url{margin:0 auto;font-family:'Atkinson Hyperlegible Mono',monospace;font-size:11px;color:var(--zb-muted-fg)}
+.lp-app-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);min-height:330px}
+.lp-chat{padding:22px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--zb-border);text-align:left}
+.lp-bubble-me{align-self:flex-end;max-width:88%;padding:12px 14px;border-radius:16px 16px 4px 16px;background:var(--zb-tint);color:var(--zb-fg);font-size:14px;line-height:1.5;text-align:left}
+.lp-plan{border:1px solid var(--zb-border);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:12px;background:var(--zb-bg)}
+.lp-plan-h,.lp-rows-h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px}
+.lp-rows-h span{font-size:12px;color:var(--zb-muted-fg)}
+.lp-chip{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--zb-rail);font-size:12px;font-weight:600;white-space:nowrap;color:var(--zb-fg)}
+.lp-chip-on{background:var(--zb-tint);color:var(--zb-ink)}
+.lp-plan-cols{display:flex;flex-wrap:wrap;gap:6px}
+.lp-col{height:26px;padding:0 10px;border-radius:7px;border:1px solid var(--zb-border);font-size:12px;display:inline-flex;align-items:center}
+.lp-col-ai{color:var(--zb-ai-fg);border-color:rgba(130,0,219,0.25);background:rgba(130,0,219,0.06)}
+.lp-plan-f{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--zb-muted-fg)}
+.lp-rows{padding:22px;display:flex;flex-direction:column;gap:4px;text-align:left}
+.lp-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--zb-muted);font-size:14px}
+.lp-av{width:32px;height:32px;border-radius:999px;background:var(--zb-tint);color:var(--zb-ink);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.lp-av-z{background:var(--zb-brand);color:var(--zb-on-brand)}
+.lp-row-main{flex-grow:1;min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.lp-row-main span{font-size:12px;color:var(--zb-muted-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lp-ok{font-size:12px;font-weight:600;color:var(--zb-pos-fg);white-space:nowrap}
+.lp-fit{width:34px;height:24px;border-radius:7px;background:rgba(0,188,125,0.12);color:var(--zb-pos-fg);font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.lp-float{position:absolute;z-index:2;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:16px;background:var(--zb-bg);border:1px solid var(--zb-border);box-shadow:var(--lp-shadow);font-size:13px;text-align:left}
+.lp-float-l{left:-64px;top:120px;transform:rotate(-3deg)}
+.lp-float-r{right:-56px;top:44px;transform:rotate(2.5deg)}
+.lp-float-k{font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--zb-ink)}
+.lp-float-s{font-size:12px;color:var(--zb-muted-fg)}
+.lp-works{display:flex;align-items:center;gap:28px;padding-top:36px;padding-bottom:36px;font-size:14px;color:var(--zb-muted-fg);flex-wrap:wrap;justify-content:center}
+.lp-works-list{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+.lp-works-list b{font-size:17px;font-weight:700;color:var(--zb-fg);opacity:0.7;letter-spacing:-0.01em}
+.lp-works-list .lp-soon{font-weight:500;opacity:0.5}
+.lp-statement{padding-top:72px;padding-bottom:40px;text-align:center}
+.lp-statement p{margin:0 auto;max-width:900px;font-family:Newsreader,Georgia,serif;font-size:46px;line-height:1.15;letter-spacing:-0.01em;text-wrap:balance}
+.lp-statement span{color:var(--zb-muted-fg)}
+.lp-sec{padding-top:96px}
+.lp-sec-h{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:40px}
+.lp-eyebrow-plain{font-family:'Atkinson Hyperlegible Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--zb-ink)}
+.lp-h2{margin:0;font-family:Newsreader,Georgia,serif;font-weight:400;font-size:54px;line-height:1.08;letter-spacing:-0.015em;text-wrap:balance}
+.lp-h3{margin:0;font-family:Newsreader,Georgia,serif;font-weight:400;font-size:40px;line-height:1.1}
+.lp-sub{margin:0;max-width:560px;font-size:17px;line-height:1.55;color:var(--zb-muted-fg)}
+.lp-sub a{color:var(--zb-ink);font-weight:600}
+.lp-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--zb-border)}
+.lp-tab{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:16px 16px 18px 0;border:0;border-top:2px solid transparent;margin-top:-1px;background:transparent;color:var(--zb-muted-fg);font-family:inherit;text-align:left;cursor:pointer}
+.lp-tab[aria-selected=true]{border-top-color:var(--zb-ink);color:var(--zb-fg)}
+.lp-tab-n{font-family:'Atkinson Hyperlegible Mono',monospace;font-size:12px}
+.lp-tab-t{font-size:17px;font-weight:700}
+.lp-tab-s{font-size:13px}
+.lp-how{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:24px;margin-top:20px}
+.lp-how-copy{padding:40px 8px 40px 0;display:flex;flex-direction:column;gap:18px}
+.lp-how-copy p{margin:0;font-size:17px;line-height:1.6;color:var(--zb-muted-fg)}
+.lp-how-copy ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.lp-how-copy li{position:relative;padding-left:22px;font-size:15px;line-height:1.5}
+.lp-how-copy li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:999px;background:var(--zb-ink)}
+.lp-how-art{border-radius:28px;min-height:400px;display:flex;align-items:center;justify-content:center;padding:40px}
+.lp-card{background:var(--zb-bg);border:1px solid var(--zb-border);border-radius:20px;box-shadow:var(--lp-shadow);padding:18px;display:flex;flex-direction:column;gap:12px;text-align:left}
+.lp-card-w{width:100%;max-width:440px}
+.lp-agent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5}
+.lp-choices{display:flex;gap:8px;padding-left:42px}
+.lp-steps-mini{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.lp-steps-mini span{padding:8px 10px;border-radius:10px;background:var(--zb-card)}
+.lp-src{font-size:12px;line-height:1.5;padding:10px 12px;border-radius:12px;background:var(--zb-card);color:var(--zb-muted-fg)}
+.lp-src b{display:block;color:var(--zb-ai-fg);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:2px}
+.lp-mail{display:flex;flex-direction:column;gap:4px;font-size:13px;padding:12px;border-radius:12px;background:var(--zb-card)}
+.lp-mail span{color:var(--zb-muted-fg)}
+.lp-mail p{margin:6px 0 0;line-height:1.5}
+.lp-bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:minmax(240px,auto);gap:16px}
+.lp-b{border-radius:24px;background:var(--zb-card);border:1px solid var(--zb-border);padding:26px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.lp-b h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-0.01em}
+.lp-b p{margin:0;font-size:15px;line-height:1.55;color:var(--zb-muted-fg);max-width:420px}
+.lp-b-a{grid-column:span 4}.lp-b-b{grid-column:span 2}.lp-b-c{grid-column:span 2}.lp-b-d{grid-column:span 2}.lp-b-e{grid-column:span 2}
+.lp-b-a{flex-direction:row;flex-wrap:wrap;align-content:flex-start}
+.lp-b-a h3,.lp-b-a p{flex-basis:100%}
+.lp-ledger{margin-top:auto;flex-basis:100%;display:flex;flex-direction:column;border-radius:16px;background:var(--zb-bg);border:1px solid var(--zb-border);font-size:14px;font-variant-numeric:tabular-nums}
+.lp-ledger div{display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--zb-muted)}
+.lp-ledger div:first-child{border-top:0}
+.lp-ledger-pos b{color:var(--zb-pos-fg)}
+.lp-ledger-tot{background:var(--zb-rail);border-radius:0 0 15px 15px}
+.lp-cell{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:14px;background:var(--zb-bg);border:1px solid var(--zb-border)}
+.lp-cell-v{font-weight:700}
+.lp-cell-src{font-size:12px;color:var(--zb-ink);font-family:'Atkinson Hyperlegible Mono',monospace;word-break:break-all}
+.lp-warm{margin-top:auto;display:flex;align-items:flex-end;gap:8px;height:70px}
+.lp-warm span{flex:1;border-radius:6px 6px 2px 2px;background:var(--zb-ink);opacity:0.85}
+.lp-warm-l{font-size:12px;color:var(--zb-muted-fg)}
+.lp-labels{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+.lp-lab{height:26px;padding:0 10px;border-radius:999px;background:var(--zb-rail);font-size:12px;font-weight:600;display:inline-flex;align-items:center}
+.lp-lab-pos{background:rgba(0,188,125,0.14);color:var(--zb-pos-fg)}
+.lp-lab-info{background:rgba(43,127,255,0.12);color:var(--zb-info-fg)}
+.lp-lab-neg{background:rgba(251,44,54,0.10);color:var(--zb-neg-fg)}
+.lp-b-e{background:var(--zb-brand);color:var(--zb-on-brand);border-color:transparent;justify-content:flex-end}
+.lp-b-e p{color:var(--zb-on-brand)}
+.lp-price{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:16px;align-items:stretch}
+.lp-pc,.lp-costs{border-radius:24px;border:1px solid var(--zb-border);padding:28px;display:flex;flex-direction:column;gap:10px;background:var(--zb-bg)}
+.lp-pc .lp-btn{margin-top:auto;height:46px}
+.lp-pc-hi{background:var(--zb-card);border-color:var(--zb-ink);box-shadow:inset 0 0 0 1px var(--zb-ink)}
+.lp-pc-n{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.lp-pc-p{display:flex;align-items:baseline;gap:4px;margin-top:6px}
+.lp-pc-p span{font-family:Newsreader,Georgia,serif;font-size:60px;line-height:1}
+.lp-pc-p small{font-size:15px;color:var(--zb-muted-fg)}
+.lp-pc-c{font-size:16px;font-weight:600}
+.lp-pc-e{font-size:13px;line-height:1.55;color:var(--zb-muted-fg);margin-bottom:12px}
+.lp-costs{background:var(--zb-card)}
+.lp-costs dl{margin:6px 0 4px;display:flex;flex-direction:column}
+.lp-costs dl div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--zb-border);font-size:15px}
+.lp-costs dt{color:var(--zb-fg)}
+.lp-costs dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lp-faq-wrap{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.lp-faq-wrap .lp-h2{font-size:44px;margin:14px 0 16px}
+.lp-faq{border-top:1px solid var(--zb-border)}
+.lp-q{border-bottom:1px solid var(--zb-border)}
+.lp-q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border:0;background:transparent;color:var(--zb-fg);font-family:inherit;font-size:18px;font-weight:600;text-align:left;cursor:pointer}
+.lp-q-i{width:30px;height:30px;border-radius:999px;border:1px solid var(--zb-border);display:inline-flex;align-items:center;justify-content:center;font-size:18px;font-weight:400;flex-shrink:0}
+.lp-q p{margin:-6px 0 22px;max-width:620px;font-size:16px;line-height:1.6;color:var(--zb-muted-fg)}
+.lp-final{margin-top:112px;padding:96px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+.lp-composer{display:flex;gap:8px;width:100%;max-width:640px;padding:8px;border-radius:999px;background:var(--zb-bg);border:1px solid var(--zb-border);box-shadow:var(--lp-shadow);box-sizing:border-box}
+.lp-composer input{flex:1;min-width:0;border:0;background:transparent;padding:0 16px;font-family:inherit;font-size:16px;color:var(--zb-fg)}
+.lp-composer input:focus{outline:none}
+.lp-composer:focus-within{outline:2px solid var(--zb-ink);outline-offset:2px}
+.lp-composer .lp-btn{height:46px}
+.lp-foot{display:flex;align-items:center;gap:20px;padding-top:40px;padding-bottom:40px;font-size:13px;color:var(--zb-muted-fg);flex-wrap:wrap}
+.lp-foot nav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
+.lp-foot nav a:hover{color:var(--zb-fg)}
+.lp-lang{display:inline-flex;gap:2px;padding:2px;border-radius:999px;background:var(--zb-rail)}
+.lp-lang b,.lp-lang span{padding:3px 10px;border-radius:999px}
+.lp-lang b{background:var(--zb-bg);color:var(--zb-fg)}
+@media (max-width:1240px){.lp-float{display:none}}
+@media (max-width:900px){
+ .lp-bento{grid-template-columns:1fr 1fr}
+ .lp-b-a{grid-column:span 2}.lp-b-b,.lp-b-c,.lp-b-d,.lp-b-e{grid-column:span 1}
+ .lp-price{grid-template-columns:1fr 1fr}.lp-costs{grid-column:span 2}
+}
+@media (max-width:760px){
+ .lp-wrap{padding:0 16px}
+ .lp-frame-wrap{padding:8px}
+ .lp-frame{border-radius:24px;padding:12px 14px 0}
+ .lp-pill,.lp-link{display:none}
+ .lp-top-cta{margin-left:auto}
+ .lp-hero-copy{padding-top:40px;gap:18px}
+ .lp-display{font-size:46px;line-height:1.04}
+ .lp-display-sm{font-size:42px}
+ .lp-lede{font-size:17px}
+ .lp-cta-row{flex-direction:column;width:100%}
+ .lp-cta-row .lp-btn{width:100%}
+ .lp-stage{margin-top:36px}
+ .lp-app-body{grid-template-columns:1fr}
+ .lp-chat{border-right:0;border-bottom:1px solid var(--zb-border);padding:16px}
+ .lp-rows{padding:16px}
+ .lp-ok{display:none}
+ .lp-works{gap:14px;padding-top:28px;padding-bottom:20px}
+ .lp-works-list{gap:16px}
+ .lp-works-list b{font-size:15px}
+ .lp-statement{padding-top:40px}
+ .lp-statement p{font-size:32px}
+ .lp-sec{padding-top:72px}
+ .lp-h2{font-size:38px}
+ .lp-h3{font-size:30px}
+ .lp-tabs{grid-template-columns:1fr 1fr;gap:0 12px}
+ .lp-tab-s{display:none}
+ .lp-how{grid-template-columns:1fr;gap:8px}
+ .lp-how-copy{padding:16px 0}
+ .lp-how-art{min-height:0;padding:20px;border-radius:22px}
+ .lp-bento{grid-template-columns:1fr}
+ .lp-b-a,.lp-b-b,.lp-b-c,.lp-b-d,.lp-b-e{grid-column:span 1}
+ .lp-price{grid-template-columns:1fr}.lp-costs{grid-column:span 1}
+ .lp-faq-wrap{grid-template-columns:1fr;gap:16px}
+ .lp-faq-wrap .lp-h2{font-size:34px}
+ .lp-q button{font-size:16px}
+ .lp-final{margin-top:72px;padding:56px 18px}
+ .lp-composer{flex-direction:column;border-radius:22px}
+ .lp-composer input{height:48px;padding:0 12px}
+ .lp-composer .lp-btn{width:100%}
+ .lp-foot{flex-direction:column;align-items:flex-start;gap:12px}
+ .lp-foot nav{margin-left:0}
+}
+@media (prefers-reduced-motion: reduce){.lp-btn{transition:none}}
+</style>
+</helmet>
+<div class="{{themeClass}} lp" style="background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 16px; min-height: 100vh">
+  <section class="lp-frame-wrap">
+    <div class="lp-frame lp-sky">
+      <header class="lp-top">
+        <a href="#" class="lp-logo" aria-label="Zenbree, home">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span>zenbree</span>
+        </a>
+        <nav class="lp-pill" aria-label="Sezioni">
+          <a href="#come">Come funziona</a><a href="#perche">Perché</a><a href="#prezzi">Prezzi</a><a href="#faq">Domande</a>
+        </nav>
+        <div class="lp-top-cta">
+          <a href="{{nav.signin}}" class="lp-link">Accedi</a>
+          <a href="{{nav.signup}}" class="lp-btn lp-dark">Prova gratis</a>
+        </div>
+      </header>
+
+      <div class="lp-hero-copy">
+        <span class="lp-eyebrow"><span class="lp-dot" aria-hidden="true"></span>Agente AI per l'outbound B2B, dall'Italia all'Europa</span>
+        <h1 class="lp-display">Descrivi il cliente ideale.<br><em>Zenbree trova chi contattare.</em></h1>
+        <p class="lp-lede">Scrivi in chat chi vuoi raggiungere. L'agente ti mostra il piano e il costo prima di spendere, poi consegna persone con email verificata e la fonte di ogni dato.</p>
+        <div class="lp-cta-row">
+          <a href="{{nav.signup}}" class="lp-btn lp-primary lp-lg">Crea la prima lista</a>
+          <a href="#come" class="lp-btn lp-ghost lp-lg">Guarda come funziona</a>
+        </div>
+        <p class="lp-fine">Il piano è gratis · Paghi solo le righe consegnate · 50 crediti di benvenuto, senza carta</p>
+      </div>
+      <div class="lp-stage" aria-label="Anteprima del prodotto">
+        <div class="lp-float lp-float-l lp-hide-sm">
+          <span class="lp-float-k">Email verificata</span>
+          <strong>giulia@officinanove.example</strong>
+          <span class="lp-float-s">Fonte: officinanove.example/team</span>
+        </div>
+        <div class="lp-float lp-float-r lp-hide-sm">
+          <span class="lp-float-k" style="color: var(--zb-pos-fg)">+14 crediti resi</span>
+          <strong>3 righe non consegnate</strong>
+          <span class="lp-float-s">Senza email non le paghi</span>
+        </div>
+        <div class="lp-app">
+          <div class="lp-app-bar"><span></span><span></span><span></span><span class="lp-app-url">app.zenbree.com</span></div>
+          <div class="lp-app-body">
+            <div class="lp-chat">
+              <div class="lp-bubble-me">Agenzie di marketing indipendenti a Milano, 10–50 dipendenti. Voglio il CEO, con email verificata.</div>
+              <div class="lp-plan">
+                <div class="lp-plan-h"><strong>Piano · 50 righe</strong><span class="lp-chip">fino a 312 crediti</span></div>
+                <div class="lp-plan-cols">
+                  <span class="lp-col">Nome *</span><span class="lp-col">Ruolo *</span><span class="lp-col">Email verificata *</span><span class="lp-col lp-col-ai">Settore · AI</span>
+                </div>
+                <div class="lp-plan-f"><span>Paghi solo le righe con i campi *</span><span class="lp-btn lp-primary lp-sm">Approva e avvia</span></div>
+              </div>
+            </div>
+            <div class="lp-rows">
+              <div class="lp-rows-h"><strong>Persone</strong><span>47 consegnate · 31 aziende</span></div>
+              <sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+                <div class="lp-row">
+                  <span class="lp-av" aria-hidden="true">{{r.ini}}</span>
+                  <span class="lp-row-main"><strong>{{r.name}}</strong><span>{{r.role}} · {{r.company}}</span></span>
+                  <span class="lp-ok">✓ verificata</span>
+                  <span class="lp-fit">{{r.fit}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="lp-wrap lp-works">
+    <span>Funziona con quello che usi già</span>
+    <div class="lp-works-list"><b>Gmail</b><b>Outlook</b><b>LinkedIn</b><b>CSV ed Excel</b><b>API</b><b class="lp-soon">HubSpot · presto</b></div>
+  </section>
+  <section class="lp-wrap lp-statement">
+    <p>Una buona lista non è più lunga.<br><span>È più corta, e ogni riga ha una fonte che puoi aprire.</span></p>
+  </section>
+  <section id="come" class="lp-wrap lp-sec">
+    <div class="lp-sec-h">
+      <span class="lp-eyebrow-plain">Come funziona</span>
+      <h2 class="lp-h2">Dal brief alla prima risposta,<br>senza perdere il controllo.</h2>
+    </div>
+    <div class="lp-tabs" role="tablist" aria-label="Passaggi">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <button type="button" role="tab" aria-selected="{{s.sel}}" onClick="{{s.pick}}" class="lp-tab">
+          <span class="lp-tab-n">{{s.n}}</span><span class="lp-tab-t">{{s.title}}</span><span class="lp-tab-s">{{s.short}}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div class="lp-how" role="tabpanel">
+      <div class="lp-how-copy">
+        <h3 class="lp-h3">{{cur.title}}</h3>
+        <p>{{cur.body}}</p>
+        <ul>
+          <sc-for list="{{cur.points}}" as="p" hint-placeholder-count="3"><li>{{p}}</li></sc-for>
+        </ul>
+      </div>
+      <div class="lp-how-art lp-sky">
+        <sc-if value="{{show.s1}}" hint-placeholder-val="{{true}}">
+          <div class="lp-card lp-card-w">
+            <div class="lp-bubble-me" style="margin: 0">Responsabili acquisti nella GDO del Nord Est</div>
+            <div class="lp-agent"><span class="lp-av lp-av-z" aria-hidden="true">z</span><span>Prima di cercare: ti interessano solo le insegne o anche i grossisti?</span></div>
+            <div class="lp-choices"><span class="lp-chip lp-chip-on">Solo insegne</span><span class="lp-chip">Anche grossisti</span></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{show.s2}}" hint-placeholder-val="{{false}}">
+          <div class="lp-card lp-card-w">
+            <div class="lp-plan-h"><strong>Piano · 80 righe</strong><span class="lp-chip">fino a 420 crediti</span></div>
+            <div class="lp-steps-mini"><span>1 · Trova 40 insegne nel Nord Est</span><span>2 · 2 responsabili acquisti per insegna</span><span>3 · Verifica le email</span></div>
+            <div class="lp-plan-f"><span>Nessun credito finché non approvi</span><span class="lp-btn lp-primary lp-sm">Approva e avvia</span></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{show.s3}}" hint-placeholder-val="{{false}}">
+          <div class="lp-card lp-card-w">
+            <div class="lp-rows-h"><strong>Persone</strong><span>74 di 80 consegnate</span></div>
+            <div class="lp-row"><span class="lp-av" aria-hidden="true">MC</span><span class="lp-row-main"><strong>Marta Colombo</strong><span>Buyer freschi · Insegna Nord</span></span><span class="lp-fit">90</span></div>
+            <div class="lp-row"><span class="lp-av" aria-hidden="true">PR</span><span class="lp-row-main"><strong>Paolo Rizzi</strong><span>Category manager · Super Est</span></span><span class="lp-fit">84</span></div>
+            <div class="lp-src"><b>Perché è in target</b>«Gestisce il fornitore locale dal 2023» · fonte: superest.it/news</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{show.s4}}" hint-placeholder-val="{{false}}">
+          <div class="lp-card lp-card-w">
+            <div class="lp-rows-h"><strong>Da approvare</strong><span>3 di 12</span></div>
+            <div class="lp-mail"><b>A: Marta Colombo</b><span>Oggetto: Fornitori locali per i freschi</span><p>Ciao Marta, ho letto che da quest'anno seguite di più i produttori del territorio…</p></div>
+            <div class="lp-plan-f"><span class="lp-btn lp-ghost lp-sm">Salta</span><span class="lp-btn lp-primary lp-sm">Approva e invia</span></div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+  <section id="perche" class="lp-wrap lp-sec">
+    <div class="lp-sec-h">
+      <span class="lp-eyebrow-plain">Perché Zenbree</span>
+      <h2 class="lp-h2">Fatto per chi vende,<br>non per chi compra liste.</h2>
+    </div>
+    <div class="lp-bento">
+      <article class="lp-b lp-b-a">
+        <h3>Paghi solo ciò che arriva</h3>
+        <p>Una riga senza i campi obbligatori non viene consegnata. I suoi crediti tornano sul saldo a fine ricerca.</p>
+        <div class="lp-ledger">
+          <div><span>Agenzie marketing Milano</span><b>−312</b></div>
+          <div class="lp-ledger-pos"><span>Righe non consegnate</span><b>+14</b></div>
+          <div class="lp-ledger-tot"><span>Saldo</span><b>942 crediti</b></div>
+        </div>
+      </article>
+      <article class="lp-b lp-b-b">
+        <h3>Ogni dato con la fonte</h3>
+        <p>Le colonne AI tengono un valore solo se è scritto in una pagina che puoi aprire.</p>
+        <div class="lp-cell"><span class="lp-cell-v">Dipendenti: 18</span><span class="lp-cell-src">↗ linkedin.com/company/officina-nove</span></div>
+      </article>
+      <article class="lp-b lp-b-c">
+        <h3>Tu approvi ogni messaggio</h3>
+        <p>Le campagne partono dalle tue caselle, con riscaldamento graduale. Niente parte senza il tuo ok.</p>
+        <div class="lp-warm"><span style="height: 20%"></span><span style="height: 40%"></span><span style="height: 60%"></span><span style="height: 80%"></span><span style="height: 100%"></span></div>
+        <span class="lp-warm-l">da 10 a 50 invii al giorno, per casella</span>
+      </article>
+      <article class="lp-b lp-b-d">
+        <h3>Risposte già divise</h3>
+        <p>Chi risponde esce dalla sequenza. L'agente etichetta la risposta e prepara la bozza.</p>
+        <div class="lp-labels"><span class="lp-lab lp-lab-pos">Interessato</span><span class="lp-lab lp-lab-info">Richiesta di incontro</span><span class="lp-lab">Non ora</span><span class="lp-lab">Non interessato</span><span class="lp-lab lp-lab-neg">Disiscritto</span></div>
+      </article>
+      <article class="lp-b lp-b-e">
+        <h3>Pensato per l’Italia, aperto all’Europa</h3>
+        <p>Usalo in italiano o in inglese e cerca aziende in tutta Europa. Le esclusioni (clienti, concorrenti, chi si è disiscritto) valgono per sempre.</p>
+      </article>
+    </div>
+  </section>
+  <section id="prezzi" class="lp-wrap lp-sec">
+    <div class="lp-sec-h">
+      <span class="lp-eyebrow-plain">Prezzi</span>
+      <h2 class="lp-h2">Sai il costo prima di partire.</h2>
+      <p class="lp-sub">Ogni piano dell'agente ti dice il massimo che spenderai. Prezzi IVA esclusa; per le aziende UE con partita IVA si applica il reverse charge.</p>
+    </div>
+    <div class="lp-price">
+      <div class="lp-pc">
+        <span class="lp-pc-n">Starter</span>
+        <div class="lp-pc-p"><span>€29</span><small>/mese</small></div>
+        <span class="lp-pc-c">2.000 crediti al mese</span>
+        <span class="lp-pc-e">≈ 1.000 email verificate</span>
+        <a href="{{nav.signup}}" class="lp-btn lp-ghost">Inizia con Starter</a>
+      </div>
+      <div class="lp-pc lp-pc-hi">
+        <span class="lp-pc-n">Pro <span class="lp-chip">per chi fa campagne</span></span>
+        <div class="lp-pc-p"><span>€79</span><small>/mese</small></div>
+        <span class="lp-pc-c">6.000 crediti al mese</span>
+        <span class="lp-pc-e">≈ 3.000 email verificate</span>
+        <a href="{{nav.signup}}" class="lp-btn lp-primary">Inizia con Pro</a>
+      </div>
+      <div class="lp-costs">
+        <span class="lp-pc-n">Quanto costa cosa</span>
+        <dl>
+          <div><dt>Piano e domande dell'agente</dt><dd>gratis</dd></div>
+          <div><dt>Email trovata e verificata</dt><dd>2 crediti</dd></div>
+          <div><dt>Telefono trovato</dt><dd>10 crediti</dd></div>
+          <div><dt>Cella AI con fonte</dt><dd>1 credito</dd></div>
+        </dl>
+        <span class="lp-pc-e">Ricariche senza abbonamento: 1.000 crediti €19 · 3.000 €49 · 10.000 €149. Non scadono.</span>
+      </div>
+    </div>
+  </section>
+  <section id="faq" class="lp-wrap lp-sec lp-faq-wrap">
+    <div>
+      <span class="lp-eyebrow-plain">Domande</span>
+      <h2 class="lp-h2">Quello che ci chiedono prima di iniziare.</h2>
+      <p class="lp-sub">Altro? Scrivici a <a href="mailto:supporto@zenbree.com">supporto@zenbree.com</a>.</p>
+    </div>
+    <div class="lp-faq">
+      <sc-for list="{{faq}}" as="q" hint-placeholder-count="5">
+        <div class="lp-q">
+          <button type="button" aria-expanded="{{q.openStr}}" onClick="{{q.toggle}}"><span>{{q.q}}</span><span class="lp-q-i" aria-hidden="true">{{q.icon}}</span></button>
+          <sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><p>{{q.a}}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section class="lp-frame-wrap">
+    <div class="lp-frame lp-sky lp-final">
+      <h2 class="lp-display lp-display-sm">Chi vuoi raggiungere?</h2>
+      <p class="lp-lede">Scrivilo in una frase. Il piano è gratis, la lista la paghi solo se arriva.</p>
+      <form class="lp-composer" onSubmit="{{noop}}">
+        <label for="lpq" class="lp-sr">Descrivi il tuo cliente ideale</label>
+        <input id="lpq" type="text" value="{{brief}}" onChange="{{setBrief}}" placeholder="Es. studi di architettura a Torino con più di 10 persone">
+        <a href="{{nav.signup}}" class="lp-btn lp-primary">Inizia gratis</a>
+      </form>
+      <p class="lp-fine">Ti chiediamo solo l'email per salvare la chat e i 50 crediti di benvenuto.</p>
+    </div>
+  </section>
+
+  <footer class="lp-wrap lp-foot">
+    <a href="#" class="lp-logo"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>zenbree</span></a>
+    <span class="lp-foot-c">© 2026 Zenbree</span>
+    <nav aria-label="Link legali"><a href="#">Termini</a><a href="#">Privacy</a><a href="#">Documentazione API</a><a href="{{nav.signin}}">Accedi</a></nav>
+    <span class="lp-lang" role="group" aria-label="Lingua"><b>IT</b><span>EN</span></span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { step: 0, open: 0, brief: '' }; }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const S = this.state;
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const ST = [
+      { n: '01', title: 'Descrivi', short: 'Una frase, in italiano o in inglese', body: 'Settore, zona, dimensione, ruoli, segnali come «sta assumendo». Scrivi come lo diresti a un collega: se manca qualcosa, l’agente te lo chiede prima di cercare.', points: ['Una domanda alla volta, solo quando serve', 'Ricorda il tuo profilo e i segmenti salvati', 'Esclude in automatico clienti e concorrenti'] },
+      { n: '02', title: 'Approva il piano', short: 'Costo massimo, prima', body: 'Vedi quante righe, quali colonne e quanto costa al massimo, prima di spendere un credito. Le colonne con l’asterisco decidono cosa ti viene consegnato.', points: ['Il piano e le domande sono gratis', 'Sopra i 500 crediti ti chiediamo una conferma in più', 'Puoi cambiare righe e colonne prima di avviare'] },
+      { n: '03', title: 'Ricevi la lista', short: 'Persone e aziende', body: 'Due liste collegate, persone e aziende, con email verificata e un punteggio di quanto sono in target. Ogni dato ricercato ha la sua fonte.', points: ['Le prime righe arrivano mentre l\u2019agente lavora', 'Righe incomplete non consegnate e non pagate', 'Esporti in CSV o Excel quando vuoi'] },
+      { n: '04', title: 'Contatta', short: 'Email e LinkedIn', body: 'Sequenze fino a 12 passi, dalle tue caselle e dal tuo LinkedIn. Approvi ogni messaggio, chi risponde esce dalla sequenza e la risposta arriva già etichettata.', points: ['Riscaldamento graduale delle caselle', 'Stop automatico a risposta o disiscrizione', 'Bozza di risposta pronta per i più interessati'] }
+    ];
+    const FAQ = [
+      { q: 'Che cos’è un credito?', a: 'L’unità con cui paghi il lavoro dell’agente: email e telefoni trovati, colonne AI. Il piano ti dice il massimo che spenderai prima di partire, e le righe non consegnate tornano sul saldo.' },
+      { q: 'E se un’email non si trova?', a: 'Se l’email è obbligatoria nel piano, quella riga non viene consegnata e non la paghi. Le email «catch-all» le segnaliamo come da verificare.' },
+      { q: 'Devo collegare LinkedIn o la mia email?', a: 'No, per creare liste non serve collegare nulla. Caselle email e LinkedIn servono solo per inviare campagne dai tuoi account.' },
+      { q: 'Posso caricare una lista che ho già?', a: 'Sì: carichi un CSV e l’agente lo completa con email, telefoni e colonne di ricerca. Le righe nelle tue esclusioni vengono scartate. Importare è gratis.' },
+      { q: 'Funziona anche fuori dall’Italia?', a: 'Sì. Cerchi aziende e persone in tutta Europa e usi Zenbree in italiano o in inglese. Le aziende UE con partita IVA pagano in reverse charge.' },
+      { q: 'Da dove vengono i dati, ed è a norma GDPR?', a: 'Da fornitori di dati professionali e da pagine pubbliche, sempre con la fonte. Ogni email di campagna permette di disiscriversi, e chi lo fa entra nelle tue esclusioni per sempre.' }
+    ];
+    const cur = ST[S.step];
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { signup: h('Auth-SignUp.dc.html'), signin: h('Auth-SignIn.dc.html') },
+      rows: [
+        { ini: 'GF', fit: '92', name: 'Giulia Ferri', role: 'CEO', company: 'Officina Nove' },
+        { ini: 'MB', fit: '88', name: 'Marco Bellini', role: 'Resp. commerciale', company: 'Studio Brezza' },
+        { ini: 'CG', fit: '85', name: 'Chiara Gallo', role: 'Founder e CEO', company: 'Lanterna Digital' },
+        { ini: 'EM', fit: '81', name: 'Elena Moretti', role: 'CEO', company: 'Ponte Creativo' }
+      ],
+      steps: ST.map((s, i) => ({ n: s.n, title: s.title, short: s.short, sel: S.step === i ? 'true' : 'false', pick: () => this.setState({ step: i }) })),
+      cur, show: { s1: S.step === 0, s2: S.step === 1, s3: S.step === 2, s4: S.step === 3 },
+      faq: FAQ.map((f, i) => ({ ...f, open: S.open === i, openStr: S.open === i ? 'true' : 'false', icon: S.open === i ? '−' : '+', toggle: () => this.setState({ open: S.open === i ? -1 : i }) })),
+      brief: S.brief, setBrief: (e) => this.setState({ brief: e.target.value }), noop: (e) => e.preventDefault()
+    };
+  }
+}
+</script>
+</body>
+</html>

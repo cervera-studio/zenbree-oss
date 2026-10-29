@@ -1,0 +1,259 @@
+#!/usr/bin/env node
+// Instantly API v2 for the Instantly recipe (features/instantly.md): a workspace, three campaigns and a lead store.
+// The key is "verify-instantly-key". An email containing "timeout" is stored and then the connection is cut with no
+// answer (a request that took effect but timed out); containing "blocked" it is left out of created_leads. GET /state
+// shows what the workspace holds and every add call; POST /reset empties both. Nothing leaves this process, except
+// the webhook deliveries that POST /fire makes to the URL the API registered.
+//
+// Campaign events (#930): POST /fire {event_type, email, step?, is_auto_reply?, via?} records the event and, with
+// via "webhook" or "both" (the default), posts it to the registered webhook with its secret header; via "api" only
+// lists it in GET /api/v2/emails (email_sent, reply_received) or on the lead (email_bounced, lead_unsubscribed,
+// lead_* labels). POST /plan {webhooks: false} makes the webhook create answer 402, as a plan without webhooks;
+// POST /plan {emails: false} makes GET /api/v2/emails answer 403, as a key made without emails:read. POST /fire
+// {replay: true} posts the last delivery's body again, as Instantly retries one.
+//
+// Stops (#931): GET and DELETE /api/v2/leads/{id} read and remove a lead (GET /state lists the removed ones under
+// `deleted`). POST /fail {mode} sets how the API answers: "down" answers 503 to every /api/v2 call, "cut" closes the
+// connection with no answer, "no_scope" answers 401 to a lead DELETE after a good GET (a key without leads:delete:
+// Instantly lists 401, 402, 404 and 429 for that DELETE, no 403), "ok" (the default) answers normally.
+//
+// Mailboxes (#936): GET /api/v2/accounts lists two sending accounts; "Ale@RitmoSales.it" is the native mailbox of the
+// senders recipe (features/senders.md) in another case. POST /plan {accounts: false} makes it answer 401, as a key
+// made without accounts:read (Instantly answers a missing scope with 401).
+import { randomUUID } from 'node:crypto';
+import { createServer } from 'node:http';
+
+const port = Number(process.argv[2] ?? 18768);
+const KEY = 'verify-instantly-key';
+const campaigns = [
+  { id: '0a1b2c3d-0000-4000-8000-000000000001', name: 'Verify running', status: 1 },
+  { id: '0a1b2c3d-0000-4000-8000-000000000002', name: 'Verify paused', status: 2 },
+  { id: '0a1b2c3d-0000-4000-8000-000000000003', name: 'Verify draft', status: 0 },
+];
+const accounts = [
+  { email: 'Ale@RitmoSales.it', status: 1, warmup_status: 1, daily_limit: 40 },
+  { email: 'outreach@ritmo-mail.test', status: -3, warmup_status: 0, daily_limit: null },
+];
+let leads = new Map();
+let adds = [];
+let emails = [];
+let webhooks = new Map();
+let plan = { webhooks: true, emails: true, accounts: true };
+let fail = 'ok';
+let deleted = [];
+const LABELS = {
+  lead_interested: 1,
+  lead_meeting_booked: 2,
+  lead_meeting_completed: 3,
+  lead_closed: 4,
+  lead_out_of_office: 0,
+  lead_not_interested: -1,
+  lead_wrong_person: -2,
+  lead_no_show: -4,
+};
+
+// What the event changes in the API's own records: an email, a lead status or a label.
+function remember(event, at) {
+  const lead = leads.get(event.email);
+  const campaign = lead?.campaign;
+  if (event.event_type === 'email_sent' || event.event_type === 'reply_received') {
+    const sent = event.event_type === 'email_sent';
+    const id = randomUUID(); // unique across /reset, as Instantly's ids are
+    emails.push({
+      id,
+      message_id: `<${id}@fake>`,
+      ue_type: sent ? 1 : 2,
+      is_auto_reply: sent ? 0 : event.is_auto_reply ? 1 : 0,
+      lead: event.email,
+      campaign_id: campaign,
+      step: event.step ?? 1,
+      timestamp_email: at,
+      timestamp_created: at,
+    });
+  } else if (lead && event.event_type === 'email_bounced') lead.status = -1;
+  else if (lead && event.event_type === 'lead_unsubscribed') lead.status = -2;
+  else if (lead && event.event_type in LABELS) {
+    lead.lt_interest_status = LABELS[event.event_type];
+    lead.timestamp_last_interest_change = at;
+  }
+  return campaign;
+}
+
+let last = null; // the payload of the last delivery, for {"replay": true}
+
+async function deliver(payload) {
+  const delivered = [];
+  for (const hook of webhooks.values()) {
+    const res = await fetch(hook.target_hook_url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...hook.headers },
+      body: JSON.stringify(payload),
+    }).catch((e) => ({ status: `unreachable: ${e.message}` }));
+    delivered.push({ id: hook.id, status: res.status });
+  }
+  return { delivered };
+}
+
+async function fire(event) {
+  if (event.replay) return last ? deliver(last) : { delivered: [] }; // Instantly's retry: the same body again
+  const at = new Date().toISOString();
+  const via = event.via ?? 'both';
+  const campaign = via === 'webhook' ? leads.get(event.email)?.campaign : remember(event, at);
+  if (via === 'api') return { delivered: [] };
+  const payload = {
+    timestamp: at,
+    event_type: event.event_type,
+    workspace: 'ws-verify',
+    campaign_id: campaign,
+    lead_email: event.email,
+    step: event.step ?? 1,
+  };
+  last = payload;
+  return deliver(payload);
+}
+
+const send = (res, status, body) =>
+  res.writeHead(status, { 'Content-Type': 'application/json' }).end(JSON.stringify(body));
+
+createServer((req, res) => {
+  let raw = '';
+  req.on('data', (chunk) => (raw += chunk));
+  req.on('end', () => {
+    const url = new URL(req.url, 'http://fake');
+    let body = {};
+    try {
+      body = JSON.parse(raw);
+    } catch {}
+    const log = (status) => console.log(`${req.method} ${url.pathname} -> ${status}`);
+    if (url.pathname === '/state') {
+      const hooks = [...webhooks.values()].map(({ headers, ...hook }) => hook); // never print the secret
+      return send(res, 200, { leads: Object.fromEntries(leads), adds, emails, webhooks: hooks, plan, fail, deleted });
+    }
+    if (url.pathname === '/reset') {
+      leads = new Map();
+      adds = [];
+      emails = [];
+      webhooks = new Map();
+      plan = { webhooks: true, emails: true, accounts: true };
+      fail = 'ok';
+      deleted = [];
+      return send(res, 200, { reset: true });
+    }
+    if (url.pathname === '/plan') {
+      plan = { ...plan, ...body };
+      return send(res, 200, plan);
+    }
+    if (url.pathname === '/fail') {
+      fail = body.mode ?? 'ok';
+      return send(res, 200, { fail });
+    }
+    if (url.pathname === '/fire') {
+      fire(body).then((done) => send(res, 200, done));
+      return;
+    }
+    if (fail === 'cut') {
+      console.log(`${req.method} ${url.pathname} -> connection cut`);
+      return req.socket.destroy();
+    }
+    if (fail === 'down') {
+      log(503);
+      return send(res, 503, { message: 'Service unavailable' });
+    }
+    if (req.headers.authorization !== `Bearer ${KEY}`) {
+      log(401);
+      return send(res, 401, { statusCode: 401, error: 'Unauthorized', message: 'Invalid API key' });
+    }
+    if (url.pathname === '/api/v2/accounts') {
+      const status = plan.accounts === false ? 401 : 200;
+      log(status);
+      return send(res, status, status === 200 ? { items: accounts } : { statusCode: 401, error: 'Unauthorized' });
+    }
+    const one = url.pathname.match(/^\/api\/v2\/campaigns\/([^/]+)$/);
+    if (url.pathname === '/api/v2/workspaces/current') {
+      log(200);
+      return send(res, 200, { id: 'ws-verify', name: 'Verify workspace' });
+    }
+    if (url.pathname === '/api/v2/campaigns') {
+      log(200);
+      return send(res, 200, { items: campaigns });
+    }
+    if (one) {
+      const found = campaigns.find((c) => c.id === one[1]);
+      log(found ? 200 : 404);
+      return send(res, found ? 200 : 404, found ?? { message: 'not found' });
+    }
+    const hook = url.pathname.match(/^\/api\/v2\/webhooks\/([^/]+)$/);
+    if (url.pathname === '/api/v2/webhooks' && req.method === 'POST') {
+      if (!plan.webhooks) {
+        log(402);
+        return send(res, 402, { message: 'Payment required' });
+      }
+      const id = `wh-${webhooks.size + 1}`;
+      webhooks.set(id, { id, status: 1, ...body });
+      log(200);
+      return send(res, 200, { id, status: 1, event_type: body.event_type });
+    }
+    if (hook) {
+      const found = webhooks.get(hook[1]);
+      if (found && req.method === 'DELETE') webhooks.delete(hook[1]);
+      log(found ? 200 : 404);
+      return send(res, found ? 200 : 404, found ? { id: found.id, status: found.status } : { message: 'not found' });
+    }
+    if (url.pathname === '/api/v2/emails' && plan.emails === false) {
+      log(403);
+      return send(res, 403, { message: 'Forbidden: missing scope emails:read' });
+    }
+    if (url.pathname === '/api/v2/emails') {
+      const type = url.searchParams.get('email_type');
+      const since = url.searchParams.get('min_timestamp_created') ?? '';
+      const items = emails.filter(
+        (e) => (type === 'sent' ? e.ue_type === 1 : e.ue_type === 2) && (!since || new Date(e.timestamp_created) >= new Date(since)),
+      );
+      log(200);
+      return send(res, 200, { items });
+    }
+    if (url.pathname === '/api/v2/leads/list') {
+      const items = (body.contacts ?? [])
+        .filter((e) => leads.has(e) && (!body.campaign || leads.get(e).campaign === body.campaign))
+        .map((e) => ({ email: e, ...leads.get(e) }));
+      log(200);
+      return send(res, 200, { items });
+    }
+    const byId = url.pathname.match(/^\/api\/v2\/leads\/([^/]+)$/);
+    if (byId && (req.method === 'GET' || req.method === 'DELETE')) {
+      const found = [...leads].find(([, lead]) => lead.id === byId[1]);
+      if (!found) {
+        log(404);
+        return send(res, 404, { statusCode: 404, error: 'Not Found', message: 'Resource not found' });
+      }
+      if (req.method === 'DELETE' && fail === 'no_scope') {
+        log(401);
+        return send(res, 401, { statusCode: 401, error: 'Unauthorized', message: 'Unauthorized' });
+      }
+      const [email, lead] = found;
+      if (req.method === 'DELETE') {
+        leads.delete(email);
+        deleted.push({ email, ...lead });
+      }
+      log(200);
+      return send(res, 200, { id: lead.id, email, campaign: lead.campaign, status: lead.status });
+    }
+    if (url.pathname === '/api/v2/leads/add') {
+      adds.push(body);
+      const created = [];
+      (body.leads ?? []).forEach((lead, index) => {
+        if (lead.email.includes('blocked') || leads.has(lead.email)) return;
+        leads.set(lead.email, { id: randomUUID(), campaign: body.campaign_id, status: 1 });
+        created.push({ index, id: leads.get(lead.email).id, email: lead.email });
+      });
+      if ((body.leads ?? []).some((l) => l.email.includes('timeout'))) {
+        console.log('POST /api/v2/leads/add -> stored, connection cut');
+        return req.socket.destroy();
+      }
+      log(200);
+      return send(res, 200, { status: 'success', total_sent: (body.leads ?? []).length, created_leads: created });
+    }
+    log(404);
+    send(res, 404, { message: 'not found' });
+  });
+}).listen(port, () => console.log(`fake-instantly on :${port}`));

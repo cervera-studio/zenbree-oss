@@ -1,0 +1,37 @@
+---
+import { type Content, links } from '../content';
+import { btn, data, h2, headRow, headSide, panel, section } from '../styles/classes';
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+const { openSource } = t;
+const card = 'flex flex-col items-start gap-4 px-5 py-6';
+---
+
+<section id={t.sections.openSource} class="border-t border-line bg-raised">
+  <div class:list={[section, 'flex flex-col gap-10 phone:gap-6']}>
+    <div class={headRow}>
+      <div class="flex max-w-135 flex-1 flex-col gap-5">
+        <Eyebrow>{openSource.eyebrow}</Eyebrow>
+        <h2 class={h2}>{openSource.title}</h2>
+      </div>
+      <p class={headSide}>{openSource.sub}</p>
+    </div>
+    <div class="grid grid-cols-2 items-stretch gap-10 tablet:grid-cols-1 tablet:gap-4">
+      <div class:list={[panel, card]}>
+        <p class="text-ui-strong">{openSource.selfHostTitle}</p>
+        <p class="text-ui text-soft">{openSource.selfHostBody}</p>
+        <code class:list={[data, 'max-w-full overflow-x-auto rounded-sm bg-hair px-3 py-2 whitespace-nowrap']}>git clone {links.repo}.git</code>
+        <a href={links.repo} class={btn('primary', 'md')}>{openSource.repoCta}</a>
+      </div>
+      <div class:list={[panel, card]}>
+        <p class="text-ui-strong">{openSource.hostedTitle}</p>
+        <p class="text-ui text-soft">{openSource.hostedBody}</p>
+        <a href={links.contact} class:list={[btn('outline', 'md'), 'mt-auto']}>{openSource.hostedCta}</a>
+      </div>
+    </div>
+  </div>
+</section>

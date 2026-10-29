@@ -1,0 +1,33 @@
+---
+import { type Content, type Locale, links } from '../content';
+import LangMenu from './LangMenu.astro';
+import Logo from './Logo.astro';
+import { sectionLinks } from './nav';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  t: Content;
+  locale: Locale;
+}
+const { t, locale } = Astro.props;
+const menuLink = 'flex h-11 items-center text-feature';
+---
+
+<div id="site-menu" popover class="m-0 ms-auto h-dvh w-80 max-w-full border-0 border-l border-line bg-ground p-5 text-ink backdrop:bg-black/40">
+  <div class="flex flex-col gap-6">
+    <div class="flex items-center justify-between">
+      <Logo label={t.nav.homeLabel} />
+      <div class="flex items-center gap-1">
+        <ThemeToggle labels={t.menu} size="menu" />
+        <LangMenu locale={locale} label={t.footer.langLabel} size="menu" />
+        <button type="button" popovertarget="site-menu" popovertargetaction="hide" class="-mr-2.5 inline-flex size-11 cursor-pointer items-center justify-center rounded-md text-ink hover:bg-raised" aria-label={t.menu.close}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="stroke-current" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </button>
+      </div>
+    </div>
+    <nav aria-label={t.nav.label} class="flex flex-col">
+      {sectionLinks(t).map(([href, label]) => <a href={href} class={menuLink}>{label}</a>)}
+      <a href={links.signIn} class:list={[menuLink, 'mt-2 border-t border-line']}>{t.nav.signIn}</a>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+// Posts one Standard Webhooks call to an automation's webhook URL, signed with the secret that
+// bin/webhook-secret saved, and prints the answer body and the HTTP status. It never prints the
+// secret or the signature, and neither goes on a command line, where `ps` would show it.
+//
+//   WEBHOOK_URL=<url> bin/webhook-call [--unsigned | --old-key | --wrong-key] <webhook-id> <body> [timestamp]
+//
+// The key is $VERIFY_STATE/hook-secret. --old-key signs with hook-secret.old (the secret before the
+// last rotate). --wrong-key signs with a random key. --unsigned sends no webhook-signature header.
+// The timestamp defaults to now.
+import { createHmac, randomBytes } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const USAGE =
+  'usage: WEBHOOK_URL=<url> bin/webhook-call [--unsigned | --old-key | --wrong-key] <webhook-id> <body> [timestamp]';
+const die = (msg, code = 2) => {
+  console.error(msg);
+  process.exit(code);
+};
+
+const args = process.argv.slice(2);
+const mode = args[0]?.startsWith('--') ? args.shift() : '--key';
+if (!['--key', '--unsigned', '--old-key', '--wrong-key'].includes(mode)) die(USAGE);
+if (args.length < 2 || args.length > 3) die(USAGE);
+const url = process.env.WEBHOOK_URL;
+if (!url) die('webhook-call: set WEBHOOK_URL to the panel URL (webhook.url of GET /v1/automations)');
+const [id, body, ts = String(Math.floor(Date.now() / 1000))] = args;
+
+function key() {
+  if (mode === '--wrong-key') return randomBytes(32);
+  if (!process.env.VERIFY_STATE) die('webhook-call: set VERIFY_STATE (eval "$(bin/stack env)")');
+  const file = join(process.env.VERIFY_STATE, mode === '--old-key' ? 'hook-secret.old' : 'hook-secret');
+  let secret;
+  try {
+    secret = readFileSync(file, 'utf8').replace(/["\s]/g, '');
+  } catch {
+    die(`webhook-call: no secret in ${file}: run bin/webhook-secret save`);
+  }
+  // Signing with a bad key gets a 401 that reads as a product bug, so refuse any file that does not
+  // hold the API's key shape (new_secret: whsec_ and 32 bytes in base64), such as a redacted copy.
+  const raw = secret.startsWith('whsec_') ? secret.slice('whsec_'.length) : '';
+  const key = Buffer.from(raw, 'base64');
+  if (key.length !== 32 || key.toString('base64') !== raw) die(`webhook-call: ${file} holds no whsec_ key of 32 bytes`);
+  return key;
+}
+
+const headers = { 'content-type': 'application/json', 'webhook-id': id, 'webhook-timestamp': ts };
+if (mode !== '--unsigned') {
+  const sig = createHmac('sha256', key()).update(`${id}.${ts}.${body}`).digest('base64');
+  headers['webhook-signature'] = `v1,${sig}`;
+}
+
+try {
+  const res = await fetch(url, { method: 'POST', headers, body, signal: AbortSignal.timeout(30_000) });
+  console.log(`${await res.text()} ${res.status}`);
+} catch (err) {
+  die(`webhook-call: POST ${url} failed: ${err.name === 'TimeoutError' ? 'no answer in 30 s' : (err.cause?.code ?? err.cause?.message ?? err.message)}`, 1);
+}

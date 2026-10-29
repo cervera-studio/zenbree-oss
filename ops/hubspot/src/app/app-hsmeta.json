@@ -1,0 +1,39 @@
+{
+  "uid": "zenbree_hubspot_app",
+  "type": "app",
+  "config": {
+    "description": "Zenbree reads your HubSpot contacts, companies, deals and owners so outbound sequences never reach people your team is already working.",
+    "name": "Zenbree",
+    "distribution": "marketplace",
+    "auth": {
+      "type": "oauth",
+      "redirectUrls": [
+        "${API_PUBLIC_BASE_URL}/v1/integrations/hubspot/callback",
+        "http://localhost:8000/v1/integrations/hubspot/callback"
+      ],
+      "requiredScopes": [
+        "oauth",
+        "crm.objects.contacts.read",
+        "crm.objects.companies.read",
+        "crm.objects.deals.read",
+        "crm.objects.owners.read",
+        "communication_preferences.read"
+      ],
+      "optionalScopes": [
+        "crm.objects.contacts.write",
+        "crm.objects.companies.write"
+      ],
+      "conditionallyRequiredScopes": []
+    },
+    "permittedUrls": {
+      "fetch": [],
+      "iframe": [],
+      "img": []
+    },
+    "support": {
+      "supportEmail": "${SUPPORT_EMAIL}",
+      "documentationUrl": "${DOCS_URL}",
+      "supportUrl": "${SUPPORT_URL}"
+    }
+  }
+}

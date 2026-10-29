@@ -1,0 +1,68 @@
+[
+  [
+    "tool_start",
+    {
+      "tool_id": "e1",
+      "tool_input": {},
+      "tool_name": "plan_emails"
+    }
+  ],
+  [
+    "tool_result",
+    {
+      "result_preview": "{\"searched\": 3, \"found\": 2, \"failed\": [{\"name\": \"Cy Neri\"}], \"list\": {\"list_id\": \"list\", \"entity\": \"person\", \"rows_added\": 0, \"rows_updated\": 3, \"undelivered\": {\"row-2\": [\"title\"], \"row-3\": [\"email\"]}, \"row_count\": 3, \"row_ids\": []}}",
+      "status": "success",
+      "summary": {
+        "contact": "email",
+        "kind": "partial",
+        "refunded": 0,
+        "searched": 3,
+        "tally": {
+          "failed": 1,
+          "found": 2,
+          "invalid": 0,
+          "no_input": 0,
+          "no_source": 0,
+          "not_found": 0
+        },
+        "unmatched": 0
+      },
+      "tool_id": "e1",
+      "tool_name": "plan_emails"
+    }
+  ],
+  [
+    "credits",
+    {
+      "cost": 4,
+      "remaining": 96,
+      "tool_id": "e1",
+      "tool_name": "plan_emails"
+    }
+  ],
+  [
+    "credits",
+    {
+      "cost": -2,
+      "refund": true,
+      "remaining": 98,
+      "summary": {
+        "contact": "email",
+        "kind": "partial",
+        "refunded": 1,
+        "searched": 3,
+        "tally": {
+          "failed": 1,
+          "found": 2,
+          "invalid": 0,
+          "no_input": 0,
+          "no_source": 0,
+          "not_found": 0
+        },
+        "unmatched": 0
+      },
+      "tool_id": "e1",
+      "tool_name": "plan_emails"
+    }
+  ]
+]

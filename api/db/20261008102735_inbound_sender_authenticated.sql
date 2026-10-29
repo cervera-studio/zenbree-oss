@@ -1,0 +1,1 @@
+ALTER TABLE outreach_inbound_messages ADD COLUMN sender_authenticated boolean;

@@ -1,0 +1,111 @@
+{
+  "inbox": {
+    "breadcrumb": "Ruta",
+    "listCount": "{n, plural, one {# conversación} other {{n, number, credits} conversaciones}} · las más recientes primero",
+    "title": "Bandeja de entrada",
+    "filters": "Filtrar respuestas",
+    "anyChannel": "Todos los canales",
+    "label": {
+      "interested": "Interesado",
+      "meeting_request": "Pide una reunión",
+      "not_interested": "No interesado",
+      "not_now": "Ahora no",
+      "other": "Otra",
+      "none": "Sin etiqueta"
+    },
+    "channel": {
+      "email": "Email",
+      "linkedin": "LinkedIn"
+    },
+    "kind": {
+      "auto_reply": "Respuesta automática",
+      "unsubscribe": "Baja"
+    },
+    "changeLabel": "Cambiar etiqueta",
+    "relabelError": "No se pudo cambiar la etiqueta.",
+    "autoLabel": "Etiquetada automáticamente",
+    "loadError": "No se pudo cargar la bandeja de entrada.",
+    "empty": "Aún no hay respuestas",
+    "newer": "← Más recientes",
+    "older": "Más antiguas →",
+    "backToList": "← Todas las respuestas",
+    "threads": "Conversaciones",
+    "newestFirst": "Las más recientes primero",
+    "emptyFiltered": "Ninguna respuesta coincide con estos filtros.",
+    "channelLabel": "Canal",
+    "campaign": "Campaña",
+    "thread": "Conversación con {name}",
+    "sequenceStopped": "La secuencia de {name} se detuvo al recibir su respuesta.",
+    "autoReply": {
+      "paused": "Respuesta automática: la secuencia de {name} está en pausa y se reanuda {day, select, other {el {date}}}.",
+      "continues": "Respuesta automática: la secuencia de {name} continúa.",
+      "none": "Respuesta automática: no hay ninguna secuencia en curso para {name}.",
+      "pausedNote": "La secuencia está en pausa, no detenida."
+    },
+    "reminder": {
+      "set": "He puesto un recordatorio para {month}. La secuencia de {name} se ha detenido.",
+      "setNoSequence": "He puesto un recordatorio para {month}.",
+      "due": "Recordatorio: es momento de volver a escribir a {name}."
+    },
+    "unverified": {
+      "marker": "No verificado",
+      "notice": "No hemos podido verificar el remitente: puede que este mensaje no venga de esta dirección. Ten cuidado con los enlaces que contiene."
+    },
+    "seeExclusions": "Ver exclusiones",
+    "unsubscribedState": "{name} ha pedido no recibir más mensajes: la secuencia se ha detenido y no puedes responder.",
+    "emptyBody": "Cuando alguien responde a una campaña, por email o en LinkedIn, la conversación llega aquí con una etiqueta: Interesado, Pide una reunión, Ahora no, No interesado. La secuencia de esa persona se detiene sola.",
+    "toCampaigns": "Ir a campañas",
+    "view": {
+      "all": "Todas",
+      "unread": "No leídas",
+      "interested": "Interesado",
+      "meeting_request": "Pide una reunión",
+      "not_interested": "No interesado",
+      "not_now": "Ahora no",
+      "other": "Otra",
+      "none": "Sin etiqueta",
+      "unsubscribe": "Bajas"
+    },
+    "unreadSr": "no leída",
+    "you": "Tú",
+    "step": "paso {n, number, credits}",
+    "reply": {
+      "draftFrom": "Borrador del agente · desde {from}",
+      "answerFrom": "Tu respuesta · desde {from}",
+      "placeholder": "Escribe tu respuesta",
+      "send": "Enviar respuesta",
+      "sending": "Enviando…",
+      "status": {
+        "sending": "Enviando",
+        "failed": "No enviado",
+        "unknown": "Resultado desconocido"
+      },
+      "sendError": "No se pudo enviar la respuesta.",
+      "openIntegrations": "Abrir Integraciones",
+      "blocked": {
+        "EXCLUDED": "Esta persona está en tus exclusiones: no puedes responder desde aquí.",
+        "NO_MAILBOX": "No hay ningún buzón conectado para responder: conecta o reconecta uno en Integraciones.",
+        "NO_LINKEDIN": "Conecta tu cuenta de LinkedIn para responder desde aquí.",
+        "NO_RECIPIENT": "No hay ninguna dirección a la que responder.",
+        "ACCOUNT_PAUSED": "Este remitente está en pausa: reactívalo en Remitentes para responder."
+      },
+      "regenerate": "Regenerar",
+      "writeDraft": "Escribir un borrador",
+      "regenerating": "Escribiendo…",
+      "regenerateError": "No se pudo escribir un nuevo borrador.",
+      "restore": "Restaurar el texto anterior",
+      "held": {
+        "mailbox_unknown": "La conversación con esta persona empezó desde un buzón que Zenbree ya no conoce: no puedes responder desde aquí.",
+        "disconnected": "El buzón desde el que empezó la conversación está desconectado. Conéctalo de nuevo en Integraciones para responder.",
+        "needs_reconnect": "Hay que reconectar el buzón desde el que empezó la conversación. Reconéctalo en Integraciones para responder.",
+        "unlinked": "Este cliente ya no usa el buzón desde el que empezó la conversación. Vincúlalo de nuevo al cliente en Remitentes para responder."
+      }
+    },
+    "campaignChip": "Campaña: {name}",
+    "removeCampaign": "Quitar el filtro de campaña",
+    "oldestFirst": "Las más antiguas primero",
+    "listCountOldest": "{n, plural, one {# conversación} other {{n, number, credits} conversaciones}} · las más antiguas primero",
+    "sortOldest": "Mostrar primero las más antiguas",
+    "sortNewest": "Mostrar primero las más recientes"
+  }
+}

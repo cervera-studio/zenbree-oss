@@ -1,0 +1,702 @@
+{
+  "common": {
+    "appName": "Zenbree",
+    "hello": "Hola, {name}",
+    "credits": "Créditos restantes: {credits}",
+    "apiDown": "Servicio inaccesible, inténtalo de nuevo en breve.",
+    "signOut": "Cerrar sesión",
+    "retry": "Reintentar",
+    "loading": "Cargando…",
+    "empty": "Nada que mostrar.",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "undo": "Deshacer",
+    "dismissNotice": "Cerrar la notificación"
+  },
+  "auth": {
+    "signInTitle": "Iniciar sesión",
+    "signInLede": "Hola de nuevo. Tus chats y tus listas te esperan.",
+    "signUpTitle": "Crear una cuenta",
+    "signUpLede": "Dos minutos para tu perfil y después tu primera lista.",
+    "email": "Email",
+    "workEmail": "Email de trabajo",
+    "workEmailHint": "Usamos el dominio para saber en qué empresa trabajas.",
+    "emailPlaceholder": "nombre@empresa.com",
+    "password": "Contraseña",
+    "passwordHint": "Al menos 8 caracteres.",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "name": "Nombre",
+    "namePlaceholder": "Nombre y apellidos",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "google": "Continuar con Google",
+    "microsoft": "Continuar con Microsoft",
+    "signUpWith": "Registrarse con {provider}",
+    "withEmail": "o con email",
+    "noAccount": "¿No tienes cuenta? <link>Regístrate</link>",
+    "haveAccount": "¿Ya tienes cuenta? <link>Inicia sesión</link>",
+    "forgot": "¿Has olvidado la contraseña?",
+    "consent": "Al registrarte aceptas los <terms>Términos</terms> y la <privacy>Política de privacidad</privacy>.",
+    "verifyTitle": "Revisa tu email",
+    "verifyBody": "Te hemos enviado un enlace para verificar tu dirección. Ábrelo para terminar el registro.",
+    "verifySentTo": "Hemos enviado un enlace a <address>{email}</address>. Ábrelo para terminar el registro.",
+    "verifyResend": "¿No te ha llegado? Mira en la carpeta de spam o <resend>envíalo de nuevo</resend>.",
+    "verifyCheckSpam": "¿No te ha llegado? Mira en la carpeta de spam.",
+    "verifyResent": "Enviado de nuevo. Revisa tu bandeja de entrada.",
+    "verifyOtherAddress": "Usar otra dirección",
+    "resetTitle": "Restablecer contraseña",
+    "resetLede": "Introduce el email de tu cuenta y te enviaremos un enlace para elegir una nueva.",
+    "resetNewLede": "Elige una nueva contraseña para tu cuenta.",
+    "setPasswordTitle": "Confirma tu cuenta",
+    "setPasswordLede": "Tu email está verificado. Por seguridad, vuelve a elegir tu contraseña: es la que usarás para iniciar sesión.",
+    "setPasswordDone": "Contraseña definida. Inicia sesión para continuar.",
+    "resetSend": "Enviar enlace",
+    "resetSent": "Si la dirección existe, recibirás un email con el enlace.",
+    "newPassword": "Nueva contraseña",
+    "resetSave": "Guardar contraseña",
+    "resetDone": "Contraseña actualizada. Ya puedes iniciar sesión.",
+    "backToSignIn": "Volver a iniciar sesión",
+    "expiredTitle": "Sesión caducada",
+    "expiredNotice": "Por seguridad cerramos tu sesión tras un periodo de inactividad o cuando restableces la contraseña. Inicia sesión de nuevo para seguir donde lo dejaste.",
+    "bannedTitle": "Cuenta suspendida",
+    "bannedUntil": "Podrás iniciar sesión de nuevo a partir del {date}.",
+    "bannedIndefinite": "La suspensión no tiene fecha de fin.",
+    "bannedReason": "Motivo: {reason}",
+    "bannedSupport": "¿Crees que es un error? <link>Escribe a {email}</link>",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "language": "Idioma",
+    "aside": {
+      "eyebrow": "Agente de outbound",
+      "label": "Qué hace Zenbree",
+      "title": "Del brief a la lista, en un solo chat.",
+      "lede": "Describe a quién quieres llegar. Zenbree encuentra las empresas, las personas adecuadas y sus emails verificados.",
+      "brief": "Agencias de marketing en Milán que contratan SDR. Quiero al CEO, con su email.",
+      "plan": "Plan v1",
+      "planMeta": "50 filas · email verificado obligatorio",
+      "name": "Nombre",
+      "company": "Empresa",
+      "email": "Email",
+      "verified": "Verificado",
+      "free": "El plan es gratis: hasta 100 créditos empieza enseguida; por encima, lo apruebas tú antes.",
+      "delivered": "Solo pagas las filas entregadas, con los datos obligatorios.",
+      "sourced": "Cada dato investigado viene con su fuente.",
+      "footnote": "Datos con fuente, siempre."
+    }
+  },
+  "nav": {
+    "primary": "Navegación principal",
+    "overview": "Resumen",
+    "searches": "Chats",
+    "exclusions": "Exclusiones",
+    "team": "Equipo y roles",
+    "integrations": "Integraciones",
+    "workspace": "Espacio de trabajo",
+    "roleAdmin": "Admin",
+    "chats": "Chats recientes",
+    "campaigns": "Campañas",
+    "automations": "Automatizaciones",
+    "segments": "Segmentos",
+    "inbox": "Bandeja de entrada",
+    "lists": "Listas",
+    "settings": "Ajustes",
+    "credits": "Créditos",
+    "creditsUnit": "créditos",
+    "topUp": "Recargar",
+    "yourProfile": "Tu perfil",
+    "accountMenu": "Menú de la cuenta",
+    "profile": "Perfil y ajustes",
+    "billing": "Créditos",
+    "backoffice": "Backoffice",
+    "adminBadge": "admin",
+    "signOut": "Cerrar sesión",
+    "menu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "switchOrg": "Cambiar de equipo",
+    "newTeam": "Nuevo equipo",
+    "newTeamBody": "Un equipo tiene sus propios créditos, clientes y miembros. Empieza sin créditos: cómpralos en la página Créditos.",
+    "newTeamName": "Nombre del equipo",
+    "newTeamCreate": "Crear equipo",
+    "approvals": "Por aprobar",
+    "unread": "{count, number, credits} sin leer",
+    "help": "Ayuda y guías",
+    "balanceOfPlan": "Saldo {left, number, credits}. El plan da {plan, plural, one {# crédito} other {{plan, number, credits} créditos}} en cada periodo.",
+    "creditsCount": "{count, plural, one {# crédito} other {{count, number, credits} créditos}}",
+    "search": "Buscar",
+    "searchPlaceholder": "Buscar listas, chats, campañas, ajustes",
+    "searchEmpty": "Sin resultados",
+    "search_lists": "Listas",
+    "search_chats": "Chats",
+    "search_campaigns": "Campañas",
+    "search_settings": "Ajustes",
+    "views": "Vistas guardadas"
+  },
+  "chat": {
+    "transcript": "Conversación",
+    "jumpToLatest": "Ir al último mensaje",
+    "newChat": "Nuevo chat",
+    "noSessions": "Aún no hay conversaciones.",
+    "sessionsError": "No se pudieron cargar las conversaciones.",
+    "untitled": "Sin título",
+    "loadError": "No se pudo cargar la conversación.",
+    "breadcrumb": "Ruta",
+    "agent": "Agente",
+    "emptyTitle": "¿A quién quieres llegar?",
+    "emptyBody": "Describe a tu cliente ideal: sector, zona, tamaño, cargos. Yo creo la lista.",
+    "home": {
+      "composerLabel": "Describe a quién quieres llegar",
+      "attach": "Subir CSV",
+      "modeLabel": "Qué quieres hacer",
+      "planFree": "El plan es gratis: hasta 100 créditos empieza enseguida; por encima, lo apruebas tú",
+      "planFreeShort": "El plan es gratis",
+      "modes": {
+        "find": {
+          "label": "Buscar personas",
+          "title": "Buscar personas",
+          "body": "De un brief a una lista con emails verificados. Primero un plan, y después solo pagas las filas entregadas.",
+          "placeholder": "P. ej., agencias de marketing en Milán, 10-50 empleados, que contratan SDR"
+        },
+        "enrich": {
+          "label": "Enriquecer datos",
+          "title": "Enriquece tus datos",
+          "body": "Sube un CSV: encuentro emails, teléfonos y columnas de investigación con IA, con su fuente.",
+          "placeholder": "¿Qué quieres añadir a tus datos? Después sube el CSV"
+        },
+        "contact": {
+          "label": "Buscar y contactar",
+          "title": "Buscar y contactar",
+          "body": "La lista se convierte en una secuencia de email y LinkedIn, con horarios y límites por remitente.",
+          "placeholder": "P. ej., responsables de ventas en empresas SaaS de Italia a los que contactar"
+        }
+      },
+      "chips": {
+        "agencies": {
+          "brief": "Agencias de marketing en Milán que contratan SDR",
+          "short": "Agencias que contratan SDR"
+        },
+        "saas": {
+          "brief": "Empresas SaaS en Italia que contratan para su equipo de ventas",
+          "short": "SaaS italianas que contratan AE"
+        },
+        "marketing": {
+          "brief": "Responsables de marketing en empresas tecnológicas de 50 a 200 empleados",
+          "short": "Marketing en tech 50–200"
+        }
+      },
+      "todo": {
+        "title": "Por hacer",
+        "approvals": "Mensajes por aprobar",
+        "replies": "Respuestas por leer",
+        "running": "Búsqueda en curso"
+      },
+      "data": {
+        "greeting": "{part, select, morning {Buenos días} afternoon {Buenas tardes} other {Buenas noches}}{name, select, none {} other {, {name}}}",
+        "todo": {
+          "repliesTitle": "Respuestas para ti",
+          "review": "Revisar",
+          "read": "Leer",
+          "quiet": "Nada pendiente: ni mensajes por aprobar ni respuestas nuevas.",
+          "inCampaign": "{count, number, credits} en «{name}»",
+          "inOthers": "{count, number, credits} en otras campañas",
+          "latest": "Últimas: {parts}"
+        },
+        "running": {
+          "title": "En curso",
+          "people": "{count, plural, one {{count, number, credits} persona hasta ahora} other {{count, number, credits} personas hasta ahora}}",
+          "companies": "{count, plural, one {{count, number, credits} empresa hasta ahora} other {{count, number, credits} empresas hasta ahora}}",
+          "startedBy": "iniciada por {name}",
+          "startedByYou": "iniciada por ti",
+          "steps": "{done, number, credits} de {total, plural, one {# paso} other {{total, number, credits} pasos}}",
+          "open": "Abrir el chat",
+          "progress": "Progreso de {title}",
+          "donePeople": "Completada · {count, plural, one {# persona} other {{count, number, credits} personas}}",
+          "doneCompanies": "Completada · {count, plural, one {# empresa} other {{count, number, credits} empresas}}",
+          "doneVerified": "Completada · {count, plural, one {# persona} other {{count, number, credits} personas}}, {verified, plural, one {# con email verificado} other {{verified, number, credits} con email verificado}}"
+        },
+        "lists": {
+          "empty": "Aún no hay ninguna lista para este cliente: la primera aparecerá aquí.",
+          "title": "Listas recientes",
+          "all": "Todas las listas",
+          "rowCount": "{count, plural, one {# fila} other {{count, number, credits} filas}}",
+          "verifiedCount": "{count, plural, one {# email verificado} other {{count, number, credits} emails verificados}}",
+          "kind": {
+            "person": "Personas",
+            "company": "Empresas",
+            "enrich": "Enriquecimiento"
+          },
+          "today": "Hoy, {time}",
+          "yesterday": "Ayer, {time}",
+          "formerMember": "Antiguo miembro",
+          "fresh": "Nueva"
+        },
+        "campaigns": {
+          "title": "Campañas activas",
+          "all": "Todas las campañas",
+          "status": {
+            "active": "Activa",
+            "paused": "En pausa"
+          },
+          "channels": {
+            "email": "Email",
+            "linkedin": "LinkedIn",
+            "hubspot": "HubSpot"
+          },
+          "channelsLabel": "Canales: {list}",
+          "sent": "{count, plural, one {enviado} other {enviados}}",
+          "replies": "{count, plural, one {respuesta} other {respuestas}}",
+          "emptyTitle": "Ninguna campaña activa",
+          "emptyHint": "«{name}» {count, plural, one {tiene # contacto verificado} other {tiene {count, number, credits} contactos verificados}}. Conviértela en una secuencia de email y LinkedIn: apruebas cada mensaje antes de que salga.",
+          "emptyGeneric": "Convierte una lista de personas en una secuencia de email y LinkedIn: apruebas cada mensaje antes de que salga.",
+          "create": "Crear una campaña"
+        },
+        "live": {
+          "reply": "Nueva respuesta para ti{name, select, none {} other { de {name}}}{intent, select, none {} other {, {intent}}}. {count, plural, one {# respuesta por leer} other {{count, number, credits} respuestas por leer}}.",
+          "approvals": "{added, plural, one {# mensaje nuevo por aprobar} other {{added, number, credits} mensajes nuevos por aprobar}}. {total, number, credits} en total.",
+          "finishedPeople": "Búsqueda terminada: {title}, {rows, plural, one {# persona} other {{rows, number, credits} personas}}.",
+          "finishedCompanies": "Búsqueda terminada: {title}, {rows, plural, one {# empresa} other {{rows, number, credits} empresas}}."
+        },
+        "stats": {
+          "kpi": {
+            "leads": "Leads",
+            "contacts": "Contactos",
+            "messagesSent": "Mensajes enviados",
+            "replies": "Respuestas",
+            "positiveReplies": "Respuestas positivas"
+          },
+          "period": "Últimos 30 días, variación respecto a los 30 anteriores",
+          "legend": {
+            "sent": "Enviados",
+            "replies": "Respuestas"
+          },
+          "weeks": {
+            "title": "Actividad semanal",
+            "meta": "8 semanas",
+            "column": "Semana del {week}: {sent, plural, one {# mensaje enviado} other {{sent, number, credits} mensajes enviados}}, {replies, plural, one {# respuesta} other {{replies, number, credits} respuestas}}"
+          },
+          "funnel": {
+            "title": "Embudo",
+            "meta": "30 días, no cohorte",
+            "leads": "Leads",
+            "contacts": "Contactos",
+            "contacted": "Contactados",
+            "replied": "Han respondido",
+            "positive": "Positivos"
+          },
+          "activity": {
+            "title": "Actividad",
+            "empty": "Aún nada: las búsquedas, campañas y respuestas aparecen aquí.",
+            "untitled": "Sin título",
+            "kind": {
+              "search_finished": "Búsqueda terminada",
+              "campaign_started": "Campaña iniciada",
+              "reply_received": "Respuesta recibida"
+            }
+          }
+        }
+      }
+    },
+    "placeholder": "P. ej., agencias de marketing en Milán, 10-50 empleados, que contratan SDR",
+    "send": "Enviar",
+    "stop": "Detener",
+    "stopping": "Deteniendo…",
+    "answerPlaceholder": "Escribe tu respuesta…",
+    "question": {
+      "label": "Pregunta",
+      "hint": "Elige una opción o escribe tu propia respuesta abajo.",
+      "hintFree": "Escribe tu respuesta abajo.",
+      "skip": "Omitir",
+      "skipMessage": "Omite esta pregunta: elige tú la opción más razonable y sigue adelante.",
+      "memory": "He guardado esto en la memoria: «{text}».",
+      "memoryLink": "Ver la memoria"
+    },
+    "noResults": {
+      "title": "{entity, select, person {Ninguna persona cumple todos los filtros} other {Ninguna empresa cumple todos los filtros}}",
+      "funnelLabel": "{entity, select, person {Personas que quedan tras cada filtro} other {Empresas que quedan tras cada filtro}}",
+      "lead": "Esta búsqueda no ha encontrado {entity, select, person {personas} other {empresas}}, así que no he añadido nada a la lista. Aquí es donde se pierden:",
+      "leadFree": "Esta búsqueda no ha encontrado {entity, select, person {personas} other {empresas}}: no he añadido nada a la lista ni te he cobrado nada. Aquí es donde se pierden:",
+      "proceed": "¿Cómo quieres seguir?",
+      "hint": "O escribe abajo qué cambiar.",
+      "step": {
+        "where": "{entity, select, person {Que trabajan en {values}} other {Con sede en {values}}}",
+        "what": "{entity, select, person {En empresas de {values}} other {En {values}}}",
+        "size": "{entity, select, person {En empresas de {values} empleados} other {{values} empleados}}",
+        "money": "{entity, select, person {En empresas con financiación o ingresos {values}} other {Financiación o ingresos {values}}}",
+        "signal": "{entity, select, person {En empresas que contratan para {values}} other {Que contratan para {values}}}",
+        "who": "Con el cargo {values}"
+      },
+      "drop": {
+        "where": {
+          "label": "Sin el filtro de ubicación",
+          "description": "Buscar en todas partes y mantener los demás filtros."
+        },
+        "what": {
+          "label": "Sin el filtro de sector",
+          "description": "Todos los sectores, con los mismos filtros en lo demás."
+        },
+        "size": {
+          "label": "Sin el filtro de tamaño",
+          "description": "Cualquier número de empleados."
+        },
+        "money": {
+          "label": "Sin el filtro de financiación e ingresos",
+          "description": "Ignorar la financiación y los ingresos."
+        },
+        "signal": {
+          "label": "Sin la señal",
+          "description": "Solo los demás filtros, sin ofertas de empleo ni contrataciones."
+        },
+        "who": {
+          "label": "Sin el filtro de cargo",
+          "description": "Cualquier cargo, con los mismos filtros en lo demás."
+        }
+      }
+    },
+    "brief": {
+      "aria": "Brief",
+      "title": "Lo que he entendido",
+      "edit": "Editar",
+      "editPrefix": "Cambia el brief: ",
+      "stage": {
+        "brief": "Brief",
+        "plan": "Plan",
+        "search": "Búsqueda",
+        "list": "Lista"
+      },
+      "field": {
+        "who": "Quién",
+        "companies": "Empresas",
+        "where": "Dónde",
+        "signal": "Señal",
+        "email": "Email"
+      },
+      "excluded": "Esta es la regla que excluye a todos.",
+      "excludedFree": "Una búsqueda sin resultados no cuesta créditos.",
+      "undecided": "Por decidir",
+      "email": {
+        "required": "Obligatorio",
+        "if_found": "Si lo encuentro",
+        "not_needed": "No hace falta"
+      }
+    },
+    "plan": {
+      "title": "Plan v{version, number, credits}",
+      "mode": {
+        "build": "Lista nueva",
+        "enrich": "Enriquecer tu lista"
+      },
+      "entity": {
+        "company": "Empresas",
+        "person": "Personas"
+      },
+      "linkedList": "Añade la lista de Personas, vinculada a {count, plural, one {# empresa} other {las {count, number, credits} empresas}}",
+      "columns": "Columnas",
+      "required": "obligatoria",
+      "research": "Investigación con IA",
+      "researchHint": "Las columnas de IA se investigan en la web para cada fila, con una fuente: 1 crédito por celda rellenada, empezando por las primeras filas.",
+      "requiredHint": "* Obligatoria: las filas a las que les falta una no se entregan, y sus créditos por fila se devuelven.",
+      "stages": "Pasos",
+      "units": "{units, plural, one {# unidad} other {{units, number, credits} unidades}}",
+      "cells": "{units, plural, one {# celda} other {{units, number, credits} celdas}}",
+      "stageCost": "{credits, plural, =0 {gratis} one {# crédito} other {{credits, number, credits} créditos}}",
+      "columnsSummary": "{columns, plural, one {# columna} other {{columns, number, credits} columnas}} · {required, plural, one {# obligatoria} other {{required, number, credits} obligatorias}} · {ai, plural, one {# de IA} other {{ai, number, credits} de IA}}",
+      "stagesSummary": "{count, plural, one {# paso} other {{count, number, credits} pasos}}",
+      "stageHint": "{credits, plural, =0 {gratis} one {# crédito por unidad encontrada} other {{credits, number, credits} créditos por unidad encontrada}}",
+      "rowsPreset": "{count, plural, one {# fila} other {{count, number, credits} filas}}",
+      "researchStage": "Investigación con IA",
+      "researchNote": "{count, plural, one {# columna} other {{count, number, credits} columnas}}, solo en filas entregadas",
+      "optional": "opcional",
+      "dropped": "quitado",
+      "restore": "Volver a poner {label}",
+      "rows": "Filas",
+      "rowsFound": "de ~{count, plural, one {# empresa encontrada} other {{count, number, credits} empresas encontradas}}",
+      "rowsOther": "Otro número de filas",
+      "estimate": "Coste estimado: hasta {credits, plural, one {# crédito} other {{credits, number, credits} créditos}}",
+      "noteSmall": "Solo pagas las filas entregadas. Lo que sobra se devuelve.",
+      "noteLarge": "Más de {threshold, plural, one {# crédito} other {{threshold, number, credits} créditos}}: pido una segunda confirmación antes de empezar.",
+      "approve": "Aprobar y lanzar",
+      "edit": "Editar plan",
+      "approveMessage": "Plan v{version, number, credits} aprobado: {rows, plural, one {# fila} other {{rows, number, credits} filas}}, hasta {credits, plural, one {# crédito} other {{credits, number, credits} créditos}}. Adelante.",
+      "approveMessageDropped": "Plan v{version, number, credits} aprobado: {rows, plural, one {# fila} other {{rows, number, credits} filas}}, hasta {credits, plural, one {# crédito} other {{credits, number, credits} créditos}}, sin: {dropped}. Adelante.",
+      "editPrefix": "Cambia el plan: ",
+      "pay": {
+        "title": "Cómo pagas",
+        "body": "El plan es gratis. Cuando empieza la búsqueda, los créditos se reservan y se cobran fila a fila. Los que no se usan vuelven a ti cuando termina la búsqueda.",
+        "balance": "Saldo",
+        "after": "Después, como máximo",
+        "credits": "{credits, plural, one {# crédito} other {{credits, number, credits} créditos}}"
+      },
+      "short": {
+        "gap": "Te {missing, plural, one {falta # crédito} other {faltan {missing, number, credits} créditos}}: tu saldo es {balance, number, credits}.",
+        "balance": "Saldo {balance, number, credits}",
+        "need": "Hacen falta {credits, number, credits}"
+      },
+      "fix": {
+        "title": "{count, plural, =1 {Una forma de empezar} =2 {Dos formas de empezar} =3 {Tres formas de empezar} other {{count, number, credits} formas de empezar}}",
+        "topUp": {
+          "title": "Recargar créditos",
+          "body": "El plan se queda aquí y lo apruebas cuando vuelvas.",
+          "bodyPack": "{credits, plural, one {# crédito} other {{credits, number, credits} créditos}} por {price}. El plan se queda aquí y lo apruebas cuando vuelvas."
+        },
+        "dropStage": {
+          "title": "Quitar {label}",
+          "body": "El coste baja a {credits, plural, one {# crédito} other {{credits, number, credits} créditos}}."
+        },
+        "fitRows": {
+          "title": "Empezar con {rows, plural, one {# fila} other {{rows, number, credits} filas}}",
+          "body": "Tantas como cubre tu saldo. Añade el resto después con «Más filas»."
+        }
+      },
+      "confirm": {
+        "title": "¿Confirmar una búsqueda de {credits, plural, one {# crédito} other {{credits, number, credits} créditos}}?",
+        "body": "Supera el umbral de {threshold, plural, one {# crédito} other {{threshold, number, credits} créditos}}, así que lo pregunto una segunda vez. Reservo {credits, plural, one {# crédito} other {{credits, number, credits} créditos}} de tu saldo; los que no se usan vuelven a ti cuando termina la búsqueda.",
+        "rows": "Filas",
+        "max": "Como máximo",
+        "after": "Saldo después",
+        "confirm": "Confirmar y lanzar"
+      }
+    },
+    "thinking": "Trabajando…",
+    "sources": "Fuentes ({count, number, credits})",
+    "credits": "{count} créditos",
+    "status": {
+      "running": "En curso",
+      "planReady": "Plan por aprobar",
+      "needsAnswer": "Espera una respuesta",
+      "stepError": "Un paso ha fallado",
+      "allFailed": "La búsqueda ha fallado",
+      "done": "Hecho",
+      "offline": "Conexión perdida"
+    },
+    "creditsUsed": "{count, plural, one {# crédito usado} other {{count, number, credits} créditos usados}}",
+    "listsGroup": "Listas de este chat",
+    "openFullList": "Abrir la lista completa",
+    "draftChip": "borrador",
+    "panelMeta": {
+      "draft": "Borrador",
+      "base": "Hecha · base de la lista de Personas",
+      "running": "{delivered, plural, one {# entregada} other {{delivered, number, credits} entregadas}} · {remaining, plural, one {# más} other {{remaining, number, credits} más}} por encontrar",
+      "runningOpen": "{delivered, plural, one {# entregada} other {{delivered, number, credits} entregadas}} · búsqueda en curso",
+      "settled": "{delivered, plural, one {# entregada} other {{delivered, number, credits} entregadas}} de {total, number, credits}"
+    },
+    "hideList": "Ocultar lista",
+    "backToChat": "Volver al chat",
+    "resume": "Reanudar",
+    "interrupted": "Se ha cortado la conexión. Recarga la página para ver la respuesta guardada.",
+    "turnFailed": "No he podido completar esta petición. {credits, plural, =0 {No se te ha cobrado nada.} one {Te ha costado # crédito, por lo que encontré antes del error.} other {Te ha costado {credits, number, credits} créditos, por lo que encontré antes del error.}} Envía el mensaje de nuevo para reintentarlo.",
+    "tools": {
+      "web_search": "Búsqueda web",
+      "fetch_page": "Leyendo página",
+      "search_companies": "Búsqueda de empresas",
+      "search_people": "Búsqueda de personas",
+      "search_jobs_signals": "Señales de contratación",
+      "linkedin_search": "Búsqueda en LinkedIn",
+      "enrich_email": "Búsqueda de email",
+      "enrich_phone": "Búsqueda de teléfono",
+      "remember": "Memoria actualizada",
+      "forget": "Entrada de memoria eliminada",
+      "propose_plan": "Plan",
+      "more_rows": "Más resultados",
+      "save_to_list": "Guardando en la lista",
+      "list_row_feedback": "Valoración de la fila",
+      "find_rows": "Consulta de la lista",
+      "schedule_check": "Búsqueda programada",
+      "cancel_schedule": "Programación en pausa",
+      "list_schedules": "Búsquedas programadas",
+      "draft_campaign": "Borrador de campaña"
+    },
+    "errors": {
+      "networkError": "Error de red. Inténtalo de nuevo.",
+      "streamTimeout": "Tiempo de espera agotado.",
+      "streamInterrupted": "Conexión interrumpida.",
+      "genericError": "Algo ha fallado.",
+      "creditsExhausted": "Te has quedado sin créditos. Recarga para continuar.",
+      "creditsLow": "Te quedan pocos créditos.",
+      "upgradeCta": "Recargar créditos →",
+      "terminals": {
+        "max_turns_reached": "Me he detenido tras el número máximo de pasos. Lo que he encontrado está arriba: pídeme que continúe.",
+        "cancelled": "Me he detenido como pediste. Solo se te ha cobrado lo que ya había encontrado."
+      },
+      "stopFailed": "No he podido detener la búsqueda. Inténtalo de nuevo."
+    },
+    "campaign": {
+      "title": "Borrador de campaña listo",
+      "detail": "{name} · {count, plural, one {# persona} other {{count, number, credits} personas}}",
+      "open": "Abrir"
+    },
+    "composerLabel": "Escribe al agente",
+    "composerRunning": "Podrás escribir cuando termine…",
+    "dictation": {
+      "start": "Dictar",
+      "stop": "Detener dictado",
+      "denied": "Micrófono bloqueado",
+      "error": {
+        "denied": "Micrófono bloqueado. Permite el acceso en la configuración del sitio de tu navegador para dictar.",
+        "noMic": "No se ha encontrado ningún micrófono. Conecta uno y vuelve a intentarlo.",
+        "network": "El dictado no está disponible ahora. Revisa tu conexión y vuelve a intentarlo.",
+        "failed": "El dictado no ha funcionado. Vuelve a intentarlo o escribe tu mensaje.",
+        "noSpeech": "No se ha oído nada. Comprueba el micrófono y vuelve a intentarlo."
+      }
+    },
+    "steps": {
+      "title": "Pasos del plan",
+      "progress": "Progreso",
+      "credits": "{count, plural, one {# crédito usado} other {{count, number, credits} créditos usados}}",
+      "count": "{done, number, credits} de {units, number, credits}",
+      "queued": "En cola",
+      "error": "Error",
+      "retrying": "Reintentando…",
+      "undelivered": "{count, plural, one {No se te ha cobrado lo que falta ({what}).} other {No se te han cobrado los {count, number, credits} que faltan ({what}).}}",
+      "unfound": {
+        "enrich_email": "{count, plural, one {No se te ha cobrado la persona sin email.} other {No se te han cobrado las {count, number, credits} personas sin email.}}",
+        "enrich_phone": "{count, plural, one {No se te ha cobrado la persona sin teléfono.} other {No se te han cobrado las {count, number, credits} personas sin teléfono.}}"
+      },
+      "retry": "Reintentar",
+      "unit": {
+        "searches": "{count, plural, one {búsqueda} other {búsquedas}}",
+        "rows": "{count, plural, one {fila} other {filas}}"
+      },
+      "allFailed": "{credits, plural, =0 {La búsqueda no ha salido bien y no se ha usado ningún crédito. Inténtalo de nuevo en breve.} other {La búsqueda no ha salido bien. Inténtalo de nuevo en breve.}}",
+      "details": "Detalles del paso",
+      "openList": "Abrir la lista tal como está",
+      "state": {
+        "done": "Hecho",
+        "running": "En curso",
+        "queued": "En cola",
+        "failed": "Error",
+        "stopped": "Detenido"
+      },
+      "errors": {
+        "provider": "El proveedor de {what} no responde.",
+        "failed": "El paso no ha salido bien.",
+        "disabled": "Esta fuente de datos está desactivada temporalmente.",
+        "not_connected": "Conecta primero tu cuenta de LinkedIn, en Ajustes → Integraciones.",
+        "no_credits": "No hay créditos suficientes para este paso.",
+        "over_budget": "El paso supera el presupuesto aprobado en el plan.",
+        "crashed": "El paso se ha detenido de forma inesperada."
+      },
+      "noun": {
+        "search_companies": "{count, plural, one {empresa} other {empresas}}",
+        "search_people": "{count, plural, one {persona} other {personas}}",
+        "linkedin_search": "{count, plural, one {persona} other {personas}}",
+        "enrich_email": "{count, plural, one {email} other {emails}}",
+        "default": "{count, plural, one {fila} other {filas}}"
+      }
+    },
+    "connection": {
+      "banner": "Se ha cortado la conexión. El agente sigue trabajando: recarga para ver la respuesta guardada.",
+      "reload": "Recargar",
+      "composer": "Reconecta para escribir"
+    },
+    "welcome": {
+      "eyebrow": "{name, select, none {Te damos la bienvenida} other {Te damos la bienvenida, {name}}}",
+      "title": "¿A quién quieres llegar primero?",
+      "lede": "{from, select, website {Ya conozco {company} por tu sitio web. Elige un segmento o describe a quién buscas: te propongo un plan, gratis.} description {Ya conozco {company} por tu descripción. Elige un segmento o describe a quién buscas: te propongo un plan, gratis.} other {Describe a quién buscas: te propongo un plan, gratis.}}",
+      "placeholder": "P. ej., agencias de marketing en Milán, 10-50 empleados, que contratan SDR",
+      "segments": "De tus segmentos",
+      "otherLanguage": "Estos segmentos se escribieron en otro idioma.",
+      "dismiss": "Ocultar",
+      "dismissFailed": "No se pudieron ocultar los primeros pasos. Inténtalo de nuevo.",
+      "steps": {
+        "title": "Primeros pasos",
+        "progress": "{done, number, credits} de {total, number, credits}",
+        "profile": {
+          "label": "Crea tu perfil comercial",
+          "link": "Ver en Cliente"
+        },
+        "list": {
+          "label": "Crea tu primera lista",
+          "hint": "Describe a quién buscas: el plan es gratis, las búsquedas pequeñas empiezan enseguida y las más grandes las apruebas tú.",
+          "action": "Empezar",
+          "link": "Ver listas"
+        },
+        "mailbox": {
+          "label": "Conecta un buzón",
+          "hint": "Solo hace falta para las campañas. Puedes saltártelo para las listas.",
+          "link": "Conectar",
+          "manage": "Gestionar"
+        }
+      }
+    },
+    "sessionMeta": {
+      "running": "En curso",
+      "runningProgress": "En curso · {done, number, credits} de {total, number, credits}",
+      "error": "Un paso ha fallado",
+      "errorProgress": "Un paso ha fallado · {done, number, credits} de {total, number, credits}",
+      "asking": "Esperando tu respuesta",
+      "plan": "Plan por aprobar",
+      "done": "Respuesta lista",
+      "found": "{lists, plural, one {1 lista} other {{lists, number, credits} listas}} · {people, plural, one {# persona} other {{people, number, credits} personas}}, {companies, plural, one {# empresa} other {{companies, number, credits} empresas}}"
+    }
+  },
+  "chats": {
+    "title": "Todos los chats",
+    "subtitle": "Los chats del cliente activo: primero los fijados, después los más recientes.",
+    "search": "Buscar chats",
+    "searchPlaceholder": "Buscar por título",
+    "noMatch": "Ningún chat para «{query}».",
+    "pinChat": "Fijar «{title}»",
+    "pinError": "No se pudo actualizar el chat. Inténtalo de nuevo.",
+    "deleteChat": "Eliminar «{title}»",
+    "deleteTitle": "¿Eliminar «{title}»?",
+    "deleteBody": "La conversación desaparece para todo el equipo. Las listas que creó se quedan en Listas.",
+    "delete": "Eliminar",
+    "deleted": "Chat eliminado",
+    "deleteError": "No se pudo eliminar el chat. Inténtalo de nuevo.",
+    "deleteRunning": "Espera a que el chat termine de responder antes de eliminarlo."
+  },
+  "projects": {
+    "label": "Cliente: {name}",
+    "new": "Nuevo cliente",
+    "rename": "Cambiar el nombre del cliente",
+    "delete": "Eliminar cliente",
+    "name": "Nombre del cliente",
+    "namePlaceholder": "P. ej., García S.L.",
+    "save": "Guardar",
+    "loadError": "No se pudieron cargar los clientes.",
+    "deleteTitle": "¿Eliminar «{name}»?",
+    "deleteBody": "También se eliminarán las conversaciones, las listas, las campañas, las respuestas, el perfil y las exclusiones del cliente. No se puede deshacer.",
+    "cap": "{spent, number, credits}/{cap, plural, one {# crédito} other {{cap, number, credits} créditos}} este mes",
+    "saveError": "No se pudo guardar el cliente.",
+    "switchError": "No se pudo cambiar de cliente. Recarga la página.",
+    "deleteError": "No se pudo eliminar el cliente."
+  },
+  "toolSummary": {
+    "state": {
+      "running": "En curso",
+      "done": "Hecho",
+      "none": "Sin resultados",
+      "retry": "Por reintentar",
+      "error": "Error"
+    },
+    "count": {
+      "company": "{n, plural, one {# empresa} other {{n, number, credits} empresas}}",
+      "person": "{n, plural, one {# persona} other {{n, number, credits} personas}}"
+    },
+    "nothingToSearch": "No queda nadie que buscar",
+    "noRowMatch": "Ninguna fila coincide",
+    "email": {
+      "found": "{n, plural, one {# email} other {{n, number, credits} emails}}",
+      "invalid": "{n, plural, one {# no válido} other {{n, number, credits} no válidos}}",
+      "notFound": "{n, plural, one {# no encontrado} other {{n, number, credits} no encontrados}}",
+      "failed": "{n, plural, one {# por reintentar} other {{n, number, credits} por reintentar}}",
+      "failedAll": "{n, plural, one {# búsqueda fallida} other {{n, number, credits} búsquedas fallidas}}",
+      "noSource": "{n, plural, one {# búsqueda fallida · no hay ninguna fuente activa} other {{n, number, credits} búsquedas fallidas · no hay ninguna fuente activa}}",
+      "noInput": "{n, plural, one {# fila sin los datos para buscar} other {{n, number, credits} filas sin los datos para buscar}}",
+      "unmatched": "{n, plural, one {# id no coincide con ninguna fila} other {{n, number, credits} ids no coinciden con ninguna fila}}",
+      "refunded": "{n, plural, one {crédito devuelto por # fila incompleta} other {créditos devueltos por {n, number, credits} filas incompletas}}"
+    },
+    "phone": {
+      "found": "{n, plural, one {# teléfono} other {{n, number, credits} teléfonos}}",
+      "invalid": "{n, plural, one {# no válido} other {{n, number, credits} no válidos}}",
+      "notFound": "{n, plural, one {# no encontrado} other {{n, number, credits} no encontrados}}",
+      "failed": "{n, plural, one {# por reintentar} other {{n, number, credits} por reintentar}}",
+      "failedAll": "{n, plural, one {# búsqueda fallida} other {{n, number, credits} búsquedas fallidas}}",
+      "noSource": "{n, plural, one {# búsqueda fallida · no hay ninguna fuente activa} other {{n, number, credits} búsquedas fallidas · no hay ninguna fuente activa}}",
+      "noInput": "{n, plural, one {# fila sin los datos para buscar} other {{n, number, credits} filas sin los datos para buscar}}",
+      "unmatched": "{n, plural, one {# id no coincide con ninguna fila} other {{n, number, credits} ids no coinciden con ninguna fila}}",
+      "refunded": "{n, plural, one {crédito devuelto por # fila incompleta} other {créditos devueltos por {n, number, credits} filas incompletas}}"
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "segments": {
+    "title": "Segmenti",
+    "breadcrumb": "Percorso",
+    "new": "Nuovo segmento",
+    "subtitle": "Regole salvate sulle persone o sulle aziende di questo cliente. Un segmento pubblicato aggiorna da solo i suoi membri quando i dati cambiano.",
+    "loadError": "Non siamo riusciti a caricare i segmenti. Ricarica la pagina.",
+    "empty": {
+      "title": "Ancora nessun segmento",
+      "text": "Un segmento è una regola salvata, per esempio i CEO con email e fit da 80 in su. Zenbree tiene aggiornati i suoi membri."
+    },
+    "memberCount": "{n, plural, one {# membro} other {{n, number, credits} membri}}",
+    "noName": "Senza nome",
+    "columns": {
+      "name": "Nome",
+      "entity": "Chi",
+      "members": "Membri",
+      "state": "Stato"
+    },
+    "state": {
+      "published": "Pubblicato",
+      "draft": "Bozza",
+      "frozen": "Bloccato"
+    },
+    "fields": {
+      "column": "{column} · {list}",
+      "goneList": "lista eliminata",
+      "fit": "Fit",
+      "inList": "Lista «{list}»",
+      "canonical": "Campi di ogni lista",
+      "columnsOf": "Colonne di «{list}»",
+      "score": "Punteggio",
+      "membership": "Liste",
+      "unavailable": "Campo non più disponibile"
+    },
+    "ops": {
+      "eq": "è",
+      "neq": "non è",
+      "contains": "contiene",
+      "not_contains": "non contiene",
+      "in": "è uno tra",
+      "not_in": "non è nessuno tra",
+      "gt": "è più di",
+      "gte": "è almeno",
+      "lt": "è meno di",
+      "lte": "è al massimo",
+      "between": "è tra",
+      "is_missing": "è vuoto",
+      "is_filled": "è compilato",
+      "in_list": "li contiene",
+      "not_in_list": "non li contiene",
+      "boundsJoin": "e"
+    },
+    "inList": {
+      "in_list": "Nella lista «{list}»",
+      "not_in_list": "Non nella lista «{list}»"
+    },
+    "editor": {
+      "name": "Nome",
+      "entity": "Chi raggruppa il segmento",
+      "entities": {
+        "person": "Persone",
+        "company": "Aziende"
+      },
+      "rule": "Regola",
+      "ruleLegend": "Condizioni della regola",
+      "groupLegend": "Gruppo di condizioni",
+      "join": "Come si combinano le condizioni",
+      "all": "Tutte queste",
+      "any": "Almeno una di queste",
+      "removeGroup": "Rimuovi gruppo",
+      "emptyRule": "Aggiungi la prima condizione: scegli un campo qui sotto.",
+      "addCondition": "Aggiungi una condizione…",
+      "addGroup": "Aggiungi un gruppo di condizioni…",
+      "full": "Una regola ha al massimo {n, plural, one {# condizione} other {{n, number, credits} condizioni}}.",
+      "field": "Campo",
+      "pickField": "Scegli un campo",
+      "op": "Confronto",
+      "value": "Valore",
+      "addValue": "Aggiungi un valore",
+      "addValueHint": "Scrivi un valore e premi Invio",
+      "valuesFull": "Al massimo {n, plural, one {# valore} other {{n, number, credits} valori}}",
+      "valuesLimit": "Valori non aggiunti: una condizione accetta al massimo {n, plural, one {# valore} other {{n, number, credits} valori}}, ognuno lungo al massimo {max, plural, one {# carattere} other {{max, number, credits} caratteri}}.",
+      "removeValue": "Rimuovi {value}",
+      "low": "Da",
+      "high": "A",
+      "remove": "Rimuovi condizione",
+      "invalid": "Questa condizione non si può salvare: controlla campo e valore.",
+      "columnsOf": "Usa le colonne di una lista",
+      "columnsHint": "Le sue colonne, comprese quelle AI, diventano campi da scegliere.",
+      "pickList": "Scegli una lista",
+      "create": "Salva come bozza",
+      "save": "Salva",
+      "publish": "Pubblica…",
+      "draftNote": "Una bozza non ha membri. Pubblicala quando il conteggio ti convince.",
+      "saved": "Segmento salvato.",
+      "publishedToast": "Segmento pubblicato.",
+      "reload": "Ricarica",
+      "leave": "Uscire senza salvare il segmento?"
+    },
+    "preview": {
+      "title": "Chi corrisponde ora",
+      "checking": "Conteggio in corso",
+      "incomplete": "Completa ogni condizione per vedere chi corrisponde.",
+      "invalid": "Correggi la condizione evidenziata per vedere chi corrisponde.",
+      "failed": "Non siamo riusciti a contare chi corrisponde. Riprova tra poco.",
+      "count": "{entity, select, company {{n, plural, one {# azienda corrisponde} other {{n, number, credits} aziende corrispondono}}} other {{n, plural, one {# persona corrisponde} other {{n, number, credits} persone corrispondono}}}}",
+      "pending": "In attesa che un addebito si chiuda",
+      "unidentified": "Righe non ancora identificate",
+      "linking": "Righe in collegamento",
+      "number": "{n, number, credits}",
+      "sample": "Alcuni di loro",
+      "whyAfterSave": "Salva il segmento per vedere perché ognuno corrisponde."
+    },
+    "why": {
+      "open": "Perché",
+      "title": "Perché corrisponde",
+      "description": "Come la regola salvata lo giudica ora, condizione per condizione, con le righe di ogni lista.",
+      "loading": "Caricamento…",
+      "matches": "Corrisponde alla regola.",
+      "noMatch": "Non corrisponde alla regola.",
+      "member": "È membro del segmento.",
+      "notMember": "Non è membro del segmento.",
+      "pending": "Un addebito su una delle sue righe non si è ancora chiuso: entra o esce quando si chiude.",
+      "frozen": "Il segmento è bloccato: i membri non seguono la regola finché non la correggi.",
+      "true": "vero",
+      "false": "falso",
+      "all": "Tutte queste",
+      "any": "Almeno una di queste",
+      "noRows": "Nessuna riga ha questo campo.",
+      "hit": "Corrisponde",
+      "miss": "Non corrisponde",
+      "empty": "vuoto",
+      "age": "aggiornato {when}"
+    },
+    "apply": {
+      "counting": "Conto chi entra…",
+      "matching": "Corrispondono ora",
+      "joining": "Entrano",
+      "leaving": "Escono",
+      "people": "{entity, select, company {{n, plural, one {# azienda} other {{n, number, credits} aziende}}} other {{n, plural, one {# persona} other {{n, number, credits} persone}}}}",
+      "silent": "{n, plural, one {Se lasci la casella vuota, {entity, select, company {l’azienda entra} other {la persona entra}} senza avviare nessuna automazione.} other {Se lasci la casella vuota, {entity, select, company {le aziende entrano} other {le persone entrano}} senza avviare nessuna automazione.}} Solo quelle che entrano dopo ne avviano una.",
+      "publish": {
+        "title": "Pubblicare questo segmento?",
+        "description": "Da ora Zenbree tiene aggiornati i suoi membri.",
+        "confirm": "Pubblica",
+        "include": "{entity, select, company {{n, plural, one {Includi l'azienda che corrisponde ora} other {Includi le {n, number, credits} aziende che corrispondono ora}}} other {{n, plural, one {Includi la persona che corrisponde ora} other {Includi le {n, number, credits} persone che corrispondono ora}}}}"
+      },
+      "edit": {
+        "title": "Salvare la nuova regola?",
+        "description": "La nuova regola vale subito: i membri entrano ed escono ora.",
+        "confirm": "Salva",
+        "include": "{entity, select, company {{n, plural, one {Includi l'azienda che entra} other {Includi le {n, number, credits} aziende che entrano}}} other {{n, plural, one {Includi la persona che entra} other {Includi le {n, number, credits} persone che entrano}}}}"
+      }
+    },
+    "cost": {
+      "max": "Costo massimo",
+      "credits": "{n, plural, one {# credito} other {{n, number, credits} crediti}}",
+      "noAutomation": "Nessuna automazione usa ancora questo segmento."
+    },
+    "frozen": {
+      "title": "Questo segmento è bloccato",
+      "effect": "La sua regola nomina qualcosa che è stato eliminato. I membri restano come sono, e nessuno entra o esce finché non correggi la regola.",
+      "listGone": "Condizione {where}: la sua lista è stata eliminata.",
+      "columnGone": "Condizione {where}: la colonna «{column}» di «{list}» è stata eliminata.",
+      "fix": "Modifica o rimuovi ognuna di queste condizioni, poi salva."
+    },
+    "controls": {
+      "refresh": "Aggiorna",
+      "refreshed": "Membri aggiornati.",
+      "delete": "Elimina",
+      "deleteTitle": "Eliminare «{name}»?",
+      "deleteDescription": "Il segmento smette di tenere i membri. Le campagne in cui sono i suoi membri vanno avanti come sono."
+    },
+    "members": {
+      "open": "Membri",
+      "title": "Membri",
+      "draft": "Questo segmento è una bozza: pubblicalo per vederne i membri.",
+      "paging": "Pagine dei membri",
+      "first": "Prima pagina",
+      "next": "Pagina successiva",
+      "none": "Ancora nessun membro.",
+      "entered": "Nel segmento dal {when}",
+      "episode": "{n, plural, one {# ingresso} other {{n, number, credits} ingressi}}",
+      "fromList": "da «{list}»"
+    }
+  }
+}

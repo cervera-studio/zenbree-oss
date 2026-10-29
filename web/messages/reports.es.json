@@ -1,0 +1,76 @@
+{
+  "reports": {
+    "link": "Informe",
+    "title": "Informe de campañas",
+    "breadcrumb": "Ruta",
+    "subtitle": "Lo que hizo cada campaña en las fechas que elijas.",
+    "loadError": "No se pudo cargar el informe.",
+    "empty": "Todavía no ha empezado ninguna campaña.",
+    "range": {
+      "label": "Fechas",
+      "from": "Desde",
+      "to": "Hasta",
+      "apply": "Mostrar",
+      "presets": "Rangos rápidos",
+      "last": "{days, plural, one {Último día} other {Últimos {days, number, credits} días}}"
+    },
+    "columns": {
+      "campaign": "Campaña",
+      "contacted": "Contactados",
+      "sent": "Enviados",
+      "replied": "Respuestas",
+      "positive": "Positivos",
+      "bounced": "Rebotes",
+      "meetings": "Reuniones",
+      "deals": "Acuerdos"
+    },
+    "sender": {
+      "native": "Zenbree",
+      "instantly": "Instantly"
+    },
+    "channels": "{email, plural, one {# email} other {{email, number, credits} emails}} · {invites, plural, one {# invitación} other {{invites, number, credits} invitaciones}} · {messages, plural, one {# mensaje} other {{messages, number, credits} mensajes}}",
+    "replied": "{replied, number, credits} de {contacted, plural, one {# contactado} other {{contacted, number, credits} contactados}}",
+    "positive": "{positive, number, credits} de {replied, plural, one {# respuesta} other {{replied, number, credits} respuestas}}",
+    "unknown": "Desconocido",
+    "lineage": {
+      "summary": "De dónde vienen las personas",
+      "noList": "Sin lista",
+      "signal": "{watchlist} ({type, select, job_posting {ofertas de empleo} other {{type}}})",
+      "counts": "{contacted, plural, one {# contactado} other {{contacted, number, credits} contactados}} · {replied, plural, one {# respuesta} other {{replied, number, credits} respuestas}} · {positive, plural, one {# positivo} other {{positive, number, credits} positivos}}",
+      "source": {
+        "onboarding": "Onboarding",
+        "manual": "Añadidas a mano",
+        "csv": "Importación CSV",
+        "refill": "Reposición",
+        "signal": "Señal",
+        "unknown": "Persona no asociada o eliminada"
+      }
+    },
+    "variants": {
+      "summary": "Resultados por variante",
+      "group": {
+        "a": "Variante A",
+        "b": "Variante B",
+        "outside": "Fuera de la prueba",
+        "unknown": "Sin atribuir"
+      },
+      "enrolled": "Personas en el grupo hoy",
+      "contacted": "Personas contactadas",
+      "sent": "Mensajes enviados",
+      "replied": "Respuestas",
+      "repliedOf": "{replied, number, credits} de {contacted, plural, one {# persona contactada} other {{contacted, number, credits} personas contactadas}}",
+      "positive": "Respuestas positivas",
+      "positiveOf": "{positive, number, credits} de {replied, plural, one {# respuesta} other {{replied, number, credits} respuestas}}"
+    },
+    "notes": {
+      "people": "Los recuentos son personas, en la fecha de su primer evento: quien responde dos veces cuenta una vez.",
+      "before": "Una respuesta en estas fechas puede venir de una persona contactada antes.",
+      "positiveBefore": "Una respuesta positiva en estas fechas puede venir de una persona que ya había respondido antes.",
+      "unknown": "Desconocido significa que aún no se mide: Zenbree todavía no registra sus propios rebotes, y las reuniones y los acuerdos llegarán de HubSpot.",
+      "variants": "En una prueba A/B, Zenbree no elige una variante ganadora ni muestra porcentajes: una variante puede tener pocas personas, y una diferencia pequeña puede ser casualidad.",
+      "variantGroups": "Fuera de la prueba: las personas que entraron mientras la prueba estaba en pausa, que reciben los textos de la variante A. Sin atribuir: envíos y respuestas de personas que ya no están en la campaña, o de remitentes que no coinciden con nadie.",
+      "instantlyPartial": "Los recuentos de Instantly están completos hasta el {at}.",
+      "instantlyPending": "Los recuentos de Instantly aún no están completos: la primera lectura completa de Instantly no ha terminado."
+    }
+  }
+}

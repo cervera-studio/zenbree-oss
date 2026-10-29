@@ -1,0 +1,588 @@
+#!/usr/bin/env node
+// Headless Chrome driver over raw CDP (Node >= 22, no dependencies). One Chrome per verify run, its own
+// profile under the run's state dir. Targets are ARIA role + accessible name, or `css`/`text`.
+// `bin/browser help` lists commands.
+import { spawn } from 'node:child_process';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+
+const STATE = join(
+  process.env.VERIFY_HOME ?? join(process.env.HOME, '.cache/zenbree-verify'),
+  process.env.VERIFY_ID ?? '',
+);
+const INFO = join(STATE, 'browser.json');
+const WEB = `http://localhost:${process.env.VERIFY_WEB_PORT ?? 13000}`;
+const PROFILE = join(STATE, 'chrome');
+const CHROMES = [
+  process.env.CHROME_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  '/usr/bin/google-chrome',
+  '/usr/bin/chromium',
+].filter(Boolean);
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const die = (msg) => {
+  console.error(`browser: ${msg}`);
+  process.exit(1);
+};
+if (!process.env.VERIFY_ID && !['help', undefined].includes(process.argv[2])) {
+  die('set VERIFY_ID=<name> on every bin/stack and bin/browser call, in the same command');
+}
+
+const HELP = `bin/browser start                      launch headless Chrome (1440x900) for this run
+bin/browser stop                       kill the Chrome this run started
+bin/browser locale <it|en|es|fr>       set the NEXT_LOCALE cookie (start sets it; default it)
+bin/browser goto <url>                 navigate and wait for load
+bin/browser click <target>             real mouse click on the element's center
+bin/browser fill <target> <value>      click, select all, type value (React-safe)
+bin/browser select <target> <option>   choose a native <select> option by its visible text
+bin/browser press <key>                Enter | Tab | Escape | Backspace | ArrowDown | ArrowUp | ArrowLeft | ArrowRight
+bin/browser wait <target>              wait until the target is visible
+bin/browser wait-url <substring>       wait until location.href contains substring
+bin/browser wait-gone <target>         wait until the target is absent (page loaded, two empty passes)
+bin/browser ax [--out file]            accessibility tree: role "name" lines (find targets here)
+bin/browser text [--out file]          document.body.innerText
+bin/browser screenshot <file.png> [--full]
+bin/browser eval <js>                  evaluate in the page (awaits promises), print JSON
+bin/browser url                        print location.href
+bin/browser upload <css> <file...>     set files on an <input type=file> (may be visually hidden), fire change
+bin/browser viewport <width> <height>  resize the page area to exactly that size, e.g. 1440 900; it stays 500 wide
+                                       at least (still the phone layout, <760 px); --width 390 gives a true 390
+bin/browser contrast [--reveal]        WCAG AA check of every visible text style; prints FAIL lines, exits 1 when any is below its floor
+
+<target> is one of:  <role> <name>   e.g. button "Accedi", textbox "Email", link "Liste"
+                     css <selector>  e.g. css "input[type=password]"
+                     text <text>     smallest visible element whose text equals <text>
+Flags: --timeout <ms> (default 15000), --nth <i> when several elements match,
+       --width <px> [--height <px>] lays the page out at that size for this one command (below the
+       500 px window floor; a tall --height shows a page whose inner pane scrolls in one screenshot),
+       --scheme <light|dark> emulates prefers-color-scheme for this one command,
+       --reveal (contrast) removes [hidden] and opens every <details> first, so tab panels and FAQ answers
+       count. It mutates the page: reload after.`;
+
+// Runs in the page. A candidate background is a layer stack: a gradient yields one candidate per color stop,
+// a translucent fill composites over what is below, and the walk stops at the first opaque fill without a gradient.
+const CONTRAST = `(reveal) => {
+  if (reveal) {
+    document.querySelectorAll('[hidden]').forEach((el) => el.removeAttribute('hidden'));
+    document.querySelectorAll('details').forEach((el) => { el.open = true; });
+  }
+  const ctx = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  const rgba = (css) => {
+    ctx.clearRect(0, 0, 1, 1);
+    ctx.fillStyle = '#000';
+    ctx.fillStyle = css;
+    ctx.fillRect(0, 0, 1, 1);
+    const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+    return [r, g, b, a / 255];
+  };
+  const over = (top, under) => [0, 1, 2].map((i) => top[i] * top[3] + under[i] * (1 - top[3])).concat(1);
+  const lum = ([r, g, b]) => {
+    const ch = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * ch(r) + 0.7152 * ch(g) + 0.0722 * ch(b);
+  };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  const stops = (img) => img.match(/(rgba?|color|oklab|oklch|hsla?)\\([^()]*(\\([^()]*\\)[^()]*)*\\)/g) || [];
+  const base = rgba(getComputedStyle(document.body).backgroundColor);
+  const backgrounds = (el) => {
+    let layers = [[]];
+    for (let n = el; n; n = n.parentElement) {
+      const s = getComputedStyle(n);
+      const img = s.backgroundImage !== 'none' ? stops(s.backgroundImage) : [];
+      const fill = rgba(s.backgroundColor);
+      if (img.length) layers = layers.flatMap((l) => img.map((c) => l.concat([rgba(c)])));
+      if (fill[3] > 0) layers = layers.map((l) => l.concat([fill]));
+      if (fill[3] === 1 && !img.length) break;
+    }
+    return layers.map((l) => l.reduceRight((under, top) => over(top, under), base));
+  };
+  const seen = new Map();
+  for (const el of document.querySelectorAll('body *')) {
+    const own = [...el.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim());
+    if (!own || !el.getClientRects().length) continue;
+    const s = getComputedStyle(el);
+    if (s.visibility === 'hidden' || Number(s.opacity) === 0) continue;
+    const size = parseFloat(s.fontSize);
+    const floor = size >= 24 || (Number(s.fontWeight) >= 700 && size >= 18.66) ? 3 : 4.5;
+    const fg = rgba(s.color);
+    const worst = Math.min(...backgrounds(el).map((bg) => ratio(over(fg, bg), bg)));
+    const cls = (el.className && typeof el.className === 'string' ? el.className : el.tagName.toLowerCase()).split(' ')[0];
+    const key = cls + '|' + s.color;
+    const prev = seen.get(key);
+    if (!prev || worst < prev.ratio) {
+      seen.set(key, { cls, color: s.color, ratio: Math.round(worst * 100) / 100, floor, text: el.textContent.trim().slice(0, 40) });
+    }
+  }
+  const all = [...seen.values()];
+  return { checked: all.length, failing: all.filter((r) => r.ratio < r.floor).sort((a, b) => a.ratio - b.ratio) };
+}`;
+
+// ---------- args ----------
+const argv = process.argv.slice(2);
+const flags = {};
+const pos = [];
+for (let i = 0; i < argv.length; i++) {
+  if (argv[i] === '--full') flags.full = true;
+  else if (argv[i] === '--reveal') flags.reveal = true;
+  else if (argv[i].startsWith('--')) flags[argv[i].slice(2)] = argv[++i];
+  else pos.push(argv[i]);
+}
+const TIMEOUT = Number(flags.timeout ?? 15000);
+const NTH = Number(flags.nth ?? 0);
+
+// ---------- chrome lifecycle ----------
+async function start() {
+  if (existsSync(INFO)) {
+    const { pid, port } = JSON.parse(readFileSync(INFO, 'utf8'));
+    if (alive(pid)) return console.log(`already running pid=${pid} port=${port}`);
+  }
+  const bin = CHROMES.find((p) => existsSync(p));
+  if (!bin) die('no Chrome found; set CHROME_PATH');
+  mkdirSync(PROFILE, { recursive: true });
+  rmSync(join(PROFILE, 'DevToolsActivePort'), { force: true });
+  const child = spawn(
+    bin,
+    [
+      '--headless=new',
+      '--remote-debugging-port=0',
+      `--user-data-dir=${PROFILE}`,
+      '--no-first-run',
+      '--no-default-browser-check',
+      '--window-size=1440,900',
+      // PostHog drops events from a bot (HeadlessChrome user agent, navigator.webdriver): set
+      // VERIFY_USER_AGENT to a desktop one to see analytics requests.
+      ...(process.env.VERIFY_USER_AGENT
+        ? [`--user-agent=${process.env.VERIFY_USER_AGENT}`, '--disable-blink-features=AutomationControlled']
+        : []),
+      'about:blank',
+    ],
+    { detached: true, stdio: 'ignore' },
+  );
+  child.unref();
+  for (let i = 0; i < 100; i++) {
+    const f = join(PROFILE, 'DevToolsActivePort');
+    if (existsSync(f)) {
+      const port = Number(readFileSync(f, 'utf8').split('\n')[0]);
+      if (port) {
+        writeFileSync(INFO, JSON.stringify({ pid: child.pid, port, profile: PROFILE }));
+        const send = await connect();
+        await setLocale(send, process.env.VERIFY_LOCALE ?? 'it');
+        await resize(send, 1440, 900);
+        send.close();
+        return console.log(`started pid=${child.pid} port=${port} locale=${process.env.VERIFY_LOCALE ?? 'it'}`);
+      }
+    }
+    await sleep(100);
+  }
+  die('Chrome did not open a DevTools port');
+}
+
+function alive(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function stop() {
+  if (!existsSync(INFO)) return console.log('not running');
+  const { pid } = JSON.parse(readFileSync(INFO, 'utf8'));
+  if (alive(pid)) process.kill(pid, 'SIGTERM');
+  rmSync(INFO, { force: true });
+  console.log(`stopped pid=${pid}`);
+}
+
+// Window bounds outlive this CDP connection; an Emulation override would reset on disconnect.
+// The bounds include the window frame, and the frame is the same size at any window size, so
+// one correction by the measured difference lands the page area on width x height.
+async function resize(send, width, height) {
+  const { windowId } = await send('Browser.getWindowForTarget');
+  const inner = async () => {
+    await sleep(300);
+    return evaluate(send, '[innerWidth, innerHeight]');
+  };
+  await send('Browser.setWindowBounds', { windowId, bounds: { width, height, windowState: 'normal' } });
+  const [w, h] = await inner();
+  if (w !== width || h !== height) {
+    const bounds = { width: 2 * width - w, height: 2 * height - h };
+    await send('Browser.setWindowBounds', { windowId, bounds });
+  }
+  const [fw, fh] = await inner();
+  return `${fw}x${fh}`;
+}
+
+// next-intl reads NEXT_LOCALE before Accept-Language (web/i18n/config.ts).
+async function setLocale(send, locale) {
+  if (!['it', 'en', 'es', 'fr'].includes(locale)) die('locale must be it, en, es or fr');
+  const { success } = await send('Network.setCookie', { name: 'NEXT_LOCALE', value: locale, url: WEB });
+  if (!success) die('could not set NEXT_LOCALE');
+}
+
+// ---------- CDP ----------
+async function connect() {
+  if (!existsSync(INFO)) die('not running; bin/browser start');
+  const { pid, port } = JSON.parse(readFileSync(INFO, 'utf8'));
+  if (!alive(pid)) die(`Chrome pid ${pid} is gone; bin/browser start`);
+  const targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
+  const page = targets.find((t) => t.type === 'page');
+  if (!page) die('no page target');
+  const ws = new WebSocket(page.webSocketDebuggerUrl);
+  await new Promise((res, rej) => {
+    ws.onopen = res;
+    ws.onerror = () => rej(new Error('CDP websocket failed'));
+  });
+  let id = 0;
+  const pending = new Map();
+  ws.onmessage = (ev) => {
+    const msg = JSON.parse(ev.data);
+    const p = pending.get(msg.id);
+    if (!p) return;
+    pending.delete(msg.id);
+    msg.error ? p.rej(new Error(`${p.method}: ${msg.error.message}`)) : p.res(msg.result);
+  };
+  const send = (method, params = {}) =>
+    new Promise((res, rej) => {
+      pending.set(++id, { res, rej, method });
+      ws.send(JSON.stringify({ id, method, params }));
+    });
+  send.close = () => ws.close();
+  return send;
+}
+
+async function evaluate(send, expression) {
+  const r = await send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true });
+  if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description ?? r.exceptionDetails.text);
+  return r.result.value;
+}
+
+// ---------- element lookup ----------
+const TEXT_FIND = `(text) => {
+  const norm = (s) => (s || '').replace(/\\s+/g, ' ').trim();
+  const hits = [...document.querySelectorAll('body *')].filter((el) => {
+    const r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0 && norm(el.innerText) === text;
+  });
+  return hits.filter((el) => !hits.some((o) => o !== el && el.contains(o)));
+}`;
+
+// Resolves a target to remote object ids of visible matching elements.
+async function find(send, target) {
+  const [kind, value] = target;
+  let objectIds = [];
+  if (kind === 'css') {
+    const res = await send('Runtime.evaluate', {
+      expression: `[...document.querySelectorAll(${JSON.stringify(value)})]`,
+    });
+    objectIds = await arrayItems(send, res.result.objectId);
+  } else if (kind === 'text') {
+    const res = await send('Runtime.evaluate', { expression: `(${TEXT_FIND})(${JSON.stringify(value)})` });
+    objectIds = await arrayItems(send, res.result.objectId);
+  } else {
+    const { root } = await send('DOM.getDocument', { depth: 0 });
+    const { nodes } = await send('Accessibility.queryAXTree', {
+      nodeId: root.nodeId,
+      role: kind,
+      accessibleName: value,
+    });
+    for (const n of nodes.filter((n) => !n.ignored && n.backendDOMNodeId)) {
+      const { object } = await send('DOM.resolveNode', { backendNodeId: n.backendDOMNodeId });
+      objectIds.push(object.objectId);
+    }
+  }
+  const visible = [];
+  for (const objectId of objectIds) {
+    const v = await send('Runtime.callFunctionOn', {
+      objectId,
+      functionDeclaration:
+        'function(){const r=this.getBoundingClientRect();const s=getComputedStyle(this);return r.width>0&&r.height>0&&s.visibility!=="hidden"}',
+      returnByValue: true,
+    });
+    if (v.result.value) visible.push(objectId);
+  }
+  return visible;
+}
+
+async function arrayItems(send, objectId) {
+  if (!objectId) return [];
+  const { result } = await send('Runtime.getProperties', { objectId, ownProperties: true });
+  return result.filter((p) => /^\d+$/.test(p.name) && p.value?.objectId).map((p) => p.value.objectId);
+}
+
+function parseTarget(args) {
+  if (args.length < 2) die('target needs two parts: <role> <name> | css <selector> | text <text>');
+  return [args[0], args[1]];
+}
+
+// A navigation between two CDP calls of one pass detaches the nodes and destroys the context that the
+// first call returned; the next pass reads the new document.
+const TRANSIENT =
+  /Could not find (node|object) with given id|No node with given id found|Node with given id does not belong to the document|Execution context was destroyed|Cannot find (default )?(execution )?context/;
+
+async function poll(fn, what) {
+  const end = Date.now() + TIMEOUT;
+  let last = '';
+  for (;;) {
+    try {
+      const v = await fn();
+      if (v) return v;
+      last = '';
+    } catch (e) {
+      if (!TRANSIENT.test(e.message)) throw e;
+      last = e.message;
+      console.error(`browser: retried after ${last}`);
+    }
+    if (Date.now() > end) die(`timed out after ${TIMEOUT}ms waiting for ${what}${last ? ` (last error: ${last})` : ''}`);
+    await sleep(200);
+  }
+}
+
+async function element(send, target) {
+  return poll(async () => {
+    const ids = await find(send, target);
+    return ids[NTH];
+  }, `${target[0]} ${JSON.stringify(target[1])}`);
+}
+
+async function clickAt(send, objectId) {
+  const { result } = await send('Runtime.callFunctionOn', {
+    objectId,
+    functionDeclaration:
+      'function(){this.scrollIntoView({block:"center",inline:"center"});const r=this.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}}',
+    returnByValue: true,
+  });
+  const { x, y } = result.value;
+  for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) {
+    await send('Input.dispatchMouseEvent', { type, x, y, button: 'left', clickCount: 1 });
+  }
+}
+
+const KEYS = {
+  Enter: { key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13, text: '\r' },
+  Tab: { key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 },
+  Escape: { key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 },
+  Backspace: { key: 'Backspace', code: 'Backspace', windowsVirtualKeyCode: 8 },
+  ArrowDown: { key: 'ArrowDown', code: 'ArrowDown', windowsVirtualKeyCode: 40 },
+  ArrowUp: { key: 'ArrowUp', code: 'ArrowUp', windowsVirtualKeyCode: 38 },
+  ArrowLeft: { key: 'ArrowLeft', code: 'ArrowLeft', windowsVirtualKeyCode: 37 },
+  ArrowRight: { key: 'ArrowRight', code: 'ArrowRight', windowsVirtualKeyCode: 39 },
+};
+
+async function press(send, name) {
+  const k = KEYS[name];
+  if (!k) die(`unknown key ${name}; one of ${Object.keys(KEYS).join(', ')}`);
+  await send('Input.dispatchKeyEvent', { type: 'keyDown', ...k });
+  await send('Input.dispatchKeyEvent', { type: 'keyUp', ...k, text: undefined });
+}
+
+async function loaded(send) {
+  await poll(async () => (await evaluate(send, 'document.readyState')) === 'complete', 'page load');
+}
+
+// ---------- ax tree ----------
+async function axTree(send) {
+  const { nodes } = await send('Accessibility.getFullAXTree');
+  const byId = new Map(nodes.map((n) => [n.nodeId, n]));
+  const skip = new Set(['generic', 'none', 'InlineTextBox', 'LineBreak', 'LabelText']);
+  const STATES = ['checked', 'disabled', 'expanded', 'selected', 'required', 'invalid'];
+  const lines = [];
+  const walk = (n, depth, parentName) => {
+    const role = n.role?.value;
+    const name = n.name?.value ?? '';
+    // Static text shows as `text "..."` unless it only repeats its parent's accessible name.
+    const shown = !n.ignored && role && !skip.has(role) && !(role === 'StaticText' && (!name.trim() || name === parentName));
+    if (shown) {
+      const states = (n.properties ?? [])
+        .filter((p) => STATES.includes(p.name) && p.value.value && p.value.value !== 'false')
+        .map((p) => p.name);
+      const val = n.value?.value ? ` value=${JSON.stringify(String(n.value.value).slice(0, 80))}` : '';
+      const label = role === 'StaticText' ? 'text' : role;
+      lines.push(`${'  '.repeat(depth)}${label} ${JSON.stringify(name.slice(0, 120))}${val}${states.length ? ` [${states.join(' ')}]` : ''}`);
+    }
+    for (const c of n.childIds ?? []) {
+      const child = byId.get(c);
+      if (child) walk(child, shown ? depth + 1 : depth, name || parentName);
+    }
+  };
+  walk(nodes[0], 0, '');
+  return lines.join('\n');
+}
+
+function output(text) {
+  if (flags.out) {
+    mkdirSync(dirname(flags.out), { recursive: true });
+    writeFileSync(flags.out, `${text}\n`);
+    console.log(`wrote ${flags.out}`);
+  } else console.log(text);
+}
+
+// ---------- main ----------
+const [cmd, ...rest] = pos;
+// Renews the stack's lease, so bin/stack does not reap a stack that is being driven.
+if (existsSync(join(STATE, 'stack.env'))) writeFileSync(join(STATE, 'lease'), '');
+if (!cmd || cmd === 'help') {
+  console.log(HELP);
+  process.exit(0);
+}
+if (cmd === 'start') await start();
+else if (cmd === 'stop') stop();
+else {
+  const send = await connect();
+  try {
+    await send('Page.enable');
+    // The window cannot shrink under 500 px; an Emulation override can, and it ends with this connection.
+    if (flags.width) {
+      await send('Emulation.setDeviceMetricsOverride', { width: Number(flags.width), height: Number(flags.height ?? 0), deviceScaleFactor: 0, mobile: false });
+      await sleep(300);
+    }
+    if (flags.scheme) {
+      if (flags.scheme !== 'light' && flags.scheme !== 'dark') die('--scheme must be light or dark');
+      await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: flags.scheme }] });
+      await sleep(300);
+    }
+    switch (cmd) {
+      case 'locale':
+        await setLocale(send, rest[0]);
+        console.log(`locale ${rest[0]} (reload or goto to apply)`);
+        break;
+      case 'goto': {
+        if (!rest[0]) die('usage: goto <url>');
+        const r = await send('Page.navigate', { url: rest[0] });
+        if (r.errorText) die(`navigation failed: ${r.errorText}`);
+        await sleep(300);
+        await loaded(send);
+        console.log(await evaluate(send, 'location.href'));
+        break;
+      }
+      case 'click':
+        await clickAt(send, await element(send, parseTarget(rest)));
+        console.log(`clicked ${rest[0]} ${JSON.stringify(rest[1])}`);
+        break;
+      case 'fill': {
+        if (rest.length < 3) die('usage: fill <target> <value>');
+        const id = await element(send, parseTarget(rest));
+        await clickAt(send, id);
+        await send('Runtime.callFunctionOn', {
+          objectId: id,
+          functionDeclaration: 'function(){this.focus();if(this.select)this.select()}',
+        });
+        await send('Input.dispatchKeyEvent', { type: 'keyDown', ...KEYS.Backspace });
+        await send('Input.dispatchKeyEvent', { type: 'keyUp', ...KEYS.Backspace });
+        await send('Input.insertText', { text: rest[2] });
+        console.log(`filled ${rest[0]} ${JSON.stringify(rest[1])}`);
+        break;
+      }
+      case 'select': {
+        if (rest.length < 3) die('usage: select <target> <option text>');
+        const { result } = await send('Runtime.callFunctionOn', {
+          objectId: await element(send, parseTarget(rest)),
+          functionDeclaration: `function(label){
+            const opt=[...this.options].find((o)=>o.text.trim()===label);
+            if(!opt) return [...this.options].map((o)=>o.text.trim());
+            this.value=opt.value;
+            this.dispatchEvent(new Event('input',{bubbles:true}));
+            this.dispatchEvent(new Event('change',{bubbles:true}));
+            return true}`,
+          arguments: [{ value: rest[2] }],
+          returnByValue: true,
+        });
+        if (result.value !== true) die(`no option ${JSON.stringify(rest[2])}; options: ${JSON.stringify(result.value)}`);
+        console.log(`selected ${JSON.stringify(rest[2])} in ${rest[0]} ${JSON.stringify(rest[1])}`);
+        break;
+      }
+      case 'press':
+        await press(send, rest[0]);
+        console.log(`pressed ${rest[0]}`);
+        break;
+      case 'wait':
+        await element(send, parseTarget(rest));
+        console.log(`visible ${rest[0]} ${JSON.stringify(rest[1])}`);
+        break;
+      case 'wait-gone': {
+        const t = parseTarget(rest);
+        // A full navigation reads the new document before it renders the target, so an empty pass counts only
+        // on a complete document, and twice in a row. An error pass (navigation mid-pass) resets the count.
+        // ponytail: a client draw later than about one 200 ms poll after load can still read as gone; wait for
+        // the next page's own element when that matters.
+        let empty = 0;
+        await poll(async () => {
+          const prev = empty;
+          empty = 0;
+          const ready = (await evaluate(send, 'document.readyState')) === 'complete';
+          empty = ready && (await find(send, t)).length === 0 ? prev + 1 : 0;
+          return empty >= 2;
+        }, `${t[0]} ${JSON.stringify(t[1])} to disappear`);
+        console.log(`gone ${rest[0]} ${JSON.stringify(rest[1])}`);
+        break;
+      }
+      case 'wait-url': {
+        const href = await poll(async () => {
+          const h = await evaluate(send, 'location.href');
+          return h.includes(rest[0]) && h;
+        }, `url containing ${rest[0]}`);
+        await loaded(send);
+        console.log(href);
+        break;
+      }
+      case 'ax':
+        output(await axTree(send));
+        break;
+      case 'text':
+        output(await evaluate(send, 'document.body.innerText'));
+        break;
+      case 'screenshot': {
+        if (!rest[0]) die('usage: screenshot <file.png> [--full]');
+        const { data } = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: !!flags.full });
+        mkdirSync(dirname(rest[0]), { recursive: true });
+        writeFileSync(rest[0], Buffer.from(data, 'base64'));
+        console.log(`wrote ${rest[0]}`);
+        break;
+      }
+      case 'eval':
+        console.log(JSON.stringify(await evaluate(send, rest[0]), null, 2));
+        break;
+      case 'url':
+        console.log(await evaluate(send, 'location.href'));
+        break;
+      case 'upload': {
+        if (rest.length < 2) die('usage: upload <css selector of input[type=file]> <file...>');
+        const files = rest.slice(1).map((f) => (f.startsWith('/') ? f : join(process.cwd(), f)));
+        for (const f of files) if (!existsSync(f)) die(`no such file ${f}`);
+        // No visibility filter: file inputs are usually hidden behind a styled label.
+        const { result } = await send('Runtime.evaluate', {
+          expression: `document.querySelectorAll(${JSON.stringify(rest[0])})[${NTH}]`,
+        });
+        if (!result.objectId) die(`no element matches css ${JSON.stringify(rest[0])}`);
+        await send('DOM.setFileInputFiles', { objectId: result.objectId, files });
+        console.log(`uploaded ${files.length} file(s) to ${rest[0]}`);
+        break;
+      }
+      case 'contrast': {
+        const { checked, failing } = await evaluate(send, `(${CONTRAST})(${!!flags.reveal})`);
+        for (const r of failing) console.log(`FAIL ${r.ratio} < ${r.floor}  ${r.cls}  ${r.color}  ${JSON.stringify(r.text)}`);
+        console.log(`contrast: ${checked} text styles, ${failing.length} below floor`);
+        if (failing.length) process.exitCode = 1;
+        break;
+      }
+      case 'viewport': {
+        const [width, height] = rest.map(Number);
+        if (!width || !height) die('usage: viewport <width> <height>');
+        const size = await resize(send, width, height);
+        console.log(`viewport ${size}`);
+        if (size !== `${width}x${height}`) {
+          // Chrome clamps a width under 500 px, but refuses a very short window outright and keeps the old size.
+          console.error(`the window could not reach ${width}x${height} and is ${size} (Chrome keeps a window at least 500 px wide and refuses a very short one): pass --width ${width} --height ${height} to a command for that exact size`);
+        }
+        break;
+      }
+      default:
+        die(`unknown command ${cmd}\n${HELP}`);
+    }
+  } catch (e) {
+    die(e.message);
+  } finally {
+    send.close();
+  }
+}

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Pattern · Toast e conferme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+:root{--zb-chart-1:#223034;--zb-chart-2:#006679}
+.zb-dark{--zb-chart-1:#c7d0cf;--zb-chart-2:#3fb5d1}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;height:40px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg);padding:0 12px}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.h1{margin:0;font-family:Newsreader,'Iowan Old Style',Georgia,serif;font-weight:400;font-size:44px;line-height:1.18;letter-spacing:0}
+.h2{margin:0;font-size:16px;font-weight:700}
+.sub{margin:0;color:var(--zb-muted-fg);line-height:1.5}
+.mono{font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace}
+.tw{border:1px solid var(--zb-border);border-radius:14px;overflow:hidden}
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{padding:10px 14px;font-weight:600;font-size:12px;color:var(--zb-muted-fg);text-align:left;background:var(--zb-rail);white-space:nowrap}
+.t td{padding:9px 14px;border-top:1px solid var(--zb-muted);vertical-align:middle}
+.t tbody tr:hover{background:var(--zb-muted)}
+.t .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b1{height:36px;padding:0 14px;border:0;border-radius:10.5px;background:var(--zb-brand);color:var(--zb-on-brand);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b1:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.b1:disabled{opacity:.45;cursor:not-allowed}
+.b2{height:36px;padding:0 12px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b2:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.bd{background:var(--zb-neg-fg);color:var(--zb-bg)}
+.bd:hover{background:var(--zb-neg-fg);opacity:.9;color:var(--zb-bg)}
+.pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;box-sizing:border-box}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed=true]{background:var(--zb-tint);border-color:transparent;color:var(--zb-ink)}
+.card{border:1px solid var(--zb-border);border-radius:17.5px;background:var(--zb-card);padding:16px}
+.kpi dt{font-size:12px;color:var(--zb-muted-fg);font-weight:600}
+.kpi dd{margin:4px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:var(--zb-fg);font-family:inherit;font-size:13px;text-align:left;cursor:pointer;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.ib{width:32px;height:32px;border:0;border-radius:7px;background:transparent;color:var(--zb-muted-fg);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ib:hover{background:var(--zb-rail-hover);color:var(--zb-fg)}
+.tab{height:44px;padding:0 4px;border:0;border-bottom:2px solid transparent;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--zb-muted-fg);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tab[aria-selected=true]{color:var(--zb-fg);border-bottom-color:var(--zb-ink)}
+details>summary{cursor:pointer;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+.sw{position:relative;width:40px;height:24px;border-radius:999px;border:0;cursor:pointer;flex-shrink:0;padding:0}
+.sw span{position:absolute;top:3px;width:18px;height:18px;border-radius:999px;background:var(--zb-bg);transition:left .15s}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; padding: 40px 56px 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 36px">
+  <header style="display: flex; flex-direction: column; gap: 8px; max-width: 820px">
+    <span class="mono" style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Pattern condiviso</span>
+    <h1 class="h1">Toast, annulla e conferme</h1>
+    <p class="sub" style="font-size: 15px">Una sola regola per dire all'utente che qualcosa è successo. Se si può tornare indietro, facciamo e offriamo «Annulla». Se non si può, o tocca persone esterne, chiediamo prima.</p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700">1 · Toast</h2>
+      <p class="sub" style="font-size: 13px">In basso a destra, uno alla volta (il nuovo sostituisce il vecchio). Testo breve: cosa è successo, poi l'azione. Su telefono va in basso, sopra la barra fissa.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <dc-import name="Toast" theme="{{theme}}" tone="success" text="Lista eliminata." action="Annulla" inline="{{yes}}" hint-size="440px,54px"></dc-import>
+        <dc-import name="Toast" theme="{{theme}}" tone="error" text="Esportazione non riuscita. Il file non è stato creato." action="Riprova" inline="{{yes}}" hint-size="440px,54px"></dc-import>
+        <dc-import name="Toast" theme="{{theme}}" tone="info" text="Campagna in pausa: riprende lunedì alle 9:00." action="" inline="{{yes}}" hint-size="440px,54px"></dc-import>
+        <dc-import name="Toast" theme="{{theme}}" tone="progress" text="Import in corso · 110 di 171 righe" action="Nascondi" inline="{{yes}}" hint-size="440px,54px"></dc-import>
+      </div>
+      <div class="tw"><table class="t">
+        <thead><tr><th scope="col">Tipo</th><th scope="col">Quando</th><th scope="col">Durata</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight: 600">Riuscito</td><td>Salvataggi, invii, modifiche fatte</td><td>5 s</td></tr>
+          <tr><td style="font-weight: 600">Con «Annulla»</td><td>Eliminazioni recuperabili: lista, colonna, esclusione</td><td>8 s, poi definitivo</td></tr>
+          <tr><td style="font-weight: 600">Errore</td><td>Azione non riuscita, con «Riprova»</td><td>Resta finché non lo chiudi</td></tr>
+          <tr><td style="font-weight: 600">In corso</td><td>Import, export, invio di più messaggi</td><td>Finché dura, poi diventa «Riuscito»</td></tr>
+        </tbody>
+      </table></div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <button type="button" class="b2" onClick="{{demo.undo}}">Prova: elimina una lista</button>
+        <button type="button" class="b2" onClick="{{demo.error}}">Prova: errore</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700">2 · Messaggi nella pagina</h2>
+      <p class="sub" style="font-size: 13px">Il toast sparisce: quello che l'utente deve ancora sistemare resta nella pagina, vicino a dove agisce.</p>
+      <div class="tw"><table class="t">
+        <thead><tr><th scope="col">Situazione</th><th scope="col">Dove</th><th scope="col">Esempio</th></tr></thead>
+        <tbody>
+          <tr><td>Campo non valido</td><td>Sotto il campo</td><td>Esclusioni, Rettifica crediti</td></tr>
+          <tr><td>Blocco che impedisce di procedere</td><td>Banner nella pagina</td><td>Nessuna casella collegata (C2b)</td></tr>
+          <tr><td>Errore dell'agente</td><td>Nella chat, come messaggio</td><td>Fornitore email giù (4b)</td></tr>
+          <tr><td>Pagina che non carica</td><td>Al posto del contenuto, con «Riprova»</td><td>Costi · API non raggiungibile</td></tr>
+          <tr><td>Fine di un lavoro lungo</td><td>Notifica (vedi pagina Notifiche)</td><td>Ricerca finita, nuova risposta</td></tr>
+        </tbody>
+      </table></div>
+      <div class="card" style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.55">
+        <strong>Come scriviamo</strong>
+        <span>Cosa è successo, cosa ti è costato (di solito niente), cosa puoi fare. Niente «Ops!», niente codici d'errore all'utente: i codici vanno solo nel backoffice.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px">
+    <h2 style="margin: 0; font-size: 20px; font-weight: 700">3 · Conferme</h2>
+    <p class="sub" style="font-size: 13px; max-width: 820px">Solo per azioni che non si annullano o che toccano altri: contatti esterni, integrazioni, soldi. Il titolo è una domanda con il nome della cosa, il pulsante ripete il verbo. «Annulla» ha il focus. Per cancellare l'account bisogna scrivere una parola.</p>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+      <sc-for list="{{cards}}" as="c" hint-placeholder-count="4">
+        <div class="card" style="display: flex; flex-direction: column; gap: 10px">
+          <span class="pill" style="align-self: flex-start; background: var(--zb-rail); color: var(--zb-fg)">{{c.where}}</span>
+          <strong style="line-height: 1.35">{{c.title}}</strong>
+          <span style="font-size: 13px; line-height: 1.5; color: var(--zb-muted-fg); flex-grow: 1">{{c.body}}</span>
+          <button type="button" class="b2" onClick="{{c.open}}" style="align-self: flex-start">Prova</button>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-if value="{{ask}}" hint-placeholder-val="{{false}}">
+    <dc-import name="ConfirmDialog" theme="{{theme}}" title="{{ask.title}}" body="{{ask.body}}" bullet1="{{ask.b1}}" bullet2="{{ask.b2}}" cta="{{ask.cta}}" type-word="{{ask.word}}" on-cancel="{{cancel}}" on-confirm="{{confirm}}" hint-size="100%,100vh"></dc-import>
+  </sc-if>
+  <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+    <dc-import name="Toast" theme="{{theme}}" tone="{{toast.tone}}" text="{{toast.text}}" action="{{toast.action}}" on-action="{{toast.act}}" on-close="{{hide}}" hint-size="440px,54px"></dc-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { ask: -1, toast: null }; }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const S = this.state;
+    const set = (p) => this.setState(p);
+    const C = [
+      { where: 'Campagne', title: 'Eliminare la campagna «Fiere 2026 · follow-up»?', body: 'I 18 messaggi in coda non partono più. Le risposte già arrivate restano in Risposte.', b1: 'Le persone non ricevono gli step successivi', b2: 'Non si può annullare: per fermarla e basta usa «Metti in pausa»', cta: 'Elimina campagna', word: '', done: 'Campagna eliminata. 18 messaggi annullati.' },
+      { where: 'Mittenti', title: 'Scollegare marco@ritmosales.it?', body: 'Zenbree smette di inviare e di leggere le risposte da questa casella.', b1: '2 campagne che la usano vanno in pausa', b2: 'Il riscaldamento riparte da 10 al giorno se la ricolleghi', cta: 'Scollega casella', word: '', done: 'Casella scollegata. 2 campagne in pausa.' },
+      { where: 'API key', title: 'Revocare la chiave «Automazione CRM»?', body: 'Le richieste con questa chiave falliscono da subito.', b1: 'Le automazioni che la usano si fermano', b2: 'Non si può riattivare: dovrai crearne una nuova', cta: 'Revoca chiave', word: '', done: 'Chiave «Automazione CRM» revocata.' },
+      { where: 'Profilo', title: 'Eliminare l’account e tutti i dati?', body: 'Liste, campagne, chat e caselle collegate di Ritmo Sales vengono cancellate entro 30 giorni.', b1: 'I 942 crediti rimasti vanno persi', b2: 'Le campagne attive si fermano subito', cta: 'Elimina account', word: 'ELIMINA', done: 'Account in eliminazione. Ti abbiamo scritto una email di conferma.' }
+    ];
+    const a = S.ask >= 0 ? C[S.ask] : null;
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '', yes: true,
+      cards: C.map((c, i) => ({ ...c, open: () => set({ ask: i, toast: null }) })),
+      ask: a ? { title: a.title, body: a.body, b1: a.b1, b2: a.b2, cta: a.cta, word: a.word } : false,
+      cancel: () => set({ ask: -1 }),
+      confirm: () => set({ ask: -1, toast: { tone: 'success', text: a.done, action: '' } }),
+      toast: S.toast ? { ...S.toast, act: () => set({ toast: S.toast.tone === 'error' ? { tone: 'success', text: 'File esportato: 47 righe.', action: '' } : { tone: 'info', text: 'Lista ripristinata.', action: '' } }) } : false,
+      hide: () => set({ toast: null }),
+      demo: {
+        undo: () => set({ toast: { tone: 'success', text: 'Lista «fiere_2026.csv» eliminata.', action: 'Annulla' } }),
+        error: () => set({ toast: { tone: 'error', text: 'Esportazione non riuscita. Il file non è stato creato.', action: 'Riprova' } })
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+  The link-preview card (1200×630) that zenbree.com and the app share. The PNGs are committed, so
+  rebuild them after a change here, from the repo root:
+
+    for l in it en es fr; do
+      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+        --window-size=1200,630 --screenshot="landing/public/og-$l.png" \
+        "file://$PWD/docs/brand/og-card.html?lang=$l"
+      cp "landing/public/og-$l.png" "web/public/og-$l.png"
+    done
+
+  The copy follows `hero` in landing/src/i18n/<language>.ts.
+-->
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: Atkinson; font-weight: 400; src: url(../../landing/public/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2); }
+  @font-face { font-family: Atkinson; font-weight: 700; src: url(../../landing/public/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2); }
+  @font-face { font-family: Atkinson; font-weight: 800; src: url(../../landing/public/fonts/atkinson-hyperlegible-next-latin-800-normal.woff2); }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    padding: 72px 88px 0;
+    background: #FAFBFD;
+    color: #0B0D12;
+    font-family: Atkinson, sans-serif;
+  }
+  .brand { display: flex; align-items: center; gap: 18px; font-size: 44px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand svg { width: 60px; height: 60px; }
+  h1 { margin-top: 64px; font-size: 76px; font-weight: 800; line-height: 0.98; letter-spacing: -0.045em; }
+  h1 em { display: block; font-style: normal; color: #2A36C4; }
+  p { margin-top: 36px; max-width: 920px; font-size: 30px; line-height: 1.4; color: #3D4150; }
+  .domain { position: absolute; left: 88px; bottom: 52px; font-size: 26px; font-weight: 700; color: #2A36C4; }
+  /* A headline on three lines (Spanish) starts higher, so two lines of copy stay clear of the domain. */
+  body.long h1 { margin-top: 40px; }
+  body.long p { margin-top: 24px; }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: #3341E0; }
+</style>
+</head>
+<body>
+  <div class="brand">
+    <svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#0B0D12"/><g transform="translate(-2.45 -2.21) scale(1.085)"><g fill="#FFFFFF"><rect x="10" y="10" width="27" height="7" rx="3.5"/><path d="M29.2 19H34.4C36.6 19 37.4 21.9 35.5 23L22.4 28.4C21.9 28.8 21.2 29 20.6 29H12.6C10.4 29 9.6 26.1 11.5 25L24.6 19.6C25.1 19.2 25.8 19 26.4 19Z"/><rect x="10" y="31" width="17" height="7" rx="3.5"/></g><circle cx="33.5" cy="34.5" r="3.7" fill="#9DD14A"/></g></svg>
+    zenbree
+  </div>
+  <h1><span id="line"></span><em id="em"></em></h1>
+  <p id="sub"></p>
+  <div class="domain">zenbree.com</div>
+  <div class="bar"></div>
+  <script>
+    const copy = {
+      it: {
+        line: 'Descrivi il cliente ideale.',
+        em: 'Zenbree trova chi contattare.',
+        sub: 'Trova persone con email verificata e la fonte di ogni dato.',
+      },
+      en: {
+        line: 'Describe your ideal customer.',
+        em: 'Zenbree finds who to contact.',
+        sub: 'Find people with a verified email and the source of every data point.',
+      },
+      es: {
+        line: 'Describe a tu cliente ideal.',
+        em: 'Zenbree encuentra a quién contactar.',
+        sub: 'Encuentra personas con email verificado y la fuente de cada dato.',
+      },
+      fr: {
+        line: 'Décrivez votre client idéal.',
+        em: 'Zenbree trouve qui contacter.',
+        sub: 'Trouvez des personnes avec un e-mail vérifié et la source de chaque donnée.',
+      },
+    };
+    const lang = new URLSearchParams(location.search).get('lang');
+    const t = copy[lang] ?? copy.it;
+    if (lang === 'es') document.body.classList.add('long');
+    for (const id of ['line', 'em', 'sub']) document.getElementById(id).textContent = t[id];
+  </script>
+</body>
+</html>

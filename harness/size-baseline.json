@@ -1,0 +1,22 @@
+{
+  "api/app/admin/routes.py": 521,
+  "api/app/agent/loop.py": 1088,
+  "api/app/billing/routes.py": 572,
+  "api/app/core/error_codes.py": 526,
+  "api/app/core/security/ssrf_validator.py": 865,
+  "api/app/linkedin/unipile_client.py": 483,
+  "api/app/llm/base.py": 548,
+  "api/app/llm/openai_compat.py": 862,
+  "api/app/llm/router.py": 1171,
+  "api/app/notifications/service.py": 573,
+  "api/app/outreach/dispatcher.py": 653,
+  "api/app/outreach/replies.py": 654,
+  "api/app/outreach/routes.py": 418,
+  "api/app/people/adapters/treg_contact_enrichment.py": 911,
+  "api/app/people/aiark_client.py": 1511,
+  "api/app/people/apollo_client.py": 976,
+  "api/app/people/apollo_decode.py": 1345,
+  "api/app/people/apollo_models.py": 1009,
+  "api/app/people/ports/contact_enrichment.py": 441,
+  "web/lib/chat/stream-store.ts": 466
+}

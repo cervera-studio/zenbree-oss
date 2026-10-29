@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/no-private-postgres.py\"; [ ! -f \"$f\" ] || python3 -I \"$f\""
+          },
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/pr-ready-teardown.py\"; [ ! -f \"$f\" ] || python3 -I \"$f\""
+          },
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/no-sleep-wait.py\"; [ ! -f \"$f\" ] || python3 -I \"$f\""
+          },
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/pr-merge-gate.py\"; [ ! -f \"$f\" ] || python3 -I \"$f\""
+          }
+        ]
+      }
+    ]
+  }
+}

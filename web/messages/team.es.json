@@ -1,0 +1,54 @@
+{
+  "team": {
+    "title": "Equipo {name}",
+    "titleFallback": "Equipo",
+    "descriptionAdmin": "Invita a personas a trabajar contigo: las listas, los chats, las campañas y las respuestas se comparten. Los administradores también gestionan el equipo, los créditos, las claves de API y los webhooks.",
+    "descriptionMember": "Las personas con las que compartes listas, chats, campañas y respuestas. Solo los administradores invitan, cambian roles y eliminan.",
+    "loadError": "No se pudo cargar el equipo.",
+    "member": "Persona",
+    "role": "Rol",
+    "joined": "En el equipo desde",
+    "actions": "Acciones",
+    "you": "(tú)",
+    "roles": {
+      "admin": "Administrador",
+      "member": "Miembro"
+    },
+    "roleOf": "Rol de {name}",
+    "inviteEmail": "Email a invitar",
+    "inviteEmailPlaceholder": "nombre@empresa.com",
+    "remove": "Eliminar",
+    "removeLabel": "Eliminar a {name} del equipo",
+    "removeTitle": "¿Eliminar a {name} del equipo?",
+    "removeBody": "Pierde el acceso al equipo de inmediato. Puedes volver a invitarle cuando quieras.",
+    "removeConfirm": "Eliminar",
+    "removeBullet1": "Deja de ver las listas, los chats, las campañas y las respuestas del equipo.",
+    "removeBullet2": "Lo que ha creado se queda en el equipo.",
+    "pendingTitle": "Invitaciones pendientes",
+    "expires": "Caduca el {date}",
+    "expired": "Caducada",
+    "cancel": "Cancelar invitación",
+    "cancelLabel": "Cancelar la invitación a {email}",
+    "errors": {
+      "generic": "No ha funcionado. Inténtalo de nuevo."
+    },
+    "forMe": {
+      "title": "Invitaciones para ti",
+      "item": "Te han invitado al equipo {name}.",
+      "open": "Abrir la invitación"
+    },
+    "invite": "Invitar",
+    "invitation": {
+      "title": "Únete a {name}",
+      "body": "{inviter} te ha invitado al equipo {name} como {role, select, admin {administrador} other {miembro}}. Las listas, los chats, las campañas y las respuestas del equipo se compartirán contigo.",
+      "accept": "Aceptar la invitación",
+      "decline": "Rechazar",
+      "declined": "Has rechazado la invitación.",
+      "failed": "No se pudo responder a la invitación. Inténtalo de nuevo.",
+      "home": "Ir a Zenbree",
+      "switchAccount": "Iniciar sesión con otra cuenta",
+      "invalidTitle": "Invitación no válida",
+      "invalidBody": "La invitación ha caducado, ya se respondió o es para otra dirección. Has iniciado sesión como {email}: si la invitación es para otro email, inicia sesión con ese. Si no, pide una invitación nueva."
+    }
+  }
+}

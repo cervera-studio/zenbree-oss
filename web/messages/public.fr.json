@@ -1,0 +1,51 @@
+{
+  "public": {
+    "signIn": "Se connecter",
+    "tryFree": "Essayer gratuitement",
+    "legalLanguageNote": "Ce document n’est disponible qu’en anglais et en italien.",
+    "footer": {
+      "terms": "Conditions",
+      "privacy": "Confidentialité",
+      "apiDocs": "Documentation de l’API"
+    },
+    "meta": {
+      "title": "Zenbree · Décrivez votre client idéal, Zenbree trouve qui contacter",
+      "description": "Dites au chat qui vous voulez atteindre : jusqu’à 100 crédits, une recherche démarre tout de suite ; au-delà, l’agent vous montre le plan et son coût maximal, et vous l’approuvez. Il vous livre ensuite des personnes avec un e-mail vérifié et la source de chaque donnée. Le plan est gratuit, vous ne payez que les lignes livrées."
+    },
+    "unsubscribe": {
+      "pageTitle": "Se désinscrire",
+      "fallbackSender": "cet expéditeur",
+      "askTitle": "Ne plus recevoir d’e-mails de {sender} ?",
+      "lastEmail": "{name} vous a écrit le {date}, avec l’objet « {subject} ».",
+      "askBody": "Si vous confirmez, <strong>{email}</strong> ne recevra plus aucun message de {sender}, pas même ceux déjà programmés.",
+      "reason": "Voulez-vous nous dire pourquoi ?",
+      "optional": "(facultatif)",
+      "reasons": {
+        "not_interested": "Je ne suis pas intéressé",
+        "wrong_person": "Je ne suis pas la bonne personne dans l’entreprise",
+        "too_many": "Je reçois trop d’e-mails",
+        "other": "Autre"
+      },
+      "confirm": "Oui, ne m’écrivez plus",
+      "mistake": "Lien ouvert par erreur ? Fermez cette page : rien ne change.",
+      "doneTitle": "C’est fait : vous ne recevrez plus d’e-mails de {sender}",
+      "doneBody": "<strong>{email}</strong> figure sur la liste d’exclusion de {sender}. Les messages programmés ont été annulés. Rien d’autre à faire.",
+      "undoAsk": "Clic par erreur ?",
+      "undo": "Annuler la désinscription",
+      "dataTitle": "Vos données",
+      "dataBody": "{sender} a trouvé vos coordonnées dans des sources professionnelles publiques. Vous pouvez demander leur suppression complète.",
+      "erasure": "Demander la suppression de mes données",
+      "erasureSent": "Demande envoyée à {sender}, qui répondra sous un mois.",
+      "erasureFailed": "La demande n’a pas pu être envoyée. Répondez à l’e-mail de {sender} en demandant la suppression de vos données.",
+      "alreadyTitle": "Déjà désinscrit",
+      "alreadyBody": "Depuis le {date}, <strong>{email}</strong> ne reçoit plus d’e-mails de {sender}. Si un message vous est parvenu après cette date, répondez simplement « no grazie » : nous le lisons et bloquons celui-là aussi.",
+      "alreadyBodyUndated": "<strong>{email}</strong> ne reçoit plus d’e-mails de {sender}. Si un autre message vous est parvenu, répondez simplement « no grazie » : nous le lisons et bloquons celui-là aussi.",
+      "failed": "Une erreur s’est produite. Réessayez, ou répondez « no grazie » à l’e-mail.",
+      "invalidTitle": "Ce lien ne fonctionne plus",
+      "invalidBody": "Il est peut-être incomplet (cela arrive quand l’e-mail est transféré ou que le lien est coupé par un retour à la ligne). Pour ne plus recevoir de messages, <strong>répondez « no grazie »</strong> à l’e-mail : cela fonctionne toujours.",
+      "controller": "Responsable du traitement : {sender}. Envoyé avec Zenbree pour le compte de {sender}.",
+      "controllerUnknown": "Envoyé avec Zenbree pour le compte de l’expéditeur.",
+      "privacy": "Notice de confidentialité"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+---
+import { type Content, type Locale, links } from '../content';
+import { btn, wrap } from '../styles/classes';
+import LangMenu from './LangMenu.astro';
+import Logo from './Logo.astro';
+import { sectionLinks } from './nav';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  t: Content;
+  locale: Locale;
+}
+const { t, locale } = Astro.props;
+---
+
+<header class="border-b border-line">
+  <div class:list={[wrap, 'flex h-16 items-center gap-6 phone:gap-3']}>
+    <Logo label={t.nav.homeLabel} />
+    <nav class="flex min-w-0 flex-1 gap-6 text-ui text-soft phone:hidden" aria-label={t.nav.label}>
+      {sectionLinks(t).map(([href, label]) => <a href={href} class="whitespace-nowrap hover:text-ink">{label}</a>)}
+    </nav>
+    <div class="flex items-center gap-2 phone:ml-auto">
+      <ThemeToggle labels={t.menu} size="header" />
+      <LangMenu locale={locale} label={t.footer.langLabel} size="header" />
+      <a href={links.signIn} class:list={[btn('ghost'), 'phone:hidden']}>{t.nav.signIn}</a>
+      <a href={links.contact} class:list={[btn('primary'), 'phone:h-6.5 phone:px-2']}>{t.nav.contact}</a>
+      <button type="button" popovertarget="site-menu" class="-mr-2.5 hidden size-11 cursor-pointer items-center justify-center rounded-md text-ink hover:bg-raised phone:inline-flex" aria-label={t.menu.open}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="stroke-current" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>

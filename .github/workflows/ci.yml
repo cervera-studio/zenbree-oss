@@ -1,0 +1,84 @@
+# Checks run on pull requests and pushes. Deployment is configured by each installation.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    # Source and check changes run CI; documentation-only pushes skip it.
+    paths: ['api/**', 'web/**', 'landing/**', 'compose.yml', 'ops/**', 'harness/**', '.github/workflows/**']
+
+permissions: { contents: read }
+
+jobs:
+  harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      # harness/test_browser_wait_gone.py runs bin/browser, which needs Node 22+.
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with: { node-version: 24 }
+      - run: python3 harness/run_tests.py
+
+  api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: { POSTGRES_USER: zenbree, POSTGRES_PASSWORD: postgres, POSTGRES_DB: zenbree }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U zenbree" --health-interval 5s --health-retries 10
+    defaults: { run: { working-directory: api } }
+    env:
+      TEST_DATABASE_URL: postgresql://zenbree:postgres@localhost:5432/zenbree
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      # harness/migration_order.py compares the new migrations with main's.
+      - run: git fetch --no-tags --depth=1 origin main
+      - run: ../harness/init.sh api
+
+  web:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: { POSTGRES_USER: zenbree, POSTGRES_PASSWORD: postgres, POSTGRES_DB: zenbree }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U zenbree" --health-interval 5s --health-retries 10
+    defaults: { run: { working-directory: web } }
+    env:
+      TEST_DATABASE_URL: postgresql://zenbree:postgres@localhost:5432/zenbree
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4; versione da packageManager in web/package.json
+        with: { package_json_file: web/package.json }
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with: { node-version: 24, cache: pnpm, cache-dependency-path: web/pnpm-lock.yaml }
+      - run: ../harness/init.sh web
+
+  landing:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: landing } }
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with: { package_json_file: landing/package.json }
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with: { node-version: 24, cache: pnpm, cache-dependency-path: landing/pnpm-lock.yaml }
+      - run: ../harness/init.sh landing
+
+  # A dependency advisory stays visible separately from the application checks.
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with: { package_json_file: web/package.json }
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with: { node-version: 24 }
+      - run: uv export --frozen --no-dev -o "$RUNNER_TEMP/req.txt" && uvx pip-audit --disable-pip -r "$RUNNER_TEMP/req.txt"
+        working-directory: api
+      - run: pnpm audit --prod --audit-level high
+        working-directory: web

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Risposte mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}
+.m-th{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:4px;width:100%;padding:14px 16px;border-bottom:1px solid var(--zb-muted)}
+.m-th:focus-visible{outline:2px solid var(--zb-ink);outline-offset:-2px}
+textarea:focus,select:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; display: flex; flex-direction: column; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 15px">
+  <sc-if value="{{listView}}" hint-placeholder-val="{{true}}">
+    <header style="position: sticky; top: 0; z-index: 5; background: var(--zb-bg); border-bottom: 1px solid var(--zb-border)">
+      <div style="height: 56px; display: flex; align-items: center; gap: 6px; padding: 0 8px">
+        <button type="button" aria-label="Apri menu" onClick="{{openMenu}}" style="width: 44px; height: 44px; border: 0; border-radius: 10.5px; background: transparent; color: var(--zb-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+        <h1 style="margin: 0; flex-grow: 1; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.18">Risposte</h1>
+      </div>
+      <div role="tablist" aria-label="Filtra" style="display: flex; gap: 6px; padding: 0 16px 10px; overflow-x: auto">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+          <button type="button" role="tab" aria-selected="{{f.sel}}" onClick="{{f.pick}}" style="flex-shrink: 0; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid {{f.border}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{f.bg}}; color: {{f.fg}}; white-space: nowrap">{{f.label}}</button>
+        </sc-for>
+      </div>
+    </header>
+    <ul style="margin: 0; padding: 0; list-style: none">
+      <sc-for list="{{threads}}" as="t" hint-placeholder-count="6">
+        <li>
+          <button type="button" class="m-th" onClick="{{t.open}}">
+            <span style="display: flex; align-items: center; gap: 8px">
+              <sc-if value="{{t.unread}}" hint-placeholder-val="{{false}}"><span aria-label="Non letta" style="width: 8px; height: 8px; border-radius: 999px; background: var(--zb-brand)"></span></sc-if>
+              <strong style="flex-grow: 1">{{t.name}}</strong>
+              <span style="font-size: 12px; color: var(--zb-muted-fg)">{{t.when}}</span>
+            </span>
+            <span style="font-size: 13px; color: var(--zb-muted-fg)">{{t.company}} · {{t.channel}}</span>
+            <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{t.preview}}</span>
+            <span style="align-self: flex-start; height: 22px; padding: 0 8px; border-radius: 999px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap; background: {{t.lBg}}; color: {{t.lFg}}">{{t.label}}</span>
+          </button>
+        </li>
+      </sc-for>
+    </ul>
+  </sc-if>
+
+  <sc-if value="{{cur}}" hint-placeholder-val="{{false}}">
+    <header style="position: sticky; top: 0; z-index: 5; height: 64px; display: flex; align-items: center; gap: 6px; padding: 0 8px; background: var(--zb-bg); border-bottom: 1px solid var(--zb-border)">
+      <button type="button" aria-label="Torna alle risposte" onClick="{{back}}" style="width: 44px; height: 44px; border: 0; border-radius: 10.5px; background: transparent; color: var(--zb-fg); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+      </button>
+      <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25">
+        <h1 style="margin: 0; font-size: 16px; font-weight: 700">{{cur.name}}</h1>
+        <span style="font-size: 12px; color: var(--zb-muted-fg); overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{cur.role}} · {{cur.company}}</span>
+      </div>
+      <label for="lab" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Etichetta</label>
+      <select id="lab" value="{{cur.labelKey}}" onChange="{{relabel}}" style="height: 40px; max-width: 150px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 13px; padding: 0 8px">
+        <option value="interested">Interessato</option><option value="meeting_request">Richiesta di incontro</option><option value="not_now">Non ora</option><option value="not_interested">Non interessato</option>
+      </select>
+    </header>
+    <main style="flex-grow: 1; display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 220px">
+      <article style="align-self: flex-end; max-width: 88%; padding: 12px 14px; border-radius: 17.5px 17.5px 3.5px 17.5px; background: var(--zb-rail); font-size: 14px; line-height: 1.55; white-space: pre-line"><span style="display: block; font-size: 12px; color: var(--zb-muted-fg)">Tu · step 1</span>{{cur.ours}}</article>
+      <article style="align-self: flex-start; max-width: 88%; padding: 12px 14px; border-radius: 17.5px 17.5px 17.5px 3.5px; background: var(--zb-card); border: 1px solid var(--zb-border); font-size: 14px; line-height: 1.55; white-space: pre-line"><span style="display: block; font-size: 12px; color: var(--zb-muted-fg)">{{cur.first}} · {{cur.when}}</span>{{cur.reply}}</article>
+      <span style="align-self: center; font-size: 12px; color: var(--zb-muted-fg); text-align: center">{{cur.note}}</span>
+    </main>
+    <sc-if value="{{cur.canReply}}" hint-placeholder-val="{{true}}">
+    <form style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: flex; flex-direction: column; gap: 8px; padding: 12px 16px 20px; background: var(--zb-bg); border-top: 1px solid var(--zb-border)">
+      <span style="font-size: 12px; color: var(--zb-muted-fg)">Bozza dell'agente · modificala prima di inviare</span>
+      <label for="rep" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Risposta</label>
+      <textarea id="rep" rows="3" value="{{draft}}" onChange="{{setDraft}}" style="box-sizing: border-box; width: 100%; border-radius: 12px; border: 1px solid var(--zb-border); background: var(--zb-card); color: var(--zb-fg); font-family: inherit; font-size: 16px; line-height: 1.5; padding: 10px 12px; resize: none"></textarea>
+      <button type="button" onClick="{{send}}" style="height: 50px; border: 0; border-radius: 14px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{{sendLabel}}</button>
+    </form>
+    </sc-if>
+  </sc-if>
+
+  <sc-if value="{{menu}}" hint-placeholder-val="{{false}}">
+    <dc-import name="MDrawer" theme="{{theme}}" active="inbox" on-close="{{closeMenu}}" hint-size="100%,100vh"></dc-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { menu: false, open: null, filter: 'all', labels: {}, draft: null, sent: {} }; }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const S = this.state;
+    const L = { interested: ['Interessato', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)'], meeting_request: ['Richiesta di incontro', 'var(--zb-tint)', 'var(--zb-ink)'], not_now: ['Non ora', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)'], not_interested: ['Non interessato', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)'], unsubscribe: ['Disiscrizione', 'rgba(251,44,54,0.10)', 'var(--zb-neg-fg)'] };
+    const OUR = (n, c) => 'Ciao ' + n + ',\nho visto che ' + c + ' sta cercando un SDR. Possiamo mettervi a disposizione un SDR già formato, da subito e senza assunzione. Ti va di sentirci 15 minuti?';
+    const data = [
+      { id: 't1', name: 'Giulia Ferri', first: 'Giulia', role: 'CEO', company: 'Officina Nove', channel: 'Email', when: '2 ore fa', label: 'interested', unread: true, reply: 'Tempismo giusto: l’annuncio è aperto da due settimane. Giovedì alle 11 ti va bene?', draft: 'Ciao Giulia, giovedì alle 11 va benissimo. Ti mando un invito con il link alla call.\n\nAle' },
+      { id: 't2', name: 'Marco Bellini', first: 'Marco', role: 'Resp. commerciale', company: 'Studio Brezza', channel: 'Email', when: 'ieri', label: 'meeting_request', unread: true, reply: 'Interessante. Mandami un invito per la settimana prossima, martedì o mercoledì pomeriggio.', draft: 'Ciao Marco, ti propongo mercoledì alle 15. Se non ti va bene, scegli tu dal link.\n\nAle' },
+      { id: 't3', name: 'Chiara Gallo', first: 'Chiara', role: 'Founder e CEO', company: 'Lanterna Digital', channel: 'LinkedIn', when: 'ieri', label: 'not_now', reply: 'Grazie! In questo momento siamo pieni, riscrivimi a gennaio.', draft: 'Grazie Chiara, ci sentiamo a gennaio. Buon lavoro!' },
+      { id: 't4', name: 'Sara Villa', first: 'Sara', role: 'CEO', company: 'Fiordaliso Comunicazione', channel: 'Email', when: '2 giorni fa', label: 'unsubscribe', reply: 'Per favore toglietemi dalle vostre liste.', draft: '' },
+      { id: 't6', name: 'Stefano Ricci', first: 'Stefano', role: 'Resp. new business', company: 'Mosaico Adv', channel: 'Email', when: '3 giorni fa', label: 'not_interested', reply: 'Grazie, abbiamo già un partner per questo.', draft: 'Grazie Stefano, chiaro. Buon lavoro!' }
+    ];
+    const lab = (t) => S.labels[t.id] || t.label;
+    const shown = data.filter((t) => S.filter === 'all' || (S.filter === 'unread' ? t.unread : lab(t) === S.filter));
+    const filters = [['all', 'Tutte 6'], ['unread', 'Da leggere 2'], ['interested', 'Interessato'], ['meeting_request', 'Incontro'], ['not_now', 'Non ora']].map(([k, label]) => {
+      const on = S.filter === k;
+      return { label, sel: on ? 'true' : 'false', bg: on ? 'var(--zb-tint)' : 'var(--zb-bg)', fg: on ? 'var(--zb-ink)' : 'var(--zb-fg)', border: on ? 'var(--zb-ink)' : 'var(--zb-border)', pick: () => this.setState({ filter: k }) };
+    });
+    const c0 = data.find((t) => t.id === S.open);
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      menu: S.menu, openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false }),
+      listView: !c0, filters,
+      threads: shown.map((t) => { const l = L[lab(t)]; return { ...t, unread: !!t.unread, preview: t.reply, label: l[0], lBg: l[1], lFg: l[2], open: () => this.setState({ open: t.id, draft: null }) }; }),
+      cur: c0 ? { ...c0, ours: OUR(c0.first, c0.company), canReply: !!c0.draft, note: lab(c0) === 'unsubscribe' ? 'Disiscrizione: ' + c0.first + ' è nelle Esclusioni. Nessuna campagna potrà più contattarla.' : 'La sequenza per ' + c0.first + ' si è fermata quando ha risposto.', labelKey: lab(c0) === 'unsubscribe' ? 'not_interested' : lab(c0) } : false,
+      back: () => this.setState({ open: null }),
+      relabel: (e) => this.setState({ labels: { ...S.labels, [c0.id]: e.target.value } }),
+      draft: S.draft !== null ? S.draft : (c0 ? c0.draft : ''), setDraft: (e) => this.setState({ draft: e.target.value }),
+      sendLabel: c0 && S.sent[c0.id] ? 'Inviata ✓' : 'Invia risposta',
+      send: () => this.setState({ sent: { ...S.sent, [c0.id]: true } })
+    };
+  }
+}
+</script>
+</body>
+</html>

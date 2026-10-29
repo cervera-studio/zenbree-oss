@@ -1,0 +1,166 @@
+{
+  "campaignBuilder": {
+    "renameLabel": "Nom de la campagne",
+    "rename": "Renommer la campagne",
+    "renamed": "Nom enregistré.",
+    "steps": {
+      "title": "Étapes",
+      "meta": "{count, number, credits} sur {max, number, credits} · les jours comptent à partir du lancement",
+      "locked": "Les étapes ne sont modifiables que tant que la campagne est un brouillon.",
+      "empty": "Encore vide",
+      "day": "Jour",
+      "dayValue": "Jour {day}",
+      "heading": "Étape {number, number, credits} · {channel}",
+      "variables": "Variables :",
+      "tokens": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "companyName": "Entreprise",
+        "role": "Fonction"
+      },
+      "insert": "Insérer {token}",
+      "counter": "{count, number, credits} / {max, number, credits}",
+      "none": "Pas encore d’étape : ajoutez-en une ci-dessous."
+    },
+    "fields": {
+      "title": "Champs",
+      "meta": "La valeur de chaque personne, depuis la liste ou le signal",
+      "none": "Pas encore de champ. Ajoutez-en un avec + Champ sous le message d’une étape.",
+      "help": "Obligatoire : une personne sans valeur ne reçoit pas les étapes qui utilisent le champ. Pour retirer un champ, retirez d’abord sa variable des étapes.",
+      "add": "Champ",
+      "addLabel": "Ajouter un champ depuis la liste ou le signal",
+      "columns": "Colonnes de la liste",
+      "noColumns": "La liste n’a pas de colonne à ajouter.",
+      "signalGroup": "Signal",
+      "ai": "IA",
+      "filled": "{filled, number, credits} sur {people, plural, one {# personne} other {{people, number, credits} personnes}}",
+      "mode": "Quand {field} n’a pas de valeur",
+      "required": "Obligatoire",
+      "fallback": "Texte de secours",
+      "fallbackLabel": "Texte de secours pour {field}",
+      "fallbackPlaceholder": "Texte pour une personne sans valeur",
+      "fallbackBlank": "Écrivez le texte de secours, ou choisissez Obligatoire.",
+      "nobodyReady": "{count, plural, one {# personne n’a} other {{count, number, credits} personnes n’ont}} pas de valeur pour {fields}. Ajoutez les valeurs dans la liste, ou donnez à chacun de ces champs un texte de secours.",
+      "remove": "Retirer {field}",
+      "signal": {
+        "title": "Titre du signal",
+        "city": "Ville du signal",
+        "country": "Pays du signal",
+        "url": "Lien du signal"
+      },
+      "addSnippet": "Ajouter un snippet IA"
+    },
+    "add": {
+      "email": "E-mail",
+      "linkedin_connect": "Invitation LinkedIn",
+      "linkedin_message": "Message LinkedIn",
+      "hubspot_task": "Tâche HubSpot"
+    },
+    "senders": {
+      "title": "Envoyer depuis",
+      "description": "Chaque personne reste sur la même boîte mail pendant tout le fil.",
+      "warming": "limite quotidienne en augmentation",
+      "none": "Aucune boîte mail connectée.",
+      "connect": "Connectez-en une dans Intégrations",
+      "loadError": "Impossible de charger les boîtes mail.",
+      "meta": "une boîte par conversation",
+      "max": "Jusqu’à {max, plural, one {# boîte mail} other {{max, number, credits} boîtes mail}} par campagne.",
+      "keepOne": "La campagne a besoin d’une boîte mail qui peut envoyer : ajoutez-en une autre avant de retirer celle-ci."
+    },
+    "when": {
+      "title": "Quand",
+      "days": "Jours d’envoi : du lundi au vendredi",
+      "letters": "LMMJVSD",
+      "window": "9:00–18:00 · Europe/Rome · 9 à 14 minutes entre deux e-mails",
+      "fixed": "Les heures et les jours sont ceux des boîtes mail et valent pour toutes les campagnes."
+    },
+    "approval": {
+      "title": "Approuver les messages avant l’envoi",
+      "body": "Toujours actif : chaque message attend votre accord, personne par personne."
+    },
+    "preview": {
+      "title": "Aperçu · étape {number, number, credits}",
+      "person": "Personne",
+      "empty": "Personne à afficher.",
+      "noSteps": "Ajoutez une étape pour voir l’aperçu.",
+      "updating": "Mise à jour de l’aperçu…",
+      "failed": "Aperçu non mis à jour. Essayez de modifier l’étape à nouveau.",
+      "plain": "Aperçu",
+      "missing": "Cette personne n’a pas de valeur pour {fields} : les étapes qui {count, plural, one {l’utilisent} other {les utilisent}} ne partent pas."
+    },
+    "footer": {
+      "save": "Enregistrer le brouillon",
+      "saved": "Brouillon enregistré."
+    },
+    "blockers": {
+      "noMailbox": "Aucune boîte mail connectée : la campagne ne peut pas démarrer.",
+      "noMailboxLink": "Connectez-en une dans Intégrations",
+      "pickMailbox": "Choisissez une boîte mail connectée pour l’envoi.",
+      "noLinkedIn": "Connectez LinkedIn dans Intégrations pour les étapes LinkedIn.",
+      "noSteps": "Rédigez au moins une étape.",
+      "noTargets": "Cette campagne n’a personne à contacter.",
+      "noCopyB": "Le test A/B est activé : rédigez la variante B d’au moins une étape, ou désactivez le test."
+    },
+    "source": {
+      "linked": "{count, plural, one {# personne} other {{count, number, credits} personnes}} de <b>{list}</b> · exclusions déjà retirées",
+      "gone": "{count, plural, one {# personne} other {{count, number, credits} personnes}} · la liste d’origine n’existe plus"
+    },
+    "rewrite": {
+      "link": "Réécrire avec l’agent",
+      "prompt": "Réécris la séquence de messages de la campagne « {name} » (campaign_id {id}) et enregistre-la dans le brouillon."
+    },
+    "addStep": "Ajouter une étape :",
+    "needsInvite": "Pour envoyer un Message LinkedIn, ajoutez d’abord une Invitation LinkedIn.",
+    "parallel": {
+      "title": "Accepter les personnes déjà dans une autre campagne active",
+      "body": "Une réponse à l’une des deux campagnes arrête les deux. Le changement vaut pour les prochaines personnes ajoutées et les prochains envois : il n’ajoute personne parmi celles laissées de côté avant."
+    },
+    "snippet": {
+      "title": "Ajouter un snippet IA",
+      "description": "Une phrase courte pour chaque personne, écrite uniquement à partir des recherches que la liste contient déjà. Il ne cherche jamais sur le web.",
+      "label": "Nom du champ",
+      "labelPlaceholder": "Ex. Phrase d’accroche",
+      "prompt": "Que doit dire le snippet ?",
+      "promptPlaceholder": "Une phrase qui relie leur actualité récente à notre offre.",
+      "inputs": "Recherches à utiliser",
+      "inputsMax": "{max, plural, one {# colonne au maximum} other {{max, number, credits} colonnes au maximum}}",
+      "noResearch": "Cette liste n’a pas encore de colonne de recherche IA. Ajoutez-en une dans la liste, puis revenez.",
+      "noPeople": "Personne dans cette campagne ne peut encore recevoir une étape avec une ligne dans la liste de la campagne : il n’y a personne pour qui écrire un snippet.",
+      "coverage": "Couvre {rows, plural, one {# personne} other {{rows, number, credits} personnes}} sur {people, plural, one {# personne} other {{people, number, credits} personnes}} : seulement les personnes qui peuvent encore recevoir une étape et ont une ligne dans la liste de la campagne, {max, plural, one {# personne} other {{max, number, credits} personnes}} au maximum par exécution.",
+      "estimating": "Estimation du coût…",
+      "estimate": "Jusqu’à {credits, plural, one {# crédit} other {{credits, number, credits} crédits}}",
+      "estimateDetail": "{price, plural, one {# crédit} other {{price, number, credits} crédits}} par snippet livré · {people, plural, one {# personne avec des recherches} other {{people, number, credits} personnes avec des recherches}}",
+      "estimateNote": "L’estimation ne compte que les personnes avec des recherches dans ces colonnes. Une personne sans recherche ne reçoit pas de snippet et ne coûte rien.",
+      "estimateNone": "Personne dans cette campagne n’a de recherches dans ces colonnes : il n’y a rien à écrire.",
+      "estimateFailed": "Nous n’avons pas pu estimer le coût.",
+      "unavailable": "Nous n’avons pas pu charger la liste de la campagne.",
+      "approve": "Approuver et générer",
+      "creating": "Démarrage…",
+      "createFailed": "Nous n’avons pas pu ajouter le snippet IA.",
+      "progress": "{done, number, credits} sur {people, plural, one {# personne} other {{people, number, credits} personnes}} traitées",
+      "progressNote": "Vous pouvez fermer cette fenêtre : les snippets continuent d’arriver. Le champ est déjà dans la liste des champs.",
+      "done": "{filled, plural, one {# snippet écrit} other {{filled, number, credits} snippets écrits}} · {credits, plural, one {# crédit facturé} other {{credits, number, credits} crédits facturés}}",
+      "doneNote": "{field} est dans la liste des champs. Ajoutez-le à une étape avec + Champ.",
+      "failed": "Les snippets se sont arrêtés : {reason}",
+      "paused": "les snippets IA sont en pause pour le moment."
+    },
+    "variants": {
+      "tabs": "Texte de cette étape",
+      "a": "Variante A",
+      "b": "Variante B",
+      "sameAsA": "Pour cette étape, les personnes de la variante B reçoivent le même texte que la variante A.",
+      "write": "Rédiger la variante B",
+      "useA": "Utiliser la variante A pour cette étape",
+      "previewLabel": "Variante à afficher",
+      "title": "Test A/B",
+      "switch": "Comparer deux variantes des messages",
+      "help": "Chaque personne qui entre reçoit la variante A ou la variante B et la garde jusqu’à la fin, avec son texte. Après le lancement, les textes ne peuvent plus changer.",
+      "share": "Part des personnes qui reçoivent la variante B",
+      "shareOption": "{percent, number, credits} %",
+      "saved": "La part est enregistrée tout de suite. La variante B est enregistrée avec les étapes.",
+      "offTitle": "Désactiver le test A/B ?",
+      "offBody": "La variante B est retirée de toutes les étapes et supprimée à l’enregistrement du brouillon.",
+      "offConfirm": "Désactiver"
+    }
+  }
+}

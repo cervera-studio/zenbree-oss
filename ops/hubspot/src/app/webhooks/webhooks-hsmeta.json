@@ -1,0 +1,49 @@
+{
+  "uid": "zenbree_hubspot_webhooks",
+  "type": "webhooks",
+  "config": {
+    "settings": {
+      "targetUrl": "${API_PUBLIC_BASE_URL}/v1/webhooks/hubspot",
+      "maxConcurrentRequests": 10
+    },
+    "subscriptions": {
+      "legacyCrmObjects": [
+        {
+          "subscriptionType": "contact.propertyChange",
+          "propertyName": "notes_last_contacted",
+          "active": true
+        },
+        {
+          "subscriptionType": "contact.propertyChange",
+          "propertyName": "hs_email_optout",
+          "active": true
+        },
+        {
+          "subscriptionType": "contact.propertyChange",
+          "propertyName": "hubspot_owner_id",
+          "active": true
+        },
+        {
+          "subscriptionType": "contact.propertyChange",
+          "propertyName": "associatedcompanyid",
+          "active": true
+        },
+        {
+          "subscriptionType": "company.propertyChange",
+          "propertyName": "lifecyclestage",
+          "active": true
+        },
+        {
+          "subscriptionType": "company.propertyChange",
+          "propertyName": "hubspot_owner_id",
+          "active": true
+        },
+        {
+          "subscriptionType": "deal.propertyChange",
+          "propertyName": "dealstage",
+          "active": true
+        }
+      ]
+    }
+  }
+}

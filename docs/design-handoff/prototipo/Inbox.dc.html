@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Risposte</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-th{transition:background 190ms cubic-bezier(0.4,0,1,1)}
+.zb-th:hover{background:var(--zb-muted) !important;transition-duration:110ms}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="inbox" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+
+  <sc-if value="{{notEmpty}}" hint-placeholder-val="{{true}}">
+    <div style="display: grid; grid-template-columns: 210px 360px minmax(0, 1fr); min-height: 100vh; min-width: 0">
+      <nav aria-label="Filtra le risposte" style="border-right: 1px solid var(--zb-border); padding: 24px 12px; display: flex; flex-direction: column; gap: 2px; background: var(--zb-bg)">
+        <h1 style="margin: 0 10px 14px; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.18; letter-spacing: 0">Risposte</h1>
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="7">
+          <button type="button" onClick="{{f.pick}}" aria-pressed="{{f.sel}}" style="display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px; border: 0; border-radius: 10.5px; font-family: inherit; font-size: 13px; text-align: left; cursor: pointer; background: {{f.bg}}; color: {{f.fg}}; font-weight: {{f.w}}">
+            <span style="width: 8px; height: 8px; border-radius: 999px; background: {{f.dot}}; flex-shrink: 0"></span>
+            <span style="flex-grow: 1">{{f.label}}</span>
+            <span style="font-size: 12px; color: var(--zb-muted-fg); font-variant-numeric: tabular-nums">{{f.count}}</span>
+          </button>
+        </sc-for>
+        <div style="height: 1px; background: var(--zb-border); margin: 10px 0"></div>
+        <label for="ch" style="font-size: 12px; color: var(--zb-muted-fg); padding: 0 10px 4px">Canale</label>
+        <select id="ch" class="zb-field" style="margin: 0 4px; height: 34px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 13px; padding: 0 8px">
+          <option>Tutti i canali</option><option>Email</option><option>LinkedIn</option>
+        </select>
+      </nav>
+
+      <section aria-label="Conversazioni" style="border-right: 1px solid var(--zb-border); display: flex; flex-direction: column; min-width: 0">
+        <div style="padding: 24px 16px 12px; font-size: 12px; color: var(--zb-muted-fg)">{{listCount}} conversazioni · le più recenti in alto</div>
+        <ul style="margin: 0; padding: 0 8px; list-style: none; display: flex; flex-direction: column; gap: 2px">
+          <sc-for list="{{threads}}" as="t" hint-placeholder-count="6">
+            <li>
+              <button type="button" class="zb-th" onClick="{{t.open}}" aria-current="{{t.current}}" style="width: 100%; display: flex; flex-direction: column; gap: 4px; padding: 12px; border: 0; border-radius: 10.5px; font-family: inherit; font-size: 13px; text-align: left; cursor: pointer; color: var(--zb-fg); background: {{t.bg}}">
+                <span style="display: flex; align-items: center; gap: 8px">
+                  <sc-if value="{{t.unread}}" hint-placeholder-val="{{false}}"><span aria-label="Non letta" style="width: 7px; height: 7px; border-radius: 999px; background: var(--zb-brand)"></span></sc-if>
+                  <span style="font-weight: 700; flex-grow: 1">{{t.name}}</span>
+                  <span style="font-size: 12px; color: var(--zb-muted-fg)">{{t.when}}</span>
+                </span>
+                <span style="color: var(--zb-muted-fg); font-size: 12px">{{t.company}} · {{t.channel}}</span>
+                <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{t.preview}}</span>
+                <span style="align-self: flex-start; height: 20px; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; background: {{t.lBg}}; color: {{t.lFg}}">{{t.label}}</span>
+              </button>
+            </li>
+          </sc-for>
+        </ul>
+      </section>
+
+      <main style="display: flex; flex-direction: column; min-width: 0">
+        <header style="padding: 20px 28px; border-bottom: 1px solid var(--zb-border); display: flex; align-items: center; gap: 14px">
+          <span style="width: 40px; height: 40px; border-radius: 999px; background: var(--zb-tint); color: var(--zb-ink); display: flex; align-items: center; justify-content: center; font-weight: 700">{{cur.initials}}</span>
+          <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+            <h2 style="margin: 0; font-size: 17px; font-weight: 700">{{cur.name}}</h2>
+            <span style="font-size: 13px; color: var(--zb-muted-fg)">{{cur.role}} · {{cur.company}} · <a href="{{nav.detail}}" style="text-decoration: none; font-weight: 600">Agenzie marketing Milano · SDR</a></span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 2px; align-items: flex-end">
+            <label for="lab" style="font-size: 12px; color: var(--zb-muted-fg)">Cambia etichetta</label>
+            <select id="lab" class="zb-field" value="{{cur.labelKey}}" onChange="{{relabel}}" style="height: 34px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 13px; padding: 0 8px">
+              <option value="interested">Interessato</option>
+              <option value="meeting_request">Richiesta di incontro</option>
+              <option value="not_now">Non ora</option>
+              <option value="not_interested">Non interessato</option>
+              <option value="other">Altro</option>
+            </select>
+            <span style="font-size: 11px; color: var(--zb-muted-fg)">{{cur.labelNote}}</span>
+          </div>
+        </header>
+
+        <div style="flex-grow: 1; padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+          <sc-if value="{{cur.notice}}" hint-placeholder-val="{{false}}">
+            <div role="status" style="display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; font-size: 13px; line-height: 1.5; background: {{cur.nBg}}; border: 1px solid {{cur.nBorder}}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px; color: {{cur.nFg}}"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+              <span>{{cur.notice}} <sc-if value="{{cur.noticeLink}}" hint-placeholder-val="{{false}}"><a href="{{nav.exclusions}}" style="font-weight: 600; text-decoration: none">Vedi Esclusioni</a></sc-if></span>
+            </div>
+          </sc-if>
+          <article style="align-self: flex-end; max-width: 520px; padding: 14px 16px; border-radius: 17.5px 17.5px 3.5px 17.5px; background: var(--zb-rail); display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.55">
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">Tu · step 1 · {{cur.ourWhen}}</span>
+            <sc-if value="{{cur.ourSubject}}" hint-placeholder-val="{{true}}"><strong>{{cur.ourSubject}}</strong></sc-if>
+            <span style="white-space: pre-line">{{cur.ourBody}}</span>
+          </article>
+          <article style="align-self: flex-start; max-width: 560px; padding: 14px 16px; border-radius: 17.5px 17.5px 17.5px 3.5px; background: var(--zb-card); border: 1px solid var(--zb-border); display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.55">
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">{{cur.first}} · {{cur.when}}</span>
+            <span style="white-space: pre-line">{{cur.reply}}</span>
+          </article>
+          <span style="font-size: 12px; color: var(--zb-muted-fg); align-self: center">{{cur.stopNote}}</span>
+        </div>
+
+        <sc-if value="{{cur.canReply}}" hint-placeholder-val="{{true}}">
+          <form style="margin: 0 28px 24px; max-width: 760px; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 17.5px; background: var(--zb-card); border: 1px solid var(--zb-border)">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--zb-muted-fg)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-ai-fg)"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+              Bozza dell'agente · da {{cur.from}}
+            </div>
+            <label for="rep" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Rispondi</label>
+            <textarea id="rep" class="zb-field" rows="4" value="{{draft}}" onChange="{{setDraft}}" style="box-sizing: border-box; width: 100%; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 14px; line-height: 1.55; padding: 10px 12px; resize: vertical"></textarea>
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span role="status" style="flex-grow: 1; font-size: 13px; font-weight: 600; color: var(--zb-pos-fg)">{{sentMsg}}</span>
+              <button type="button" onClick="{{send}}" style="height: 38px; padding: 0 16px; border: 0; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer">Invia risposta</button>
+            </div>
+          </form>
+        </sc-if>
+      </main>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+    <main style="display: flex; flex-direction: column; gap: 24px; padding: 40px">
+      <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.18; letter-spacing: 0">Risposte</h1>
+      <section aria-labelledby="ie" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--zb-border); border-radius: 21px; padding: 48px">
+        <div style="max-width: 540px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center">
+          <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 17.5px; background: var(--zb-tint); color: var(--zb-ink); display: flex; align-items: center; justify-content: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"></path><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+          </span>
+          <h2 id="ie" style="margin: 0; font-size: 20px; font-weight: 700">Ancora nessuna risposta qui</h2>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--zb-muted-fg)">Quando qualcuno risponde a una campagna, per email o su LinkedIn, la conversazione arriva qui con un'etichetta: Interessato, Richiesta di incontro, Non ora, Non interessato. La sequenza per quella persona si ferma da sola.</p>
+          <a href="{{nav.campaigns}}" style="height: 42px; padding: 0 18px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; white-space: nowrap">Vai alle campagne</a>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"empty":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: 't1', filter: 'all', labels: {}, draft: null, sent: {} };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const empty = this.props.empty === true || this.props.empty === 'true';
+    const S = this.state;
+    const L = {
+      interested: ['Interessato', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)', '#00bc7d'],
+      meeting_request: ['Richiesta di incontro', 'var(--zb-tint)', 'var(--zb-ink)', 'var(--zb-ink)'],
+      not_now: ['Non ora', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)', '#fe9a00'],
+      not_interested: ['Non interessato', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)', '#62748e'],
+      other: ['Altro', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)', '#62748e'],
+      unsubscribe: ['Disiscrizione', 'rgba(251,44,54,0.10)', 'var(--zb-neg-fg)', '#fb2c36'],
+      auto_reply: ['Risposta automatica', 'rgba(98,116,142,0.12)', 'var(--zb-neu-fg)', '#62748e']
+    };
+    const OUR = 'Ciao {n},\n\nho visto che {c} sta cercando un SDR. Mentre selezionate, possiamo mettervi a disposizione un SDR già formato sul vostro mercato, da subito e senza assunzione.\n\nTi va di sentirci 15 minuti questa settimana?';
+    const data = [
+      { id: 't1', name: 'Giulia Ferri', first: 'Giulia', role: 'CEO', company: 'Officina Nove', channel: 'Email', when: '2 ore fa', label: 'interested', unread: true,
+        reply: 'Ciao Ale,\n\ntempismo giusto: l’annuncio è aperto da due settimane e non abbiamo ancora trovato nessuno. Giovedì alle 11 ti va bene?\n\nGiulia',
+        draft: 'Ciao Giulia,\n\ngiovedì alle 11 va benissimo. Ti mando un invito con il link alla call. Ti porto due profili che lavorano già con agenzie come la vostra.\n\nA giovedì,\nAle' },
+      { id: 't2', name: 'Marco Bellini', first: 'Marco', role: 'Resp. commerciale', company: 'Studio Brezza', channel: 'Email', when: 'ieri', label: 'meeting_request', unread: true,
+        reply: 'Interessante. Mandami un invito per la settimana prossima, martedì o mercoledì pomeriggio.',
+        draft: 'Ciao Marco,\n\nperfetto: ti propongo mercoledì alle 15. Se non ti va bene, scegli tu un altro orario dal link.\n\nAle' },
+      { id: 't3', name: 'Chiara Gallo', first: 'Chiara', role: 'Founder e CEO', company: 'Lanterna Digital', channel: 'LinkedIn', when: 'ieri', label: 'not_now',
+        reply: 'Grazie! In questo momento siamo pieni, riscrivimi a gennaio.',
+        draft: 'Grazie Chiara, ci sentiamo a gennaio. Buon lavoro!' },
+      { id: 't4', name: 'Sara Villa', first: 'Sara', role: 'CEO', company: 'Fiordaliso Comunicazione', channel: 'Email', when: '2 giorni fa', label: 'unsubscribe', kind: true,
+        reply: 'Per favore toglietemi dalle vostre liste.' },
+      { id: 't5', name: 'Elena Moretti', first: 'Elena', role: 'CEO', company: 'Ponte Creativo', channel: 'Email', when: '2 giorni fa', label: 'auto_reply', kind: true,
+        reply: 'Sono fuori ufficio fino al 7 ottobre, con accesso limitato alla posta.' },
+      { id: 't6', name: 'Stefano Ricci', first: 'Stefano', role: 'Resp. new business', company: 'Mosaico Adv', channel: 'Email', when: '3 giorni fa', label: 'not_interested',
+        reply: 'Grazie, abbiamo già un partner per questo.', draft: 'Grazie Stefano, chiaro. Buon lavoro!' }
+    ];
+    const lab = (t) => S.labels[t.id] || t.label;
+    const shown = data.filter((t) => S.filter === 'all' || lab(t) === S.filter || (S.filter === 'unread' && t.unread));
+    const cur0 = data.find((t) => t.id === S.open) || data[0];
+    const cl = lab(cur0), c = L[cl];
+    const notices = {
+      unsubscribe: ['Disiscrizione: ' + cur0.first + ' è stata aggiunta alle Esclusioni. Nessuna campagna potrà più contattarla.', 'rgba(251,44,54,0.08)', 'rgba(251,44,54,0.30)', 'var(--zb-neg-fg)', true],
+      auto_reply: ['Risposta automatica: la sequenza per ' + cur0.first + ' è in pausa e riparte l’8 ottobre.', 'var(--zb-muted)', 'var(--zb-border)', 'var(--zb-muted-fg)', false],
+      not_now: ['Ho creato un promemoria per gennaio. La sequenza per ' + cur0.first + ' si è fermata.', 'rgba(254,154,0,0.08)', 'rgba(254,154,0,0.30)', 'var(--zb-warn-fg)', false]
+    };
+    const n = notices[cl];
+    const counts = (k) => String(data.filter((t) => lab(t) === k).length);
+    const filters = [
+      ['all', 'Tutte', String(data.length), 'var(--zb-fg)'], ['unread', 'Da leggere', '2', 'var(--zb-brand)'],
+      ['interested', 'Interessato', counts('interested'), '#00bc7d'], ['meeting_request', 'Richiesta di incontro', counts('meeting_request'), 'var(--zb-ink)'],
+      ['not_now', 'Non ora', counts('not_now'), '#fe9a00'], ['not_interested', 'Non interessato', counts('not_interested'), '#62748e'],
+      ['unsubscribe', 'Disiscrizioni', counts('unsubscribe'), '#fb2c36']
+    ].map(([k, label, count, dot]) => { const on = S.filter === k; return { label, count, dot, sel: on ? 'true' : 'false', bg: on ? 'var(--zb-tint)' : 'transparent', fg: on ? 'var(--zb-ink)' : 'var(--zb-fg)', w: on ? '600' : '500', pick: () => this.setState({ filter: k }) }; });
+    const draft = S.draft !== null ? S.draft : (cur0.draft || '');
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '', empty, notEmpty: !empty,
+      nav: { detail: h('Camp-Detail.dc.html'), exclusions: h('Set-Exclusions.dc.html'), campaigns: h('Campaigns.dc.html') },
+      filters, listCount: String(shown.length),
+      threads: shown.map((t) => { const l = L[lab(t)]; return { ...t, preview: t.reply.replace(/\n+/g, ' '), label: l[0], lBg: l[1], lFg: l[2], unread: !!t.unread && t.id !== S.open, current: t.id === S.open ? 'true' : 'false', bg: t.id === S.open ? 'var(--zb-tint)' : 'transparent', open: () => this.setState({ open: t.id, draft: null }) }; }),
+      cur: {
+        ...cur0, initials: cur0.name.split(' ').map((p) => p[0]).join(''), labelKey: cur0.kind ? 'other' : cl,
+        labelNote: cur0.kind ? c[0] : (S.labels[cur0.id] ? 'Cambiata da te' : 'Etichettata automaticamente'),
+        notice: n ? n[0] : false, nBg: n ? n[1] : '', nBorder: n ? n[2] : '', nFg: n ? n[3] : '', noticeLink: n ? n[4] : false,
+        ourWhen: cur0.channel === 'LinkedIn' ? '4 giorni fa' : '3 giorni fa',
+        ourSubject: cur0.channel === 'Email' ? cur0.first + ', un SDR per ' + cur0.company + ' da lunedì?' : false,
+        ourBody: cur0.channel === 'Email' ? OUR.replace('{n}', cur0.first).replace('{c}', cur0.company) : 'Grazie per il collegamento, ' + cur0.first + '! Se ti interessa, ti mando il caso di un’agenzia simile a ' + cur0.company + '.',
+        stopNote: cur0.label === 'auto_reply' ? 'La sequenza è in pausa, non fermata.' : 'La sequenza per ' + cur0.first + ' si è fermata quando ha risposto.',
+        canReply: !!cur0.draft, from: cur0.channel === 'LinkedIn' ? 'LinkedIn' : 'ale@ritmosales.it'
+      },
+      relabel: (e) => this.setState({ labels: { ...S.labels, [cur0.id]: e.target.value } }),
+      draft, setDraft: (e) => this.setState({ draft: e.target.value }),
+      sentMsg: S.sent[cur0.id] ? 'Risposta inviata.' : '',
+      send: () => this.setState({ sent: { ...S.sent, [cur0.id]: true } })
+    };
+  }
+}
+</script>
+</body>
+</html>

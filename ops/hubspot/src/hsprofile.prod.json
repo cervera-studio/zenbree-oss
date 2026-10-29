@@ -1,0 +1,9 @@
+{
+  "accountId": 0,
+  "variables": {
+    "API_PUBLIC_BASE_URL": "https://api.zenbree.com",
+    "SUPPORT_EMAIL": "support@zenbree.com",
+    "DOCS_URL": "https://zenbree.com/docs",
+    "SUPPORT_URL": "https://zenbree.com/docs"
+  }
+}

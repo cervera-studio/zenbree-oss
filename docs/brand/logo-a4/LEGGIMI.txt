@@ -1,0 +1,32 @@
+Zenbree · logo A4 «Morbido» · bozza esportata il 7 ottobre 2026
+
+SVG (vettoriali, da usare ovunque possibile)
+  svg/zenbree-mark.svg            simbolo, blu brand #006679 su chiaro
+  svg/zenbree-mark-on-dark.svg    simbolo, #69C7DF su scuro (#0E1515)
+  svg/zenbree-mark-black.svg      simbolo, #07191D (una tinta)
+  svg/zenbree-mark-white.svg      simbolo, bianco (su foto o fondi brand)
+  svg/zenbree-lockup*.svg         simbolo + «zenbree», stesse varianti
+  svg/zenbree-wordmark*.svg       solo «zenbree»
+  svg/zenbree-app-icon.svg        icona app: simbolo bianco su quadrato #006679
+
+Il nome è in Atkinson Hyperlegible Next Bold, spaziatura -0,035 em,
+già convertito in tracciati: non serve installare il font.
+
+PNG (sfondo trasparente)
+  png/zenbree-app-icon-1024/512/192/48/32/16.png
+  png/apple-touch-icon.png        180 × 180, per iOS
+  png/zenbree-mark*-512/128.png
+  png/zenbree-lockup*-96h/192h.png  (altezza 96 e 192 px)
+
+Favicon
+  favicon.ico   16, 32 e 48 px
+  favicon.svg   per i browser moderni
+
+Colori
+  Brand #006679 · su scuro #69C7DF · testo #07191D · testo su scuro #ECF1F1
+
+Spazio di rispetto: lascia attorno al simbolo almeno l’altezza di una barra
+(circa 1/4 del simbolo). Dimensione minima: simbolo 16 px, lockup 80 px di larghezza.
+
+È una bozza: prima dell’uso pubblico fai una ricerca di somiglianza (EUIPO TMview,
+WIPO Global Brand Database) e, se vuoi, fallo rifinire da un designer.

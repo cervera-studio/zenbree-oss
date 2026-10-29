@@ -1,0 +1,37 @@
+{
+  "canonical": {
+    "company": [
+      "name",
+      "domain",
+      "website",
+      "linkedin_url",
+      "industry",
+      "employees",
+      "city",
+      "country",
+      "description"
+    ],
+    "person": [
+      "full_name",
+      "first_name",
+      "last_name",
+      "title",
+      "company_name",
+      "company_domain",
+      "linkedin_url",
+      "email",
+      "email_status",
+      "city",
+      "country"
+    ]
+  },
+  "fit": {
+    "max": 100,
+    "min": 0
+  },
+  "max_children": 20,
+  "max_conditions": 20,
+  "max_depth": 3,
+  "max_value_length": 200,
+  "max_values": 50
+}

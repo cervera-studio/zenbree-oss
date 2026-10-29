@@ -1,0 +1,152 @@
+{
+  "onboarding": {
+    "step": "Étape {current, number, credits} sur {total, number, credits}",
+    "skip": "Passer pour l’instant",
+    "steps": {
+      "company": "Entreprise",
+      "profile": "Profil",
+      "segments": "Segments"
+    },
+    "errors": {
+      "generic": "Une erreur s’est produite. Réessayez dans un instant."
+    },
+    "company": {
+      "title": "Parlez-nous de votre activité",
+      "description": "Nous lisons votre site web et rédigeons un profil commercial : à qui vous vendez, quels problèmes vous résolvez, qui contacter.",
+      "website": "Site web",
+      "about": "Description",
+      "aboutHint": "(facultatif si vous avez un site web)",
+      "aboutPlaceholder": "Ce que vous vendez, à qui, dans quels pays…",
+      "free": "L’analyse est gratuite et ne contacte personne.",
+      "submit": "Analyser",
+      "studying": "Analyse en cours, cela peut prendre une minute…",
+      "busyLabel": "Analyse en cours",
+      "fromDescription": "Votre description",
+      "phases": {
+        "site": "Lecture du site web",
+        "offer": "Compréhension de ce que vous vendez et à qui",
+        "profile": "Rédaction du profil commercial"
+      },
+      "changeSite": "Changer de site web",
+      "editDescription": "Modifier la description",
+      "pagesRead": "{n, plural, one {# page} other {{n, number, credits} pages}}",
+      "phaseStatus": {
+        "done": "Terminé",
+        "running": "En cours",
+        "pending": "En attente"
+      },
+      "next": {
+        "profile": {
+          "tag": "Ensuite · 2",
+          "title": "Vous relisez le profil",
+          "body": "Corrigez qui achète, les problèmes, qui exclure."
+        },
+        "segments": {
+          "tag": "Ensuite · 3",
+          "title": "Vous choisissez un segment",
+          "body": "Nous en proposons quelques-uns, chacun avec les personnes à chercher."
+        },
+        "list": {
+          "tag": "Enfin",
+          "title": "Votre première liste",
+          "body": "Une conversation s’ouvre avec la demande déjà rédigée."
+        }
+      }
+    },
+    "profile": {
+      "title": "Votre profil",
+      "description": "Vérifiez-le et corrigez-le : vos segments et votre première liste en découlent.",
+      "back": "Retour",
+      "confirm": "Confirmer et proposer des segments",
+      "proposing": "Préparation des segments…",
+      "count": "{count, number, credits} sur {max, number, credits}",
+      "add": "Ajouter",
+      "item": "{label}, élément {n, number, credits}",
+      "remove": "Retirer {item}",
+      "removeEmpty": "Retirer l’élément vide",
+      "proofPlaceholder": "Cas clients, chiffres, noms que vous pouvez citer.",
+      "proofMissing": "Introuvable : ajoutez-le vous-même si vous le pouvez.",
+      "groups": {
+        "identity": "Qui vous êtes",
+        "audience": "À qui vous vendez",
+        "timing": "Quand et où",
+        "exclude": "Qui exclure"
+      },
+      "sections": {
+        "companyName": "Nom de l’entreprise",
+        "summary": "En bref",
+        "personas": "Qui achète",
+        "painPoints": "Problèmes que vous résolvez",
+        "solution": "Comment vous les résolvez",
+        "buyingTriggers": "Déclencheurs d’achat",
+        "markets": "Marchés",
+        "exclusions": "Ne jamais contacter",
+        "proof": "Preuves et résultats"
+      },
+      "hints": {
+        "personas": "Les fonctions qui signent ou décident.",
+        "painPoints": "Avec les mots du client, pas les vôtres.",
+        "buyingTriggers": "Les événements qui rendent une entreprise prête maintenant.",
+        "markets": "Les pays ou régions où vous vendez.",
+        "exclusions": "Ils vont dans Exclusions : aucune liste ne les contiendra."
+      },
+      "usage": {
+        "title": "Où il est utilisé",
+        "segments": {
+          "title": "Dans les segments.",
+          "body": "Qui achète, les problèmes et les déclencheurs d’achat deviennent les critères de recherche."
+        },
+        "list": {
+          "title": "Dans la première liste.",
+          "body": "La conversation part d’une demande avec votre entreprise et le segment que vous choisissez."
+        },
+        "exclusions": {
+          "title": "Dans les exclusions.",
+          "body": "Les noms d’entreprise, les domaines, les e-mails et les profils LinkedIn deviennent des règles dans Exclusions ; le reste va dans la demande de la première liste."
+        },
+        "memory": {
+          "title": "Dans chaque conversation.",
+          "body": "L’agent le lit dans chaque conversation de ce client avant de proposer un plan ; vos autres clients gardent le leur."
+        }
+      }
+    },
+    "segments": {
+      "title": "Choisissez votre premier segment",
+      "description": "Chaque segment devient une recherche : choisissez-en un et nous créons votre première liste.",
+      "empty": "Aucun segment proposé. Essayez de les régénérer ou de compléter le profil.",
+      "who": "Qui",
+      "problem": "Problème",
+      "outcome": "Résultat",
+      "signalHint": "À chercher : {signal}",
+      "criteriaTitle": "Critères de recherche",
+      "pick": "Créer la première liste",
+      "back": "Modifier le profil",
+      "regenerate": "Proposer d’autres segments",
+      "otherLanguage": "Ces segments ont été rédigés dans une autre langue. Proposez d’autres segments pour les avoir dans la vôtre.",
+      "chatPrompt": "Vous savez déjà qui chercher ?",
+      "chatLink": "Écrivez-le dans la conversation",
+      "solo": "propriétaire seul",
+      "seniority": {
+        "owner": "Propriétaire",
+        "founder": "Fondateur",
+        "c_suite": "Direction générale",
+        "partner": "Associé",
+        "vp": "VP",
+        "head": "Responsable",
+        "director": "Directeur",
+        "manager": "Manager",
+        "senior": "Senior",
+        "entry": "Débutant",
+        "intern": "Stagiaire"
+      },
+      "criteria": {
+        "titles": "Fonctions",
+        "seniorities": "Niveau",
+        "industries": "Secteurs",
+        "employeeRanges": "Effectif",
+        "locations": "Pays",
+        "keywords": "Mots-clés"
+      }
+    }
+  }
+}

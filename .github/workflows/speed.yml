@@ -1,0 +1,28 @@
+name: speed
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: { contents: read }
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: { POSTGRES_USER: zenbree, POSTGRES_PASSWORD: postgres, POSTGRES_DB: zenbree_speed }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U zenbree" --health-interval 5s --health-retries 10
+    defaults: { run: { working-directory: api } }
+    env:
+      TEST_DATABASE_URL: postgresql://zenbree:postgres@localhost:5432/zenbree_speed
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      - run: uv sync --locked
+      - run: uv run pytest -q -s bench/test_speed.py

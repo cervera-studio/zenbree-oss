@@ -1,0 +1,336 @@
+{
+  "automations": {
+    "title": "Automatisations",
+    "breadcrumb": "Chemin",
+    "subtitle": "Des étapes qui trouvent, qualifient et ajoutent des personnes à une campagne, à la main ou à un rythme fixe.",
+    "loadError": "Impossible de charger les automatisations.",
+    "empty": {
+      "title": "Aucune automatisation pour l'instant",
+      "text": "Une automatisation trouve des personnes pour une liste, les qualifie, cherche leur e-mail et les ajoute à une campagne, chaque jour ou chaque semaine, dans la limite de crédits que vous fixez."
+    },
+    "columns": {
+      "name": "Automatisation",
+      "trigger": "Lancement",
+      "state": "État",
+      "version": "Version",
+      "lastRun": "Dernière exécution",
+      "nextRun": "Prochaine exécution"
+    },
+    "trigger": {
+      "manual": "Manuel",
+      "daily": "Chaque jour",
+      "weekly": "Chaque semaine",
+      "webhook": "Webhook",
+      "signal": "Signaux"
+    },
+    "state": {
+      "active": "Active",
+      "paused": "En pause"
+    },
+    "version": "v{version, number, credits}",
+    "approved": "Approuvée",
+    "needsReview": "La prochaine est à vérifier",
+    "notRun": "Jamais exécutée",
+    "byHand": "Quand vous la lancez",
+    "runStatus": {
+      "queued": "En file",
+      "running": "En cours",
+      "succeeded": "Terminée",
+      "failed": "Échouée",
+      "cancelled": "Annulée",
+      "unknown": "Résultat inconnu"
+    },
+    "head": {
+      "cap": "Jusqu'à {cap, plural, one {# crédit} other {{cap, number, credits} crédits}} par exécution",
+      "readOnly": "Seule la personne qui a créé cette automatisation, ou un admin, peut la lancer, la mettre en pause ou l'approuver."
+    },
+    "controls": {
+      "pause": "Mettre en pause",
+      "resume": "Reprendre",
+      "paused": "Automatisation en pause. Une exécution en file est annulée.",
+      "resumed": "Automatisation reprise.",
+      "runNow": "Exécuter maintenant",
+      "runAgain": "Exécuter à nouveau"
+    },
+    "confirmRun": {
+      "title": "Exécuter {name} maintenant ?",
+      "cap": "Cette exécution peut dépenser jusqu'à {cap, plural, one {# crédit} other {{cap, number, credits} crédits}}.",
+      "review": "C'est la première exécution de la version {version, number, credits}, donc elle est à vérifier.{campaign, select, yes {{hubspot, select, yes { Les personnes qu'elle ajoute entrent dans la campagne en brouillon, et rien n'est écrit dans HubSpot, jusqu'à ce que vous approuviez l'exécution.} other { Les personnes qu'elle ajoute entrent dans la campagne en brouillon jusqu'à ce que vous approuviez l'exécution.}}} other {{hubspot, select, yes { Rien n'est écrit dans HubSpot jusqu'à ce que vous approuviez l'exécution.} other {}}}}",
+      "queued": "Exécution en file. Elle démarre dans la minute.",
+      "alreadyGoing": "Une exécution est déjà en cours. Ouvrez-la pour suivre ses étapes.",
+      "reviewInstantly": "C'est la première exécution de la version {version, number, credits}, donc elle est à vérifier. Personne n'est ajouté à Instantly{hubspot, select, yes { ni écrit dans HubSpot} other {}} tant que vous ne l'avez pas approuvée."
+    },
+    "runs": {
+      "title": "Exécutions",
+      "empty": "Aucune exécution pour l'instant.",
+      "columns": {
+        "run": "Exécution",
+        "status": "Statut",
+        "trigger": "Lancée par",
+        "version": "Version",
+        "credits": "Crédits",
+        "started": "Début",
+        "finished": "Fin"
+      },
+      "open": "Exécution du {date}",
+      "trigger": {
+        "manual": "À la main",
+        "schedule": "Rythme",
+        "webhook": "Appel webhook",
+        "signal": "Signaux"
+      },
+      "review": "À vérifier",
+      "credits": "{spent, number, credits} sur {cap, plural, one {# crédit} other {{cap, number, credits} crédits}}",
+      "creditsOnRun": "Voir l'exécution",
+      "stopping": "Arrêt en cours"
+    },
+    "run": {
+      "title": "Exécution du {date}",
+      "open": "Ouvrir l'exécution",
+      "created": "En file depuis",
+      "started": "Début",
+      "finished": "Fin",
+      "credits": "Crédits dépensés",
+      "reviewText": "{campaign, select, yes {{hubspot, select, yes {Les personnes ajoutées par cette exécution attendent dans la campagne en brouillon, et ses écritures dans HubSpot sont retenues, jusqu'à ce que vous approuviez l'exécution.} other {Les personnes ajoutées par cette exécution attendent dans la campagne en brouillon jusqu'à ce que vous approuviez l'exécution.}}} other {{hubspot, select, yes {Les écritures dans HubSpot de cette exécution sont retenues jusqu'à ce que vous approuviez l'exécution.} other {Approuvez l'exécution quand son résultat vous convient.}}}}",
+      "ended": "Pourquoi elle s'est arrêtée",
+      "steps": "Étapes",
+      "summary": "Personnes",
+      "taken": "Prises en charge par cette exécution",
+      "refused": "Écartées avant toute dépense de crédits",
+      "promoted": "Rendues actives par l'approbation",
+      "hubspotAfterApproval": "Écriture dans HubSpot après l'approbation",
+      "cancel": "Annuler l'exécution",
+      "cancelled": "Exécution annulée.",
+      "cancelRunning": "L'exécution s'arrête avant que l'étape en cours n'enregistre son résultat. Cette étape et les suivantes sont ignorées et ne facturent rien.{hubspot, select, yes { Si l'étape HubSpot a déjà écrit des contacts, elle indique combien.} other {}}",
+      "cancelEnded": "L'exécution était déjà terminée, rien n'a donc été annulé.",
+      "stopping": "Arrêt en cours. L'étape en cours est ignorée et ne facture rien.{hubspot, select, yes { Si l'étape HubSpot a déjà écrit des contacts, elle indique combien.} other {}}",
+      "approve": "Approuver l'exécution",
+      "approveTitle": "Approuver cette exécution ?",
+      "approveText": "{campaign, select, yes {{hubspot, select, yes {Les prochaines exécutions de cette version ajoutent les personnes avec le statut normal de la campagne et écrivent dans HubSpot sans attendre.} other {Les prochaines exécutions de cette version ajoutent les personnes avec le statut normal de la campagne sans attendre.}}} other {{hubspot, select, yes {Les prochaines exécutions de cette version écrivent dans HubSpot sans attendre.} other {Les prochaines exécutions de cette version se passent de vérification.}}}}",
+      "activeCampaign": "La campagne est active. En approuvant, les personnes de cette exécution deviennent actives tout de suite et la campagne peut leur écrire à sa prochaine étape. Les prochaines exécutions ajoutent aussi les nouvelles personnes comme actives.",
+      "unknownCampaign": "Impossible de vérifier la campagne. Si elle est active, en approuvant, les personnes de cette exécution deviennent actives tout de suite et la campagne peut leur écrire à sa prochaine étape.",
+      "approved": "Exécution approuvée.",
+      "retryHubspot": "Réécrire dans HubSpot",
+      "retryHubspotText": "L'écriture dans HubSpot après l'approbation n'est pas allée au bout. Réessayer saute les personnes déjà écrites.",
+      "hubspotPendingText": "L'écriture dans HubSpot après l'approbation n'est pas encore terminée. Si elle ne se termine pas, relancez-la. Personne n'est écrit deux fois.",
+      "retried": "Écriture dans HubSpot remise en file.",
+      "outdated": "L'automatisation a changé après cette exécution, elle ne peut donc plus être approuvée.",
+      "outdatedRunAgain": "Exécutez-la à nouveau pour vérifier la nouvelle version.",
+      "call": {
+        "title": "Appel qui a lancé cette exécution",
+        "webhookId": "webhook-id",
+        "receivedAt": "Reçu",
+        "matchedBy": "Personne trouvée par",
+        "by": {
+          "linkedin_url": "URL LinkedIn",
+          "email": "Email"
+        },
+        "rowGone": "La ligne de la personne a été supprimée de la liste."
+      },
+      "reviewTextInstantly": "Les personnes de cette exécution sont en attente : elles ne sont pas ajoutées à Instantly{hubspot, select, yes { ni écrites dans HubSpot} other {}} tant que vous n'avez pas approuvé l'exécution.",
+      "approveTextInstantly": "En approuvant, les personnes de cette exécution sont ajoutées tout de suite à Instantly. Les exécutions suivantes de cette version les ajoutent sans attendre{hubspot, select, yes { et les écrivent dans HubSpot} other {}}.",
+      "activeInstantly": "La campagne Instantly est active : après l'approbation, elle peut commencer tout de suite à envoyer des e-mails à ces personnes et à celles des prochaines exécutions.",
+      "unknownInstantly": "Nous ne pouvons pas vérifier le statut de la campagne Instantly. Si elle est active, après l'approbation, elle peut commencer tout de suite à envoyer des e-mails à ces personnes.",
+      "instantly": {
+        "title": "Instantly",
+        "campaign": "Campagne",
+        "held": "Personnes à ajouter à Instantly",
+        "sent": "Personnes ajoutées à Instantly",
+        "waiting": {
+          "approval": "Personne n'est ajouté à Instantly tant que vous n'avez pas approuvé cette exécution.",
+          "paused": "L'automatisation est en pause. Les personnes seront ajoutées quand vous la réactiverez.",
+          "creator_gone": "La personne qui a créé l'automatisation ne fait plus partie de l'organisation, donc les personnes ne sont pas ajoutées à Instantly.",
+          "connection": "Instantly n'est pas connecté à ce client. Les personnes seront ajoutées quand vous le reconnecterez.",
+          "other_workspace": "Ce client est maintenant connecté à un autre compte Instantly. Les personnes restent en attente jusqu'à ce que vous reconnectiez l'ancien compte ou choisissiez une autre campagne dans l'éditeur.",
+          "other_batch": "Instantly ajoute déjà d'autres personnes de ce client. Celles-ci seront ajoutées dès qu'il aura terminé.",
+          "starting": "Les personnes seront ajoutées à Instantly d'ici une minute."
+        },
+        "batchUnreadable": "Impossible de charger le statut des personnes sur Instantly. Rechargez la page pour réessayer."
+      },
+      "reviewTextInstantlyNone": "Cette exécution n'a personne à ajouter à Instantly.{hubspot, select, yes { Ses écritures dans HubSpot restent en attente tant que vous ne l'avez pas approuvée.} other {}} Après l'approbation, les exécutions suivantes de cette version ajoutent les personnes à Instantly sans revue.",
+      "approveTextInstantlyNone": "Cette exécution n'a personne à ajouter à Instantly. En approuvant, les exécutions suivantes de cette version ajoutent les personnes sans attendre{hubspot, select, yes { et les écrivent dans HubSpot} other {}}.",
+      "activeInstantlyNone": "La campagne Instantly est active : après l'approbation, elle peut commencer tout de suite à envoyer des e-mails aux personnes des prochaines exécutions.",
+      "unknownInstantlyNone": "Nous ne pouvons pas vérifier le statut de la campagne Instantly. Si elle est active, après l'approbation, elle peut commencer tout de suite à envoyer des e-mails aux personnes des prochaines exécutions.",
+      "signal": {
+        "title": "Signaux qui l'ont lancée",
+        "account": "Entreprise",
+        "accountGone": "Entreprise supprimée",
+        "noTitle": "Offre sans titre",
+        "score": "Score {n, number, credits}",
+        "nobody": {
+          "account_gone": "Personne n'a été pris en charge : l'entreprise a été supprimée ou exclue de la liste.",
+          "no_new_person": "Personne n'a été pris en charge : la liste n'a personne de cette entreprise que l'automatisation n'ait pas déjà prise en charge.",
+          "all_refused": "Personne n'a été pris en charge : toutes les personnes de cette entreprise ont été écartées avant toute dépense de crédits.",
+          "other": "Personne de cette entreprise n'a été pris en charge."
+        },
+        "givenUp": "{n, plural, one {Après # exécution échouée} other {Après {n, number, credits} exécutions échouées}} de suite, ces signaux comptent comme utilisés. L'entreprise relance une exécution seulement quand de nouveaux signaux atteignent le score minimum.",
+        "givenBack": "Cette exécution n'a pas utilisé ses signaux et les a rendus.",
+        "gone": "Les signaux de cette exécution ne sont plus disponibles."
+      }
+    },
+    "step": {
+      "number": "Étape {n, number, credits}",
+      "kind": {
+        "find_people": "Trouver des personnes",
+        "qualify": "Qualifier avec l'IA",
+        "find_emails": "Trouver des e-mails",
+        "add_to_campaign": "Ajouter à la campagne",
+        "add_to_instantly": "Ajouter à Instantly",
+        "write_hubspot": "Écrire dans HubSpot"
+      },
+      "status": {
+        "pending": "En attente",
+        "running": "En cours",
+        "succeeded": "Fait",
+        "skipped": "Ignorée",
+        "failed": "Échouée",
+        "uncertain": "Incertaine"
+      },
+      "credits": "Crédits",
+      "attempts": "Tentatives",
+      "started": "Début",
+      "finished": "Fin",
+      "uncertain": "L'exécution s'est arrêtée pendant cette étape, on ne sait donc pas ce qu'elle a fait hors de Zenbree. La prochaine exécution peut reprendre les mêmes personnes, mais elle ne les facture pas, ne les ajoute pas à la campagne et ne les écrit pas dans HubSpot une seconde fois.",
+      "notRetried": "Pas relancée d'elle-même, car elle a peut-être déjà écrit.",
+      "enrolledAs": {
+        "draft": "Ajoutées en brouillon",
+        "active": "Ajoutées comme actives"
+      },
+      "leftOut": "Laissées hors de la campagne",
+      "leftOutInstantly": "Personnes exclues de la campagne Instantly"
+    },
+    "output": {
+      "accounts": "Entreprises examinées",
+      "accountsWithoutDomain": "Entreprises sans domaine",
+      "accountsExcluded": "Entreprises exclues par vos règles",
+      "peopleFound": "Personnes trouvées",
+      "peopleExcluded": "Personnes exclues par vos règles",
+      "peopleAdded": "Personnes ajoutées à la liste",
+      "scored": "Personnes notées",
+      "kept": "Au-dessus du score minimum",
+      "belowMinimum": "Sous le score minimum",
+      "notReached": "Pour la prochaine exécution, faute de crédits",
+      "searched": "Personnes recherchées",
+      "found": "E-mails trouvés",
+      "refusedByRules": "E-mails refusés par vos règles",
+      "vendorDidNotAnswer": "Pas de réponse du fournisseur d'e-mails",
+      "withContact": "Personnes avec un e-mail ou LinkedIn",
+      "enrolled": "Personnes ajoutées",
+      "held": "Personnes à ajouter à Instantly",
+      "heldForApproval": "Retenues jusqu'à votre approbation",
+      "created": "Nouveaux contacts HubSpot",
+      "existing": "Déjà dans HubSpot",
+      "alreadyWritten": "Écrites par une exécution précédente",
+      "heldByHubspotGate": "Retenues par les contrôles HubSpot",
+      "refusedSince": "Refusées par vos règles depuis l'exécution"
+    },
+    "leftOut": {
+      "excluded": "Exclues par vos règles",
+      "duplicate": "Déjà dans cette campagne, ont répondu ou déjà contactées",
+      "noContact": "Ni e-mail ni LinkedIn utilisable",
+      "inOtherCampaign": "Dans une autre campagne active",
+      "heldByInstantly": "Déjà dans Instantly",
+      "stopped": "Arrêtées après une réponse ou une désinscription",
+      "overLimit": "Au-delà de la limite de personnes de la campagne"
+    },
+    "refused": {
+      "excluded": "Exclues par vos règles",
+      "alreadyHandled": "Déjà suivies par une campagne",
+      "inOtherCampaign": "Dans une autre campagne active",
+      "heldByInstantly": "Déjà dans Instantly",
+      "stopped": "Arrêtées après une réponse ou une désinscription"
+    },
+    "skipped": {
+      "previous_step_failed": "Ignorée car une étape précédente a échoué.",
+      "run_ended": "Ignorée car l'exécution s'est arrêtée avant cette étape.",
+      "no_new_people": "Ignorée car la liste n'a aucune personne que cette automatisation n'ait pas déjà prise en charge.",
+      "no_people_left": "Ignorée car il ne restait personne après les étapes précédentes.",
+      "cancelled": "Ignorée car l'exécution a été annulée.",
+      "automation_paused": "Ignorée car l'automatisation a été mise en pause.",
+      "reservation_expired": "Ignorée car la réserve de crédits de l'exécution a expiré.",
+      "run_not_running": "Ignorée car l'exécution était déjà terminée."
+    },
+    "code": {
+      "vendor_failed": "Un fournisseur de données n'a pas répondu.",
+      "vendor_disabled": "Un fournisseur de données est désactivé ou non connecté.",
+      "step_crashed": "L'étape a rencontré une erreur trois fois et s'est arrêtée.",
+      "campaign_ended": "La campagne est terminée, on ne peut donc plus y ajouter personne.",
+      "hubspot_off": "HubSpot n'est pas connecté, ou l'écriture est désactivée.",
+      "hubspot_token": "HubSpot n'a pas accepté la connexion. Reconnectez-le dans Intégrations.",
+      "hubspot_failed": "HubSpot a refusé une écriture. Les personnes écrites avant restent écrites.",
+      "write_crashed": "L'écriture dans HubSpot s'est arrêtée sur une erreur. Les personnes restent retenues.",
+      "cancelled": "Annulée.",
+      "automation_paused": "L'automatisation a été mise en pause.",
+      "automation_edited": "L'automatisation a été modifiée avant le début de cette exécution.",
+      "reservation_expired": "La réserve de crédits de l'exécution a expiré.",
+      "run_not_running": "L'exécution était déjà terminée.",
+      "creator_deleted": "La personne qui a créé l'automatisation a supprimé son compte.",
+      "user_banned": "La personne qui a créé l'automatisation est suspendue.",
+      "creator_left": "La personne qui a créé l'automatisation a quitté l'organisation.",
+      "invalid_configuration": "Une liste, une campagne ou la connexion HubSpot qu'elle utilise n'existe plus.",
+      "project_cap_reached": "Ce client a atteint sa limite de crédits.",
+      "insufficient_credits": "Il n'y avait pas assez de crédits pour démarrer.",
+      "worker_outcome_unknown": "L'exécution s'est arrêtée sans donner de résultat. Les crédits que ses étapes n'ont pas utilisés sont revenus.",
+      "credit_cap_reached": "L'exécution a atteint sa limite de crédits. Les personnes non atteintes passent en premier à la prochaine exécution.",
+      "other": "L'exécution a rencontré une erreur qui n'a pas encore de description.",
+      "instantly_campaign_not_found": "La campagne Instantly n'existe plus. Choisissez-en une autre dans l'éditeur.",
+      "instantly_not_connected": "Instantly n'est pas connecté à ce client, ou la clé enregistrée est illisible. Reconnectez-le dans Intégrations.",
+      "instantly_refused": "Instantly a refusé la clé ou le forfait du compte. Reconnectez-le dans Intégrations.",
+      "instantly_unreachable": "Instantly n'a pas répondu, même après les nouvelles tentatives."
+    },
+    "webhook": {
+      "title": "Webhook",
+      "rotate": "Renouveler le secret",
+      "url": "URL",
+      "noUrl": "L'URL n'est pas disponible. Demandez à un administrateur ou au support Zenbree.",
+      "secretMade": "Secret créé le {when}. Zenbree ne le montre plus.",
+      "noSecret": "Cette automatisation n'a pas encore de secret : elle n'accepte aucun appel. Créez-en un, puis mettez l'URL et le secret dans l'outil qui envoie les appels.",
+      "noSecretReadOnly": "Cette automatisation n'a pas encore de secret : elle n'accepte aucun appel. La personne qui l'a créée, ou un administrateur, peut en créer un.",
+      "make": "Créer le secret",
+      "paused": "L'automatisation est en pause : les appels sont refusés jusqu'à sa reprise.",
+      "rotateTitle": "Renouveler le secret de {name} ?",
+      "rotateText": "L'ancien secret cesse de fonctionner aussitôt. Les appels signés avec lui sont refusés dès maintenant.",
+      "rotateUrlStays": "L'URL reste la même.",
+      "rotateUpdateSender": "Mettez le nouveau secret dans l'outil qui envoie les appels.",
+      "rotateConfirm": "Renouveler le secret",
+      "shownTitle": "Copiez le secret maintenant",
+      "shownText": "Zenbree ne l'affiche qu'une seule fois. Si vous le perdez, renouvelez le secret pour en créer un nouveau.",
+      "secret": "Secret de signature",
+      "done": "Je l'ai copié",
+      "noneWaiting": "Aucun appel n'attend de démarrer.",
+      "pending": "{n, plural, one {# appel attend} other {{n, number, credits} appels attendent}} de démarrer. Chaque appel lance sa propre exécution, l'une après l'autre.",
+      "waitingForApproval": "Les appels attendent que vous approuviez l'exécution de revue de cette version. Ouvrez-la dans les exécutions ci-dessous.",
+      "copy": "Copier {what}",
+      "copyShort": "Copier",
+      "copied": "Copié",
+      "copiedWhat": "{what} copié.",
+      "copyFailed": "Copie impossible. Sélectionnez le texte et copiez-le.",
+      "howTo": {
+        "title": "Comment l'appeler",
+        "body": "Envoyez un POST à l'URL avec un objet JSON de 16 Kio au maximum qui désigne une personne de la liste : email, linkedin_url, ou les deux. Un corps plus grand reçoit un 413. La personne doit déjà être dans la liste.",
+        "sign": "Signez chaque appel avec le secret, comme le prévoit Standard Webhooks : les en-têtes webhook-id (un id unique pour chaque appel, pour qu'une répétition ne lance rien), webhook-timestamp (en secondes, à moins de 5 minutes de maintenant) et webhook-signature.",
+        "signDocs": "Lire la spécification Standard Webhooks",
+        "answer": "Une réponse 202 signifie que l'appel est accepté. Son exécution démarre dans la minute si aucune autre exécution de l'automatisation n'est en cours."
+      }
+    },
+    "instantlySkipped": {
+      "excluded": "Dans la liste d'exclusion",
+      "noEmail": "Aucun e-mail valide",
+      "duplicateInSelection": "Même e-mail qu'une autre personne",
+      "inNativeCampaign": "Dans une campagne Zenbree",
+      "repliedOrContacted": "Déjà contactée ou a répondu",
+      "alreadyInInstantly": "Déjà dans Instantly",
+      "crmHold": "Bloquée par le CRM",
+      "stopped": "A répondu, s'est désinscrite ou l'e-mail a rebondi"
+    },
+    "signal": {
+      "title": "Signaux",
+      "watchlist": "Liste de suivi",
+      "deleted": "Liste de suivi supprimée",
+      "minScore": "Score minimum des signaux",
+      "since": "Compte les signaux depuis",
+      "rule": "Une exécution démarre pour une entreprise quand les scores de ses nouveaux signaux atteignent ensemble le minimum. Une offre vaut jusqu'à 100 et diminue de moitié tous les 30 jours. Les signaux qui arrivent pendant que l'automatisation est en pause ne lancent rien.",
+      "deletedText": "Cette automatisation ne lance aucune exécution tant que vous ne choisissez pas une autre liste de suivi dans Modifier."
+    }
+  }
+}

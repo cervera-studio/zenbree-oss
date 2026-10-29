@@ -1,0 +1,36 @@
+---
+import { type Content, links } from '../content';
+import { btn, eyebrow, wrap } from '../styles/classes';
+import Eyebrow from './Eyebrow.astro';
+import Stage from './Stage.astro';
+import WorksMark from './WorksMark.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+---
+
+<section class:list={[wrap, 'flex flex-col gap-12 pt-18 pb-14 phone:gap-7 phone:pt-10 phone:pb-10']}>
+  <div class="grid grid-cols-[minmax(0,35fr)_minmax(0,23fr)] items-end gap-20 max-xl:grid-cols-1 max-xl:gap-6 phone:gap-5">
+    <div class="flex flex-col gap-6 phone:gap-4">
+      <Eyebrow>{t.hero.eyebrow}</Eyebrow>
+      <h1 class="text-display text-balance phone:text-headline">{t.hero.titleLine}<br /><em class="not-italic">{t.hero.titleEm}</em></h1>
+    </div>
+    <div class="flex flex-col gap-6 text-soft phone:gap-5">
+      <p class="text-body">{t.meta.description}</p>
+      <div class="flex flex-wrap items-center gap-2.5 phone:flex-col phone:items-stretch">
+        <a href={links.contact} class={btn('primary', 'lg')}>{t.hero.cta}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="stroke-current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href={`#${t.sections.how}`} class={btn('outline', 'lg')}>{t.hero.seeHow}</a>
+      </div>
+      <p class="text-small text-muted">{t.hero.fine}</p>
+    </div>
+  </div>
+  <Stage t={t} />
+  <div class="flex items-center gap-6 max-xl:flex-col max-xl:items-stretch max-xl:gap-3">
+    <span class:list={[eyebrow, 'w-75 shrink-0 text-muted max-xl:w-auto']}>{t.works.label}</span>
+    <ul class="grid flex-1 grid-cols-6 gap-px overflow-hidden rounded-lg border border-line bg-line tablet:grid-cols-3 phone:grid-cols-2">
+      {t.works.items.map((w) => <li class:list={['flex h-12 items-center justify-center gap-2 bg-ground px-2 text-center text-small', w.soon ? 'text-muted' : 'font-bold text-soft']}><WorksMark logo={w.logo} />{w.name}</li>)}
+    </ul>
+  </div>
+</section>

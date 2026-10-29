@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Conferma azione distruttiva</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+:root{--zb-chart-1:#223034;--zb-chart-2:#006679}
+.zb-dark{--zb-chart-1:#c7d0cf;--zb-chart-2:#3fb5d1}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;height:40px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg);padding:0 12px}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.h1{margin:0;font-family:Newsreader,'Iowan Old Style',Georgia,serif;font-weight:400;font-size:44px;line-height:1.18;letter-spacing:0}
+.h2{margin:0;font-size:16px;font-weight:700}
+.sub{margin:0;color:var(--zb-muted-fg);line-height:1.5}
+.mono{font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace}
+.tw{border:1px solid var(--zb-border);border-radius:14px;overflow:hidden}
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{padding:10px 14px;font-weight:600;font-size:12px;color:var(--zb-muted-fg);text-align:left;background:var(--zb-rail);white-space:nowrap}
+.t td{padding:9px 14px;border-top:1px solid var(--zb-muted);vertical-align:middle}
+.t tbody tr:hover{background:var(--zb-muted)}
+.t .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b1{height:36px;padding:0 14px;border:0;border-radius:10.5px;background:var(--zb-brand);color:var(--zb-on-brand);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b1:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.b1:disabled{opacity:.45;cursor:not-allowed}
+.b2{height:36px;padding:0 12px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b2:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.bd{background:var(--zb-neg-fg);color:var(--zb-bg)}
+.bd:hover{background:var(--zb-neg-fg);opacity:.9;color:var(--zb-bg)}
+.pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;box-sizing:border-box}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed=true]{background:var(--zb-tint);border-color:transparent;color:var(--zb-ink)}
+.card{border:1px solid var(--zb-border);border-radius:17.5px;background:var(--zb-card);padding:16px}
+.kpi dt{font-size:12px;color:var(--zb-muted-fg);font-weight:600}
+.kpi dd{margin:4px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:var(--zb-fg);font-family:inherit;font-size:13px;text-align:left;cursor:pointer;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.ib{width:32px;height:32px;border:0;border-radius:7px;background:transparent;color:var(--zb-muted-fg);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ib:hover{background:var(--zb-rail-hover);color:var(--zb-fg)}
+.tab{height:44px;padding:0 4px;border:0;border-bottom:2px solid transparent;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--zb-muted-fg);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tab[aria-selected=true]{color:var(--zb-fg);border-bottom-color:var(--zb-ink)}
+details>summary{cursor:pointer;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+.sw{position:relative;width:40px;height:24px;border-radius:999px;border:0;cursor:pointer;flex-shrink:0;padding:0}
+.sw span{position:absolute;top:3px;width:18px;height:18px;border-radius:999px;background:var(--zb-bg);transition:left .15s}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="position: fixed; inset: 0; z-index: 70; background: rgba(7,25,29,0.45); display: flex; align-items: center; justify-content: center; font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; color: var(--zb-fg)">
+  <div role="alertdialog" aria-modal="true" aria-labelledby="cfT" aria-describedby="cfB" style="width: 460px; max-width: calc(100vw - 32px); box-sizing: border-box; padding: 24px; border-radius: 21px; background: var(--zb-bg); border: 1px solid var(--zb-border); box-shadow: 0 24px 64px -24px rgba(7,25,29,0.5); display: flex; flex-direction: column; gap: 14px">
+    <span style="width: 40px; height: 40px; border-radius: 999px; background: rgba(251,44,54,0.12); color: var(--zb-neg-fg); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"></path></svg></span>
+    <h2 id="cfT" style="margin: 0; font-size: 19px; font-weight: 700; line-height: 1.3">{{title}}</h2>
+    <p id="cfB" class="sub">{{body}}</p>
+    <ul style="margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.5; color: var(--zb-muted-fg)">
+      <sc-if value="{{bullet1}}" hint-placeholder-val="{{true}}"><li>{{bullet1}}</li></sc-if>
+      <sc-if value="{{bullet2}}" hint-placeholder-val="{{true}}"><li>{{bullet2}}</li></sc-if>
+    </ul>
+    <sc-if value="{{typeWord}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="cfIn" style="font-size: 13px; font-weight: 600">Per confermare scrivi <span class="mono" style="padding: 1px 6px; border-radius: 5px; background: var(--zb-muted)">{{typeWord}}</span></label>
+        <input id="cfIn" class="zb-field" type="text" value="{{typed}}" onChange="{{setTyped}}" autocomplete="off" style="width: 100%">
+      </div>
+    </sc-if>
+    <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px">
+      <button type="button" class="b2" onClick="{{cancel}}" autofocus>Annulla</button>
+      <button type="button" class="b1 bd" disabled="{{blocked}}" onClick="{{confirm}}">{{cta}}</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"title":{"editor":"text","default":"Eliminare la lista «Agenzie marketing Milano · SDR»?"},"body":{"editor":"text","default":"Le 47 persone spariscono dalla lista. Chi è già in una campagna resta nella campagna."},"bullet1":{"editor":"text","default":"I crediti spesi non vengono resi"},"bullet2":{"editor":"text","default":"La chat che l’ha creata resta, con un link non più attivo"},"cta":{"editor":"text","default":"Elimina lista"},"typeWord":{"editor":"text","default":""},"onCancel":{"editor":null},"onConfirm":{"editor":null},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { typed: '' }; }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const word = this.props.typeWord ?? '';
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      title: this.props.title ?? 'Eliminare la lista «Agenzie marketing Milano · SDR»?',
+      body: this.props.body ?? 'Le 47 persone spariscono dalla lista. Chi è già in una campagna resta nella campagna.',
+      bullet1: this.props.bullet1 ?? 'I crediti spesi non vengono resi',
+      bullet2: this.props.bullet2 ?? 'La chat che l’ha creata resta, con un link non più attivo',
+      cta: this.props.cta ?? 'Elimina lista',
+      typeWord: word || false, typed: this.state.typed, setTyped: (e) => this.setState({ typed: e.target.value }),
+      blocked: !!word && this.state.typed.trim() !== word,
+      cancel: () => { this.setState({ typed: '' }); if (this.props.onCancel) this.props.onCancel(); },
+      confirm: () => { if (word && this.state.typed.trim() !== word) return; this.setState({ typed: '' }); if (this.props.onConfirm) this.props.onConfirm(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

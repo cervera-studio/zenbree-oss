@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Notifiche · pannello</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+body{margin:0}
+/* Zenbree tokens, exact values from the design system: light first, dark below. */
+.np{--np-bg:oklch(0.988 0.004 186.9);--np-sheet:oklch(0.988 0.004 186.9);--np-fg:oklch(0.2 0.025 216.6);--np-muted-fg:oklch(0.5 0.016 216.6);--np-border:oklch(0.9 0.013 186.9);--np-accent:oklch(0.96 0.007 186.9);--np-rail:oklch(0.947 0.01 186.9);--np-ring:oklch(0.471 0.084 216.6);--np-primary:oklch(0.471 0.084 216.6);--np-on-primary:oklch(0.988 0.004 186.9);--np-ink:oklch(0.471 0.084 216.6);--np-tint:oklch(0.935 0.035 216.6);--np-pos-fg:oklch(0.508 0.118 165.612);--np-warn-fg:oklch(0.555 0.163 48.998);--np-neg-fg:oklch(0.505 0.213 27.518);--np-ai-fg:oklch(0.496 0.265 301.924);--np-cau-fg:oklch(0.553 0.195 38.402);--np-info-fg:oklch(0.488 0.243 264.376);--np-soc-fg:oklch(0.52 0.105 223.128);--np-shadow:oklch(0.2 0.025 216.6 / 0.4)}
+.np.np-dark{color-scheme:dark;--np-bg:oklch(0.155 0.008 186.9);--np-sheet:oklch(0.218 0.011 186.9);--np-fg:oklch(0.955 0.006 186.9);--np-muted-fg:oklch(0.69 0.014 186.9);--np-border:oklch(0.3 0.013 186.9);--np-accent:oklch(0.245 0.012 186.9);--np-rail:oklch(0.245 0.012 186.9);--np-ring:oklch(0.78 0.095 216.6);--np-primary:oklch(0.52 0.092 216.6);--np-on-primary:oklch(0.988 0.004 186.9);--np-ink:oklch(0.78 0.095 216.6);--np-tint:oklch(0.31 0.05 216.6);--np-pos-fg:oklch(0.845 0.143 164.978);--np-warn-fg:oklch(0.879 0.169 91.605);--np-neg-fg:oklch(0.704 0.191 22.216);--np-ai-fg:oklch(0.827 0.119 306.383);--np-cau-fg:oklch(0.837 0.128 66.29);--np-info-fg:oklch(0.809 0.105 251.813);--np-soc-fg:oklch(0.865 0.127 207.078);--np-shadow:oklch(0 0 0 / 0.6)}
+/* Signal pairs: the base at 14% alpha for fills, the -fg for icons and text. */
+.np .s-pos{background:oklch(0.696 0.17 162.48 / 0.14);color:var(--np-pos-fg)}
+.np .s-warn{background:oklch(0.769 0.188 70.08 / 0.16);color:var(--np-warn-fg)}
+.np .s-neg{background:oklch(0.637 0.237 25.331 / 0.14);color:var(--np-neg-fg)}
+.np .s-ai{background:oklch(0.627 0.265 303.9 / 0.14);color:var(--np-ai-fg)}
+.np .s-cau{background:oklch(0.705 0.213 47.604 / 0.14);color:var(--np-cau-fg)}
+.np .s-info{background:oklch(0.623 0.214 259.815 / 0.16);color:var(--np-info-fg)}
+.np .s-soc{background:oklch(0.715 0.143 215.221 / 0.18);color:var(--np-soc-fg)}
+.np-ib{width:32px;height:32px;border:0;border-radius:10.5px;background:transparent;color:var(--np-muted-fg);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background-color 190ms cubic-bezier(0.4,0,1,1),color 190ms cubic-bezier(0.4,0,1,1)}
+.np-ib:hover{background:var(--np-accent);color:var(--np-fg);transition-duration:110ms;transition-timing-function:cubic-bezier(0.2,0,0,1)}
+.np-chip{height:28px;padding:0 10px;border:1px solid var(--np-border);border-radius:999px;background:var(--np-bg);color:var(--np-fg);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.np-chip:hover{background:var(--np-accent);transition-duration:110ms}
+.np-chip[aria-pressed=true]{background:var(--np-tint);border-color:transparent;color:var(--np-ink)}
+.np-chip .c{font-weight:500;color:var(--np-muted-fg);font-variant-numeric:tabular-nums}
+.np-chip[aria-pressed=true] .c{color:inherit;opacity:0.8}
+.np-item{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:start;padding:12px;border-radius:14px;transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.np-item:hover{background:var(--np-accent);transition-duration:110ms;transition-timing-function:cubic-bezier(0.2,0,0,1)}
+.np-item:focus-within{box-shadow:inset 0 0 0 2px var(--np-ring)}
+.np-link{color:inherit;text-decoration:none;outline:none}
+.np-link::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.np-title{margin:0;font-size:14px;line-height:20px;font-weight:500}
+.np-unread .np-title{font-weight:700}
+.np-acts{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.np-btn{height:24px;padding:0 8px;border-radius:10.5px;border:1px solid transparent;font-family:inherit;font-size:12px;line-height:16px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.np-btn-p{background:var(--np-primary);color:var(--np-on-primary)}
+.np-btn-p:hover{background:color-mix(in oklab,var(--np-primary) 90%,transparent);color:var(--np-on-primary)}
+.np-btn-o{background:var(--np-bg);border-color:var(--np-border);color:var(--np-fg)}
+.np-btn-o:hover{background:var(--np-accent);color:var(--np-fg)}
+.np-btn:focus-visible,.np-ib:focus-visible,.np-chip:focus-visible,.np-ghost:focus-visible{outline:2px solid var(--np-ring);outline-offset:2px}
+.np-ghost{height:32px;padding:0 12px;border:0;border-radius:10.5px;background:transparent;color:var(--np-fg);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.np-ghost:hover{background:var(--np-accent);transition-duration:110ms}
+.np-ghost:disabled{opacity:0.5;cursor:default;background:transparent}
+.np-filters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.np-filters::-webkit-scrollbar{display:none}
+.np-sheet{animation:np-in 110ms cubic-bezier(0.2,0,0,1) both}
+@keyframes np-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.np-sheet,.np-item,.np-ib,.np-chip,.np-btn,.np-ghost{animation-duration:0.01ms;transition-duration:0.01ms}}
+</style>
+</helmet>
+<div class="np {{themeClass}}" style="{{wrapStyle}} font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; color: var(--np-fg)">
+  <sc-if value="{{overlay}}" hint-placeholder-val="{{false}}"><button type="button" aria-label="Chiudi notifiche" onClick="{{close}}" style="position: fixed; inset: 0; border: 0; background: transparent; cursor: default; z-index: 0"></button></sc-if>
+  <section role="dialog" aria-label="Notifiche" class="np-sheet" style="position: relative; z-index: 1; width: 400px; max-width: calc(100vw - 16px); max-height: calc(100vh - 24px); box-sizing: border-box; display: flex; flex-direction: column; border-radius: 17.5px; background: var(--np-sheet); border: 1px solid var(--np-border); box-shadow: 0 24px 56px -20px var(--np-shadow); overflow: hidden">
+    <header style="display: flex; flex-direction: column; gap: 12px; padding: 14px 14px 12px 18px; border-bottom: 1px solid var(--np-border)">
+      <div style="display: flex; align-items: flex-start; gap: 4px">
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; padding-top: 4px">
+          <h2 style="margin: 0; font-size: 16px; line-height: 22px; font-weight: 700">Notifiche</h2>
+          <p style="margin: 0; font-size: 13px; line-height: 18px; color: var(--np-muted-fg)">{{summary}}</p>
+        </div>
+        <a href="{{nav.settings}}" class="np-ib" aria-label="Impostazioni notifiche"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"></path></svg></a>
+        <button type="button" class="np-ib" aria-label="Chiudi" onClick="{{close}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+      </div>
+      <div role="group" aria-label="Filtra notifiche" class="np-filters">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+          <button type="button" class="np-chip" aria-pressed="{{f.on}}" onClick="{{f.pick}}">{{f.label}}<sc-if value="{{f.count}}" hint-placeholder-val="{{false}}"><span class="c">{{f.count}}</span></sc-if></button>
+        </sc-for>
+      </div>
+    </header>
+    <div style="overflow-y: auto; flex-grow: 1; padding: 6px">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+        <section aria-label="{{g.label}}" style="display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px">
+          <h3 style="margin: 0; padding: 10px 12px 4px; font-family: 'Atkinson Hyperlegible Mono', ui-monospace, monospace; font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--np-muted-fg)">{{g.label}}</h3>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px">
+            <sc-for list="{{g.items}}" as="n" hint-placeholder-count="3">
+              <li class="np-item {{n.cls}}">
+                <sc-if value="{{n.person}}" hint-placeholder-val="{{false}}">
+                  <span style="position: relative; width: 36px; height: 36px; display: flex">
+                    <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--np-tint); color: var(--np-ink); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">{{n.initials}}</span>
+                    <span title="{{n.channel}}" style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 999px; background: var(--np-sheet); box-shadow: 0 0 0 2px var(--np-sheet); display: flex">
+                      <span class="{{n.badgeCls}}" style="width: 18px; height: 18px; border-radius: 999px; display: flex; align-items: center; justify-content: center">
+                      <sc-if value="{{n.ch.email}}" hint-placeholder-val="{{false}}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></sc-if>
+                      <sc-if value="{{n.ch.linkedin}}" hint-placeholder-val="{{false}}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7"></path></svg></sc-if>
+                      <sc-if value="{{n.ch.meeting}}" hint-placeholder-val="{{false}}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></sc-if>
+                      </span>
+                    </span>
+                  </span>
+                </sc-if>
+                <sc-if value="{{n.system}}" hint-placeholder-val="{{true}}">
+                  <span aria-hidden="true" class="{{n.iconCls}}" style="width: 36px; height: 36px; border-radius: 10.5px; display: flex; align-items: center; justify-content: center">
+                    <sc-if value="{{n.k.done}}" hint-placeholder-val="{{true}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"></path><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"></path></svg></sc-if>
+                    <sc-if value="{{n.k.approve}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg></sc-if>
+                    <sc-if value="{{n.k.error}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5h.01"></path></svg></sc-if>
+                    <sc-if value="{{n.k.agent}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8Z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"></path></svg></sc-if>
+                    <sc-if value="{{n.k.credits}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"></ellipse><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path></svg></sc-if>
+                  </span>
+                </sc-if>
+                <div style="min-width: 0; display: flex; flex-direction: column">
+                  <p class="np-title"><a class="np-link" href="{{n.href}}" onClick="{{n.read}}">{{n.title}}</a></p>
+                  <p style="margin: 2px 0 0; font-size: 13px; line-height: 18px; color: var(--np-muted-fg)">{{n.sub}}</p>
+                  <sc-if value="{{n.quote}}" hint-placeholder-val="{{false}}"><blockquote style="margin: 8px 0 0; padding: 8px 10px; border-radius: 7px; background: var(--np-rail); font-size: 13px; line-height: 18px; color: var(--np-fg)">{{n.quote}}</blockquote></sc-if>
+                  <sc-if value="{{n.badge}}" hint-placeholder-val="{{false}}"><span class="s-pos" style="align-self: flex-start; margin-top: 8px; height: 22px; padding: 0 8px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; white-space: nowrap">{{n.badge}}</span></sc-if>
+                  <sc-if value="{{n.hasActs}}" hint-placeholder-val="{{false}}">
+                    <div class="np-acts">
+                      <sc-for list="{{n.acts}}" as="a" hint-placeholder-count="1"><a href="{{a.href}}" class="{{a.cls}}" onClick="{{n.read}}">{{a.label}}</a></sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-top: 2px">
+                  <time style="font-size: 12px; line-height: 16px; color: var(--np-muted-fg); font-variant-numeric: tabular-nums; white-space: nowrap">{{n.time}}</time>
+                  <sc-if value="{{n.unread}}" hint-placeholder-val="{{false}}"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--np-primary)"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Da leggere</span></span></sc-if>
+                </div>
+              </li>
+            </sc-for>
+          </ul>
+        </section>
+      </sc-for>
+      <sc-if value="{{none}}" hint-placeholder-val="{{false}}">
+        <div style="padding: 48px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px">
+          <span aria-hidden="true" class="s-pos" style="width: 40px; height: 40px; border-radius: 999px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <strong style="font-size: 15px">Sei in pari</strong>
+          <span style="font-size: 13px; line-height: 18px; color: var(--np-muted-fg)">Qui arrivano risposte, ricerche finite e messaggi da approvare.</span>
+        </div>
+      </sc-if>
+    </div>
+    <footer style="display: flex; align-items: center; padding: 10px 12px; border-top: 1px solid var(--np-border)">
+      <button type="button" class="np-ghost" onClick="{{readAll}}" disabled="{{allRead}}">Segna tutte come lette</button>
+    </footer>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"inline":{"editor":"boolean","default":true},"onClose":{"editor":null},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { read: {}, filter: 'all' }; }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const S = this.state;
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const inline = this.props.inline === undefined ? true : !!this.props.inline;
+    // type: reply (a person answered) · decide (waiting on you) · event (the system did something)
+    const all = [
+      { id: 'n1', g: 'Oggi', type: 'reply', person: 'GF', channel: 'email', title: 'Giulia Ferri ha risposto', sub: 'Officina Nove · Campagna «Agenzie Milano»', quote: '«Interessante, ci sentiamo giovedì? Ho mezz’ora dopo le 15.»', time: '11:12', href: 'Inbox.dc.html', unread: true, acts: [['Rispondi', 'Inbox.dc.html', 'p'], ['Apri', 'Inbox.dc.html', 'o']] },
+      { id: 'n2', g: 'Oggi', type: 'decide', kind: 'approve', title: '12 messaggi aspettano il tuo ok', sub: 'Agenzie marketing Milano · partono alle 10:00 dopo l’approvazione', time: '09:30', href: 'Camp-Detail.dc.html', unread: true, acts: [['Rivedi e approva', 'Camp-Detail.dc.html', 'p']] },
+      { id: 'n3', g: 'Oggi', type: 'event', kind: 'done', title: 'Ricerca finita: 47 persone in 31 aziende', sub: 'CEO di agenzie marketing a Milano', badge: '14 crediti resi', time: '09:05', href: 'List.dc.html', unread: true },
+      { id: 'n4', g: 'Oggi', type: 'event', kind: 'error', title: 'Ricerca ferma: il fornitore email non risponde', sub: 'Responsabili marketing nel tech · 64 di 100 trovate, le altre non le paghi', time: '08:40', href: 'Chat-Error.dc.html', unread: true, acts: [['Riprova', 'Chat-Error.dc.html', 'o']] },
+      { id: 'n5', g: 'Ieri', type: 'reply', person: 'MB', channel: 'meeting', title: 'Marco Bellini chiede un incontro', sub: 'Studio Brezza · martedì 7 ott, 15:00', time: '16:02', href: 'Inbox.dc.html', unread: true, acts: [['Accetta', 'Inbox.dc.html', 'p']] },
+      { id: 'n6', g: 'Ieri', type: 'decide', kind: 'agent', title: 'L’agente ha bisogno di te', sub: '«SaaS italiane che assumono AE»: nessun risultato. Allargo a tutta Europa?', time: '14:20', href: 'Chat-NoResults.dc.html', unread: false },
+      { id: 'n7', g: 'Ieri', type: 'reply', person: 'LM', channel: 'linkedin', title: 'Luca Moretti ha accettato il collegamento', sub: 'Brera Digital · sequenza LinkedIn, passo 2 di 4', time: '10:47', href: 'Inbox.dc.html', unread: false },
+      { id: 'n8', g: '1 ott', type: 'event', kind: 'credits', title: 'Piano Starter rinnovato: +2.000 crediti', sub: '450 crediti di settembre scaduti', time: '00:01', href: 'Billing.dc.html', unread: false }
+    ];
+    const SIG = { done: 's-pos', approve: 's-warn', error: 's-neg', agent: 's-ai', credits: 's-cau' };
+    const CH = { email: 's-info', linkedin: 's-soc', meeting: 's-pos' };
+    const isUnread = (n) => n.unread && !S.read[n.id];
+    const f = S.filter;
+    const keep = (n) => f === 'all' || (f === 'unread' ? isUnread(n) : n.type === f);
+    const markRead = (id) => () => { if (!S.read[id]) this.setState({ read: { ...S.read, [id]: true } }); };
+    const labels = ['Oggi', 'Ieri', '1 ott'];
+    const groups = labels.map((label) => ({ label, items: all.filter((n) => n.g === label && keep(n)).map((n) => {
+      const u = isUnread(n);
+      return {
+        title: n.title, sub: n.sub, quote: n.quote || false, badge: n.badge || false, time: n.time, href: h(n.href), unread: u,
+        cls: u ? 'np-unread' : '', person: !!n.person, system: !n.person, initials: n.person || '',
+        channel: n.channel === 'email' ? 'Email' : n.channel === 'linkedin' ? 'LinkedIn' : n.channel === 'meeting' ? 'Incontro' : '',
+        ch: { email: n.channel === 'email', linkedin: n.channel === 'linkedin', meeting: n.channel === 'meeting' },
+        badgeCls: CH[n.channel] || '', iconCls: SIG[n.kind] || '',
+        k: { done: n.kind === 'done', approve: n.kind === 'approve', error: n.kind === 'error', agent: n.kind === 'agent', credits: n.kind === 'credits' },
+        hasActs: !!(n.acts && n.acts.length),
+        acts: (n.acts || []).map(([label, href, v]) => ({ label, href: h(href), cls: 'np-btn ' + (v === 'p' ? 'np-btn-p' : 'np-btn-o') })),
+        read: markRead(n.id)
+      };
+    }) })).filter((g) => g.items.length);
+    const unread = all.filter(isUnread);
+    const cnt = (t) => { const c = unread.filter((n) => n.type === t).length; return c ? String(c) : false; };
+    const F = [['all', 'Tutte', false], ['unread', 'Da leggere', unread.length ? String(unread.length) : false], ['reply', 'Risposte', cnt('reply')], ['decide', 'Da decidere', cnt('decide')]];
+    return {
+      themeClass: theme === 'dark' ? 'np-dark' : '',
+      wrapStyle: inline ? 'position: relative; padding: 8px;' : 'position: fixed; inset: 0; z-index: 65; display: flex; align-items: flex-start; padding: 12px 0 0 256px; box-sizing: border-box; pointer-events: auto;',
+      overlay: !inline,
+      close: () => { if (this.props.onClose) this.props.onClose(); },
+      summary: unread.length ? (unread.length === 1 ? '1 da leggere' : unread.length + ' da leggere') : 'Tutte lette',
+      filters: F.map(([v, label, count]) => ({ label, count, on: f === v ? 'true' : 'false', pick: () => this.setState({ filter: v }) })),
+      groups, none: groups.length === 0,
+      allRead: unread.length === 0,
+      readAll: () => this.setState({ read: Object.fromEntries(all.map((n) => [n.id, true])) }),
+      nav: { settings: h('Set-Notifications.dc.html') }
+    };
+  }
+}
+</script>
+</body>
+</html>

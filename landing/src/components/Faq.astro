@@ -1,0 +1,30 @@
+---
+import { type Content, links } from '../content';
+import { h2, section } from '../styles/classes';
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+const { faq } = t;
+---
+
+<section id={t.sections.faq} class:list={[section, 'flex items-start gap-20 tablet:flex-col tablet:items-stretch tablet:gap-6']}>
+  <div class="flex w-90 shrink-0 flex-col gap-5 tablet:w-auto">
+    <Eyebrow>{faq.eyebrow}</Eyebrow>
+    <h2 class={h2}>{faq.title}</h2>
+    <p class="text-small text-soft">{faq.moreBefore}<a href={links.contact} class="font-bold text-accent-ink hover:underline">supporto@zenbree.com</a>{faq.moreAfter}</p>
+  </div>
+  <div class="flex min-w-0 flex-1 flex-col border-t border-line">
+    {faq.items.map((item) => (
+      <details class="group border-b border-line" name="faq">
+        <summary class="flex min-h-16 cursor-pointer list-none items-center gap-3 py-4 text-ui-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">
+          <span class="min-w-0 flex-1">{item.q}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 stroke-current text-muted" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path><path class="group-open:hidden" d="M12 5v14"></path></svg>
+        </summary>
+        <p class="max-w-155 pr-8 pb-5 text-body text-soft">{item.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

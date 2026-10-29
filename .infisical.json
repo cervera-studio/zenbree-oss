@@ -1,0 +1,6 @@
+{
+  "workspaceId": "00000000-0000-0000-0000-000000000000",
+  "domain": "https://eu.infisical.com/api",
+  "defaultEnvironment": "dev",
+  "gitBranchToEnvironmentMapping": null
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Errore e connessione interrotta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes zb-spin{to{transform:rotate(360deg)}}
+.zb-spin{animation:zb-spin 900ms linear infinite}
+textarea:focus{outline:none}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <dc-import name="Sidebar" theme="{{theme}}" active="session" session="s2" hint-size="248px,100vh"></dc-import>
+
+  <main style="display: flex; flex-direction: column; min-width: 0">
+    <header style="height: 56px; box-sizing: border-box; border-bottom: 1px solid var(--zb-border); display: flex; align-items: center; gap: 12px; padding: 0 24px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-muted-fg)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <h1 style="margin: 0; font-size: 15px; font-weight: 600; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis">Responsabili marketing nel tech</h1>
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{st.bg}}; color: {{st.fg}}; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 999px; background: {{st.dot}}"></span>{{st.label}}</span>
+      <span style="flex-grow: 1"></span>
+      <span style="font-size: 12px; color: var(--zb-muted-fg); font-variant-numeric: tabular-nums; white-space: nowrap; flex-shrink: 0">412 crediti usati</span>
+    </header>
+
+    <sc-if value="{{offline}}" hint-placeholder-val="{{true}}">
+      <div role="alert" style="display: flex; align-items: center; gap: 12px; padding: 12px 24px; background: rgba(254,154,0,0.12); border-bottom: 1px solid rgba(254,154,0,0.35); font-size: 14px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-warn-fg); flex-shrink: 0"><path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M2 8.8a15 15 0 0 1 4.2-2.6M10.7 5.1A15 15 0 0 1 22 8.8M5 12.9a10 10 0 0 1 5.2-2.8M17.5 12.9a10 10 0 0 0-2-1.4M12 20h.01"></path></svg>
+        <span style="flex-grow: 1">La connessione si è interrotta. L'agente continua a lavorare: ricarica per vedere la risposta salvata.</span>
+        <button type="button" onClick="{{reconnect}}" style="height: 34px; padding: 0 14px; border: 0; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer">Ricarica</button>
+      </div>
+    </sc-if>
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; padding: 32px 24px">
+      <div style="width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 18px">
+        <div style="align-self: flex-end; max-width: 460px; background: var(--zb-rail); border-radius: 17.5px 17.5px 3.5px 17.5px; padding: 12px 16px; font-size: 15px; line-height: 1.5">Piano v2 approvato: 100 righe, fino a 560 crediti. Procedi.</div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 12px; border-radius: 10.5px; background: var(--zb-rail); font-size: 13px; white-space: nowrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-pos-fg)"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="font-weight: 600">Ricerca persone</span><span style="flex-grow: 1"></span><span style="font-size: 12px; color: var(--zb-muted-fg)">100 di 100</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: 10.5px; background: rgba(251,44,54,0.06); border: 1px solid rgba(251,44,54,0.30); font-size: 13px">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="color: var(--zb-neg-fg)"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+              <span style="font-weight: 600">Ricerca email</span>
+              <span style="color: var(--zb-neg-fg); font-weight: 600">{{emailState}}</span>
+              <span style="flex-grow: 1"></span><span style="font-size: 12px; color: var(--zb-muted-fg); font-variant-numeric: tabular-nums">{{emailDone}} di 100</span>
+            </div>
+            <span style="line-height: 1.5; color: var(--zb-muted-fg)">Il fornitore delle email non risponde. Le 36 persone senza email non ti sono state addebitate.</span>
+            <div style="display: flex; gap: 8px">
+              <button type="button" onClick="{{retry}}" style="height: 32px; padding: 0 12px; border: 0; border-radius: 7px; background: var(--zb-brand); color: var(--zb-on-brand); font-family: inherit; font-weight: 600; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+                <sc-if value="{{retrying}}" hint-placeholder-val="{{false}}"><svg class="zb-spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.6"></path></svg></sc-if>
+                {{retryLabel}}
+              </button>
+              <a href="{{nav.list}}" style="height: 32px; padding: 0 12px; border-radius: 7px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 12px; display: inline-flex; align-items: center; white-space: nowrap">Apri la lista com'è</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 15px; line-height: 1.6">Ho 64 persone con email verificata su 100. Riprovo la ricerca email per le altre 36 appena il fornitore torna disponibile, oppure dimmi tu.</div>
+
+        <section aria-labelledby="err-ref" style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 14px; border: 1px dashed var(--zb-border)">
+          <h2 id="err-ref" style="margin: 0; font-size: 13px; font-weight: 700">Altri errori, stesso linguaggio</h2>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.45; color: var(--zb-muted-fg)">
+            <li><strong style="color: var(--zb-fg)">Rete:</strong> Errore di rete. Riprova.</li>
+            <li><strong style="color: var(--zb-fg)">Lista:</strong> Impossibile caricare la lista. <a href="#" style="font-weight: 600; text-decoration: none">Riprova</a></li>
+            <li><strong style="color: var(--zb-fg)">Colonna AI:</strong> Ricerca non riuscita: compila di nuovo per riprovare. Le celle vuote non si pagano.</li>
+            <li><strong style="color: var(--zb-fg)">Esportazione:</strong> Esportazione non riuscita. Il file non è stato creato.</li>
+          </ul>
+          <span style="font-size: 12px; color: var(--zb-muted-fg)">Regola: dico cosa è successo, cosa ti è costato (di solito niente) e cosa puoi fare adesso.</span>
+        </section>
+      </div>
+    </div>
+
+    <div style="padding: 0 24px 24px; display: flex; justify-content: center">
+      <form style="width: 100%; max-width: 760px; background: var(--zb-card); border: 1px solid var(--zb-border); border-radius: 21px; padding: 10px 10px 10px 16px; display: flex; align-items: flex-end; gap: 8px; opacity: {{composerOpacity}}">
+        <label for="reply" class="sr-only">Scrivi all'agente</label>
+        <textarea id="reply" rows="1" disabled="{{offline}}" placeholder="{{placeholder}}" style="flex-grow: 1; resize: none; border: 0; background: transparent; font-family: inherit; font-size: 15px; line-height: 1.5; color: var(--zb-fg); padding: 7px 0"></textarea>
+        <button type="button" aria-label="Invia" disabled="{{offline}}" style="width: 36px; height: 36px; flex-shrink: 0; border: 0; border-radius: 999px; background: var(--zb-brand); color: var(--zb-on-brand); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 19V5"></path></svg>
+        </button>
+      </form>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { offline: true, retrying: false };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const S = this.state;
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { list: h('List.dc.html') },
+      offline: S.offline,
+      st: S.offline
+        ? { label: 'Connessione interrotta', bg: 'rgba(254,154,0,0.14)', fg: 'var(--zb-warn-fg)', dot: '#fe9a00' }
+        : { label: 'Errore in un passo', bg: 'rgba(251,44,54,0.10)', fg: 'var(--zb-neg-fg)', dot: '#fb2c36' },
+      emailState: S.retrying ? 'Nuovo tentativo…' : 'Errore', emailDone: '64',
+      retrying: S.retrying, retryLabel: S.retrying ? 'Riprovo…' : 'Riprova',
+      retry: () => this.setState({ retrying: true }),
+      reconnect: () => this.setState({ offline: false }),
+      composerOpacity: S.offline ? '0.6' : '1',
+      placeholder: S.offline ? 'Riconnettiti per scrivere' : 'Scrivi all’agente…'
+    };
+  }
+}
+</script>
+</body>
+</html>

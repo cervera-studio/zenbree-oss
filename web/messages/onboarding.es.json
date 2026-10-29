@@ -1,0 +1,152 @@
+{
+  "onboarding": {
+    "step": "Paso {current, number, credits} de {total, number, credits}",
+    "skip": "Omitir por ahora",
+    "steps": {
+      "company": "Empresa",
+      "profile": "Perfil",
+      "segments": "Segmentos"
+    },
+    "errors": {
+      "generic": "Algo ha fallado. Inténtalo de nuevo en un momento."
+    },
+    "company": {
+      "title": "Háblanos de tu negocio",
+      "description": "Leemos tu sitio web y redactamos un perfil comercial: a quién vendes, qué problemas resuelves, a quién contactar.",
+      "website": "Sitio web",
+      "about": "Descripción",
+      "aboutHint": "(opcional si tienes un sitio web)",
+      "aboutPlaceholder": "Qué vendes, a quién, en qué países…",
+      "free": "El análisis es gratuito y no contacta a nadie.",
+      "submit": "Analizar",
+      "studying": "Analizando, puede tardar un minuto…",
+      "busyLabel": "Análisis en curso",
+      "fromDescription": "Tu descripción",
+      "phases": {
+        "site": "Leyendo el sitio web",
+        "offer": "Entendiendo qué vendes y a quién",
+        "profile": "Redactando el perfil comercial"
+      },
+      "changeSite": "Cambiar sitio web",
+      "editDescription": "Editar descripción",
+      "pagesRead": "{n, plural, one {# página} other {{n, number, credits} páginas}}",
+      "phaseStatus": {
+        "done": "Hecho",
+        "running": "En curso",
+        "pending": "En espera"
+      },
+      "next": {
+        "profile": {
+          "tag": "Después · 2",
+          "title": "Revisas el perfil",
+          "body": "Corrige quién compra, los problemas, a quién excluir."
+        },
+        "segments": {
+          "tag": "Después · 3",
+          "title": "Eliges un segmento",
+          "body": "Te proponemos varios, cada uno con a quién buscar."
+        },
+        "list": {
+          "tag": "Por último",
+          "title": "Tu primera lista",
+          "body": "Se abre un chat con la petición ya escrita."
+        }
+      }
+    },
+    "profile": {
+      "title": "Tu perfil",
+      "description": "Revísalo y corrígelo: tus segmentos y tu primera lista salen de aquí.",
+      "back": "Atrás",
+      "confirm": "Confirmar y proponer segmentos",
+      "proposing": "Preparando segmentos…",
+      "count": "{count, number, credits} de {max, number, credits}",
+      "add": "Añadir",
+      "item": "{label}, elemento {n, number, credits}",
+      "remove": "Quitar {item}",
+      "removeEmpty": "Quitar elemento vacío",
+      "proofPlaceholder": "Casos de clientes, cifras, nombres que puedes citar.",
+      "proofMissing": "No encontrado: añádelo tú si puedes.",
+      "groups": {
+        "identity": "Quién eres",
+        "audience": "A quién vendes",
+        "timing": "Cuándo y dónde",
+        "exclude": "A quién excluir"
+      },
+      "sections": {
+        "companyName": "Nombre de la empresa",
+        "summary": "En resumen",
+        "personas": "Quién compra",
+        "painPoints": "Problemas que resuelves",
+        "solution": "Cómo los resuelves",
+        "buyingTriggers": "Señales de compra",
+        "markets": "Mercados",
+        "exclusions": "No contactar nunca",
+        "proof": "Pruebas y resultados"
+      },
+      "hints": {
+        "personas": "Los cargos que firman o deciden.",
+        "painPoints": "Como lo diría el cliente, no tú.",
+        "buyingTriggers": "Hechos que hacen que una empresa esté lista ahora.",
+        "markets": "Países o regiones donde vendes.",
+        "exclusions": "Van a Exclusiones: ninguna lista los contendrá."
+      },
+      "usage": {
+        "title": "Dónde se usa",
+        "segments": {
+          "title": "En los segmentos.",
+          "body": "Quién compra, los problemas y las señales de compra pasan a ser los criterios de búsqueda."
+        },
+        "list": {
+          "title": "En la primera lista.",
+          "body": "El chat parte de una petición con tu empresa y el segmento que elijas."
+        },
+        "exclusions": {
+          "title": "En las exclusiones.",
+          "body": "Los nombres de empresa, los dominios, los emails y los perfiles de LinkedIn pasan a ser reglas en Exclusiones; el resto va en la petición de la primera lista."
+        },
+        "memory": {
+          "title": "En cada chat.",
+          "body": "El agente lo lee en cada chat de este cliente antes de proponer un plan; tus otros clientes conservan el suyo."
+        }
+      }
+    },
+    "segments": {
+      "title": "Elige tu primer segmento",
+      "description": "Cada segmento se convierte en una búsqueda: elige uno y creamos tu primera lista.",
+      "empty": "No se ha propuesto ningún segmento. Prueba a generarlos de nuevo o a completar el perfil.",
+      "who": "Quién",
+      "problem": "Problema",
+      "outcome": "Resultado",
+      "signalHint": "Busca: {signal}",
+      "criteriaTitle": "Criterios de búsqueda",
+      "pick": "Crear la primera lista",
+      "back": "Editar el perfil",
+      "regenerate": "Proponer otros segmentos",
+      "otherLanguage": "Estos segmentos se escribieron en otro idioma. Propón otros segmentos para tenerlos en el tuyo.",
+      "chatPrompt": "¿Ya sabes a quién buscar?",
+      "chatLink": "Escríbelo en el chat",
+      "solo": "solo el propietario",
+      "seniority": {
+        "owner": "Propietario",
+        "founder": "Fundador",
+        "c_suite": "Alta dirección",
+        "partner": "Socio",
+        "vp": "VP",
+        "head": "Responsable",
+        "director": "Director",
+        "manager": "Mánager",
+        "senior": "Sénior",
+        "entry": "Nivel inicial",
+        "intern": "Becario"
+      },
+      "criteria": {
+        "titles": "Cargos",
+        "seniorities": "Nivel",
+        "industries": "Sectores",
+        "employeeRanges": "Empleados",
+        "locations": "Países",
+        "keywords": "Palabras clave"
+      }
+    }
+  }
+}

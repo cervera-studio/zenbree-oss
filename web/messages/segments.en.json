@@ -1,0 +1,188 @@
+{
+  "segments": {
+    "title": "Segments",
+    "breadcrumb": "Path",
+    "new": "New segment",
+    "subtitle": "Saved rules over the people or companies of this client. A published segment keeps its members current as your data changes.",
+    "loadError": "We could not load the segments. Reload the page.",
+    "empty": {
+      "title": "No segments yet",
+      "text": "A segment is a saved rule, such as CEOs with an email and a fit of 80 or more. Zenbree keeps its members current."
+    },
+    "memberCount": "{n, plural, one {# member} other {{n, number, credits} members}}",
+    "noName": "No name yet",
+    "columns": {
+      "name": "Name",
+      "entity": "Who",
+      "members": "Members",
+      "state": "State"
+    },
+    "state": {
+      "published": "Published",
+      "draft": "Draft",
+      "frozen": "Frozen"
+    },
+    "fields": {
+      "column": "{column} · {list}",
+      "goneList": "deleted list",
+      "fit": "Fit",
+      "inList": "List «{list}»",
+      "canonical": "Fields of every list",
+      "columnsOf": "Columns of «{list}»",
+      "score": "Score",
+      "membership": "Lists",
+      "unavailable": "Field no longer available"
+    },
+    "ops": {
+      "eq": "is",
+      "neq": "is not",
+      "contains": "contains",
+      "not_contains": "does not contain",
+      "in": "is one of",
+      "not_in": "is none of",
+      "gt": "is more than",
+      "gte": "is at least",
+      "lt": "is less than",
+      "lte": "is at most",
+      "between": "is between",
+      "is_missing": "is empty",
+      "is_filled": "is filled",
+      "in_list": "includes them",
+      "not_in_list": "does not include them",
+      "boundsJoin": "and"
+    },
+    "inList": {
+      "in_list": "In the list «{list}»",
+      "not_in_list": "Not in the list «{list}»"
+    },
+    "editor": {
+      "name": "Name",
+      "entity": "Who the segment groups",
+      "entities": {
+        "person": "People",
+        "company": "Companies"
+      },
+      "rule": "Rule",
+      "ruleLegend": "Rule conditions",
+      "groupLegend": "Group of conditions",
+      "join": "How the conditions combine",
+      "all": "All of these",
+      "any": "Any of these",
+      "removeGroup": "Remove group",
+      "emptyRule": "Add a first condition: pick a field below.",
+      "addCondition": "Add a condition…",
+      "addGroup": "Add a group of conditions…",
+      "full": "A rule has at most {n, plural, one {# condition} other {{n, number, credits} conditions}}.",
+      "field": "Field",
+      "pickField": "Pick a field",
+      "op": "Comparison",
+      "value": "Value",
+      "addValue": "Add a value",
+      "addValueHint": "Type a value, then press Enter",
+      "valuesFull": "At most {n, plural, one {# value} other {{n, number, credits} values}}",
+      "valuesLimit": "Values not added: a condition takes at most {n, plural, one {# value} other {{n, number, credits} values}}, each up to {max, plural, one {# character} other {{max, number, credits} characters}} long.",
+      "removeValue": "Remove {value}",
+      "low": "From",
+      "high": "To",
+      "remove": "Remove condition",
+      "invalid": "This condition cannot be saved: check its field and value.",
+      "columnsOf": "Use the columns of a list",
+      "columnsHint": "Its columns, AI columns included, become fields you can pick.",
+      "pickList": "Pick a list",
+      "create": "Save as draft",
+      "save": "Save",
+      "publish": "Publish…",
+      "draftNote": "A draft has no members. Publish it when the count looks right.",
+      "saved": "Segment saved.",
+      "publishedToast": "Segment published.",
+      "reload": "Reload",
+      "leave": "Leave without saving this segment?"
+    },
+    "preview": {
+      "title": "Who matches now",
+      "checking": "Counting",
+      "incomplete": "Complete every condition to see who matches.",
+      "invalid": "Fix the marked condition to see who matches.",
+      "failed": "We could not count who matches. Try again in a moment.",
+      "count": "{entity, select, company {{n, plural, one {# company matches} other {{n, number, credits} companies match}}} other {{n, plural, one {# person matches} other {{n, number, credits} people match}}}}",
+      "pending": "Waiting for a charge to settle",
+      "unidentified": "Rows not identified yet",
+      "linking": "Rows being linked",
+      "number": "{n, number, credits}",
+      "sample": "Some of them",
+      "whyAfterSave": "Save the segment to see why each one matches."
+    },
+    "why": {
+      "open": "Why",
+      "title": "Why this match",
+      "description": "How the saved rule judges them now, condition by condition, with the rows of every list.",
+      "loading": "Loading…",
+      "matches": "Matches the rule.",
+      "noMatch": "Does not match the rule.",
+      "member": "Member of the segment.",
+      "notMember": "Not a member of the segment.",
+      "pending": "A charge on one of their rows has not settled: they join or leave once it does.",
+      "frozen": "The segment is frozen, so membership does not follow the rule until it is fixed.",
+      "true": "true",
+      "false": "false",
+      "all": "All of these",
+      "any": "Any of these",
+      "noRows": "No row has this field.",
+      "hit": "Match",
+      "miss": "No match",
+      "empty": "empty",
+      "age": "updated {when}"
+    },
+    "apply": {
+      "counting": "Counting who joins…",
+      "matching": "Match now",
+      "joining": "Join",
+      "leaving": "Leave",
+      "people": "{entity, select, company {{n, plural, one {# company} other {{n, number, credits} companies}}} other {{n, plural, one {# person} other {{n, number, credits} people}}}}",
+      "silent": "{n, plural, one {If you leave this off, the {entity, select, company {company} other {person}} joins without starting any automation.} other {If you leave this off, the {entity, select, company {companies} other {people}} join without starting any automation.}} Only those that join later start one.",
+      "publish": {
+        "title": "Publish this segment?",
+        "description": "From now on Zenbree keeps its members current.",
+        "confirm": "Publish",
+        "include": "{entity, select, company {{n, plural, one {Include the company that matches now} other {Include the {n, number, credits} companies that match now}}} other {{n, plural, one {Include the person who matches now} other {Include the {n, number, credits} people who match now}}}}"
+      },
+      "edit": {
+        "title": "Save the new rule?",
+        "description": "The new rule applies at once: records join and leave the segment now.",
+        "confirm": "Save",
+        "include": "{entity, select, company {{n, plural, one {Include the company that joins} other {Include the {n, number, credits} companies that join}}} other {{n, plural, one {Include the person who joins} other {Include the {n, number, credits} people who join}}}}"
+      }
+    },
+    "cost": {
+      "max": "The most it can cost",
+      "credits": "{n, plural, one {# credit} other {{n, number, credits} credits}}",
+      "noAutomation": "No automation uses this segment yet."
+    },
+    "frozen": {
+      "title": "This segment is frozen",
+      "effect": "Its rule names something that was deleted. The members stay as they are, and nobody joins or leaves until you fix the rule.",
+      "listGone": "Condition {where}: its list was deleted.",
+      "columnGone": "Condition {where}: the column «{column}» of «{list}» was deleted.",
+      "fix": "Edit each of these conditions or remove it, then save."
+    },
+    "controls": {
+      "refresh": "Refresh",
+      "refreshed": "Members are up to date.",
+      "delete": "Delete",
+      "deleteTitle": "Delete «{name}»?",
+      "deleteDescription": "The segment stops keeping members. Campaigns its members are in go on as they are."
+    },
+    "members": {
+      "open": "Members",
+      "title": "Members",
+      "draft": "This segment is a draft: publish it to see its members.",
+      "paging": "Member pages",
+      "first": "First page",
+      "next": "Next page",
+      "none": "No member yet.",
+      "entered": "Joined {when}",
+      "episode": "Joined {n, plural, one {# time} other {{n, number, credits} times}}",
+      "fromList": "from «{list}»"
+    }
+  }
+}

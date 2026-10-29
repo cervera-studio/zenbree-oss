@@ -1,0 +1,538 @@
+#!/usr/bin/env bash
+# Isolated Zenbree stack for verification. Usage: bin/stack <command> [args]; `bin/stack help` lists commands.
+set -euo pipefail
+
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO="$(cd "$SKILL_DIR/../../.." && pwd)"
+ID="${VERIFY_ID:-}"
+# 2026-10-09: an up with no VERIFY_ID rebuilt another session's default stack onto its own branch, and that
+# session's evidence then proved the wrong code. So no call falls back to a shared id.
+# help and prune act on no single stack.
+case "${ID:+id}:${1:-help}" in
+  :help | :-h | :--help | :prune) ;;
+  :*) echo "set VERIFY_ID=<name> on every bin/stack and bin/browser call, in the same command: one stack per task, named after it" >&2
+    exit 2 ;;
+esac
+ANY_ID="${ID:+1}"
+ID="${ID:-default}"
+# Compose lowercases nothing and refuses a project name with capitals; reject here, before any state is created.
+[[ "$ID" =~ ^[a-z0-9_-]+$ ]] || { echo "VERIFY_ID '$ID' is invalid: use only lowercase letters, digits, '-' and '_'" >&2; exit 2; }
+PROJECT="zenbree-verify$([ "$ID" = default ] || echo "-$ID")"
+CMD_PREFIX="VERIFY_ID=$ID " # every printed command: without it, a pasted command dies (VERIFY_ID=default too)
+DOWN_CMD="${CMD_PREFIX}bin/stack down"
+ROOT="${VERIFY_HOME:-$HOME/.cache/zenbree-verify}"
+STATE="$ROOT/$ID"
+ENV_FILE="$STATE/stack.env"
+WEB_PORT="${VERIFY_WEB_PORT:-13000}"
+API_PORT="${VERIFY_API_PORT:-18000}"
+WEB="http://localhost:$WEB_PORT"
+API="http://localhost:$API_PORT"
+# The web image bakes this in place of the API URL, and the web container writes $API over it when it starts
+# (compose.verify.yml). One image then serves every port: before, each new port rebuilt web.
+API_BAKED=http://verify-api.invalid
+TTL_MIN="${VERIFY_TTL_MIN:-45}"
+STACK_MIB="${VERIFY_STACK_MIB:-1552}" # the sum of the ceilings in compose.verify.yml
+BUILD_MIB="${VERIFY_BUILD_MIB:-2816}" # the build container's ceiling: an uncached web build peaked at 2390 MiB (2026-10-16)
+BUILDER=zenbree-verify
+HEADROOM_MIB="${VERIFY_HEADROOM_MIB:-768}" # dockerd, BuildKit and the kernel: docker stats shows none of them
+WAIT_MIN="${VERIFY_WAIT_MIN:-20}"
+POLL_SEC="${VERIFY_POLL_SEC:-10}"
+DOCKER_SEC="${VERIFY_DOCKER_SEC:-30}"
+RESERVE="$STATE/reserve"
+BUILD_CACHE_MAX="${VERIFY_BUILD_CACHE_MAX:-20GB}"
+API_IMG=ghcr.io/cervera-studio/zenbree-oss-api
+WEB_IMG=ghcr.io/cervera-studio/zenbree-oss-web
+
+# Shell exports would beat --env-file during interpolation and could point at the developer's DB.
+unset DATABASE_URL REDIS_URL AUTH_JWKS_URL API_BASE_URL POSTGRES_PASSWORD POSTGRES_USER POSTGRES_DB \
+  POSTGRES_PORT IMAGE_TAG NEXT_PUBLIC_API_URL
+
+dc() { docker compose -p "$PROJECT" --project-directory "$REPO" -f "$REPO/compose.yml" \
+  -f "$SKILL_DIR/compose.verify.yml" --env-file "$ENV_FILE" "$@"; }
+say() { printf '%s\n' "$*" >&2; }
+die() { say "stack: $*"; exit 1; }
+
+write_env() {
+  mkdir -p "$STATE/artifacts"
+  if [ -f "$ENV_FILE" ]; then # keep the secrets so existing sessions survive a re-up, but follow the ports
+    set_env VERIFY_WEB_PORT "$WEB_PORT"
+    set_env VERIFY_API_PORT "$API_PORT"
+    set_env NEXT_PUBLIC_API_URL "$API_BAKED" # a state file from before the placeholder holds a port
+    return
+  fi
+  umask 077
+  # The landing keeps one tag per VERIFY_ID: api and web are tagged by content (src_tag).
+  cat >"$ENV_FILE" <<EOF
+IMAGE_TAG=verify$([ "$ID" = default ] || echo "-$ID")
+POSTGRES_PASSWORD=$(openssl rand -hex 16)
+VERIFY_WEB_PORT=$WEB_PORT
+VERIFY_API_PORT=$API_PORT
+NEXT_PUBLIC_API_URL=$API_BAKED
+BETTER_AUTH_SECRET=$(openssl rand -hex 32)
+OAUTH_TOKEN_ENCRYPTION_KEY=$(openssl rand -base64 32 | tr '+/' '-_')
+EOF
+  # DATABASE_URL must carry the same generated password.
+  pw="$(sed -n 's/^POSTGRES_PASSWORD=//p' "$ENV_FILE")"
+  echo "DATABASE_URL=postgresql://zenbree:$pw@postgres:5432/zenbree" >>"$ENV_FILE"
+}
+
+set_env() { # $1 key, $2 value: replace that line of the state env file
+  (umask 077; { grep -v "^$1=" "$ENV_FILE" || true; echo "$1=$2"; } >"$ENV_FILE.tmp")
+  mv "$ENV_FILE.tmp" "$ENV_FILE"
+}
+
+# An image tag is a hash of its build inputs: committed tree, uncommitted edits and the build args
+# baked in. Equal inputs give one image, so stacks and re-ups share it and a web-only change reuses api.
+src_tag() { # $1 build context, $2... build args
+  local dir="$1"
+  shift
+  { git -C "$REPO" rev-parse "HEAD:$dir"
+    printf '%s\n' "$@"
+    git -C "$REPO" diff HEAD -- "$dir"
+    git -C "$REPO" ls-files -z --others --exclude-standard -- "$dir" | (cd "$REPO" && xargs -0 cat 2>/dev/null); } |
+    shasum | cut -c1-12
+}
+want_tags() { API_TAG="src-$(src_tag api)"; WEB_TAG="src-$(src_tag web "$API_BAKED")"; }
+
+verify_projects() { # [-a]: compose projects of verify stacks (running ones without -a)
+  docker ps ${1:-} --format '{{.Label "com.docker.compose.project"}}' | grep '^zenbree-verify' | sort -u || true
+}
+project_dir() { docker ps -a --filter "label=com.docker.compose.project=$1" \
+  --format '{{.Label "com.docker.compose.project.working_dir"}}' | sed -n 1p; }
+project_id() { local id="${1#zenbree-verify}"; id="${id#-}"; echo "${id:-default}"; }
+idle_min() { # $1 id: minutes since its last bin/stack or bin/browser call, empty without a lease
+  local lease="$ROOT/$1/lease"
+  [ -f "$lease" ] || return 0 # a stack started before leases: never reaped for idleness
+  echo $((($(date +%s) - $(stat -f %m "$lease" 2>/dev/null || stat -c %Y "$lease")) / 60))
+}
+
+describe() { local idle; idle="$(idle_min "$(project_id "$1")")"; echo "$1  idle ${idle:-?} min  $(project_dir "$1")"; }
+
+teardown() { # $1 project, $2 id
+  VERIFY_ID="$2" "$SKILL_DIR/bin/browser" stop >/dev/null 2>&1 || true
+  docker compose -p "$1" down -v --remove-orphans
+  rm -rf "$ROOT/$2/stack.env" "$ROOT/$2/lease" "$ROOT/$2/reserve" "$ROOT/$2/browser.json" "$ROOT/$2"/seed-*.json
+  # Agents start extra browsers under VERIFY_HOME=<state>/<role> (cy/, bo/, admin/): 150 MB each, kept for a week.
+  [ -d "$ROOT/$2" ] || return 0
+  find "$ROOT/$2" -name 'Local State' -exec dirname {} \; | while read -r d; do rm -rf "$d"; done
+}
+
+# Agents forget bin/stack down, so a stack is a lease: every bin/stack and bin/browser call renews it,
+# and the next up or prune tears down a stack idle past the TTL or whose checkout is gone.
+reap() { # [$1 project to keep]
+  local project id dir idle
+  for project in $(verify_projects -a); do
+    [ "$project" = "${1:-}" ] && continue
+    id="$(project_id "$project")" dir="$(project_dir "$project")" idle="$(idle_min "$id")"
+    if [ ! -d "$dir" ]; then
+      say "reaped: $project (checkout $dir is gone)"
+    elif [ -n "$idle" ] && [ "$idle" -ge "$TTL_MIN" ]; then
+      say "reaped: $project (idle $idle min, TTL $TTL_MIN)"
+    else
+      continue
+    fi
+    teardown "$project" "$id"
+  done
+}
+
+# A Docker VM short of memory leaves docker stats hanging for minutes (2026-10-16), and admission holds
+# admit.lock meanwhile: every other `up` would wait behind it. Past the deadline the call fails.
+with_deadline() { # $1 seconds, $2... command
+  local pid timer rc=0
+  "${@:2}" &
+  pid=$!
+  (sleep "$1"; kill "$pid") >/dev/null 2>&1 & # not on stdout: $(...) would wait for the sleep
+  timer=$!
+  wait "$pid" 2>/dev/null || rc=$? # 2>/dev/null: no "Terminated" notice from bash; the caller says what failed
+  kill "$timer" 2>/dev/null || true
+  wait "$timer" 2>/dev/null || true
+  return "$rc"
+}
+
+# Memory admission. A starting stack holds a reservation (`<pid> <MiB>`) from before its build until it is
+# ready, so parallel `up`s see each other before docker stats does. Only a live pid counts.
+# A running verify container counts at its ceiling, not at what it uses now: a stack admitted while the others
+# idle must still fit when they all reach their peaks (2026-10-16: four stacks admitted at idle, then OOM).
+# Other containers (the developer's stack, the test database) count at their use.
+# ponytail: the developer's stack can still grow past its use after an admission, and a build has no ceiling,
+# only its reservation. A branch without the ceilings runs the old overlay, so its stack counts at about 4.5 GiB.
+mib_in_use() { # running containers: "<others> <this project's own>"
+  local own stats
+  own="$(with_deadline "$DOCKER_SEC" docker ps -q --filter "label=com.docker.compose.project=$PROJECT" | tr '\n' ' ')"
+  stats="$(with_deadline "$DOCKER_SEC" docker stats --no-stream --format '{{.ID}} {{.Name}} {{.MemUsage}}')" || return 1
+  awk -v ids="$own" -v total="$TOTAL" '
+    function mib(s,  u, m) {
+      u = s; sub(/^[0-9.]+/, "", u)
+      m = (u == "B") ? 1 / 1048576 : (u == "KiB") ? 1 / 1024 : (u == "GiB") ? 1024 : (u == "TiB") ? 1048576 : 1
+      if (u == "kB") m = 1000 / 1048576; else if (u == "MB") m = 1000000 / 1048576; else if (u == "GB") m = 1e9 / 1048576
+      return (s + 0) * m
+    }
+    BEGIN { n = split(ids, a, " "); for (i = 1; i <= n; i++) skip[a[i]] = 1 }
+    $2 ~ /^buildx_buildkit_zenbree-verify/ { next } # the reservation of the stack that builds stands for it
+    {
+      v = mib($3); limit = mib($5)
+      # A container with no ceiling shows the whole VM as its limit, rounded (5.783GiB of 5922 MiB).
+      if ($2 ~ /^zenbree-verify/ && limit < total * 0.95) v = limit
+      if ($1 in skip) own += v; else others += v
+    }
+    END { printf "%d %d\n", others, own }' <<<"$stats"
+}
+
+mib_reserved_by_others() {
+  local f pid mib sum=0
+  for f in "$ROOT"/*/reserve; do
+    [ -f "$f" ] && [ "$f" != "$RESERVE" ] || continue
+    pid='' mib=''
+    read -r pid mib <"$f" || true
+    if [ -n "${pid:-}" ] && kill -0 "$pid" 2>/dev/null; then sum=$((sum + mib)); else rm -f "$f"; fi
+  done
+  echo "$sum"
+}
+
+# Sets ADMITTED, FREE, NEED and TOTAL. It reports through globals because with_heavy_lock returns the status of its last line.
+try_admit() {
+  local used own held usage total
+  ADMITTED=0 FREE=0 NEED=$STACK_MIB TOTAL=0
+  if total="$(with_deadline "$DOCKER_SEC" docker info --format '{{.MemTotal}}')"; then
+    TOTAL=$((total / 1048576)) # mib_in_use reads it
+  fi
+  if [ "$TOTAL" = 0 ] || ! usage="$(mib_in_use)"; then
+    say "docker did not answer in $DOCKER_SEC s: the Docker VM is short of memory"
+    return
+  fi
+  read -r used _ <<<"$usage"
+  NEED=$STACK_MIB
+  # A build ends before the stack's containers start (a re-up stops its old ones first), so it needs the larger of the two.
+  if ! with_deadline "$DOCKER_SEC" docker image inspect "$API_IMG:$API_TAG" >/dev/null 2>&1 ||
+    ! with_deadline "$DOCKER_SEC" docker image inspect "$WEB_IMG:$WEB_TAG" >/dev/null 2>&1; then
+    NEED=$((BUILD_MIB > STACK_MIB ? BUILD_MIB : STACK_MIB))
+  fi
+  held="$(mib_reserved_by_others)"
+  FREE=$((TOTAL - HEADROOM_MIB - used - held))
+  if [ "$NEED" -le "$FREE" ]; then
+    echo "$$ $NEED" >"$RESERVE"
+    ADMITTED=1
+  fi
+}
+
+await_memory() {
+  local deadline=$((SECONDS + WAIT_MIN * 60)) i=0 p f report
+  mkdir -p "$STATE"
+  while :; do
+    HEAVY_LOCK="$ROOT/admit.lock" with_heavy_lock "memory admission of $PROJECT" try_admit
+    [ "$ADMITTED" = 1 ] && return 0
+    report="need $NEED MiB, free $FREE of $TOTAL MiB"
+    for p in $(verify_projects | grep -vx "$PROJECT" || true); do report="$report"$'\n'"  $(describe "$p")"; done
+    for f in "$ROOT"/*/reserve; do
+      [ -f "$f" ] && [ "$f" != "$RESERVE" ] && report="$report"$'\n'"  starting: $(basename "$(dirname "$f")") (pid/MiB $(cat "$f"))"
+    done
+    [ "$SECONDS" -ge "$deadline" ] && die "no Docker memory after $WAIT_MIN min: $report"
+    if [ $((i++ % 6)) = 0 ]; then
+      say "waiting for Docker memory: $report"
+      reap "$PROJECT" # a stack can pass the TTL while this one waits
+    fi
+    sleep "$POLL_SEC"
+  done
+}
+
+gc() { # verify images no container uses, state with no stack whose newest file is a week old, build cache
+  local used img d e keep=''
+  used="$(docker ps -a --format '{{.Image}}')"
+  # Parallel ups: another up may have built its images and not started them yet. Its lease is fresh.
+  for e in "$ROOT"/*/stack.env; do
+    [ -f "$e" ] && [ -n "$(find "$(dirname "$e")/lease" -mmin -"$TTL_MIN" 2>/dev/null)" ] || continue
+    keep="$keep"$'\n'"$(sed -n -e "s|^VERIFY_API_TAG=|$API_IMG:|p" -e "s|^VERIFY_WEB_TAG=|$WEB_IMG:|p" "$e")"
+  done
+  for img in $(docker images --format '{{.Repository}}:{{.Tag}}' |
+    grep -E "^($API_IMG|$WEB_IMG|ghcr.io/cervera-studio/zenbree-oss-landing):(verify|src-)" || true); do
+    grep -qxF "$img" <<<"$used$keep" && continue
+    docker image rm "$img" >/dev/null 2>&1 && say "removed: image $img"
+  done
+  for d in "$ROOT"/*/; do
+    d="${d%/}"
+    [ -f "$d/stack.env" ] && continue
+    [ -n "$(find "$d" -mtime -7 -print -quit)" ] && continue
+    rm -rf "$d" && say "removed: state $d"
+  done
+  # Each checkout's build adds layers; the least recently used go first, from every project on this Docker.
+  docker builder prune -af --max-used-space "$BUILD_CACHE_MAX" >/dev/null || true
+}
+
+source "$REPO/harness/heavy-lock.sh"
+source "$SKILL_DIR/bin/llm-key.sh"
+GATE_LOCK="$HEAVY_LOCK" # the one a full init.sh run takes
+
+# Builds run in their own BuildKit container with a ceiling of BUILD_MIB, not in dockerd's BuildKit: there each
+# build grew dockerd itself (1.4 GiB resident, 2 GiB peak on 2026-10-16), which no admission saw and which stayed
+# after the build, until the VM swapped and every docker call took 30 s. One build at a time on this machine.
+# ponytail: `docker compose up --build` of the developer's stack still builds in dockerd and takes no lock.
+build_images() { # $@ services
+  local want=$((BUILD_MIB * 1048576))
+  if [ "$(docker inspect -f '{{.HostConfig.Memory}}' "buildx_buildkit_${BUILDER}0" 2>/dev/null)" != "$want" ]; then
+    docker buildx rm "$BUILDER" >/dev/null 2>&1 || true # a ceiling from another VERIFY_BUILD_MIB
+    docker buildx create --name "$BUILDER" --driver docker-container \
+      --driver-opt "memory=${BUILD_MIB}m" --driver-opt "memory-swap=${BUILD_MIB}m" >/dev/null
+  fi
+  BUILDX_BUILDER="$BUILDER" dc build "$@"
+  docker buildx prune --builder "$BUILDER" -af --max-used-space "$BUILD_CACHE_MAX" >/dev/null || true
+  docker buildx stop "$BUILDER" >/dev/null 2>&1 || true # its memory goes back to the stacks until the next build
+}
+
+build_gated() { # $@ services; a subshell for the same reason as the build lock's
+  (HEAVY_LOCK="$GATE_LOCK" with_heavy_lock "verify image build of $PROJECT" build_images "$@")
+}
+
+# gc keeps the images of every stack with a fresh lease.
+start_stack() {
+  gc
+  local missing=''
+  docker image inspect "$API_IMG:$API_TAG" >/dev/null 2>&1 || missing=api
+  docker image inspect "$WEB_IMG:$WEB_TAG" >/dev/null 2>&1 || missing="$missing web"
+  BUILT="${missing# }"
+  if [ -n "$missing" ]; then
+    say "building$missing (first build takes a few minutes)"
+    # A re-up's old containers stop first: their memory plus the build's did not fit beside another stack.
+    # up recreates them from the new images, and the volumes keep the database.
+    dc stop >/dev/null
+    # A subshell, so the lock's EXIT trap does not replace the one that frees this stack's reservation.
+    # The gate's lock too: a build next to a full init.sh run took both to 409 s on 2026-10-16, on the same CPUs.
+    (HEAVY_LOCK="$ROOT/build.lock" with_heavy_lock "image build of $PROJECT" build_gated $missing)
+  fi
+  dc up -d --no-build postgres redis api worker worker-webhooks beat web
+}
+
+port_owner_ok() { # $1 service, $2 container port, $3 expected host port
+  [ "$(dc port "$1" "$2" 2>/dev/null)" = "127.0.0.1:$3" ]
+}
+
+port_free_or_ours() { # $1 host port, $2 service, $3 container port
+  if lsof -nP -iTCP:"$1" -sTCP:LISTEN >/dev/null 2>&1; then
+    port_owner_ok "$2" "$3" "$1" || die "port $1 is in use by something else; set VERIFY_$(echo "$2" | tr a-z A-Z)_PORT"
+  fi
+}
+
+wait_http() { # $1 url, $2 label, $3 seconds
+  local i
+  for ((i = 0; i < $3; i++)); do
+    curl -fsS -o /dev/null "$1" 2>/dev/null && { say "ready: $2 ($1)"; return 0; }
+    sleep 2
+  done
+  die "$2 not ready after $(($3 * 2))s: $1 (try: bin/stack logs ${2%% *})"
+}
+
+cmd_seed() { # dev user + sample lists, skipped when present: dev/seed/lists.sql in the stack's own postgres
+  cmd_psql -X -q -f - <"$REPO/dev/seed/lists.sql"
+}
+
+cmd_up() {
+  local llm="${VERIFY_LLM:-on}" t0=$SECONDS t_admit t_start
+  llm_guard "$llm"
+  reap "$PROJECT"
+  want_tags
+  await_memory
+  t_admit=$SECONDS
+  trap 'rm -f "$RESERVE"' EXIT
+  port_free_or_ours "$WEB_PORT" web 3000
+  port_free_or_ours "$API_PORT" api 8000
+  write_env
+  touch "$STATE/lease"
+  set_env VERIFY_API_TAG "$API_TAG"
+  set_env VERIFY_WEB_TAG "$WEB_TAG"
+  set_env VERIFY_LLM "$llm"
+  say "starting $PROJECT from $REPO (api $API_TAG, web $WEB_TAG)"
+  start_stack
+  t_start=$SECONDS
+  cmd_seed
+  wait_http "$API/health" "api health" 90
+  wait_http "$WEB/auth/sign-in" "web sign-in page" 90
+  # One line per up, so the cost of a run can be measured: seconds waiting for memory, building and starting, until ready.
+  printf '%s\t%s\t%s\t%d\t%d\t%d\n' "$(date -u +%FT%TZ)" "$ID" "${BUILT:-none}" $((t_admit - t0)) \
+    $((t_start - t_admit)) $((SECONDS - t_start)) >>"$ROOT/timings.tsv"
+  rm -f "$RESERVE"
+  trap - EXIT
+  say "teardown:  $DOWN_CMD"
+  cmd_env
+}
+
+# One line per service compose starts, not only the running ones: on 2026-10-22 beat died (its RedBeat lock
+# expired while the Mac slept), the overlay's restart: "no" kept it down, and a doctor that listed `ps` said OK.
+# A service another one waits on with service_completed_successfully (migrate) is a one-shot: exit 0 is done.
+check_services() {
+  local config services one_shot states svc state code bad=0
+  # No service list would print no line and pass: the false OK this check exists to stop.
+  config="$(dc config --format json)" && services="$(jq -r '.services | keys[]' <<<"$config")" && [ -n "$services" ] ||
+    { echo "service:   compose config gave no services"; return 1; }
+  one_shot="$(jq -r '[.services[] | (.depends_on // {}) | to_entries[]
+    | select(.value.condition == "service_completed_successfully") | .key] | unique[]' <<<"$config")" || return 1
+  states="$(dc ps -a --format '{{.Service}} {{.State}} {{.ExitCode}}')"
+  for svc in $services; do
+    read -r state code <<<"$(awk -v s="$svc" '$1 == s { print $2, $3 }' <<<"$states")"
+    if [ -z "$state" ]; then
+      echo "service:   $svc missing: run ${CMD_PREFIX}bin/stack up"; bad=1
+    elif [ "$state" = running ]; then
+      echo "service:   $svc running"
+    elif [ "$state $code" = "exited 0" ] && grep -qx "$svc" <<<"$one_shot"; then
+      echo "service:   $svc exited (0), one-shot: done"
+    elif [ "$state" = paused ]; then # a recipe pauses api on purpose; start does not undo it
+      echo "service:   $svc paused: run ${CMD_PREFIX}bin/stack compose unpause $svc"; bad=1
+    else
+      echo "service:   $svc $state ($code): run ${CMD_PREFIX}bin/stack compose start $svc"; bad=1
+    fi
+  done
+  return "$bad"
+}
+
+cmd_doctor() {
+  local bad=0 rev found key file
+  [ -f "$ENV_FILE" ] || die "no state at $STATE; run bin/stack up"
+  echo "project:   $PROJECT   state: $STATE"
+  echo "checkout:  $REPO"
+  echo "lease:     renewed now; reaped after $TTL_MIN idle min"
+  rev="$(git -C "$REPO" rev-parse HEAD)"
+  want_tags
+  if grep -qx "VERIFY_API_TAG=$API_TAG" "$ENV_FILE" && grep -qx "VERIFY_WEB_TAG=$WEB_TAG" "$ENV_FILE"; then
+    echo "build:     current (HEAD ${rev:0:9})"
+  else
+    echo "build:     STALE: images predate HEAD ${rev:0:9} or working-tree edits; rerun bin/stack up"; bad=1
+  fi
+  check_services || bad=1
+  for pair in "web 3000 $WEB_PORT" "api 8000 $API_PORT"; do
+    set -- $pair
+    if port_owner_ok "$1" "$2" "$3"; then echo "port:      $3 -> $PROJECT $1"; else echo "port:      $3 NOT owned by $PROJECT $1"; bad=1; fi
+  done
+  if body="$(curl -fsS --max-time 5 "$API/health" 2>/dev/null)"; then echo "api:       $body"; else echo "api:       /health failing"; bad=1; fi
+  if curl -fsS --max-time 5 -o /dev/null "$WEB/api/auth/jwks"; then echo "web:       jwks ok"; else echo "web:       /api/auth/jwks failing"; bad=1; fi
+  if dc exec -T api printenv DEEPSEEK_API_KEY ANTHROPIC_API_KEY 2>/dev/null | grep -q .; then
+    echo "llm:       key present, chat can answer"
+  elif [ "$(recorded_llm)" = off ]; then
+    echo "llm:       off by choice (VERIFY_LLM=off), chat turns fail"
+  elif found="$(local_llm_key)"; then
+    read -r key file <<<"$found"
+    echo "llm:       no key, chat turns fail, but $file has $key: export it and rerun bin/stack up"; bad=1
+  else
+    echo "llm:       no key, chat turns fail (export DEEPSEEK_API_KEY before bin/stack up)"
+  fi
+  [ -f "$STATE/browser.json" ] && echo "browser:   $(cat "$STATE/browser.json")"
+  echo "teardown:  $DOWN_CMD"
+  [ "$bad" = 0 ] && echo "doctor:    OK" || { echo "doctor:    NOT OK"; exit 1; }
+}
+
+cmd_env() { # non-secret values, for: eval "$(bin/stack env)"
+  cat <<EOF
+export VERIFY_WEB=$WEB VERIFY_API=$API VERIFY_STATE=$STATE VERIFY_ARTIFACTS=$STATE/artifacts VERIFY_PROJECT=$PROJECT
+EOF
+}
+
+# Auth mail goes through Resend (#221). The stack has no RESEND_API_KEY, so nothing is sent
+# and no link is logged (only `auth.email.failed`). These rebuild the exact links Better Auth would mail.
+b64url() { openssl base64 -A | tr '+/' '-_' | tr -d '='; }
+
+# Verification tokens are HS256 JWTs {email, iat, exp} signed with BETTER_AUTH_SECRET
+# (better-auth createEmailVerificationToken), which this stack generated.
+cmd_verify_link() { # $1 email -> /api/auth/verify-email link
+  [ $# -ge 1 ] || die "usage: bin/stack verify-link <email> [callback path]"
+  local secret email now h p sig
+  secret="$(sed -n 's/^BETTER_AUTH_SECRET=//p' "$ENV_FILE")"
+  [ -n "$secret" ] || die "no BETTER_AUTH_SECRET in $ENV_FILE; run bin/stack up"
+  email="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
+  now="$(date +%s)"
+  h="$(printf '{"alg":"HS256"}' | b64url)"
+  p="$(printf '{"email":"%s","iat":%s,"exp":%s}' "$email" "$now" "$((now + 3600))" | b64url)"
+  sig="$(printf '%s.%s' "$h" "$p" | openssl dgst -sha256 -hmac "$secret" -binary | b64url)"
+  # The sign-up form names the page to land on (#323: an invitation); its email carries it as callbackURL.
+  echo "$WEB/api/auth/verify-email?token=$h.$p.$sig&callbackURL=$(printf '%s' "${2:-/}" | sed 's|/|%2F|g')"
+}
+
+# A reset request stores `reset-password:<token>` with the user id as value (better-auth requestPasswordReset).
+cmd_reset_link() { # $1 email -> newest /api/auth/reset-password link requested for that user
+  [ $# = 1 ] || die "usage: bin/stack reset-link <email>"
+  local token
+  token="$(cmd_psql -tAc "SELECT substr(v.identifier, 16) FROM verification v JOIN \"user\" u ON v.value = u.id::text
+    WHERE u.email = lower('$1') AND v.identifier LIKE 'reset-password:%' AND v.\"expiresAt\" > now()
+    ORDER BY v.\"createdAt\" DESC LIMIT 1")"
+  [ -n "$token" ] || die "no pending password reset for $1; request one on /auth/reset-password first"
+  echo "$WEB/api/auth/reset-password/$token?callbackURL=%2Fauth%2Freset-password"
+}
+
+auth_post() { # $1 path, $2 JSON body -> HTTP code; the body lands in $STATE/seed-auth.json
+  curl -sS -o "$STATE/seed-auth.json" -w '%{http_code}' -X POST "$WEB/api/auth/$1" \
+    -H 'content-type: application/json' -H "origin: $WEB" -d "$2"
+}
+
+# The same steps a person takes: sign up, open the verify link, set the password on the page it lands on, sign in.
+cmd_seed_user() { # $1 email, $2 password, [$3 name]
+  [ $# -ge 2 ] || die "usage: bin/stack seed-user <email> <password> [name]"
+  local code location token
+  code="$(auth_post sign-up/email "{\"email\":\"$1\",\"password\":\"$2\",\"name\":\"${3:-Verify User}\"}")"
+  [ "$code" = 200 ] || die "sign-up returned $code: $(cat "$STATE/seed-auth.json")"
+  # #1006: the first verification deletes the sign-up password and redirects to the set-password page.
+  read -r code location <<<"$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$(cmd_verify_link "$1")")"
+  token="$(printf '%s' "$location" | sed -n 's|.*/auth/reset-password?.*token=\([^&]*\).*|\1|p')"
+  [ "$code" = 302 ] && [ -n "$token" ] || die "verify link returned $code to '$location', not the set-password page"
+  code="$(auth_post reset-password "{\"token\":\"$token\",\"newPassword\":\"$2\"}")"
+  [ "$code" = 200 ] || die "setting the password returned $code: $(cat "$STATE/seed-auth.json")"
+  code="$(auth_post sign-in/email "{\"email\":\"$1\",\"password\":\"$2\"}")"
+  # Sign-in shares Better Auth's 3-in-10-s bucket with browser sign-ins; the user is complete, so wait it out.
+  if [ "$code" = 429 ]; then
+    say "sign-in rate-limited; retrying in 10 s"
+    sleep 10
+    code="$(auth_post sign-in/email "{\"email\":\"$1\",\"password\":\"$2\"}")"
+  fi
+  [ "$code" = 200 ] || die "sign-in with the seeded password returned $code: $(cat "$STATE/seed-auth.json")"
+  say "seeded $1: verified, signs in with the given password"
+}
+
+cmd_make_admin() {
+  [ $# = 1 ] || die "usage: bin/stack make-admin <email>"
+  cmd_psql -tAc "UPDATE \"user\" SET role = 'admin' WHERE email = '$1' RETURNING email, role"
+}
+
+cmd_psql() { dc exec -T postgres psql -U zenbree -d zenbree -v ON_ERROR_STOP=1 "$@"; }
+
+cmd_down() {
+  [ -f "$ENV_FILE" ] || { say "nothing to tear down at $STATE"; return 0; }
+  teardown "$PROJECT" "$ID"
+  say "evidence kept in $STATE/artifacts"
+}
+
+cmd_prune() { # every VERIFY_ID: what up reaps, then old images and state
+  local p
+  reap
+  gc
+  for p in $(verify_projects -a); do say "kept:    $(describe "$p")"; done
+}
+
+[ -n "$ANY_ID" ] && [ -f "$ENV_FILE" ] && touch "$STATE/lease"
+
+case "${1:-help}" in
+  up) cmd_up ;;
+  doctor) cmd_doctor ;;
+  env) cmd_env ;;
+  logs) shift; dc logs --tail "${TAIL:-200}" "$@" ;;
+  seed) cmd_seed ;;
+  psql) shift; cmd_psql "$@" ;;
+  verify-link) shift; cmd_verify_link "$@" ;;
+  reset-link) shift; cmd_reset_link "$@" ;;
+  seed-user) shift; cmd_seed_user "$@" ;;
+  make-admin) shift; cmd_make_admin "$@" ;;
+  compose) shift; compose_creates "$@" && llm_guard "${VERIFY_LLM:-$(recorded_llm)}"; dc "$@" ;;
+  down) cmd_down ;;
+  prune) cmd_prune ;;
+  *)
+    cat >&2 <<EOF
+bin/stack up                 reap idle stacks, wait for Docker memory, build missing images, start $PROJECT (web $WEB, api $API)
+bin/stack doctor             read-only health: build freshness, services, ports, api, jwks, llm key
+bin/stack env                print exports: VERIFY_WEB VERIFY_API VERIFY_ARTIFACTS ...
+bin/stack logs [svc...]      recent logs (TAIL=n)
+bin/stack seed               dev user dev@zenbree.local + sample lists, skipped when present (runs on up)
+bin/stack psql [-c SQL]      psql in the verify database
+bin/stack verify-link <email> [path]  the email-verification link Better Auth would mail (signed with this stack's secret), landing on path (default /)
+bin/stack reset-link <email>   the newest pending password-reset link for <email> (request it in the UI first)
+bin/stack seed-user <email> <password> [name]   sign up, open verify-link, set the password, sign in, through the real auth endpoints
+bin/stack make-admin <email> grant the Better Auth admin role
+bin/stack compose <args>     raw docker compose on the verify project
+bin/stack down               stop browser, remove containers + volumes + secrets; keep artifacts
+bin/stack prune              every id: reap stacks idle past VERIFY_TTL_MIN or whose checkout is gone, remove unused images and week-old state
+EOF
+    ;;
+esac

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Accedi</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;width:100%;height:44px;padding:0 14px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:15px;color:var(--zb-fg)}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.zb-sso{transition:background 190ms cubic-bezier(0.4,0,1,1)}
+.zb-sso:hover{background:var(--zb-rail) !important;transition-duration:110ms}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px">
+  <main style="display: flex; flex-direction: column; padding: 28px 40px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <span style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em">zenbree</span>
+    </div>
+
+    <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 0">
+      <div style="width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Accedi</h1>
+          <p style="margin: 0; font-size: 15px; color: var(--zb-muted-fg)">Bentornato. Le tue chat e le tue liste ti aspettano.</p>
+        </div>
+
+        <sc-if value="{{notice}}" hint-placeholder-val="{{false}}">
+          <div role="{{notice.role}}" style="display: flex; gap: 12px; padding: 14px 16px; border-radius: 14px; background: {{notice.bg}}; border: 1px solid {{notice.border}}">
+            <span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 6px; border-radius: 999px; background: {{notice.fg}}; flex-shrink: 0"></span>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.5">
+              <strong style="color: {{notice.fg}}">{{notice.title}}</strong>
+              <span>{{notice.body}}</span>
+              <sc-if value="{{notice.link}}" hint-placeholder-val="{{false}}"><a href="{{notice.link}}" style="font-weight: 600; text-decoration: none">{{notice.linkLabel}}</a></sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <a href="{{nav.home}}" class="zb-sso" style="height: 44px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 10px">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z" fill="#4285F4"></path><path d="M12 22c2.7 0 5-.9 6.6-2.5l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z" fill="#34A853"></path><path d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3.1a10 10 0 0 0 0 9z" fill="#FBBC05"></path><path d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5l3.3 2.6C7.2 7.8 9.4 6 12 6z" fill="#EA4335"></path></svg>
+            Continua con Google
+          </a>
+          <a href="{{nav.home}}" class="zb-sso" style="height: 44px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 10px">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9.5" height="9.5" fill="#F25022"></rect><rect x="12.5" y="2" width="9.5" height="9.5" fill="#7FBA00"></rect><rect x="2" y="12.5" width="9.5" height="9.5" fill="#00A4EF"></rect><rect x="12.5" y="12.5" width="9.5" height="9.5" fill="#FFB900"></rect></svg>
+            Continua con Microsoft
+          </a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; color: var(--zb-muted-fg); font-size: 12px">
+          <span style="flex-grow: 1; height: 1px; background: var(--zb-border)"></span>oppure con email<span style="flex-grow: 1; height: 1px; background: var(--zb-border)"></span>
+        </div>
+
+        <form style="display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="email" style="font-size: 13px; font-weight: 600">Email</label>
+            <input id="email" class="zb-field" type="email" autocomplete="email" placeholder="nome@azienda.it" value="{{emailVal}}">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline">
+              <label for="password" style="font-size: 13px; font-weight: 600">Password</label>
+              <a href="{{nav.reset}}" style="font-size: 13px; font-weight: 600; text-decoration: none">Password dimenticata?</a>
+            </div>
+            <div style="position: relative">
+              <input id="password" class="zb-field" type="{{pwType}}" autocomplete="current-password" style="padding-right: 48px">
+              <button type="button" onClick="{{togglePw}}" aria-label="{{pwLabel}}" style="position: absolute; right: 4px; top: 4px; width: 36px; height: 36px; border: 0; border-radius: 7px; background: transparent; color: var(--zb-muted-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            </div>
+          </div>
+          <a href="{{nav.home}}" style="height: 44px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center">Accedi</a>
+        </form>
+
+        <p style="margin: 0; font-size: 14px; color: var(--zb-muted-fg); text-align: center">Non hai un account? <a href="{{nav.signup}}" style="font-weight: 600; text-decoration: none">Registrati</a></p>
+      </div>
+    </div>
+
+    <footer style="display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--zb-muted-fg)">
+      <span>© 2026 Zenbree</span>
+      <a href="#" style="color: var(--zb-muted-fg); text-decoration: none">Termini</a>
+      <a href="#" style="color: var(--zb-muted-fg); text-decoration: none">Privacy</a>
+      <span style="flex-grow: 1"></span>
+      <span role="group" aria-label="Lingua" style="display: inline-flex; gap: 2px; padding: 2px; border-radius: 7px; background: var(--zb-rail)">
+        <span style="padding: 3px 8px; border-radius: 5px; background: var(--zb-bg); color: var(--zb-fg); font-weight: 600">IT</span>
+        <span style="padding: 3px 8px">EN</span>
+      </span>
+    </footer>
+  </main>
+  <dc-import name="AuthAside" theme="{{theme}}" hint-size="100%,100vh"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"notice":{"editor":"enum","options":["none","expired","banned"],"default":"none"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { showPw: false };
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const nav = { home: h('Main.dc.html'), signin: h('Auth-SignIn.dc.html'), signup: h('Auth-SignUp.dc.html'), verify: h('Auth-Verify.dc.html'), reset: h('Auth-Reset.dc.html'), ob1: h('Onb-Company.dc.html') };
+    const N = this.props.notice ?? 'none';
+    const notice = N === 'expired'
+      ? { role: 'status', title: 'Sessione scaduta', body: 'Per sicurezza ti disconnettiamo dopo 30 giorni o quando cambi la password. Accedi di nuovo: riprendi dalla chat «Trova CEO di agenzie marketing a Milano».', bg: 'rgba(43,127,255,0.08)', border: 'rgba(43,127,255,0.25)', fg: 'var(--zb-info-fg)', link: false }
+      : N === 'banned'
+      ? { role: 'alert', title: 'Account sospeso', body: 'Non puoi accedere con info@grafica-ferro.it: l\u2019account è stato sospeso il 26 set per segnalazioni di spam. Campagne e job sono fermi, i dati restano salvati.', bg: 'rgba(251,44,54,0.08)', border: 'rgba(251,44,54,0.25)', fg: 'var(--zb-neg-fg)', link: 'mailto:supporto@zenbree.it', linkLabel: 'Scrivi a supporto@zenbree.it' }
+      : false;
+    return {
+      notice, emailVal: N === 'expired' ? 'ale@ritmosales.it' : N === 'banned' ? 'info@grafica-ferro.it' : '',
+      theme, nav, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      pwType: this.state.showPw ? 'text' : 'password',
+      pwLabel: this.state.showPw ? 'Nascondi password' : 'Mostra password',
+      togglePw: () => this.setState({ showPw: !this.state.showPw })
+    };
+  }
+}
+</script>
+</body>
+</html>

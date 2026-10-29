@@ -1,0 +1,287 @@
+import type { Content } from '../content';
+
+export const es: Content = {
+  sections: { how: 'como-funciona', why: 'por-que', openSource: 'codigo-abierto', faq: 'faq' },
+  meta: {
+    title: 'Zenbree · Agente de IA para outbound B2B',
+    description:
+      'Dile al chat a quién quieres llegar. El agente te enseña el plan y lo apruebas tú. Después te entrega personas con un email comprobado por un verificador y la fuente de cada dato.',
+  },
+  nav: {
+    homeLabel: 'Zenbree, inicio',
+    label: 'Secciones',
+    how: 'Cómo funciona',
+    why: 'Por qué',
+    openSource: 'Código abierto',
+    faq: 'Preguntas',
+    signIn: 'Iniciar sesión',
+    contact: 'Contáctanos',
+  },
+  menu: {
+    open: 'Abrir menú',
+    close: 'Cerrar menú',
+    themeLabel: 'Tema',
+    dark: 'Oscuro',
+  },
+  hero: {
+    eyebrow: 'Agente de IA para outbound B2B',
+    titleLine: 'Describe a tu cliente ideal.',
+    titleEm: 'Zenbree encuentra a quién contactar.',
+    cta: 'Solicita acceso',
+    seeHow: 'Ver cómo funciona',
+    fine: 'Código abierto · Self-host o servicio gestionado bajo petición',
+  },
+  stage: {
+    label: 'Vista previa del producto',
+    emailFloat: {
+      key: 'Email verificado',
+      value: 'giulia@officinanove.example',
+      source: 'Fuente: officinanove.example/team',
+    },
+    fieldsFloat: {
+      key: 'Campos obligatorios',
+      value: 'Nombre, cargo, email',
+      source: 'Solo filas completas',
+    },
+    brief:
+      'Agencias de marketing independientes en Milán, de 10 a 50 empleados. Quiero al CEO, con email comprobado.',
+    planTitle: 'Plan · 60 filas',
+    columns: ['Nombre *', 'Cargo *', 'Email comprobado *'],
+    aiColumn: 'Sector · IA',
+    planFooter: 'Solo filas con los campos *',
+    rowsSummary: '57 entregadas · 31 empresas',
+  },
+  ui: {
+    verified: '✓ verificado',
+    people: 'Personas',
+    approveStart: 'Aprobar y empezar',
+    toApprove: 'Por aprobar',
+    skip: 'Omitir',
+    approveSend: 'Aprobar y enviar',
+    to: 'Para:',
+    subject: 'Asunto:',
+  },
+  people: [
+    { initials: 'GF', name: 'Giulia Ferri', role: 'CEO', company: 'Officina Nove', score: 92 },
+    {
+      initials: 'MB',
+      name: 'Marco Bellini',
+      role: 'Director comercial',
+      company: 'Studio Brezza',
+      score: 88,
+    },
+    {
+      initials: 'CG',
+      name: 'Chiara Gallo',
+      role: 'Fundadora y CEO',
+      company: 'Lanterna Digital',
+      score: 85,
+    },
+    { initials: 'EM', name: 'Elena Moretti', role: 'CEO', company: 'Ponte Creativo', score: 81 },
+  ],
+  works: {
+    label: 'Funciona con lo que ya usas',
+    items: [
+      { name: 'Gmail', logo: 'gmail' },
+      { name: 'Outlook', logo: 'outlook' },
+      { name: 'LinkedIn', logo: 'linkedin' },
+      { name: 'CSV y Excel', logo: 'excel' },
+      { name: 'API', logo: 'api' },
+      { name: 'HubSpot · pronto', logo: 'hubspot', soon: true },
+    ],
+  },
+  statement: {
+    line: 'Una buena lista no es una más larga.',
+    em: 'Es más corta, y cada fila tiene una fuente que puedes abrir.',
+  },
+  how: {
+    eyebrow: 'Cómo funciona',
+    titleLine: 'Del brief a la primera respuesta,',
+    titleRest: 'sin perder el control.',
+    tablistLabel: 'Pasos',
+    steps: [
+      {
+        n: '01',
+        title: 'Describe',
+        short: 'Una frase, con tus palabras',
+        body: 'Sector, zona, tamaño, cargos, señales como «está contratando». Escríbelo como se lo contarías a un compañero: si falta algo, el agente pregunta antes de buscar.',
+        points: [
+          'Una pregunta cada vez, solo cuando hace falta',
+          'Recuerda el perfil de tu empresa y lo que le pidas',
+          'Se salta a quien excluiste: emails, dominios, empresas',
+        ],
+        art: {
+          kind: 'brief',
+          brief: 'Responsables de compras en cadenas de supermercados del noreste de Italia',
+          question: 'Antes de buscar: ¿quieres solo las cadenas o también los mayoristas?',
+          choices: ['Solo cadenas', 'También mayoristas'],
+        },
+      },
+      {
+        n: '02',
+        title: 'Aprueba el plan',
+        short: 'Filas, columnas y pasos',
+        body: 'Ves el plan, con filas y columnas, y lo apruebas. Las columnas marcadas con asterisco deciden qué se entrega.',
+        points: [
+          'No empieza nada hasta que apruebas',
+          'Ves filas y columnas antes de empezar',
+          'Las filas las cambias en el plan; columnas y pasos se los pides al agente',
+        ],
+        art: {
+          kind: 'plan',
+          title: 'Plan · 80 filas',
+          steps: [
+            '1 · Buscar 40 cadenas en el noreste de Italia',
+            '2 · 2 responsables de compras por cadena',
+            '3 · Verificar los emails y una columna IA',
+          ],
+          note: 'No empieza nada hasta que apruebes',
+        },
+      },
+      {
+        n: '03',
+        title: 'Recibe la lista',
+        short: 'Personas y empresas',
+        body: 'Dos listas vinculadas, personas y empresas, con un email comprobado por un verificador y una puntuación de cuánto encaja cada una. Cada dato investigado tiene su fuente.',
+        points: [
+          'Las primeras filas llegan mientras el agente trabaja',
+          'Las filas incompletas no se entregan',
+          'Exporta a CSV o Excel cuando quieras',
+        ],
+        art: {
+          kind: 'list',
+          delivered: '74 de 80 entregadas',
+          people: [
+            {
+              initials: 'MC',
+              name: 'Marta Colombo',
+              role: 'Compradora de frescos',
+              company: 'Insegna Nord',
+              score: 90,
+            },
+            {
+              initials: 'PR',
+              name: 'Paolo Rizzi',
+              role: 'Category manager',
+              company: 'Super Est',
+              score: 84,
+            },
+          ],
+          why: {
+            title: 'Por qué encaja',
+            quote: '«Gestiona al proveedor local desde 2023» · fuente: superest.it/news',
+          },
+        },
+      },
+      {
+        n: '04',
+        title: 'Contacta',
+        short: 'Email y LinkedIn',
+        body: 'Secuencias de hasta 12 pasos, enviadas desde tus buzones y tu LinkedIn. Apruebas cada mensaje, quien responde sale de la secuencia y la respuesta llega ya etiquetada.',
+        points: [
+          'Límite diario que crece durante las dos primeras semanas',
+          'Parada automática ante una respuesta o una baja',
+          'Borrador de respuesta listo, salvo para un «no»',
+        ],
+        art: {
+          kind: 'mail',
+          queue: '3 de 12',
+          to: 'Marta Colombo',
+          subject: 'Proveedores locales de frescos',
+          body: 'Hola, Marta: he leído que este año apostáis más por los productores locales…',
+        },
+      },
+    ],
+  },
+  why: {
+    eyebrow: 'Por qué Zenbree',
+    titleLine: 'Encuentra a las personas adecuadas,',
+    titleRest: 'con los datos para contactarlas.',
+    source: {
+      title: 'Cada dato tiene su fuente',
+      body: 'Las columnas de IA solo conservan un valor si está escrito en una página que puedes abrir.',
+      cellValue: 'Empleados: 18',
+      cellSource: '↗ linkedin.com/company/officina-nove',
+    },
+    approve: {
+      title: 'Apruebas cada mensaje',
+      body: 'Las campañas salen de tus propios buzones, con un límite diario que crece poco a poco. Nada se envía sin tu visto bueno.',
+      caption: 'de 10 a 50 envíos al día, por buzón',
+    },
+    replies: {
+      title: 'Respuestas ya clasificadas',
+      body: 'Quien responde sale de la secuencia. El agente etiqueta la respuesta y prepara el borrador.',
+      labels: [
+        { label: 'Interesado', tone: 'pos' },
+        { label: 'Pide una reunión', tone: 'info' },
+        { label: 'Ahora no' },
+        { label: 'No interesado' },
+        { label: 'Baja', tone: 'neg' },
+      ],
+    },
+    market: {
+      title: 'Empresas y personas de todo el mundo',
+      body: 'Busca en cualquier país. La app y el agente hablan español, inglés, italiano y francés, en el idioma que elijas, y los borradores de respuesta de la bandeja de entrada siguen el idioma de quien te escribe. Las exclusiones (clientes, competidores, cualquiera que se haya dado de baja) duran para siempre.',
+    },
+  },
+  openSource: {
+    eyebrow: 'Código abierto',
+    title: 'Código abierto. Hazlo tú, o nos encargamos nosotros.',
+    sub: 'Zenbree tiene licencia MIT. Clónalo, usa tus propias claves de proveedores y adáptalo a tu forma de trabajar.',
+    selfHostTitle: 'Self-host',
+    selfHostBody: 'Docker Compose levanta todo el stack: API, worker, web y base de datos.',
+    repoCta: 'Ver en GitHub',
+    hostedTitle: 'Alojado por nosotros',
+    hostedBody:
+      '¿Prefieres no gestionar servidores ni cuentas de proveedores? Ofrecemos un servicio alojado. Escríbenos y lo activamos.',
+    hostedCta: 'Escríbenos',
+  },
+  faq: {
+    eyebrow: 'Preguntas',
+    title: 'Lo que se pregunta antes de empezar.',
+    moreBefore: '¿Algo más? Escríbenos a ',
+    moreAfter: '.',
+    items: [
+      {
+        q: '¿Y si no se encuentra un email?',
+        a: 'Si el email es obligatorio en el plan, esa fila no se entrega. Marcamos los emails «catch-all» como pendientes de verificar.',
+      },
+      {
+        q: '¿Tengo que conectar LinkedIn o mi email?',
+        a: 'No, no hace falta conectar nada para crear listas. Los buzones y LinkedIn solo se necesitan para enviar campañas desde tus propias cuentas.',
+      },
+      {
+        q: '¿Funciona fuera de Italia?',
+        a: 'Sí. Buscas empresas y personas en cualquier país, siempre con la fuente de cada dato, aunque la cobertura de los proveedores de datos varía de un país a otro. El sitio, la app y el agente hablan español, inglés, italiano y francés, en el idioma que elijas en la app.',
+      },
+      {
+        q: '¿Puedo subir una lista que ya tengo?',
+        a: 'Sí: sube un CSV y el agente lo completa con emails, teléfonos y columnas de investigación. Las filas que están en tus exclusiones se descartan.',
+      },
+      {
+        q: '¿De dónde vienen los datos? ¿Cumple el RGPD?',
+        a: 'De proveedores de datos profesionales y de páginas públicas, siempre con la fuente. Cada email de campaña permite darse de baja, y quien lo hace entra para siempre en las exclusiones del proyecto. Las exclusiones valen para todas las campañas del proyecto. La base legal y el aviso del art. 14 del RGPD corresponden a quien envía: Zenbree no ofrece asesoramiento legal.',
+      },
+      {
+        q: '¿Cuántos emails y mensajes puedo enviar al día?',
+        a: 'Por buzón: 10 al día la primera semana, 25 la segunda y después hasta 50. En LinkedIn: 20 invitaciones y 30 mensajes al día, como máximo 100 invitaciones a la semana. Los límites protegen tus cuentas.',
+      },
+      {
+        q: '¿Puedo mantener separados a mis clientes?',
+        a: 'Sí. Cada cliente es un proyecto con sus listas, exclusiones, buzones y LinkedIn, campañas y bandeja de entrada. Las exclusiones de un proyecto no afectan a los demás.',
+      },
+    ],
+  },
+  final: {
+    title: '¿A quién quieres llegar?',
+    lede: 'Escríbenos y te activamos el acceso.',
+    button: 'Solicita acceso',
+  },
+  footer: {
+    legalLabel: 'Enlaces legales',
+    terms: 'Términos',
+    privacy: 'Privacidad',
+    signIn: 'Iniciar sesión',
+    langLabel: 'Idioma',
+  },
+};

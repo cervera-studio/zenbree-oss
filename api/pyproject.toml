@@ -1,0 +1,83 @@
+[project]
+name = "zenbree-api"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic[email]>=2.12",
+    "pydantic-settings",
+    "structlog",
+    "httpx",
+    "PyJWT[crypto]",
+    "psycopg[binary,pool]>=3.2",
+    "celery[redis]>=5.4",
+    "celery-redbeat",
+    "flower",
+    "redis",
+    "sentry-sdk[fastapi]",
+    "anthropic",
+    "stripe>=16,<17",
+    "flower>=2.2.0",
+    "html2text>=2025.4.15",
+    "dnspython>=2.8",
+    "pywebpush>=2.5.0",
+    "publicsuffixlist>=1.0",
+    "pillow>=12.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "celery-types>=0.26.0",
+    "fakeredis>=2.38.0",
+    "hypothesis>=6.170.2",
+    "mypy>=2.3.1",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-xdist>=3.8.0",
+    "ruff",
+]
+
+# ponytail: not installed as a dist; `app` is imported from the source tree
+# (cwd for uvicorn/celery, pythonpath for pytest).
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+# -rs: print every skip reason, so a skipped SQL test is never silent.
+addopts = "-rs"
+markers = [
+    "web_fixture: writes the web fixtures (web/lib/api/fixtures, harness/web_fixtures.py)",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC", "S", "DTZ", "T20", "SIM", "C4", "PT", "RUF", "PERF"]
+ignore = [
+    "E501",  # as in the earlier implementation; copied files keep their long lines
+    "S608",  # f-string SQL only splices module-level column constants; values go through %s params
+    "RUF001", "RUF002", "RUF003",  # Italian copy and arrows/dashes in strings and comments are intended
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "PT018"]
+"bench/**" = ["S101", "PT018", "T201"]  # timings go to the CI log as JSON lines (pytest -s)
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends"]
+
+[tool.mypy]
+python_version = "3.14"
+files = ["app"]
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true

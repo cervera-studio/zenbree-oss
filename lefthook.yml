@@ -1,0 +1,43 @@
+# Commit-time fixes and commit-message rules. harness/init.sh runs the full checks.
+# `pnpm install` in web/ installs the hooks (lefthook's postinstall).
+# pre-commit calls node_modules/.bin directly: git hooks don't load nvm, so pnpm may be missing.
+pre-commit:
+  parallel: true
+  jobs:
+    - name: api ruff
+      root: api/
+      glob: "*.py"
+      run: uv run ruff check --fix {staged_files} && uv run ruff format {staged_files}
+      stage_fixed: true
+    - name: web biome
+      root: web/
+      glob: "*.{ts,tsx,js,mjs,json,css}"
+      run: ./node_modules/.bin/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+    - name: landing biome
+      root: landing/
+      glob: "*.{ts,mjs,json,css,astro}"
+      run: ./node_modules/.bin/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+    - name: secrets
+      run: gitleaks git --staged --no-banner --redact
+    - name: web oxlint
+      root: web/
+      glob: "*.{ts,tsx,js,jsx,mjs,cjs}"
+      run: ./node_modules/.bin/oxlint -c .oxlintrc.json {staged_files}
+    # Effect-rule suppressions and lint config edits need the user's approval (web/lint/README.md).
+    - name: web effect-rule guard
+      root: web/
+      glob: "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc}"
+      run: node lint/guard.mjs
+
+commit-msg:
+  jobs:
+    - name: conventional commit
+      run: |
+        head -1 {1} | grep -qE '^((feat|fix|chore|ci|docs|refactor|test|perf|build|style|revert)(\([a-z0-9-]+\))?!?: .+|(fixup|squash|amend)! |Merge |Revert )' \
+          || { echo 'subject must be a Conventional Commit, e.g. "fix(agent): stop after max turns"' >&2; exit 1; }
+    - name: no AI attribution
+      run: |
+        ! grep -qiE '^co-authored-by:.*(claude|anthropic)|generated with .*claude' {1} \
+          || { echo 'no AI attribution in commits for this project' >&2; exit 1; }

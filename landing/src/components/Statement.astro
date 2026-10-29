@@ -1,0 +1,13 @@
+---
+import type { Content } from '../content';
+import { wrap } from '../styles/classes';
+
+interface Props {
+  t: Content;
+}
+const { t } = Astro.props;
+---
+
+<section class="border-y border-line bg-raised">
+  <p class:list={[wrap, 'py-16 text-headline text-balance phone:py-10 phone:text-title']}>{t.statement.line}<br /><span class="text-muted">{t.statement.em}</span></p>
+</section>

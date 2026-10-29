@@ -1,0 +1,54 @@
+{
+  "team": {
+    "title": "Team {name}",
+    "titleFallback": "Team",
+    "descriptionAdmin": "Invite people to work with you: lists, chats, campaigns and replies are shared. Admins also manage the team, credits, API keys and webhooks.",
+    "descriptionMember": "The people you share lists, chats, campaigns and replies with. Only admins invite, change roles and remove.",
+    "loadError": "Could not load the team.",
+    "member": "Person",
+    "role": "Role",
+    "joined": "In the team since",
+    "actions": "Actions",
+    "you": "(you)",
+    "roles": {
+      "admin": "Admin",
+      "member": "Member"
+    },
+    "roleOf": "Role of {name}",
+    "inviteEmail": "Email to invite",
+    "inviteEmailPlaceholder": "name@company.com",
+    "remove": "Remove",
+    "removeLabel": "Remove {name} from the team",
+    "removeTitle": "Remove {name} from the team?",
+    "removeBody": "They lose access to the team right away. You can invite them again any time.",
+    "removeConfirm": "Remove",
+    "removeBullet1": "They no longer see the team's lists, chats, campaigns and replies.",
+    "removeBullet2": "What they created stays with the team.",
+    "pendingTitle": "Pending invitations",
+    "expires": "Expires {date}",
+    "expired": "Expired",
+    "cancel": "Cancel invitation",
+    "cancelLabel": "Cancel the invitation to {email}",
+    "errors": {
+      "generic": "That didn't work. Try again."
+    },
+    "forMe": {
+      "title": "Invitations for you",
+      "item": "You were invited to the team {name}.",
+      "open": "Open the invitation"
+    },
+    "invite": "Invite",
+    "invitation": {
+      "title": "Join {name}",
+      "body": "{inviter} invited you to the team {name} as {role, select, admin {an admin} other {a member}}. The team's lists, chats, campaigns and replies will be shared with you.",
+      "accept": "Accept the invitation",
+      "decline": "Decline",
+      "declined": "You declined the invitation.",
+      "failed": "Could not answer the invitation. Try again.",
+      "home": "Go to Zenbree",
+      "switchAccount": "Sign in with another account",
+      "invalidTitle": "Invitation not valid",
+      "invalidBody": "The invitation expired, was already answered, or is for another address. You are signed in as {email}: if the invitation is for another email, sign in with that one. Otherwise ask for a new invitation."
+    }
+  }
+}

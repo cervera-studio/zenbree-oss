@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Toast</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+body{margin:0}
+/* Zenbree tokens, exact values from the design system (light first, dark below). */
+.zt{--zt-popover:oklch(0.972 0.006 186.9);--zt-fg:oklch(0.2 0.025 216.6);--zt-muted-fg:oklch(0.5 0.016 216.6);--zt-border:oklch(0.9 0.013 186.9);--zt-accent:oklch(0.96 0.007 186.9);--zt-ring:oklch(0.471 0.084 216.6);--zt-brand-ink:oklch(0.471 0.084 216.6);--zt-brand-tint:oklch(0.935 0.035 216.6);--zt-pos-fg:oklch(0.508 0.118 165.612);--zt-neg-fg:oklch(0.505 0.213 27.518);--zt-info-fg:oklch(0.488 0.243 264.376);--zt-pos-a:oklch(0.696 0.17 162.48 / 0.14);--zt-neg-a:oklch(0.637 0.237 25.331 / 0.14);--zt-neg-line:oklch(0.637 0.237 25.331 / 0.3);--zt-info-a:oklch(0.623 0.214 259.815 / 0.12);--zt-shadow:oklch(0.2 0.025 216.6 / 0.16)}
+.zt.zt-dark{color-scheme:dark;--zt-popover:oklch(0.218 0.011 186.9);--zt-fg:oklch(0.955 0.006 186.9);--zt-muted-fg:oklch(0.69 0.014 186.9);--zt-border:oklch(0.3 0.013 186.9);--zt-accent:oklch(0.245 0.012 186.9);--zt-ring:oklch(0.78 0.095 216.6);--zt-brand-ink:oklch(0.78 0.095 216.6);--zt-brand-tint:oklch(0.31 0.05 216.6);--zt-pos-fg:oklch(0.845 0.143 164.978);--zt-neg-fg:oklch(0.704 0.191 22.216);--zt-info-fg:oklch(0.809 0.105 251.813);--zt-shadow:oklch(0 0 0 / 0.5)}
+.zt{animation:zt-in 110ms cubic-bezier(0.2,0,0,1) both}
+@keyframes zt-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.zt-act{transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.zt-act:hover{background:var(--zt-accent);transition-duration:110ms;transition-timing-function:cubic-bezier(0.2,0,0,1)}
+.zt-act:focus-visible{outline:2px solid var(--zt-ring);outline-offset:2px}
+.zt-x{transition:background-color 190ms cubic-bezier(0.4,0,1,1),color 190ms cubic-bezier(0.4,0,1,1)}
+.zt-x:hover{background:var(--zt-accent);color:var(--zt-fg);transition-duration:110ms;transition-timing-function:cubic-bezier(0.2,0,0,1)}
+.zt-x:focus-visible{outline:2px solid var(--zt-ring);outline-offset:2px}
+.zt-spin{animation:zt-spin 900ms linear infinite;transform-origin:50% 50%}
+@keyframes zt-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.zt,.zt-act,.zt-x{animation-duration:0.01ms;transition-duration:0.01ms}.zt-spin{animation-duration:2.4s}}
+</style>
+</helmet>
+<div class="zt {{themeClass}}" role="{{role}}" aria-live="{{live}}" aria-atomic="true" style="{{pos}} display: flex; align-items: center; gap: 12px; min-width: 320px; max-width: 440px; box-sizing: border-box; padding: 10px 10px 10px 12px; border-radius: 14px; border: 1px solid {{borderColor}}; background: var(--zt-popover); color: var(--zt-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 20px; box-shadow: 0 1px 2px var(--zt-shadow), 0 12px 32px -12px var(--zt-shadow)">
+  <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 10.5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: {{chipBg}}; color: {{chipFg}}">
+    <sc-if value="{{is.success}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+    <sc-if value="{{is.error}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16.5h.01"></path></svg></sc-if>
+    <sc-if value="{{is.info}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5M12 7.5h.01"></path></svg></sc-if>
+    <sc-if value="{{is.progress}}" hint-placeholder-val="{{false}}"><svg class="zt-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5" opacity="0.25"></circle><path d="M12 3.5a8.5 8.5 0 0 1 8.5 8.5"></path></svg></sc-if>
+  </span>
+  <p style="margin: 0; flex-grow: 1; min-width: 0; padding: 6px 0">{{text}}</p>
+  <sc-if value="{{action}}" hint-placeholder-val="{{true}}"><button type="button" class="zt-act" onClick="{{act}}" style="height: 32px; padding: 0 10px; border: 0; border-radius: 10.5px; background: transparent; color: var(--zt-brand-ink); font-family: inherit; font-size: 13px; line-height: 18px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0">{{action}}</button></sc-if>
+  <button type="button" class="zt-x" aria-label="Chiudi notifica" onClick="{{close}}" style="width: 32px; height: 32px; border: 0; border-radius: 7px; background: transparent; color: var(--zt-muted-fg); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"tone":{"editor":"enum","options":["success","error","info","progress"],"default":"success"},"text":{"editor":"text","default":"Lista eliminata."},"action":{"editor":"text","default":"Annulla"},"onAction":{"editor":null},"onClose":{"editor":null},"inline":{"editor":"boolean","default":false},"$preview":{"width":480,"height":120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const t = this.props.tone ?? 'success';
+    // Each tone names a meaning: the signal base at low alpha for the chip fill, its -fg for the icon.
+    const S = {
+      success: ['var(--zt-pos-a)', 'var(--zt-pos-fg)', 'var(--zt-border)'],
+      error: ['var(--zt-neg-a)', 'var(--zt-neg-fg)', 'var(--zt-neg-line)'],
+      info: ['var(--zt-info-a)', 'var(--zt-info-fg)', 'var(--zt-border)'],
+      progress: ['var(--zt-brand-tint)', 'var(--zt-brand-ink)', 'var(--zt-border)']
+    }[t] || [];
+    return {
+      themeClass: theme === 'dark' ? 'zt-dark' : '',
+      role: t === 'error' ? 'alert' : 'status', live: t === 'error' ? 'assertive' : 'polite',
+      pos: this.props.inline ? '' : 'position: fixed; right: 24px; bottom: 24px; z-index: 80;',
+      is: { success: t === 'success', error: t === 'error', info: t === 'info', progress: t === 'progress' },
+      chipBg: S[0], chipFg: S[1], borderColor: S[2],
+      text: this.props.text ?? 'Lista eliminata.', action: (this.props.action ?? 'Annulla') || false,
+      act: () => { if (this.props.onAction) this.props.onAction(); },
+      close: () => { if (this.props.onClose) this.props.onClose(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // knip only sees lefthook as used when the git hooks are installed, and CI never installs them.
+  // Keep this even when knip hints "Remove from ignoreDependencies" locally.
+  "ignoreDependencies": ["lefthook"],
+  // Generated API types (lint/gen-api-types.mjs): exposed for callers, none uses them yet.
+  "entry": ["lib/api/schema.gen.ts"],
+  // lint/gen-api-types.mjs runs uv to load the API app.
+  "ignoreBinaries": ["uv"]
+}

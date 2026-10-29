@@ -1,0 +1,166 @@
+{
+  "campaignBuilder": {
+    "renameLabel": "Nome della campagna",
+    "rename": "Rinomina la campagna",
+    "renamed": "Nome salvato.",
+    "steps": {
+      "title": "Step",
+      "meta": "{count, number, credits} di {max, number, credits} · i giorni contano dall'avvio",
+      "locked": "Gli step si possono modificare solo finché la campagna è in bozza.",
+      "empty": "Ancora vuoto",
+      "day": "Giorno",
+      "dayValue": "Giorno {day}",
+      "heading": "Step {number, number, credits} · {channel}",
+      "variables": "Variabili:",
+      "tokens": {
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "companyName": "Azienda",
+        "role": "Ruolo"
+      },
+      "insert": "Inserisci {token}",
+      "counter": "{count, number, credits} / {max, number, credits}",
+      "none": "Nessuno step ancora: aggiungine uno qui sotto."
+    },
+    "fields": {
+      "title": "Campi",
+      "meta": "Il valore di ogni persona, dalla lista o dal segnale",
+      "none": "Nessun campo ancora. Aggiungine uno con + Campo sotto il messaggio di uno step.",
+      "help": "Obbligatorio: chi non ha un valore non riceve gli step che usano il campo. Per togliere un campo, togli prima la sua variabile dagli step.",
+      "add": "Campo",
+      "addLabel": "Aggiungi un campo dalla lista o dal segnale",
+      "columns": "Colonne della lista",
+      "noColumns": "La lista non ha colonne da aggiungere.",
+      "signalGroup": "Segnale",
+      "ai": "AI",
+      "filled": "{filled, number, credits} di {people, plural, one {# persona} other {{people, number, credits} persone}}",
+      "mode": "Quando {field} non ha un valore",
+      "required": "Obbligatorio",
+      "fallback": "Testo di riserva",
+      "fallbackLabel": "Testo di riserva per {field}",
+      "fallbackPlaceholder": "Testo per chi non ha un valore",
+      "fallbackBlank": "Scrivi il testo di riserva, o scegli Obbligatorio.",
+      "nobodyReady": "{count, plural, one {# persona non ha} other {{count, number, credits} persone non hanno}} un valore per {fields}. Aggiungi i valori nella lista, o dai a ciascuno di questi campi un testo di riserva.",
+      "remove": "Togli {field}",
+      "signal": {
+        "title": "Titolo del segnale",
+        "city": "Città del segnale",
+        "country": "Paese del segnale",
+        "url": "Link del segnale"
+      },
+      "addSnippet": "Aggiungi uno snippet AI"
+    },
+    "add": {
+      "email": "Email",
+      "linkedin_connect": "Invito LinkedIn",
+      "linkedin_message": "Messaggio LinkedIn",
+      "hubspot_task": "Task HubSpot"
+    },
+    "senders": {
+      "title": "Invia da",
+      "description": "Ogni persona resta sulla stessa casella per tutto il thread.",
+      "warming": "limite giornaliero in crescita",
+      "none": "Nessuna casella collegata.",
+      "connect": "Collegane una in Integrazioni",
+      "loadError": "Impossibile caricare le caselle.",
+      "meta": "una casella per thread",
+      "max": "Fino a {max, plural, one {# casella} other {{max, number, credits} caselle}} per campagna.",
+      "keepOne": "La campagna ha bisogno di una casella che possa inviare: aggiungine un'altra prima di togliere questa."
+    },
+    "when": {
+      "title": "Quando",
+      "days": "Giorni di invio: dal lunedì al venerdì",
+      "letters": "LMMGVSD",
+      "window": "9:00–18:00 · Europa/Roma · pausa di 9–14 minuti tra un'email e l'altra",
+      "fixed": "Orari e giorni sono quelli delle caselle e valgono per tutte le campagne."
+    },
+    "approval": {
+      "title": "Approva i messaggi prima dell'invio",
+      "body": "Sempre attiva: ogni messaggio aspetta il tuo ok, persona per persona."
+    },
+    "preview": {
+      "title": "Anteprima · step {number, number, credits}",
+      "person": "Persona",
+      "empty": "Nessuno da mostrare.",
+      "noSteps": "Aggiungi uno step per vedere l'anteprima.",
+      "updating": "Aggiorno l'anteprima…",
+      "failed": "Anteprima non aggiornata. Riprova a modificare lo step.",
+      "plain": "Anteprima",
+      "missing": "Questa persona non ha un valore per {fields}: gli step che {count, plural, one {lo usano} other {li usano}} non partono."
+    },
+    "footer": {
+      "save": "Salva bozza",
+      "saved": "Bozza salvata."
+    },
+    "blockers": {
+      "noMailbox": "Nessuna casella collegata: la campagna non può partire.",
+      "noMailboxLink": "Collegane una in Integrazioni",
+      "pickMailbox": "Scegli una casella collegata da cui inviare.",
+      "noLinkedIn": "Collega LinkedIn in Integrazioni per gli step LinkedIn.",
+      "noSteps": "Scrivi almeno uno step.",
+      "noTargets": "Questa campagna non ha nessuno da contattare.",
+      "noCopyB": "Il test A/B è attivo: scrivi la variante B di almeno uno step, oppure disattiva il test."
+    },
+    "source": {
+      "linked": "{count, plural, one {# persona} other {{count, number, credits} persone}} da <b>{list}</b> · esclusioni già tolte",
+      "gone": "{count, plural, one {# persona} other {{count, number, credits} persone}} · la lista di origine non c'è più"
+    },
+    "rewrite": {
+      "link": "Riscrivi con l'agente",
+      "prompt": "Riscrivi la sequenza di messaggi della campagna «{name}» (campaign_id {id}) e salvala sulla bozza."
+    },
+    "addStep": "Aggiungi step:",
+    "needsInvite": "Per inviare un Messaggio LinkedIn, aggiungi prima un Invito LinkedIn.",
+    "parallel": {
+      "title": "Ammetti persone già in un’altra campagna attiva",
+      "body": "Una risposta a una delle due campagne le ferma entrambe. La modifica vale per le prossime persone aggiunte e i prossimi invii: non aggiunge chi è rimasto fuori prima."
+    },
+    "snippet": {
+      "title": "Aggiungi uno snippet AI",
+      "description": "Una breve frase per ogni persona, scritta solo dalle ricerche che la lista contiene già. Non cerca mai sul web.",
+      "label": "Nome del campo",
+      "labelPlaceholder": "Es. Frase di apertura",
+      "prompt": "Cosa deve dire lo snippet?",
+      "promptPlaceholder": "Una frase che collega le loro ultime notizie alla nostra offerta.",
+      "inputs": "Ricerche da usare",
+      "inputsMax": "{max, plural, one {al massimo # colonna} other {al massimo {max, number, credits} colonne}}",
+      "noResearch": "Questa lista non ha ancora una colonna di ricerca AI. Aggiungine una nella lista, poi torna qui.",
+      "noPeople": "Nessuno in questa campagna può ancora ricevere uno step e ha una riga nella lista della campagna: non c'è nessuno per cui scrivere uno snippet.",
+      "coverage": "Copre {rows, plural, one {# persona} other {{rows, number, credits} persone}} su {people, plural, one {# persona} other {{people, number, credits} persone}}: solo chi può ancora ricevere uno step e ha una riga nella lista della campagna, al massimo {max, plural, one {# persona} other {{max, number, credits} persone}} per esecuzione.",
+      "estimating": "Calcolo del costo…",
+      "estimate": "Fino a {credits, plural, one {# credito} other {{credits, number, credits} crediti}}",
+      "estimateDetail": "{price, plural, one {# credito} other {{price, number, credits} crediti}} per ogni snippet consegnato · {people, plural, one {# persona con ricerche} other {{people, number, credits} persone con ricerche}}",
+      "estimateNote": "La stima conta solo le persone con ricerche in queste colonne. Chi non ne ha non riceve lo snippet e non costa nulla.",
+      "estimateNone": "Nessuno in questa campagna ha ricerche in queste colonne: non c'è niente da scrivere.",
+      "estimateFailed": "Non siamo riusciti a stimare il costo.",
+      "unavailable": "Non siamo riusciti a caricare la lista della campagna.",
+      "approve": "Approva e genera",
+      "creating": "Avvio…",
+      "createFailed": "Non siamo riusciti ad aggiungere lo snippet AI.",
+      "progress": "{done, number, credits} su {people, plural, one {# persona} other {{people, number, credits} persone}} completate",
+      "progressNote": "Puoi chiudere questa finestra: gli snippet continuano ad arrivare. Il campo è già nell'elenco dei campi.",
+      "done": "{filled, plural, one {# snippet scritto} other {{filled, number, credits} snippet scritti}} · {credits, plural, one {# credito addebitato} other {{credits, number, credits} crediti addebitati}}",
+      "doneNote": "{field} è nell'elenco dei campi. Aggiungilo a uno step con + Campo.",
+      "failed": "Gli snippet si sono fermati: {reason}",
+      "paused": "gli snippet AI sono in pausa per ora."
+    },
+    "variants": {
+      "tabs": "Testo di questo step",
+      "a": "Variante A",
+      "b": "Variante B",
+      "sameAsA": "Per questo step chi è nella variante B riceve lo stesso testo della variante A.",
+      "write": "Scrivi la variante B",
+      "useA": "Usa la variante A per questo step",
+      "previewLabel": "Variante da visualizzare",
+      "title": "Test A/B",
+      "switch": "Confronta due varianti dei messaggi",
+      "help": "Ogni persona che entra riceve la variante A o la variante B e la mantiene fino alla fine, con il suo testo. Dopo l'avvio i testi non si possono più modificare.",
+      "share": "Percentuale di persone che ricevono la variante B",
+      "shareOption": "{percent, number, credits}%",
+      "saved": "La percentuale viene salvata subito. La variante B viene salvata con gli step.",
+      "offTitle": "Disattivare il test A/B?",
+      "offBody": "La variante B viene tolta da tutti gli step e cancellata quando salvi la bozza.",
+      "offConfirm": "Disattiva"
+    }
+  }
+}

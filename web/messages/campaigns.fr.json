@@ -1,0 +1,291 @@
+{
+  "campaigns": {
+    "title": "Campagnes",
+    "loadError": "Impossible de charger les campagnes.",
+    "awaiting": "{count, plural, one {# à approuver} other {{count, number, credits} à approuver}}",
+    "awaitingHeld": "{count, plural, one {# retenu} other {{count, number, credits} retenus}}",
+    "stats": "{targets, plural, one {# personne} other {{targets, number, credits} personnes}} · {sent, plural, one {# envoyé} other {{sent, number, credits} envoyés}} · {replied, plural, one {# réponse} other {{replied, number, credits} réponses}} · {failed, plural, one {# échec} other {{failed, number, credits} échecs}}",
+    "delete": "Supprimer le brouillon",
+    "activate": "Activer",
+    "pause": "Mettre en pause",
+    "resume": "Reprendre",
+    "activateHelp": "Rien n’est envoyé tant que vous ne l’activez pas, et chaque message attend votre approbation.",
+    "riskTitle": "Les étapes LinkedIn comportent un risque de restriction",
+    "testSent": "E-mail de test envoyé à {to}.",
+    "status": {
+      "draft": "Brouillon",
+      "active": "Active",
+      "paused": "En pause",
+      "stopped": "Arrêtée",
+      "completed": "Terminée"
+    },
+    "new": {
+      "title": "Nouvelle campagne",
+      "description": "Démarrez un brouillon à partir d’une liste de personnes. Vous rédigez les étapes avant tout envoi.",
+      "noLists": "Il vous faut d’abord une liste de personnes : demandez-en à l’agent dans la conversation.",
+      "newChat": "Nouvelle conversation",
+      "error": "Impossible de créer la campagne.",
+      "name": "Nom de la campagne",
+      "list": "Liste de personnes",
+      "listMissing": "La liste du lien n’est pas disponible. Choisissez une liste.",
+      "create": "Créer le brouillon"
+    },
+    "senders": {
+      "title": "Envoyer depuis",
+      "description": "Les boîtes mail depuis lesquelles cette campagne envoie. Chaque personne reste sur la même boîte pendant tout le fil."
+    },
+    "steps": {
+      "title": "Étapes",
+      "description": "Jusqu’à 12 étapes. Les délais sont en jours après le début de la campagne. Variables : {tokens}",
+      "locked": "Les étapes ne sont modifiables que tant que la campagne est un brouillon.",
+      "add": "Ajouter une étape",
+      "save": "Enregistrer les étapes",
+      "saved": "Étapes enregistrées."
+    },
+    "preview": {
+      "title": "Aperçu",
+      "description": "Les étapes enregistrées telles que les recevront les premières personnes de la liste.",
+      "show": "Afficher l’aperçu",
+      "empty": "Personne à prévisualiser."
+    },
+    "step": {
+      "title": "Étape {number}",
+      "channel": "Canal",
+      "channels": {
+        "email": "E-mail",
+        "linkedin_connect": "Invitation LinkedIn",
+        "linkedin_message": "Message LinkedIn",
+        "hubspot_task": "Tâche HubSpot"
+      },
+      "delay": "Jour",
+      "threaded": "Répondre dans le même fil",
+      "test": "M’envoyer un test",
+      "remove": "Retirer l’étape",
+      "subject": "Objet",
+      "body": "Message",
+      "note": "Note d’invitation (facultative)",
+      "taskHelp": "Rien n’est envoyé : Zenbree crée une tâche HubSpot avec ce brouillon pour le propriétaire du contact ou de son entreprise, ou pour vous s’il n’y en a pas. Elle est créée immédiatement, sans approbation.",
+      "taskSubject": "Objet du brouillon (facultatif)",
+      "removed": "Étape {number, number, credits} retirée."
+    },
+    "previewErrors": {
+      "NO_EMAIL": "Pas d’adresse e-mail : cette étape est ignorée.",
+      "NO_THREAD": "Ignorée : le premier e-mail ne peut pas être envoyé à cette personne.",
+      "OUTREACH_COPY_UNRENDERED": "Non envoyé : une variable n’est pas reconnue.",
+      "OUTREACH_COPY_MISSING_FIELD": "Non envoyé : une variable n’a pas de valeur pour cette personne.",
+      "INVALID_EMAIL": "L’adresse e-mail n’est pas valide : cette étape est ignorée.",
+      "COPY_TOO_LONG": "Non envoyé : le message est trop long une fois complété."
+    },
+    "approvals": {
+      "title": "{count, plural, =0 {En attente d’approbation} other {En attente d’approbation ({count, number, credits})}}",
+      "description": "Rien n’est envoyé tant que vous ne l’avez pas approuvé. Les messages approuvés partent dans les horaires de la campagne et les limites de la boîte mail.",
+      "loadError": "Impossible de charger les messages en attente d’approbation.",
+      "empty": "Aucun message n’attend d’approbation.",
+      "approveAll": "Approuver {count, plural, one {celui affiché} other {les {count, number, credits} affichés}}",
+      "subject": "Objet",
+      "body": "Message",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "approve": "Approuver",
+      "edit": "Modifier",
+      "reject": "Ignorer cette étape",
+      "progress": "Message {current, number, credits} sur {total, number, credits}",
+      "stepChannel": "Étape {step, number, credits} · {channel}",
+      "editText": "Modifier le texte",
+      "doneTitle": "Tout est relu",
+      "doneBody": "{approved, plural, =0 {Aucun message approuvé : rien n’est envoyé.} one {Le message approuvé part dans les horaires de la campagne et les limites de la boîte mail.} other {{approved, number, credits} messages partent dans les horaires de la campagne et les limites de la boîte mail.}}",
+      "toInbox": "Aller aux réponses",
+      "emptyNext": "Rien à approuver pour l’instant : les suivants arrivent demain.",
+      "editTitle": "Modifier le message pour {name}",
+      "reviewed": "{total, plural, one {<b>{reviewed, number, credits}</b> sur # relu} other {<b>{reviewed, number, credits}</b> sur {total, number, credits} relus}}",
+      "decided": "{approved, plural, one {# approuvé} other {{approved, number, credits} approuvés}} · {skipped, plural, one {# ignoré} other {{skipped, number, credits} ignorés}}",
+      "skip": "Ignorer",
+      "rejected": "{count, plural, one {Étape ignorée} other {{count, number, credits} étapes ignorées}}",
+      "restored": "{count, plural, one {Message de nouveau en attente} other {{count, number, credits} messages de nouveau en attente}}",
+      "undoLate": "{count, plural, one {Un message ne peut plus être rétabli : la séquence a avancé} other {{count, number, credits} messages ne peuvent plus être rétablis : la séquence a avancé}}",
+      "sends": "Part {when} depuis {from}",
+      "sendsNoSender": "Part {when}",
+      "fromLinkedin": "LinkedIn",
+      "fromLinkedinNamed": "LinkedIn ({name})",
+      "when": {
+        "today": "aujourd’hui à {time}",
+        "tomorrow": "demain à {time}",
+        "weekday": "{weekday} à {time}",
+        "todayWork": "aujourd’hui pendant les heures de travail",
+        "tomorrowWork": "demain pendant les heures de travail",
+        "weekdayWork": "{weekday} pendant les heures de travail"
+      },
+      "reviewTitle": "À approuver",
+      "queueTitle": "À suivre",
+      "queueMeta": "{count, plural, one {# en file} other {{count, number, credits} en file}}",
+      "stepShort": "Étape {step, number, credits}",
+      "backToCampaign": "Retour à la campagne",
+      "announce": "Message pour {name}",
+      "shortcutsHint": "Raccourcis : A approuver, S passer, E modifier",
+      "held": "{count, plural, one {# message n’a pas été approuvé et attend encore} other {{count, number, credits} messages n’ont pas été approuvés et attendent encore}} : Instantly écrit à la personne, ou un arrêt dans Instantly la retient.",
+      "heldLink": "Voir les personnes de la campagne",
+      "heldTitle": "Retenus",
+      "heldMeta": "{count, plural, one {# message} other {{count, number, credits} messages}}",
+      "heldDescription": "Zenbree n’envoie aucun de ces messages tant que la personne est retenue, et les approuver ne change rien."
+    },
+    "deleteTitle": "Supprimer le brouillon « {name} » ?",
+    "deleteBody": "La campagne et ses étapes seront supprimées. Cette action est irréversible.",
+    "deleteBullet1": "{count, plural, =0 {Personne n’avait été ajouté} one {La personne ajoutée quitte la campagne} other {Les {count, number, credits} personnes ajoutées quittent la campagne}}",
+    "deleteBullet2": "Les listes d’où elles venaient ne changent pas",
+    "subtitle": "Des séquences e-mail et LinkedIn lancées depuis vos listes. Rien ne part sans votre approbation.",
+    "newFromList": "Nouvelle campagne à partir d’une liste",
+    "tabsLabel": "Filtrer par statut",
+    "tabs": {
+      "all": "Toutes",
+      "active": "Actives",
+      "draft": "Brouillons",
+      "paused": "En pause",
+      "completed": "Terminées"
+    },
+    "columns": {
+      "campaign": "Campagne",
+      "status": "Statut",
+      "steps": "Étapes",
+      "progress": "Avancement",
+      "replies": "Réponses"
+    },
+    "people": "{count, plural, one {# personne} other {{count, number, credits} personnes}}",
+    "progress": "{sent, plural, one {# envoyé} other {{sent, number, credits} envoyés}} · {failed, plural, one {# échec} other {{failed, number, credits} échecs}}",
+    "banner": "{count, plural, one {# message attend} other {{count, number, credits} messages attendent}} votre approbation",
+    "bannerMany": "dans {count, plural, one {# campagne} other {{count, number, credits} campagnes}}",
+    "review": "Relire",
+    "emptyTab": "Aucune campagne avec ce statut.",
+    "emptyState": {
+      "title": "Aucune campagne",
+      "body": "Une campagne part d’une liste de personnes : rédigez les étapes, choisissez la boîte mail qui envoie et approuvez les messages avant leur départ.",
+      "list": "Une liste de personnes avec e-mail",
+      "mailbox": "Une boîte mail connectée",
+      "linkedin": "LinkedIn <m>(facultatif, uniquement pour les étapes LinkedIn)</m>",
+      "findPeople": "Trouver des personnes",
+      "connect": "Connecter",
+      "chooseList": "Choisir une liste",
+      "done": "Prêt :",
+      "todo": "À faire :",
+      "optional": "Facultatif :"
+    },
+    "detail": {
+      "seeSteps": "Voir les étapes",
+      "length": "{steps, plural, one {# étape} other {{steps, number, credits} étapes}}{days, plural, =0 {} one { sur # jour} other { sur {days, number, credits} jours}}",
+      "repliedLabel": "A répondu : {label}",
+      "sentStep": "Étape {step, number, credits} envoyée",
+      "taskStep": "Étape {step, number, credits} : tâche créée dans HubSpot",
+      "outOfOffice": "Absent du bureau · reprend {day, select, other {le {date}}}",
+      "readyStep": "Étape {step, number, credits} prête, en attente de votre accord",
+      "peopleError": "Impossible de charger les personnes.",
+      "stepOf": "{done, number, credits} sur {total, plural, one {# étape} other {{total, number, credits} étapes}}",
+      "states": {
+        "excluded": "Exclue",
+        "replied": "A répondu · arrêtée",
+        "paused": "En pause",
+        "done": "Séquence terminée",
+        "awaiting": "À approuver",
+        "waiting": "En attente",
+        "invalidEmail": "E-mail non valide",
+        "missingValue": "Valeur manquante"
+      },
+      "state": "Statut",
+      "peopleEmpty": "Personne dans cette campagne.",
+      "replies": "Réponses",
+      "sent": "Envoyés",
+      "repliesDetail": "{interested, plural, one {# intéressé} other {{interested, number, credits} intéressés}} · {auto, plural, one {# automatique} other {{auto, number, credits} automatiques}}",
+      "signalReason": "Entrée car : {title}",
+      "invalidAddress": "L’adresse n’est pas valide",
+      "repliesTile": "Réponses",
+      "peopleTitle": "Personnes",
+      "dayShort": "J{day, number, credits}",
+      "window": "{days} {start, number, credits}:00–{end, number, credits}:00",
+      "sentToday": "aujourd’hui {sent, number, credits} sur {cap, number, credits}",
+      "person": "Personne",
+      "failed": "Échecs",
+      "invalidEmail": "{count, plural, one {# e-mail non valide} other {{count, number, credits} e-mails non valides}}",
+      "noSender": "Aucune boîte mail connectée",
+      "from": "Depuis {senders}",
+      "people": "Personnes",
+      "replied": "Ont répondu",
+      "activity": "Dernière activité",
+      "step": "Étape",
+      "changeSenders": "Changer",
+      "unreadReplies": "{count, plural, one {# réponse non lue} other {{count, number, credits} réponses non lues}}",
+      "sequence": "Séquence",
+      "sendersTitle": "Expéditeurs",
+      "hold": {
+        "held_by_instantly": {
+          "label": "Email par Instantly",
+          "hint": "Instantly envoie les emails de cette personne pour ce client, donc Zenbree ne lui écrit pas par email."
+        },
+        "stop_pending": {
+          "label": "Arrêt en cours dans Instantly",
+          "hint": "Elle a répondu, s’est désinscrite ou son adresse a rebondi. Zenbree ne lui écrit rien tant qu’Instantly ne confirme pas l’arrêt."
+        },
+        "stop_failed": {
+          "label": "Arrêt échoué dans Instantly",
+          "hint": "Instantly n’a pas confirmé l’arrêt, donc Zenbree ne lui écrit pas. Réessayez, ou confirmez-le à la main, sur la carte Instantly dans Intégrations."
+        },
+        "stopped": {
+          "label": "Arrêté dans Instantly",
+          "hint": "L’arrêt est terminé : Instantly l’a confirmé, un membre l’a confirmé à la main, ou Instantly n’avait plus la personne. Zenbree ne lui écrit plus."
+        }
+      },
+      "valuesFrom": "Valeurs du {at}",
+      "missingValue": "Aucune valeur pour {tokens}. Garde la campagne ouverte jusqu’à ce qu’elle ait une valeur et que vous régénériez les valeurs.",
+      "regenerate": {
+        "button": "Régénérer les valeurs",
+        "title": "Régénérer les valeurs ?",
+        "description": "Les valeurs de chaque personne sont relues depuis la liste. Une personne qui attendait une valeur démarre dès qu’elle l’a.",
+        "rewritten": "Les messages à approuver et les messages approuvés qui ne sont pas encore partis sont réécrits avec les nouvelles valeurs. Vos modifications et approbations de ces messages sont perdues.",
+        "unchanged": "Les messages déjà envoyés ou en cours d’envoi ne changent pas.",
+        "done": "{renewed, plural, one {# personne mise à jour} other {{renewed, number, credits} personnes mises à jour}} · {active, plural, one {# a démarré} other {{active, number, credits} ont démarré}} · {waiting, plural, one {# attend encore} other {{waiting, number, credits} attendent encore}} · {kept, plural, one {# garde les valeurs d’avant} other {{kept, number, credits} gardent les valeurs d’avant}}"
+      }
+    },
+    "pushPrompt": {
+      "title": "Une alerte quand quelqu’un répond ?",
+      "body": "Nous l’affichons depuis votre navigateur même quand Zenbree est fermé. Uniquement les événements urgents, jamais en dehors de vos horaires.",
+      "allow": "Activer les alertes",
+      "dismiss": "Pas maintenant",
+      "enabled": "Notifications du navigateur activées.",
+      "error": "Nous n’avons pas pu activer les notifications. Réessayez depuis les paramètres."
+    },
+    "breadcrumb": "Chemin",
+    "activity": {
+      "title": "Activité récente",
+      "empty": "Aucune activité pour l’instant.",
+      "loadMore": "Charger plus",
+      "loadError": "Impossible de charger l’activité.",
+      "deleted": "Personne supprimée",
+      "sent": "Étape {step, number, credits} envoyée · {channel}",
+      "approved": "Étape {step, number, credits} approuvée",
+      "reply": "a répondu : {label}",
+      "replied": "a répondu",
+      "auto_reply": "réponse automatique",
+      "unsubscribe": "a demandé à ne plus être contacté",
+      "yesterday": "hier"
+    },
+    "senderHold": {
+      "label": "Retenue",
+      "reasons": {
+        "send_uncertain": "Nous ne savons pas si le dernier e-mail de {sender} est parti. Zenbree ne le renvoie pas, la conversation s’arrête donc ici.",
+        "mailbox_unknown": "La conversation a commencé depuis une boîte que Zenbree ne connaît plus. Elle ne continue pas depuis une autre boîte.",
+        "disconnected": "La conversation est sur {sender}, qui est déconnectée. Connectez-la de nouveau pour continuer.",
+        "needs_reconnect": "La conversation est sur {sender}, qu’il faut reconnecter. Reconnectez-la pour continuer.",
+        "unlinked": "La conversation est sur {sender}, que ce client n’utilise plus. Associez-la de nouveau au client pour continuer.",
+        "not_in_pool": "La conversation est sur {sender}, que cette campagne n’utilise pas. Ajoutez-la aux boîtes de la campagne pour continuer.",
+        "paused": "La conversation est sur {sender}, qui est en pause. Réactivez-la pour continuer.",
+        "throttled": "La conversation est sur {sender}, que le fournisseur a limitée. Elle reprend d’elle-même."
+      },
+      "count": "{count, plural, one {# conversation attend cette boîte} other {{count, number, credits} conversations attendent cette boîte}}"
+    },
+    "variants": {
+      "title": "Test A/B",
+      "share": "{percent, number, credits} % des personnes qui entrent reçoivent la variante B.",
+      "paused": "En pause : les personnes qui entrent maintenant reçoivent la variante A et restent hors du test.",
+      "kept": "Les personnes déjà entrées gardent leur variante et son texte. La pause ne concerne que les personnes qui entrent ensuite. Après le lancement, les textes ne peuvent plus changer.",
+      "pause": "Suspendre le test",
+      "resume": "Reprendre le test"
+    }
+  }
+}

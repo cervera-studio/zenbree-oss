@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Notifiche · canali</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+.sk{display:block;background:var(--zb-muted);border-radius:7px;position:relative;overflow:hidden}
+.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);transform:translateX(-100%);animation:zbsh 1.4s infinite}
+.zb-dark .sk::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)}
+@keyframes zbsh{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion: reduce){.sk::after{animation:none}}
+:root{--zb-chart-1:#223034;--zb-chart-2:#006679}
+.zb-dark{--zb-chart-1:#c7d0cf;--zb-chart-2:#3fb5d1}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;height:40px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg);padding:0 12px}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.h1{margin:0;font-family:Newsreader,'Iowan Old Style',Georgia,serif;font-weight:400;font-size:44px;line-height:1.18;letter-spacing:0}
+.h2{margin:0;font-size:16px;font-weight:700}
+.sub{margin:0;color:var(--zb-muted-fg);line-height:1.5}
+.mono{font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace}
+.tw{border:1px solid var(--zb-border);border-radius:14px;overflow:hidden}
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{padding:10px 14px;font-weight:600;font-size:12px;color:var(--zb-muted-fg);text-align:left;background:var(--zb-rail);white-space:nowrap}
+.t td{padding:9px 14px;border-top:1px solid var(--zb-muted);vertical-align:middle}
+.t tbody tr:hover{background:var(--zb-muted)}
+.t .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b1{height:36px;padding:0 14px;border:0;border-radius:10.5px;background:var(--zb-brand);color:var(--zb-on-brand);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b1:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.b1:disabled{opacity:.45;cursor:not-allowed}
+.b2{height:36px;padding:0 12px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b2:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.bd{background:var(--zb-neg-fg);color:var(--zb-bg)}
+.bd:hover{background:var(--zb-neg-fg);opacity:.9;color:var(--zb-bg)}
+.pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;box-sizing:border-box}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed=true]{background:var(--zb-tint);border-color:transparent;color:var(--zb-ink)}
+.card{border:1px solid var(--zb-border);border-radius:17.5px;background:var(--zb-card);padding:16px}
+.kpi dt{font-size:12px;color:var(--zb-muted-fg);font-weight:600}
+.kpi dd{margin:4px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:var(--zb-fg);font-family:inherit;font-size:13px;text-align:left;cursor:pointer;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.ib{width:32px;height:32px;border:0;border-radius:7px;background:transparent;color:var(--zb-muted-fg);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ib:hover{background:var(--zb-rail-hover);color:var(--zb-fg)}
+.tab{height:44px;padding:0 4px;border:0;border-bottom:2px solid transparent;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--zb-muted-fg);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tab[aria-selected=true]{color:var(--zb-fg);border-bottom-color:var(--zb-ink)}
+details>summary{cursor:pointer;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+.sw{position:relative;width:40px;height:24px;border-radius:999px;border:0;cursor:pointer;flex-shrink:0;padding:0}
+.sw span{position:absolute;top:3px;width:18px;height:18px;border-radius:999px;background:var(--zb-bg);transition:left .15s}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; padding: 40px 56px 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+  <header style="display: flex; flex-direction: column; gap: 8px; max-width: 860px">
+    <span class="mono" style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--zb-muted-fg)">Notifiche</span>
+    <h1 class="h1">Cosa ti raggiunge, e dove</h1>
+    <p class="sub" style="font-size: 15px">Tre canali, una regola: urgente è solo ciò che una persona può perdere se aspetti. Una risposta interessata è urgente; una ricerca finita no.</p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+    <sc-for list="{{rules}}" as="r" hint-placeholder-count="4">
+      <div class="card" style="display: flex; flex-direction: column; gap: 6px"><strong>{{r.t}}</strong><span style="font-size: 13px; line-height: 1.5; color: var(--zb-muted-fg)">{{r.b}}</span></div>
+    </sc-for>
+  </section>
+
+  <section style="display: grid; grid-template-columns: 360px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 class="h2">Browser</h2>
+      <p class="sub" style="font-size: 13px">Titolo = chi o cosa, testo = il dettaglio utile. Il clic apre la cosa, non la home.</p>
+      <div style="padding: 20px; border-radius: 17.5px; background: var(--zb-rail); display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; gap: 12px; padding: 12px; border-radius: 14px; background: var(--zb-bg); box-shadow: 0 8px 24px -12px rgba(7,25,29,0.35)">
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true" fill="none" style="flex-shrink: 0"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span style="display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.4; min-width: 0">
+            <span style="display: flex; gap: 6px"><strong style="flex-grow: 1">Giulia Ferri è interessata</strong><span style="font-size: 11px; color: var(--zb-muted-fg)">adesso</span></span>
+            <span>Officina Nove · etichetta Interessato. Apri per leggere la risposta.</span>
+            <span style="font-size: 11px; color: var(--zb-muted-fg)">Zenbree · app.zenbree.com</span>
+          </span>
+        </div>
+        <div style="display: flex; gap: 12px; padding: 12px; border-radius: 14px; background: var(--zb-bg); box-shadow: 0 8px 24px -12px rgba(7,25,29,0.35)">
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true" fill="none" style="flex-shrink: 0"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span style="display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.4; min-width: 0">
+            <span style="display: flex; gap: 6px"><strong style="flex-grow: 1">Ricerca ferma</strong><span style="font-size: 11px; color: var(--zb-muted-fg)">09:15</span></span>
+            <span>Il fornitore email non risponde. 64 di 100 pronte, le altre non le paghi.</span>
+            <span style="font-size: 11px; color: var(--zb-muted-fg)">Zenbree · app.zenbree.com</span>
+          </span>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 12px; color: var(--zb-muted-fg); line-height: 1.5">Su telefono (web) le notifiche funzionano solo se l'utente aggiunge Zenbree alla schermata Home: per ora ci affidiamo all'email.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 class="h2">Email urgente · nuova risposta</h2>
+      <p class="sub" style="font-size: 13px">Oggetto con il nome, ma il testo della risposta resta in Zenbree (come fa già il backend): l'email porta solo chi, quale campagna e l'etichetta.</p>
+      <div class="tw" style="background: var(--zb-bg)">
+        <div style="padding: 12px 16px; border-bottom: 1px solid var(--zb-border); font-size: 12px; line-height: 1.6; color: var(--zb-muted-fg)">
+          <div><strong style="color: var(--zb-fg)">Zenbree</strong> &lt;notifiche@zenbree.com&gt;</div>
+          <div>Oggetto: <strong style="color: var(--zb-fg)">Giulia Ferri (Officina Nove) è interessata</strong></div>
+        </div>
+        <div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; line-height: 1.55">
+          <span style="font-size: 17px; font-weight: 700">Giulia ha risposto alla tua campagna</span>
+          <span>Giulia Ferri, CEO di Officina Nove, ha risposto allo step 2 della campagna «Agenzie marketing Milano · SDR». L'agente l'ha etichettata <strong>Interessato</strong> e ha preparato una bozza di risposta.</span>
+                    <span style="display: flex; gap: 8px"><span class="b1" style="cursor: default">Apri e rispondi</span><span class="b2" style="cursor: default">Vedi la bozza</span></span>
+          <span style="font-size: 12px; color: var(--zb-muted-fg); border-top: 1px solid var(--zb-border); padding-top: 12px">La campagna per Giulia si è fermata da sola. <a href="{{nav.settings}}" style="text-decoration: none">Gestisci notifiche</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 class="h2">Riepilogo · ogni giorno alle 9:00</h2>
+      <p class="sub" style="font-size: 13px">Tutto il non urgente in una lista. Non parte se non c'è niente da dire.</p>
+      <div class="tw" style="background: var(--zb-bg)">
+        <div style="padding: 12px 16px; border-bottom: 1px solid var(--zb-border); font-size: 12px; line-height: 1.6; color: var(--zb-muted-fg)">
+          <div><strong style="color: var(--zb-fg)">Zenbree</strong> &lt;notifiche@zenbree.com&gt;</div>
+          <div>Oggetto: <strong style="color: var(--zb-fg)">12 messaggi da approvare e 3 risposte · venerdì 2 ott</strong></div>
+        </div>
+        <div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; line-height: 1.5">
+          <span style="font-size: 17px; font-weight: 700">Buongiorno Ale</span>
+          <sc-for list="{{digest}}" as="d" hint-placeholder-count="4">
+            <div style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--zb-muted)">
+              <span style="font-family: Newsreader, Georgia, serif; font-size: 26px; line-height: 1; min-width: 36px; font-variant-numeric: tabular-nums">{{d.n}}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px"><strong>{{d.t}}</strong><span style="font-size: 13px; color: var(--zb-muted-fg)">{{d.s}}</span></span>
+            </div>
+          </sc-for>
+          <span class="b1" style="align-self: flex-start; cursor: default">Apri Zenbree</span>
+          <span style="font-size: 12px; color: var(--zb-muted-fg); border-top: 1px solid var(--zb-border); padding-top: 12px">Ricevi questo riepilogo nei giorni lavorativi. <a href="{{nav.settings}}" style="text-decoration: none">Cambia o disattiva</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    return {
+      theme, themeClass: theme === 'dark' ? 'zb-dark' : '',
+      nav: { settings: h('Set-Notifications.dc.html') },
+      rules: [
+        { t: 'Nell’app, sempre', b: 'Campanella nella barra laterale: tutto quello che è successo, raggruppato per giorno. Badge solo per ciò che chiede un’azione.' },
+        { t: 'Email urgente, con un tetto', b: 'Risposte interessate, ricerche ferme, caselle scollegate. Al massimo una ogni 30 minuti: le altre si accodano nella stessa email.' },
+        { t: 'Browser, se lo attivi', b: 'Solo eventi urgenti, mai fuori orario. Chiediamo il permesso dopo la prima campagna, non al primo accesso.' },
+        { t: 'Mai per le tue azioni', b: 'Se hai appena fatto tu qualcosa, basta il toast. Nessuna notifica per «campagna avviata» o «lista esportata».' }
+      ],
+      digest: [
+        { n: '12', t: 'Messaggi da approvare', s: 'Agenzie marketing Milano · SDR · partono dopo il tuo ok' },
+        { n: '3', t: 'Risposte non urgenti', s: '1 non ora, 1 non interessato, 1 risposta automatica' },
+        { n: '1', t: 'Ricerca finita', s: 'Trova CEO di agenzie marketing a Milano · 47 persone' },
+        { n: '942', t: 'Crediti disponibili', s: 'Il piano Starter si rinnova il 1 nov' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

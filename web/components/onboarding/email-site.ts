@@ -1,0 +1,65 @@
+// Free-mail providers say nothing about the user's company. The list is curated, not complete:
+// a domain it misses only prefills a site the user can clear.
+const FREE_MAIL = new Set([
+  'gmail.com',
+  'googlemail.com',
+  'msn.com',
+  'ymail.com',
+  'rocketmail.com',
+  'icloud.com',
+  'me.com',
+  'mac.com',
+  'aol.com',
+  'proton.me',
+  'protonmail.com',
+  'pm.me',
+  'tutanota.com',
+  'tuta.io',
+  'zoho.com',
+  'fastmail.com',
+  'hey.com',
+  'mail.com',
+  'email.com',
+  'gmx.com',
+  'web.de',
+  't-online.de',
+  'libero.it',
+  'virgilio.it',
+  'alice.it',
+  'tiscali.it',
+  'tim.it',
+  'email.it',
+  'inwind.it',
+  'fastwebnet.it',
+  'orange.fr',
+  'free.fr',
+  'laposte.net',
+  'sfr.fr',
+  'wanadoo.fr',
+  'mail.ru',
+  'bk.ru',
+  'inbox.ru',
+  'rambler.ru',
+  'qq.com',
+  '163.com',
+  '126.com',
+  'sina.com',
+  'naver.com',
+  'daum.net',
+  'rediffmail.com',
+  'seznam.cz',
+  'wp.pl',
+  'o2.pl',
+  'interia.pl',
+  'terra.com.br',
+  'bol.com.br',
+  'uol.com.br',
+]);
+
+const FREE_MAIL_NAMES = new Set(['outlook', 'hotmail', 'live', 'yahoo', 'gmx', 'yandex']);
+
+export function siteFromEmail(email: string | null | undefined): string {
+  const domain = /@([^@\s]+\.[^@\s]+)\s*$/.exec(email ?? '')?.[1]?.toLowerCase() ?? '';
+  const name = domain.split('.')[0] ?? '';
+  return FREE_MAIL.has(domain) || FREE_MAIL_NAMES.has(name) ? '' : domain;
+}

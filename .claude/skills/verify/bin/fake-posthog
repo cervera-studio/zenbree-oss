@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+// Stand-in PostHog host: prints every request with its decoded body as one JSON line.
+import { createServer } from 'node:http';
+import { gunzipSync } from 'node:zlib';
+
+const port = Number(process.argv[2] ?? 18766);
+
+createServer((req, res) => {
+  const chunks = [];
+  req.on('data', (c) => chunks.push(c));
+  req.on('end', () => {
+    const raw = Buffer.concat(chunks);
+    let body = raw.toString('utf8');
+    try {
+      body = gunzipSync(raw).toString('utf8');
+    } catch {}
+    // /flags sends `data=<base64 JSON>`.
+    const data = /(?:^|&)data=([^&]*)/.exec(body);
+    if (data) body = Buffer.from(decodeURIComponent(data[1]), 'base64').toString('utf8');
+    console.log(JSON.stringify({ method: req.method, url: req.url, body }));
+    res.writeHead(200, {
+      'Access-Control-Allow-Origin': req.headers.origin ?? '*',
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Headers': '*',
+      'Content-Type': 'application/json',
+    });
+    res.end(req.url.startsWith('/flags') ? '{"featureFlags":{}}' : '{"status":1}');
+  });
+}).listen(port, () => console.error(`fake-posthog on :${port}`));

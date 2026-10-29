@@ -1,0 +1,152 @@
+{
+  "onboarding": {
+    "step": "Passo {current, number, credits} di {total, number, credits}",
+    "skip": "Salta per ora",
+    "steps": {
+      "company": "Azienda",
+      "profile": "Profilo",
+      "segments": "Segmenti"
+    },
+    "errors": {
+      "generic": "Qualcosa è andato storto. Riprova tra poco."
+    },
+    "company": {
+      "title": "Parlaci della tua azienda",
+      "description": "Leggiamo il tuo sito e prepariamo un profilo di vendita: a chi vendi, quali problemi risolvi, chi contattare.",
+      "website": "Sito web",
+      "about": "Descrizione",
+      "aboutHint": "(facoltativa se hai un sito)",
+      "aboutPlaceholder": "Cosa vendi, a chi, in quali paesi…",
+      "free": "L'analisi è gratis e non contatta nessuno.",
+      "submit": "Analizza",
+      "studying": "Analisi in corso, può richiedere un minuto…",
+      "busyLabel": "Analisi in corso",
+      "fromDescription": "La tua descrizione",
+      "phases": {
+        "site": "Leggo il sito",
+        "offer": "Capisco cosa vendi e a chi",
+        "profile": "Preparo il profilo di vendita"
+      },
+      "changeSite": "Cambia sito",
+      "editDescription": "Modifica descrizione",
+      "pagesRead": "{n, plural, one {# pagina} other {{n, number, credits} pagine}}",
+      "phaseStatus": {
+        "done": "Fatto",
+        "running": "In corso",
+        "pending": "In attesa"
+      },
+      "next": {
+        "profile": {
+          "tag": "Poi · 2",
+          "title": "Controlli il profilo",
+          "body": "Correggi chi compra, i problemi, chi escludere."
+        },
+        "segments": {
+          "tag": "Poi · 3",
+          "title": "Scegli un segmento",
+          "body": "Te ne proponiamo alcuni, con chi cercare."
+        },
+        "list": {
+          "tag": "Infine",
+          "title": "La prima lista",
+          "body": "Si apre una chat con la richiesta già scritta."
+        }
+      }
+    },
+    "profile": {
+      "title": "Il tuo profilo",
+      "description": "Controlla e correggi: da qui nascono i segmenti e la tua prima lista.",
+      "back": "Indietro",
+      "confirm": "Conferma e proponi segmenti",
+      "proposing": "Preparo i segmenti…",
+      "count": "{count, number, credits} di {max, number, credits}",
+      "add": "Aggiungi",
+      "item": "{label}, voce {n, number, credits}",
+      "remove": "Rimuovi {item}",
+      "removeEmpty": "Rimuovi voce vuota",
+      "proofPlaceholder": "Casi cliente, numeri, nomi che puoi citare.",
+      "proofMissing": "Non l'ho trovato: aggiungilo tu, se puoi.",
+      "groups": {
+        "identity": "Chi sei",
+        "audience": "A chi vendi",
+        "timing": "Quando e dove",
+        "exclude": "Chi escludere"
+      },
+      "sections": {
+        "companyName": "Nome dell'azienda",
+        "summary": "In breve",
+        "personas": "Chi compra",
+        "painPoints": "Problemi che risolvi",
+        "solution": "Come li risolvi",
+        "buyingTriggers": "Segnali d'acquisto",
+        "markets": "Mercati",
+        "exclusions": "Da non contattare mai",
+        "proof": "Prove e risultati"
+      },
+      "hints": {
+        "personas": "I ruoli che firmano o decidono.",
+        "painPoints": "Come lo direbbe il cliente, non tu.",
+        "buyingTriggers": "Eventi che rendono un'azienda pronta adesso.",
+        "markets": "Paesi o regioni in cui vendi.",
+        "exclusions": "Finiscono in Esclusioni: nessuna lista li conterrà."
+      },
+      "usage": {
+        "title": "Dove lo uso",
+        "segments": {
+          "title": "Nei segmenti.",
+          "body": "Chi compra, i problemi e i segnali d'acquisto diventano i criteri di ricerca."
+        },
+        "list": {
+          "title": "Nella prima lista.",
+          "body": "La chat parte da una richiesta con la tua azienda e il segmento che scegli."
+        },
+        "exclusions": {
+          "title": "Nelle esclusioni.",
+          "body": "Nomi di aziende, domini, email e profili LinkedIn diventano regole in Esclusioni; il resto entra nella richiesta della prima lista."
+        },
+        "memory": {
+          "title": "In ogni chat.",
+          "body": "L'agente lo legge in ogni chat di questo cliente prima di proporti un piano; gli altri clienti hanno il loro."
+        }
+      }
+    },
+    "segments": {
+      "title": "Scegli il primo segmento",
+      "description": "Ogni segmento diventa una ricerca: scegline uno e creiamo la tua prima lista.",
+      "empty": "Nessun segmento proposto. Prova a rigenerarli o a completare il profilo.",
+      "who": "Chi",
+      "problem": "Problema",
+      "outcome": "Risultato",
+      "signalHint": "Da cercare: {signal}",
+      "criteriaTitle": "Criteri di ricerca",
+      "pick": "Crea la prima lista",
+      "back": "Modifica il profilo",
+      "regenerate": "Proponi altri segmenti",
+      "otherLanguage": "Questi segmenti sono scritti in un'altra lingua. Proponi altri segmenti per averli nella tua lingua.",
+      "chatPrompt": "Hai già in mente chi cercare?",
+      "chatLink": "Scrivilo in chat",
+      "solo": "solo titolare",
+      "seniority": {
+        "owner": "Titolare",
+        "founder": "Fondatore",
+        "c_suite": "C-level",
+        "partner": "Partner",
+        "vp": "VP",
+        "head": "Responsabile",
+        "director": "Direttore",
+        "manager": "Manager",
+        "senior": "Senior",
+        "entry": "Junior",
+        "intern": "Stagista"
+      },
+      "criteria": {
+        "titles": "Ruoli",
+        "seniorities": "Seniority",
+        "industries": "Settori",
+        "employeeRanges": "Dip.",
+        "locations": "Paesi",
+        "keywords": "Parole chiave"
+      }
+    }
+  }
+}

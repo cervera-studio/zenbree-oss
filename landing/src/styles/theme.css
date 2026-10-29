@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@font-face {
+  font-display: swap;
+  font-family: "Atkinson Hyperlegible Next";
+  font-weight: 400;
+  font-style: normal;
+  src: url(/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2) format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Atkinson Hyperlegible Next";
+  font-weight: 700;
+  font-style: normal;
+  src: url(/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2) format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Atkinson Hyperlegible Next";
+  font-weight: 800;
+  font-style: normal;
+  src: url(/fonts/atkinson-hyperlegible-next-latin-800-normal.woff2) format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Mono";
+  font-weight: 400;
+  font-style: normal;
+  src: url(/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Mono";
+  font-weight: 500;
+  font-style: normal;
+  src: url(/fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");
+}
+
+/* Each colour that changes in dark is one light-dark(light, dark) token, so the `color-scheme`
+ * class on <html> (OS, or the header's theme toggle) picks the side. Names and values are the
+ * design tokens (design handoff, html/tokens.css); contrast is checked with
+ * `bin/browser contrast` (.claude/skills/verify/features/landing.md). */
+
+/* `phone` comes after `tablet`: at phone width both match and phone wins. */
+@custom-variant tablet (@media (max-width: 899px));
+@custom-variant phone (@media (max-width: 759px));
+
+/* The resolved scheme: a stored choice on <html>, else the OS. Tailwind's own `dark` reads the OS only. */
+@custom-variant dark {
+  &:where(.scheme-dark, .scheme-dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(.scheme-light-dark, .scheme-light-dark *) {
+      @slot;
+    }
+  }
+}
+
+@theme {
+  --font-sans: "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-ground: light-dark(#fafbfd, #0b0c10);
+  --color-raised: light-dark(#f3f4f8, #14161b);
+  --color-selected: light-dark(#eef0fe, #151935);
+  --color-ink: light-dark(#0b0d12, #ecedf0);
+  --color-soft: light-dark(#3d4150, #c3c6cf);
+  --color-muted: light-dark(#676c7c, #8d919c);
+  --color-line: light-dark(#e3e4e8, #22242b);
+  --color-line-strong: light-dark(#858995, #666a73);
+  --color-hair: light-dark(#eeeff2, #1a1c22);
+  --color-accent: light-dark(#3341e0, #5a66f2);
+  --color-on-accent: #ffffff;
+  --color-accent-ink: light-dark(#2a36c4, #a9b1ff);
+  --color-accent-soft: light-dark(#7880ea, #a3aaf8);
+  --color-accent-tint: light-dark(#eef0fd, #1a1e3a);
+  --color-inverse: light-dark(#0b0d12, #ecedf0);
+  --color-on-inverse: light-dark(#ffffff, #0b0d12);
+  --color-positive: light-dark(#167a3e, #4cc27a);
+  --color-positive-tint: light-dark(#e7f5ec, #12261a);
+  --color-warning: light-dark(#9a5b00, #f2b661);
+  --color-warning-tint: light-dark(#fdf3e1, #2d220f);
+  --color-negative: light-dark(#b42318, #f97066);
+  --color-negative-tint: light-dark(#fdecea, #2e1513);
+  --color-lime: #9dd14a;
+  --color-shadow: light-dark(rgb(11 13 18 / 0.45), rgb(0 0 0 / 0.7));
+  --color-shadow-strong: light-dark(rgb(11 13 18 / 0.5), rgb(0 0 0 / 0.8));
+
+  /* Tailwind inlines the value of a shadow token, so the colour is a variable. */
+  --shadow-float: 0 16px 40px -12px var(--color-shadow);
+  --shadow-frame: 0 30px 80px -40px var(--color-shadow);
+  --shadow-snippet: 0 10px 24px -18px var(--color-shadow-strong);
+
+  /* The design type roles (t-*). A mono role also needs `font-mono uppercase tabular-nums`
+   * on the element: a text token carries only size, leading, tracking and weight. */
+  --text-display: 4.75rem; /* 76px */
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.045em;
+  --text-display--font-weight: 800;
+  --text-headline: 2.75rem; /* 44px */
+  --text-headline--line-height: 1.08;
+  --text-headline--letter-spacing: -0.03em;
+  --text-headline--font-weight: 700;
+  --text-title: 1.375rem; /* 22px */
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.02em;
+  --text-title--font-weight: 700;
+  --text-feature: 1.25rem; /* 20px */
+  --text-feature--line-height: 1.3;
+  --text-feature--letter-spacing: -0.01em;
+  --text-feature--font-weight: 700;
+  --text-lead: 1.125rem; /* 18px */
+  --text-lead--line-height: 1.55;
+  --text-body: 1rem; /* 16px */
+  --text-body--line-height: 1.55;
+  --text-button: 0.9375rem; /* 15px, a large button */
+  --text-button--line-height: 1.34;
+  --text-button--font-weight: 700;
+  --text-ui: 0.84375rem; /* 13.5px */
+  --text-ui--line-height: 1.45;
+  --text-ui-strong: 0.84375rem;
+  --text-ui-strong--line-height: 1.45;
+  --text-ui-strong--font-weight: 700;
+  --text-small: 0.78125rem; /* 12.5px */
+  --text-small--line-height: 1.45;
+  --text-label: 0.6875rem; /* 11px */
+  --text-label--line-height: 1.3;
+  --text-label--letter-spacing: 0.06em;
+  --text-label--font-weight: 700;
+  --text-data: 0.8125rem; /* 13px */
+  --text-data--line-height: 1.45;
+  --text-data-sm: 0.71875rem; /* 11.5px */
+  --text-data-sm--line-height: 1.4;
+  --text-eyebrow: 0.75rem; /* 12px */
+  --text-eyebrow--line-height: 1.3;
+  --text-eyebrow--letter-spacing: 0.04em;
+  --text-eyebrow--font-weight: 500;
+}

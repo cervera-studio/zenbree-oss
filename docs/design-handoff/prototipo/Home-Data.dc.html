@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Zenbree · Home con dati</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd}
+body{margin:0}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+textarea:focus{outline:none}
+.hd-label{margin:0;font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--zb-muted-fg)}
+.hd-sec-h{display:flex;align-items:baseline;gap:10px}
+.hd-sec-h a{margin-left:auto;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
+.hd-count{font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace;font-size:11px;color:var(--zb-muted-fg)}
+.hd-todo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.hd-card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:17.5px;text-decoration:none;color:var(--zb-fg);border:1px solid var(--zb-border);background:var(--zb-card);transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.hd-card:hover{background:var(--zb-muted);color:var(--zb-fg);transition-duration:110ms}
+.hd-card-warn{background:rgba(254,154,0,0.08);border-color:rgba(254,154,0,0.32)}
+.hd-card-warn:hover{background:rgba(254,154,0,0.13)}
+.hd-num{width:48px;height:48px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+.hd-num-warn{background:rgba(254,154,0,0.18);color:var(--zb-warn-fg)}
+.hd-num-info{background:var(--zb-tint);color:var(--zb-ink)}
+.hd-card-t{display:flex;flex-direction:column;gap:3px;flex-grow:1;min-width:0}
+.hd-card-t strong{font-size:15px}
+.hd-card-t>span{font-size:13px;color:var(--zb-muted-fg);line-height:1.4}
+.hd-go{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--zb-ink);white-space:nowrap}
+.hd-quiet{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--zb-rail);font-size:14px;color:var(--zb-muted-fg)}
+.hd-run{display:grid;grid-template-columns:auto minmax(0,1fr) 220px auto;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;border:1px solid var(--zb-border);background:var(--zb-bg);overflow:hidden}
+.hd-run-t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hd-run-t a{color:var(--zb-fg);font-weight:600;text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.hd-run-t a:hover{color:var(--zb-ink);text-decoration:underline}
+.hd-run-t>span{font-size:13px;color:var(--zb-muted-fg)}
+.hd-bar{height:6px;border-radius:999px;background:var(--zb-rail-hover);overflow:hidden}
+.hd-bar i{display:block;height:6px;border-radius:999px;background:var(--zb-brand);transition:width 600ms cubic-bezier(0.2,0,0,1)}
+.hd-steps{font-size:12px;color:var(--zb-muted-fg);font-variant-numeric:tabular-nums;white-space:nowrap;margin-top:6px;display:block}
+.hd-open{font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
+.hd-cols{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;align-items:start}
+.hd-tw{border:1px solid var(--zb-border);border-radius:14px;overflow:hidden}
+.hd-t{width:100%;border-collapse:collapse;font-size:13px}
+.hd-t th{padding:9px 14px;font-weight:600;font-size:12px;color:var(--zb-muted-fg);text-align:left;background:var(--zb-rail);white-space:nowrap}
+.hd-t td{padding:12px 14px;border-top:1px solid var(--zb-muted);vertical-align:middle}
+.hd-t .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hd-t tr.hd-tr{transition:background-color 190ms cubic-bezier(0.4,0,1,1)}
+.hd-t tr.hd-tr:hover{background:var(--zb-muted)}
+.hd-name{color:var(--zb-fg);font-weight:600;text-decoration:none}
+.hd-name:hover{color:var(--zb-ink);text-decoration:underline}
+.hd-pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;box-sizing:border-box}
+.hd-av{width:22px;height:22px;border-radius:999px;background:var(--zb-tint);color:var(--zb-ink);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.hd-camps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.hd-camp{display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-radius:14px;border:1px solid var(--zb-border);background:var(--zb-card)}
+.hd-ch{width:22px;height:22px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace}
+.hd-stats{display:flex;gap:16px;font-size:13px;color:var(--zb-muted-fg);font-variant-numeric:tabular-nums}
+.hd-stats b{color:var(--zb-fg);font-weight:700}
+.hd-cta{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:14px;border:1px dashed var(--zb-border)}
+.hd-btn{align-self:flex-start;height:34px;padding:0 14px;border-radius:10.5px;background:var(--zb-brand);color:var(--zb-on-brand);text-decoration:none;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.hd-btn:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.sk{display:block;background:var(--zb-muted);border-radius:7px;position:relative;overflow:hidden}
+.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);transform:translateX(-100%);animation:hd-sh 1.4s infinite}
+.zb-dark .sk::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)}
+@keyframes hd-sh{to{transform:translateX(100%)}}
+/* Live updates arrive by SSE: the changed value pops, the row glows once, nothing reloads. */
+@keyframes hd-pop{0%{transform:scale(1)}35%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes hd-glow{0%{box-shadow:0 0 0 2px var(--zb-ink),0 0 0 6px var(--zb-tint)}100%{box-shadow:0 0 0 0 transparent,0 0 0 0 transparent}}
+@keyframes hd-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes hd-rowglow{0%{background:var(--zb-tint)}100%{background:transparent}}
+.is-pop{animation:hd-pop 420ms cubic-bezier(0.34,1.4,0.64,1)}
+.is-glow{animation:hd-glow 2.4s cubic-bezier(0.4,0,1,1)}
+.is-new td{animation:hd-rowglow 3s cubic-bezier(0.4,0,1,1)}
+.is-new .hd-name{animation:hd-in 300ms cubic-bezier(0.2,0,0,1)}
+.hd-new{height:20px;padding:0 7px;border-radius:999px;background:var(--zb-tint);color:var(--zb-ink);font-size:11px;font-weight:700;display:inline-flex;align-items:center;margin-left:6px}
+.hd-run.is-done{border-color:rgba(0,188,125,0.45);background:rgba(0,188,125,0.06)}
+@keyframes hd-out{0%{opacity:1;max-height:90px}60%{opacity:0;max-height:90px;padding-top:14px;padding-bottom:14px}100%{opacity:0;max-height:0;padding-top:0;padding-bottom:0;margin-top:-10px;border-width:0}}
+.hd-run.is-leaving{animation:hd-out 700ms cubic-bezier(0.4,0,1,1) forwards}
+@keyframes zb-spin{to{transform:rotate(360deg)}}
+.zb-spin{animation:zb-spin 0.9s linear infinite;transform-origin:50% 50%}
+/* Phone */
+.hd-phone .hd-todo,.hd-phone .hd-cols{grid-template-columns:minmax(0,1fr)}
+.hd-phone .hd-cols{gap:26px}
+.hd-phone .hd-run{grid-template-columns:auto minmax(0,1fr);row-gap:10px}
+.hd-phone .hd-run .hd-run-p{grid-column:1 / -1}
+.hd-phone .hd-run .hd-open{display:none}
+.hd-phone .hd-hm{display:none}
+.hd-phone .hd-card{padding:14px}
+.hd-phone .hd-card .hd-go{display:none}
+@media (prefers-reduced-motion: reduce){.sk::after{animation:none}.is-pop,.is-glow,.is-new td,.is-new .hd-name,.zb-spin{animation:none}.hd-run.is-leaving{animation-duration:0.01ms}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="min-height: 100vh; background: var(--zb-bg); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 14px; {{rootGrid}}">
+  <sc-if value="{{desktop}}" hint-placeholder-val="{{true}}">
+    <dc-import name="Sidebar" theme="{{theme}}" active="home" project="Agenzie Nord Italia" credits="942" credits-pct="46%" hint-size="248px,100vh"></dc-import>
+  </sc-if>
+  <sc-if value="{{phone}}" hint-placeholder-val="{{false}}">
+    <header style="position: sticky; top: 0; z-index: 5; display: flex; flex-direction: column; background: var(--zb-bg); border-bottom: 1px solid var(--zb-border)">
+      <div style="height: 56px; display: flex; align-items: center; gap: 8px; padding: 0 8px">
+        <button type="button" aria-label="Apri menu" onClick="{{openMenu}}" style="width: 44px; height: 44px; border: 0; border-radius: 10.5px; background: transparent; color: var(--zb-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-size: 17px; font-weight: 700; flex-grow: 1">zenbree</span>
+        <a href="{{nav.billing}}" style="height: 32px; padding: 0 12px; border-radius: 999px; background: var(--zb-rail); color: var(--zb-fg); text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-variant-numeric: tabular-nums">942 <span style="font-weight: 400; color: var(--zb-muted-fg)">crediti</span></a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 0 16px 10px">
+        <button type="button" aria-label="Progetto: Agenzie Nord Italia. Cambia progetto" style="height: 36px; padding: 0 10px; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); font-family: inherit; font-size: 14px; display: flex; align-items: center; gap: 8px; cursor: pointer; min-width: 0">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; color: var(--zb-muted-fg)"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></svg>
+          <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Agenzie Nord Italia</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; color: var(--zb-muted-fg)"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"></path></svg>
+        </button>
+        
+      </div>
+    </header>
+  </sc-if>
+
+  <main aria-busy="{{busy}}" style="{{mainPad}}">
+    <div style="width: 100%; max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: flex-end; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
+            <span class="hd-label">{{greeting}}</span>
+            <h1 style="margin: 0; font-family: Newsreader, 'Iowan Old Style', Georgia, serif; font-weight: 400; font-size: {{h1Size}}; line-height: 1.18; letter-spacing: 0">Chi vuoi raggiungere?</h1>
+          </div>
+        </div>
+        <form style="background: var(--zb-card); border: 1px solid var(--zb-border); border-radius: 21px; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(7,25,29,0.04), 0 8px 24px -12px rgba(7,25,29,0.10)">
+          <label for="brief" class="sr-only">Descrivi chi vuoi raggiungere</label>
+          <textarea id="brief" rows="2" placeholder="Es. agenzie di marketing a Milano, 10-50 dipendenti, che assumono SDR" style="resize: none; border: 0; background: transparent; font-family: inherit; font-size: {{inputSize}}; line-height: 1.5; color: var(--zb-fg); padding: 4px 4px 0"></textarea>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <button type="button" aria-label="Carica CSV" style="width: {{btn}}; height: {{btn}}; border-radius: 10.5px; border: 1px solid var(--zb-border); background: var(--zb-bg); color: var(--zb-fg); display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+            </button>
+            <span style="flex-grow: 1"></span>
+            <span style="font-size: 12px; color: var(--zb-muted-fg)">{{planHint}}</span>
+            <a href="{{nav.question}}" aria-label="Invia" style="width: {{btn}}; height: {{btn}}; flex-shrink: 0; border-radius: 999px; background: var(--zb-brand); color: var(--zb-on-brand); display: flex; align-items: center; justify-content: center; text-decoration: none">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 19V5"></path></svg>
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <p class="sr-only" aria-live="polite">{{announce}}</p>
+
+      <section aria-labelledby="h-todo" style="display: flex; flex-direction: column; gap: 12px">
+        <div class="hd-sec-h"><h2 id="h-todo" class="hd-label">Da fare</h2></div>
+        <sc-if value="{{loading}}" hint-placeholder-val="{{false}}">
+          <div class="hd-todo" aria-hidden="true">
+            <div class="hd-card" style="pointer-events: none"><span class="sk" style="width: 48px; height: 48px; border-radius: 14px"></span><span style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1"><span class="sk" style="width: 55%; height: 14px"></span><span class="sk" style="width: 80%; height: 12px"></span></span></div>
+            <div class="hd-card" style="pointer-events: none"><span class="sk" style="width: 48px; height: 48px; border-radius: 14px"></span><span style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1"><span class="sk" style="width: 45%; height: 14px"></span><span class="sk" style="width: 70%; height: 12px"></span></span></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{todoQuiet}}" hint-placeholder-val="{{false}}">
+          <div class="hd-quiet">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--zb-pos-fg); flex-shrink: 0"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span>Niente in attesa: nessun messaggio da approvare e nessuna risposta nuova.</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{todoShow}}" hint-placeholder-val="{{true}}">
+          <div class="hd-todo">
+            <a href="{{nav.approve}}" class="hd-card hd-card-warn {{todo.approveGlow}}">
+              <span class="hd-num hd-num-warn {{todo.approvePop}}">{{todo.approve}}</span>
+              <span class="hd-card-t">
+                <strong>Messaggi da approvare</strong>
+                <span>{{todo.approveSub}}</span>
+              </span>
+              <span class="hd-go">Rivedi<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </a>
+            <a href="{{nav.inbox}}" class="hd-card {{todo.replyGlow}}">
+              <span class="hd-num hd-num-info {{todo.replyPop}}">{{todo.replies}}</span>
+              <span class="hd-card-t">
+                <strong>Risposte per te</strong>
+                <span>{{todo.replySub}}<sc-if value="{{todo.replyTag}}" hint-placeholder-val="{{true}}"> <span class="hd-pill" style="height: 20px; margin-left: 4px; background: rgba(0,188,125,0.12); color: var(--zb-pos-fg); vertical-align: 1px">{{todo.replyTag}}</span></sc-if></span>
+              </span>
+              <span class="hd-go">Leggi<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </a>
+          </div>
+        </sc-if>
+      </section>
+
+      <sc-if value="{{runShow}}" hint-placeholder-val="{{true}}">
+        <section aria-labelledby="h-run" style="display: flex; flex-direction: column; gap: 12px">
+          <div class="hd-sec-h"><h2 id="h-run" class="hd-label">In corso</h2><span class="hd-count">{{runCount}}</span></div>
+          <sc-if value="{{loading}}" hint-placeholder-val="{{false}}">
+            <div class="hd-run" aria-hidden="true"><span class="sk" style="width: 18px; height: 18px; border-radius: 999px"></span><span style="display: flex; flex-direction: column; gap: 8px"><span class="sk" style="width: 50%; height: 14px"></span><span class="sk" style="width: 35%; height: 12px"></span></span><span class="sk hd-run-p" style="height: 6px; border-radius: 999px"></span><span class="sk hd-hm" style="width: 70px; height: 12px"></span></div>
+          </sc-if>
+          <sc-for list="{{runs}}" as="r" hint-placeholder-count="2">
+            <div class="hd-run {{r.cls}}">
+              <sc-if value="{{r.spinning}}" hint-placeholder-val="{{true}}"><svg class="zb-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="color: var(--zb-ink)"><path d="M21 12a9 9 0 1 1-6.2-8.6"></path></svg></sc-if>
+              <sc-if value="{{r.done}}" hint-placeholder-val="{{false}}"><span style="width: 18px; height: 18px; border-radius: 999px; background: rgba(0,188,125,0.18); color: var(--zb-pos-fg); display: flex; align-items: center; justify-content: center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+              <div class="hd-run-t">
+                <a href="{{r.href}}">{{r.title}}</a>
+                <span>{{r.meta}}</span>
+              </div>
+              <div class="hd-run-p">
+                <div class="hd-bar" role="progressbar" aria-label="{{r.title}}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{r.pctNum}}"><i style="width: {{r.pct}}"></i></div>
+                <span class="hd-steps">{{r.steps}}</span>
+              </div>
+              <a href="{{r.href}}" class="hd-open">Apri la chat</a>
+            </div>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <div class="hd-cols">
+        <section aria-labelledby="h-lists" style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+          <div class="hd-sec-h"><h2 id="h-lists" class="hd-label">Liste recenti</h2><a href="{{nav.lists}}">Tutte le liste</a></div>
+          <div class="hd-tw">
+            <table class="hd-t">
+              <thead><tr><th scope="col">Nome</th><th scope="col" class="n hd-hm">Righe</th><th scope="col" class="n">Email verificate</th><th scope="col" class="hd-hm">Aggiornata</th></tr></thead>
+              <tbody>
+                <sc-if value="{{loading}}" hint-placeholder-val="{{false}}">
+                  <sc-for list="{{skRows}}" as="k" hint-placeholder-count="4">
+                    <tr aria-hidden="true"><td><span style="display: flex; flex-direction: column; gap: 7px"><span class="sk" style="width: {{k.w}}; height: 13px"></span><span class="sk" style="width: 30%; height: 11px"></span></span></td><td class="n hd-hm"><span class="sk" style="width: 28px; height: 13px; margin-left: auto"></span></td><td class="n"><span class="sk" style="width: 28px; height: 13px; margin-left: auto"></span></td><td class="hd-hm"><span class="sk" style="width: 64px; height: 13px"></span></td></tr>
+                  </sc-for>
+                </sc-if>
+                <sc-for list="{{lists}}" as="l" hint-placeholder-count="5">
+                  <tr class="hd-tr {{l.cls}}">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px; min-width: 0">
+                        <span class="hd-av" title="{{l.ownerName}}">{{l.owner}}</span>
+                        <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+                          <span style="display: flex; align-items: center; min-width: 0"><a href="{{l.href}}" class="hd-name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{l.name}}</a><sc-if value="{{l.isNew}}" hint-placeholder-val="{{false}}"><span class="hd-new">Nuova</span></sc-if></span>
+                          <span style="font-size: 12px; color: var(--zb-muted-fg)">{{l.kind}}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="n hd-hm">{{l.rows}}</td>
+                    <td class="n"><strong>{{l.contacts}}</strong></td>
+                    <td class="hd-hm" style="color: var(--zb-muted-fg); white-space: nowrap">{{l.when}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-camps" style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+          <div class="hd-sec-h"><h2 id="h-camps" class="hd-label">Campagne attive</h2><a href="{{nav.campaigns}}">Tutte le campagne</a></div>
+          <sc-if value="{{loading}}" hint-placeholder-val="{{false}}">
+            <ul class="hd-camps" aria-hidden="true">
+              <sc-for list="{{skCamps}}" as="k" hint-placeholder-count="2">
+                <li class="hd-camp"><span class="sk" style="width: {{k.w}}; height: 14px"></span><span class="sk" style="width: 60%; height: 12px"></span></li>
+              </sc-for>
+            </ul>
+          </sc-if>
+          <sc-if value="{{campEmpty}}" hint-placeholder-val="{{false}}">
+            <div class="hd-cta">
+              <strong style="font-size: 15px">Nessuna campagna attiva</strong>
+              <span style="font-size: 13px; line-height: 1.5; color: var(--zb-muted-fg)">«Agenzie marketing Milano · SDR» ha 47 contatti verificati. Trasformala in una sequenza email e LinkedIn: approvi ogni messaggio prima dell’invio.</span>
+              <a href="{{nav.builder}}" class="hd-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>Crea una campagna</a>
+            </div>
+          </sc-if>
+          <ul class="hd-camps">
+            <sc-for list="{{camps}}" as="c" hint-placeholder-count="3">
+              <li class="hd-camp {{c.glow}}">
+                <div style="display: flex; align-items: center; gap: 10px; min-width: 0">
+                  <a href="{{c.href}}" class="hd-name" style="flex-grow: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{c.name}}</a>
+                  <span class="hd-pill" style="background: {{c.sBg}}; color: {{c.sFg}}"><span style="width: 6px; height: 6px; border-radius: 999px; background: {{c.sDot}}"></span>{{c.status}}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="display: flex; gap: 4px" aria-label="{{c.chLabel}}">
+                    <sc-for list="{{c.ch}}" as="h" hint-placeholder-count="2"><span class="hd-ch" title="{{h.title}}" style="background: {{h.bg}}; color: {{h.fg}}">{{h.k}}</span></sc-for>
+                  </span>
+                  <span class="hd-stats"><span><b>{{c.sent}}</b> inviati</span><span><b class="{{c.pop}}" style="display: inline-block">{{c.replies}}</b> risposte</span></span>
+                  <span style="flex-grow: 1"></span>
+                  <span class="hd-av" title="{{c.ownerName}}">{{c.owner}}</span>
+                </div>
+              </li>
+            </sc-for>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <sc-if value="{{menu}}" hint-placeholder-val="{{false}}">
+    <dc-import name="MDrawer" theme="{{theme}}" active="home" on-close="{{closeMenu}}" hint-size="100%,100vh"></dc-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"layout":{"editor":"enum","options":["desktop","phone"],"default":"desktop"},"state":{"editor":"enum","options":["full","partial","live","finish","loading"],"default":"full"},"step":{"editor":"enum","options":["auto","prima","dopo"],"default":"auto"},"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { phase: 0, menu: false }; this._t = []; }
+  componentDidMount() { this._play(); }
+  componentWillUnmount() { this._t.forEach(clearTimeout); }
+  _play() {
+    const s = this.props.state ?? 'full', step = this.props.step ?? 'auto';
+    if (step !== 'auto' || (s !== 'live' && s !== 'finish')) return;
+    // Simulated SSE events, the way they reach an open Home.
+    if (s === 'live') { this._t.push(setTimeout(() => this.setState({ phase: 1 }), 1600)); this._t.push(setTimeout(() => this.setState({ phase: 2 }), 3600)); }
+    if (s === 'finish') { this._t.push(setTimeout(() => this.setState({ phase: 1 }), 1500)); this._t.push(setTimeout(() => this.setState({ phase: 2 }), 3000)); this._t.push(setTimeout(() => this.setState({ phase: 3 }), 3750)); }
+  }
+  renderVals() {
+    const theme = this.props.theme ?? 'light';
+    const phone = (this.props.layout ?? 'desktop') === 'phone';
+    const st = this.props.state ?? 'full';
+    const step = this.props.step ?? 'auto';
+    const ph = step === 'prima' ? 0 : step === 'dopo' ? 3 : this.state.phase;
+    const h = (p) => (theme === 'dark' ? 'Dark-' : '') + p;
+    const m = (desk, mob) => h(phone ? mob : desk);
+    const loading = st === 'loading', partial = st === 'partial';
+    const live = st === 'live', fin = st === 'finish';
+    const replyIn = live && ph >= 1, approveIn = live && ph >= 2;
+
+    const todo = {
+      approve: approveIn ? '16' : '14',
+      approveSub: approveIn ? '12 in «Agenzie marketing Milano · SDR», 4 in «Resp. marketing agenzie Torino»' : '12 in «Agenzie marketing Milano · SDR», 2 in un’altra campagna',
+      replies: replyIn ? '4' : '3',
+      
+      replySub: replyIn ? 'Ultima: Marco Bellini · Fiere 2026 · adesso' : 'Ultima: Giulia Ferri · Fiere 2026 · 11:12', replyTag: replyIn ? 'interessato' : 'interessata',
+      replyPop: replyIn && ph === 1 ? 'is-pop' : '', replyGlow: replyIn && ph === 1 ? 'is-glow' : '',
+      approvePop: approveIn && ph === 2 ? 'is-pop' : '', approveGlow: approveIn && ph === 2 ? 'is-glow' : ''
+    };
+    const announce = live ? (ph === 1 ? 'Nuova risposta per te da Marco Bellini, interessato. 4 risposte da leggere.' : ph >= 2 ? '2 nuovi messaggi da approvare. 16 in totale.' : '')
+      : fin ? (ph >= 2 ? 'Ricerca finita: Agenzie comunicazione Bologna, 41 persone.' : '') : '';
+
+    const R = (title, meta, pct, steps, href, extra) => ({ title, meta, pct: pct + '%', pctNum: String(pct), steps, href: m(href, 'M-Chat.dc.html'), cls: '', spinning: true, done: false, ...(extra || {}) });
+    let runs = [
+      R('Agenzie di comunicazione a Bologna', 'Verifica email · 38 persone finora · avviata da Sara', 78, '3 di 4 passi', 'Chat-Running.dc.html'),
+      R('Studi di architettura a Torino', 'Ricerca aziende · 12 aziende finora · avviata da te', 22, '1 di 3 passi', 'Chat-Running.dc.html')
+    ];
+    if (fin && ph >= 1) runs[0] = { ...runs[0], meta: 'Completata · 41 persone, 38 con email verificata', pct: '100%', pctNum: '100', steps: '4 di 4 passi', spinning: false, done: true, cls: ph >= 2 ? 'is-done is-leaving' : 'is-done' };
+    if (fin && ph >= 3) runs = runs.slice(1);
+    if (partial) runs = [];
+
+    const L = (name, kind, rows, contacts, when, owner, ownerName, desk, mob) => ({ name, kind, rows, contacts, when, owner, ownerName, href: m(desk, mob), cls: '', isNew: false });
+    let lists = [
+      L('Agenzie marketing Milano · SDR', 'Persone', '47', '47', 'Oggi, 11:42', 'AP', 'Ale Poli', 'List.dc.html', 'M-List.dc.html'),
+      L('Agenzie marketing Milano · aziende', 'Aziende', '31', '—', 'Oggi, 11:20', 'AP', 'Ale Poli', 'Companies.dc.html', 'M-List.dc.html'),
+      L('Resp. marketing agenzie Torino', 'Persone', '64', '58', 'Ieri, 17:05', 'SC', 'Sara Conti', 'List.dc.html', 'M-List.dc.html'),
+      L('fiere_2026.csv', 'Arricchimento', '312', '241', '29 set', 'DR', 'Davide Rinaldi', 'List.dc.html', 'M-List.dc.html'),
+      L('Software house Torino', 'Persone', '38', '36', '27 set', 'SC', 'Sara Conti', 'List.dc.html', 'M-List.dc.html')
+    ];
+    if (fin && ph >= 3) lists = [{ ...L('Agenzie comunicazione Bologna', 'Persone', '41', '38', 'Adesso', 'SC', 'Sara Conti', 'List.dc.html', 'M-List.dc.html'), cls: 'is-new', isNew: true }, ...lists.slice(0, 4)];
+    if (partial) lists = lists.slice(0, 4);
+    if (phone) lists = lists.slice(0, 3);
+
+    const ST = { active: ['Attiva', 'rgba(0,188,125,0.12)', 'var(--zb-pos-fg)', '#00bc7d'], paused: ['In pausa', 'rgba(254,154,0,0.14)', 'var(--zb-warn-fg)', '#fe9a00'] };
+    const CH = { E: { k: '@', title: 'Email', bg: 'var(--zb-tint)', fg: 'var(--zb-ink)' }, L: { k: 'in', title: 'LinkedIn', bg: 'rgba(0,184,219,0.12)', fg: 'var(--zb-social-fg)' } };
+    const C = (name, chs, sent, replies, s, owner, ownerName) => ({ name, ch: chs.split('').map((k) => CH[k]), chLabel: chs.split('').map((k) => CH[k].title).join(' e '), sent, replies, status: ST[s][0], sBg: ST[s][1], sFg: ST[s][2], sDot: ST[s][3], owner, ownerName, href: h('Camp-Detail.dc.html'), glow: '', pop: '' });
+    let camps = [
+      C('Agenzie marketing Milano · SDR', 'EL', '18', '5', 'active', 'AP', 'Ale Poli'),
+      C('Resp. marketing agenzie Torino', 'L', '40', '6', 'active', 'SC', 'Sara Conti'),
+      C('Fiere 2026 · follow-up', 'E', '302', replyIn ? '20' : '19', 'paused', 'AP', 'Ale Poli')
+    ];
+    if (replyIn && ph === 1) camps[2] = { ...camps[2], pop: 'is-pop' };
+    if (partial) camps = [];
+    if (phone) camps = camps.slice(0, 2);
+
+    const days = 'Martedì 6 ottobre';
+    return {
+      theme, phone, desktop: !phone, nav: {
+        question: m('Chat-Question.dc.html', 'M-Chat.dc.html'), approve: m('Camp-Detail.dc.html', 'M-Approve.dc.html'), inbox: m('Inbox.dc.html', 'M-Inbox.dc.html'),
+        lists: h('Lists.dc.html'), campaigns: h('Campaigns.dc.html'), builder: h('Camp-Builder.dc.html'), billing: h('Billing.dc.html')
+      },
+      rootClass: [theme === 'dark' ? 'zb-dark' : '', phone ? 'hd-phone' : ''].join(' '),
+      rootGrid: phone ? 'display: flex; flex-direction: column;' : 'display: grid; grid-template-columns: 248px minmax(0, 1fr);',
+      mainPad: phone ? 'padding: 24px 16px 32px;' : 'padding: 40px 40px 56px; min-width: 0;',
+      h1Size: phone ? '34px' : '40px', inputSize: phone ? '16px' : '15px', btn: phone ? '44px' : '36px',
+      greeting: phone ? 'Buongiorno, Ale' : days + ' · Buongiorno, Ale',
+      busy: loading ? 'true' : 'false', planHint: phone ? 'Il piano è gratis' : 'Il piano è gratis: paghi solo dopo averlo approvato', loading, announce,
+      todo, todoShow: !loading && !partial, todoQuiet: partial,
+      runShow: loading || runs.length > 0, runs: loading ? [] : runs, runCount: loading ? '' : String(runs.length),
+      lists: loading ? [] : lists, skRows: [{ w: '230px' }, { w: '180px' }, { w: '210px' }, { w: '150px' }].slice(0, phone ? 3 : 4),
+      camps: loading ? [] : camps, campEmpty: partial, skCamps: [{ w: '70%' }, { w: '55%' }],
+      menu: this.state.menu, openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

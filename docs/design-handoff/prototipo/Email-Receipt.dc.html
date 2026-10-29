@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Email · Ricevuta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./fonts.css">
+<style>
+:root{--zb-bg:#f8fcfb;--zb-fg:#07191d;--zb-card:#f2f7f6;--zb-muted:#edf3f2;--zb-muted-fg:#596669;--zb-border:#d5e1df;--zb-brand:#006679;--zb-brand-hover:#00576a;--zb-ink:#006679;--zb-ink-hover:#004d5c;--zb-on-brand:#f8fcfb;--zb-tint:#d0f0f9;--zb-rail:#e6f0ee;--zb-rail-hover:#dde9e7;--zb-pos-fg:#007a55;--zb-warn-fg:#bb4d00;--zb-neg-fg:#c10007;--zb-ai-fg:#8200db;--zb-info-fg:#1447e6;--zb-neu-fg:#314158;--zb-social-fg:#007595;--zb-chart-3:#ba7e15}
+.zb-dark{color-scheme:dark;--zb-bg:#0e1515;--zb-fg:#ecf1f1;--zb-card:#141c1b;--zb-muted:#1a2221;--zb-muted-fg:#929e9d;--zb-border:#27302f;--zb-brand:#03758b;--zb-brand-hover:#036a7e;--zb-ink:#69c7df;--zb-ink-hover:#8fdbf0;--zb-on-brand:#f8fcfb;--zb-tint:#093641;--zb-rail:#101817;--zb-rail-hover:#1a2322;--zb-pos-fg:#5ee9b5;--zb-warn-fg:#ffd230;--zb-neg-fg:#ff6467;--zb-ai-fg:#dab2ff;--zb-info-fg:#8ec5ff;--zb-neu-fg:#cad5e2;--zb-social-fg:#53eafd;--zb-chart-3:#ebb260}
+.sk{display:block;background:var(--zb-muted);border-radius:7px;position:relative;overflow:hidden}
+.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);transform:translateX(-100%);animation:zbsh 1.4s infinite}
+.zb-dark .sk::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)}
+@keyframes zbsh{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion: reduce){.sk::after{animation:none}}
+:root{--zb-chart-1:#223034;--zb-chart-2:#006679}
+.zb-dark{--zb-chart-1:#c7d0cf;--zb-chart-2:#3fb5d1}
+body{margin:0;background:var(--zb-bg)}
+a{color:var(--zb-ink)}a:hover{color:var(--zb-ink-hover)}
+.zb-field{box-sizing:border-box;height:40px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);font-family:inherit;font-size:14px;color:var(--zb-fg);padding:0 12px}
+.zb-field:focus{outline:2px solid var(--zb-ink);outline-offset:-1px}
+.h1{margin:0;font-family:Newsreader,'Iowan Old Style',Georgia,serif;font-weight:400;font-size:44px;line-height:1.18;letter-spacing:0}
+.h2{margin:0;font-size:16px;font-weight:700}
+.sub{margin:0;color:var(--zb-muted-fg);line-height:1.5}
+.mono{font-family:'Atkinson Hyperlegible Mono',ui-monospace,monospace}
+.tw{border:1px solid var(--zb-border);border-radius:14px;overflow:hidden}
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{padding:10px 14px;font-weight:600;font-size:12px;color:var(--zb-muted-fg);text-align:left;background:var(--zb-rail);white-space:nowrap}
+.t td{padding:9px 14px;border-top:1px solid var(--zb-muted);vertical-align:middle}
+.t tbody tr:hover{background:var(--zb-muted)}
+.t .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b1{height:36px;padding:0 14px;border:0;border-radius:10.5px;background:var(--zb-brand);color:var(--zb-on-brand);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b1:hover{background:var(--zb-brand-hover);color:var(--zb-on-brand)}
+.b1:disabled{opacity:.45;cursor:not-allowed}
+.b2{height:36px;padding:0 12px;border-radius:10.5px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.b2:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.bd{background:var(--zb-neg-fg);color:var(--zb-bg)}
+.bd:hover{background:var(--zb-neg-fg);opacity:.9;color:var(--zb-bg)}
+.pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;box-sizing:border-box}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--zb-border);background:var(--zb-bg);color:var(--zb-fg);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed=true]{background:var(--zb-tint);border-color:transparent;color:var(--zb-ink)}
+.card{border:1px solid var(--zb-border);border-radius:17.5px;background:var(--zb-card);padding:16px}
+.kpi dt{font-size:12px;color:var(--zb-muted-fg);font-weight:600}
+.kpi dd{margin:4px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:var(--zb-fg);font-family:inherit;font-size:13px;text-align:left;cursor:pointer;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:var(--zb-muted);color:var(--zb-fg)}
+.ib{width:32px;height:32px;border:0;border-radius:7px;background:transparent;color:var(--zb-muted-fg);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ib:hover{background:var(--zb-rail-hover);color:var(--zb-fg)}
+.tab{height:44px;padding:0 4px;border:0;border-bottom:2px solid transparent;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--zb-muted-fg);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tab[aria-selected=true]{color:var(--zb-fg);border-bottom-color:var(--zb-ink)}
+details>summary{cursor:pointer;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+.sw{position:relative;width:40px;height:24px;border-radius:999px;border:0;cursor:pointer;flex-shrink:0;padding:0}
+.sw span{position:absolute;top:3px;width:18px;height:18px;border-radius:999px;background:var(--zb-bg);transition:left .15s}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: var(--zb-rail); color: var(--zb-fg); font-family: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif; font-size: 15px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+  <div style="background: var(--zb-bg); border-radius: 14px; border: 1px solid var(--zb-border); padding: 14px 18px; display: grid; grid-template-columns: 70px 1fr auto; gap: 4px 12px; font-size: 13px">
+    <span style="color: var(--zb-muted-fg)">Da</span><span><strong>Zenbree</strong> &lt;notifiche@zenbree.com&gt;</span><span style="color: var(--zb-muted-fg)">1 ott, 00:01</span>
+    <span style="color: var(--zb-muted-fg)">A</span><span>ale@ritmosales.it</span><span></span>
+    <span style="color: var(--zb-muted-fg)">Oggetto</span><strong style="grid-column: span 2">Ricevuta Zenbree · Piano Starter, ottobre</strong>
+    <span style="color: var(--zb-muted-fg)">Anteprima</span><span style="grid-column: span 2; color: var(--zb-muted-fg)">Pagamento di €35,38 ricevuto. +2.000 crediti sul tuo account.</span>
+  </div>
+  <div style="align-self: center; width: 100%; max-width: 560px; background: var(--zb-bg); border-radius: 17.5px; border: 1px solid var(--zb-border); padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; align-items: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" style="fill: var(--zb-brand)"></rect><path d="M7 8.5h10L7 15.5h10" stroke="#f8fcfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size: 16px; font-weight: 700">zenbree</span></div>
+    <h1 style="margin: 0; font-size: 24px; line-height: 1.3; font-weight: 700">Grazie, pagamento ricevuto</h1>
+    <p style="margin: 0; line-height: 1.6; ">Il piano Starter si è rinnovato: abbiamo aggiunto <strong>2.000 crediti</strong> al tuo account Ritmo Sales.</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px">
+      <tbody>
+        <tr><td style="padding: 8px 0; color: var(--zb-muted-fg)">Ricevuta n.</td><td style="padding: 8px 0; text-align: right" class="mono">ZB-2026-00418</td></tr>
+        <tr><td style="padding: 8px 0; color: var(--zb-muted-fg)">Data</td><td style="padding: 8px 0; text-align: right">1 ottobre 2026</td></tr>
+        <tr><td style="padding: 8px 0; color: var(--zb-muted-fg)">Pagato con</td><td style="padding: 8px 0; text-align: right">Visa ···· 4242</td></tr>
+        <tr style="border-top: 1px solid var(--zb-border)"><td style="padding: 12px 0 6px">Piano Starter · 1 ott – 31 ott<br><span style="font-size: 12px; color: var(--zb-muted-fg)">2.000 crediti, scadono a fine periodo</span></td><td style="padding: 12px 0 6px; text-align: right; font-variant-numeric: tabular-nums">€29,00</td></tr>
+        <tr><td style="padding: 6px 0; color: var(--zb-muted-fg)">IVA 22%</td><td style="padding: 6px 0; text-align: right; font-variant-numeric: tabular-nums">€6,38</td></tr>
+        <tr style="border-top: 1px solid var(--zb-border)"><td style="padding: 12px 0; font-weight: 700">Totale</td><td style="padding: 12px 0; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums">€35,38</td></tr>
+      </tbody>
+    </table>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap"><span style="display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 10.5px; background: var(--zb-brand); color: var(--zb-on-brand); font-weight: 600; font-size: 15px">Scarica la fattura (PDF)</span><span style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 10.5px; border: 1px solid var(--zb-border); font-weight: 600">Vedi i crediti</span></div>
+    <p style="margin: 0; font-size: 13px; line-height: 1.55; color: var(--zb-muted-fg)">Fatturato a Ritmo Sales · P.IVA e indirizzo come inseriti al pagamento. Prossimo rinnovo: 1 novembre, €29,00 + IVA. Puoi disdire quando vuoi da Crediti.</p>
+    <div style="border-top: 1px solid var(--zb-border); padding-top: 16px; display: flex; flex-direction: column; gap: 6px">
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: var(--zb-muted-fg)">Email di servizio legata ai pagamenti: arriva sempre.</p>
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: var(--zb-muted-fg)">Zenbree · app.zenbree.com · <span style="color: var(--zb-ink)">supporto@zenbree.com</span></p>
+    </div>
+  </div>
+  <p style="align-self: center; max-width: 560px; margin: 0; font-size: 12px; line-height: 1.5; color: var(--zb-muted-fg)">Da decidere: il pagamento passa da Stripe Checkout con Stripe Tax, e Stripe può già inviare ricevuta e fattura. O mandiamo questa (e spegniamo quella di Stripe), o lasciamo Stripe e questa non serve. Ipotesi: prezzi IVA esclusa.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":760,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "credits": 8,
+  "row": {
+    "cell_meta": {
+      "phone": {
+        "provider": "apollo",
+        "status": "filled"
+      }
+    },
+    "cells": {
+      "company_domain": "acme.test",
+      "full_name": "Ada Rossi",
+      "phone": "+39333111222"
+    },
+    "created_at": "2026-01-01T00:00:00Z",
+    "crm_hold": null,
+    "delivered": true,
+    "excluded": false,
+    "id": "phone-found",
+    "lookups": {
+      "email": {
+        "state": "not_searched"
+      },
+      "phone": {
+        "state": "found"
+      }
+    },
+    "rating": null,
+    "rating_note": null,
+    "relevance_score": null,
+    "score_reasons": null,
+    "seq": 1
+  },
+  "status": "found"
+}
