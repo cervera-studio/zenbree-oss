@@ -52,7 +52,7 @@ _BLOCKED_NETWORKS = [
     ipaddress.ip_network('127.0.0.0/8'),
     ipaddress.ip_network('169.254.0.0/16'),  # Link-local + cloud metadata
     ipaddress.ip_network('100.64.0.0/10'),  # Carrier-grade NAT
-    ipaddress.ip_network('::1/128'),
+    ipaddress.ip_network('::/127'),  # '::' (Linux dials it as loopback) and '::1'
     ipaddress.ip_network('fc00::/7'),  # IPv6 private
     ipaddress.ip_network('fe80::/10'),  # IPv6 link-local
 ]
@@ -129,10 +129,6 @@ def resolve_and_validate_host(hostname: str) -> Result[list[tuple]]:
         # is checked against the v4 blocklist instead of slipping past it.
         if isinstance(ip, ipaddress.IPv6Address) and ip in _NAT64_PREFIX:
             ip = ipaddress.ip_address(int(ip) & 0xFFFFFFFF)
-
-        # '::' is in no listed network, yet Linux connects to it as loopback.
-        if ip.is_unspecified or ip.is_multicast or ip.is_reserved:
-            return err(SSRF_BLOCKED, detail=f'Blocked IP range: {ip_str}')
 
         for network in _BLOCKED_NETWORKS:
             try:
