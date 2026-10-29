@@ -130,6 +130,7 @@ def test_plain_hosts_and_ip_literals_keep_their_verdict(dns):
         'http://internal.test/',
         'http://127.0.0.1/',
         'http://[::1]/',
+        'http://[::]/',  # unspecified: Linux dials it as loopback
         'http://LOCALHOST/',
         'ftp://example.test/',
     ):

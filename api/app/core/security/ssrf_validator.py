@@ -52,7 +52,7 @@ _BLOCKED_NETWORKS = [
     ipaddress.ip_network('127.0.0.0/8'),
     ipaddress.ip_network('169.254.0.0/16'),  # Link-local + cloud metadata
     ipaddress.ip_network('100.64.0.0/10'),  # Carrier-grade NAT
-    ipaddress.ip_network('::1/128'),
+    ipaddress.ip_network('::/127'),  # '::' (Linux dials it as loopback) and '::1'
     ipaddress.ip_network('fc00::/7'),  # IPv6 private
     ipaddress.ip_network('fe80::/10'),  # IPv6 link-local
 ]
