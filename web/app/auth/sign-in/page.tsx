@@ -1,6 +1,7 @@
 import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import { auth } from '@/lib/auth';
+import { signupEnabled } from '@/lib/signup';
 import { AuthShell } from '../auth-shell';
 import { safeCallback } from './params';
 import { SignInForm } from './sign-in-form';
@@ -29,6 +30,7 @@ export default async function SignInPage({
         ban={ban}
         callbackUrl={safeCallback(callbackUrl)}
         oauthError={error}
+        canSignUp={signupEnabled()}
       />
     </AuthShell>
   );

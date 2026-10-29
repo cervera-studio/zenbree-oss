@@ -18,6 +18,7 @@ import {
 } from './auth-takeover';
 import { banMarker } from './ban-marker';
 import { dashGuard } from './dash-guard';
+import { signupEnabled } from './signup';
 import { grantSignupCredits } from './signup-credits';
 import { inviteThrottle, TEAM_DISABLED_PATHS, teamOptions } from './team';
 
@@ -77,6 +78,7 @@ export const auth = betterAuth({
   disabledPaths: TEAM_DISABLED_PATHS,
   emailAndPassword: {
     enabled: true,
+    disableSignUp: !signupEnabled(),
     requireEmailVerification: true,
     revokeSessionsOnPasswordReset: true,
     // A reset proves the mailbox: an unverified user's OAuth links (#980) are dropped with the old sessions.
@@ -143,11 +145,13 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID ?? '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      disableSignUp: !signupEnabled(),
     },
     microsoft: {
       clientId: process.env.MICROSOFT_CLIENT_ID ?? '',
       clientSecret: process.env.MICROSOFT_CLIENT_SECRET ?? '',
       tenantId: process.env.MICROSOFT_TENANT_ID ?? 'common',
+      disableSignUp: !signupEnabled(),
     },
   },
   hooks: {

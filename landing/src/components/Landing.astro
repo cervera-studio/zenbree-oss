@@ -1,7 +1,6 @@
 ---
 import '../styles/theme.css';
 import { content, defaultLocale, type Locale, locales, paths } from '../content';
-import Estimate from './Estimate.astro';
 import Faq from './Faq.astro';
 import FinalCta from './FinalCta.astro';
 import Flow from './Flow.astro';
@@ -63,7 +62,6 @@ const canonical = new URL(paths[locale], Astro.site);
     <main>
       <Hero t={t} />
       <Statement t={t} />
-      <Estimate t={t} locale={locale} />
       <Flow t={t} />
       <Why t={t} />
       <OpenSource t={t} />

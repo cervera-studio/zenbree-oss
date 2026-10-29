@@ -30,11 +30,13 @@ export function SignInForm({
   ban: signedInBan,
   callbackUrl,
   oauthError,
+  canSignUp,
 }: {
   expired: boolean;
   ban?: BanInfo | null;
   callbackUrl: string;
   oauthError?: string;
+  canSignUp: boolean;
 }) {
   const t = useTranslations();
   const errorText = useErrorText();
@@ -127,7 +129,7 @@ export function SignInForm({
           </Button>
         </FieldGroup>
       </form>
-      <SwitchLink message="noAccount" href={signUpPath(callbackUrl)} />
+      {canSignUp && <SwitchLink message="noAccount" href={signUpPath(callbackUrl)} />}
     </>
   );
 }

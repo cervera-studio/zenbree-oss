@@ -5,7 +5,7 @@ export const fr: Content = {
   meta: {
     title: 'Zenbree · Agent IA pour la prospection B2B',
     description:
-      'Dites à l’agent qui vous voulez atteindre. Jusqu’à 100 crédits, une recherche démarre tout de suite ; au-delà, l’agent vous montre le plan avec son coût maximal, et vous l’approuvez. Il vous livre ensuite des personnes avec un e-mail contrôlé par un vérificateur et la source de chaque donnée.',
+      'Dites à l’agent qui vous voulez atteindre. L’agent vous montre le plan et vous l’approuvez. Il vous livre ensuite des personnes avec un e-mail contrôlé par un vérificateur et la source de chaque donnée.',
   },
   nav: {
     homeLabel: 'Zenbree, accueil',
@@ -29,7 +29,7 @@ export const fr: Content = {
     titleEm: 'Zenbree trouve qui contacter.',
     cta: 'Demander l’accès',
     seeHow: 'Voir le fonctionnement',
-    fine: 'Le plan est gratuit · Vous ne payez que les lignes livrées',
+    fine: 'Open source · Auto-hébergé ou service géré sur demande',
   },
   stage: {
     label: 'Aperçu du produit',
@@ -95,36 +95,6 @@ export const fr: Content = {
     line: 'Une bonne liste n’est pas une liste plus longue.',
     em: 'Elle est plus courte, et chaque ligne a une source que vous pouvez ouvrir.',
   },
-  plan: {
-    eyebrow: 'Estimation',
-    title: 'Essayez un plan.',
-    lead: 'Écrivez qui vous cherchez et choisissez lignes et colonnes : vous lisez le coût maximum avant de lancer.',
-    inputLabel: 'Qui vous voulez joindre',
-    examplesLabel: 'Autres exemples',
-    examples: [
-      { brief: 'Agences marketing à Lyon', rows: 50, columns: ['email', 'ai'] },
-      { brief: 'Acheteurs de la grande distribution', rows: 80, columns: ['email', 'ai'] },
-      { brief: 'CFO de sociétés SaaS en Allemagne', rows: 60, columns: ['email', 'phone'] },
-    ],
-    rows: 'Lignes',
-    columns: 'Colonnes obligatoires',
-    column: {
-      email: 'E-mail contrôlé',
-      phone: 'Téléphone',
-      ai: 'Colonne IA avec source',
-    },
-    credit: 'crédit',
-    credits: 'crédits',
-    perRow: 'par ligne',
-    max: 'Coût maximum',
-    rules: {
-      instant: 'Jusqu’à 100 crédits, la recherche démarre tout de suite.',
-      approve:
-        'Au-delà de 100 crédits, l’agent vous montre le plan et ne démarre qu’après votre accord.',
-      confirm: 'Au-delà de 500 crédits, nous demandons aussi une seconde confirmation.',
-    },
-    note: 'Les entreprises et personnes trouvées sont gratuites. Une ligne sans champ obligatoire n’est pas livrée et vous ne la payez pas.',
-  },
   how: {
     eyebrow: 'Fonctionnement',
     titleLine: 'Du brief à la première réponse,',
@@ -153,10 +123,10 @@ export const fr: Content = {
         n: '02',
         title: 'Approuvez le plan',
         short: 'Coût maximal, annoncé d’avance',
-        body: 'Jusqu’à 100 crédits, la recherche démarre tout de suite. Au-delà, vous voyez le plan, avec les lignes, les colonnes et le coût maximal, et vous l’approuvez. Les colonnes marquées d’un astérisque décident de ce qui est livré.',
+        body: 'Vous voyez le plan, avec les lignes et les colonnes, et vous l’approuvez. Les colonnes marquées d’un astérisque décident de ce qui est livré.',
         points: [
-          'Le plan et les questions sont gratuits',
-          'Au-delà de 100 crédits, rien ne démarre sans votre accord ; au-delà de 500, nous demandons une confirmation de plus',
+          'Rien ne démarre sans votre accord',
+          'Vous voyez lignes et colonnes avant le départ',
           'Les lignes se règlent dans le plan ; colonnes et étapes se demandent à l’agent',
         ],
         art: {
@@ -168,7 +138,7 @@ export const fr: Content = {
             '2 · 2 responsables achats par chaîne',
             '3 · Vérifier les e-mails et une colonne IA',
           ],
-          note: 'Au-delà de 100 crédits, rien avant votre approbation',
+          note: 'Rien ne démarre sans votre accord',
         },
       },
       {
@@ -178,7 +148,7 @@ export const fr: Content = {
         body: 'Deux listes liées, personnes et entreprises, avec un e-mail contrôlé par un vérificateur et un score d’adéquation pour chacune. Chaque donnée recherchée a sa source.',
         points: [
           'Les premières lignes arrivent pendant que l’agent travaille',
-          'Les lignes incomplètes ne sont ni livrées ni facturées',
+          'Les lignes incomplètes ne sont pas livrées',
           'Export en CSV ou Excel quand vous voulez',
         ],
         art: {
@@ -230,16 +200,6 @@ export const fr: Content = {
     eyebrow: 'Pourquoi Zenbree',
     titleLine: 'Conçu pour ceux qui vendent,',
     titleRest: 'pas pour ceux qui achètent des listes.',
-    pay: {
-      title: 'Vous ne payez que ce qui arrive',
-      body: 'Une ligne sans les champs obligatoires n’est pas livrée. Ses crédits reviennent sur votre solde à la fin de la recherche.',
-      ledgerSearch: 'Agences de marketing Milan',
-      ledgerSearchValue: '−120',
-      ledgerRefund: 'Lignes non livrées',
-      ledgerRefundValue: '+6',
-      ledgerBalance: 'Solde',
-      ledgerBalanceValue: '886 crédits',
-    },
     source: {
       title: 'Chaque donnée a sa source',
       body: 'Les colonnes IA ne gardent une valeur que si elle est écrite sur une page que vous pouvez ouvrir.',
@@ -286,12 +246,8 @@ export const fr: Content = {
     moreAfter: '.',
     items: [
       {
-        q: 'Qu’est-ce qu’un crédit ?',
-        a: 'L’unité qui sert à payer le travail de l’agent : e-mails et numéros de téléphone trouvés, colonnes IA. Jusqu’à 100 crédits, une recherche démarre tout de suite ; au-delà, l’agent vous montre le plan avec son coût maximal, et vous l’approuvez. Les lignes non livrées reviennent sur votre solde.',
-      },
-      {
         q: 'Et si un e-mail est introuvable ?',
-        a: 'Si l’e-mail est obligatoire dans le plan, cette ligne n’est pas livrée et vous ne la payez pas. Nous signalons les e-mails « catch-all » comme étant à vérifier.',
+        a: 'Si l’e-mail est obligatoire dans le plan, cette ligne n’est pas livrée. Nous signalons les e-mails « catch-all » comme étant à vérifier.',
       },
       {
         q: 'Dois-je connecter LinkedIn ou ma messagerie ?',
@@ -303,15 +259,11 @@ export const fr: Content = {
       },
       {
         q: 'Puis-je importer une liste que j’ai déjà ?',
-        a: 'Oui : importez un CSV et l’agent le complète avec des e-mails, des numéros de téléphone et des colonnes de recherche. Les lignes présentes dans vos exclusions sont écartées. L’import est gratuit.',
+        a: 'Oui : importez un CSV et l’agent le complète avec des e-mails, des numéros de téléphone et des colonnes de recherche. Les lignes présentes dans vos exclusions sont écartées.',
       },
       {
         q: 'D’où viennent les données, et est-ce conforme au RGPD ?',
         a: 'De fournisseurs de données professionnelles et de pages publiques, toujours avec la source. Chaque e-mail de campagne permet de se désinscrire, et toute personne qui le fait entre définitivement dans les exclusions du projet. Les exclusions s’appliquent à toutes les campagnes du projet. La base légale et l’information de l’art. 14 du RGPD relèvent de l’expéditeur : Zenbree ne donne pas de conseil juridique.',
-      },
-      {
-        q: 'Si un e-mail rebondit, suis-je remboursé du crédit ?',
-        a: 'Un crédit est débité quand une adresse est trouvée et que le vérificateur ne la rejette pas, catch-all compris. Une adresse rejetée n’est pas débitée. Après l’envoi, nous ne lisons pas les rebonds aujourd’hui (les réponses arrivent toujours dans votre boîte Zenbree), et le crédit d’un e-mail qui rebondit plus tard n’est pas remboursé.',
       },
       {
         q: 'Combien d’e-mails et de messages puis-je envoyer par jour ?',
@@ -320,10 +272,6 @@ export const fr: Content = {
       {
         q: 'Puis-je garder mes clients séparés ?',
         a: 'Oui. Chaque client est un projet avec ses listes, exclusions, boîtes mail et LinkedIn, campagnes et boîte de réception. Les exclusions d’un projet ne touchent pas les autres.',
-      },
-      {
-        q: 'Puis-je fixer un plafond de dépenses ?',
-        a: 'Le plafond est par recherche : le plan montre le coût maximal et, au-delà de 100 crédits, il ne démarre qu’après votre accord (au-delà de 500, nous demandons une confirmation de plus). Il n’y a pas de limite mensuelle, mais vous ne pouvez pas dépenser plus que votre solde.',
       },
     ],
   },
