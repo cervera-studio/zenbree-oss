@@ -130,6 +130,10 @@ def resolve_and_validate_host(hostname: str) -> Result[list[tuple]]:
         if isinstance(ip, ipaddress.IPv6Address) and ip in _NAT64_PREFIX:
             ip = ipaddress.ip_address(int(ip) & 0xFFFFFFFF)
 
+        # '::' is in no listed network, yet Linux connects to it as loopback.
+        if ip.is_unspecified or ip.is_multicast or ip.is_reserved:
+            return err(SSRF_BLOCKED, detail=f'Blocked IP range: {ip_str}')
+
         for network in _BLOCKED_NETWORKS:
             try:
                 if ip in network:

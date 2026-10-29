@@ -69,14 +69,15 @@ async def authenticate(credentials: HTTPAuthorizationCredentials | None = Depend
 
     ponytail: the earlier implementation's failed_auth_guard (per-IP failed-auth bucket, which also
     stops bogus-``kid`` tokens from forcing a JWKS refetch each) is not ported.
-    PyJWKClient refetches on a kid miss; add the guard before public launch.
+    PyJWKClient refetches on a kid miss; the lookup runs in a thread so a refetch does not stall the event
+    loop, but each bogus ``kid`` still costs a fetch: add the guard if that shows up.
     """
     if credentials is None:
         raise _unauthorized('AUTH.TOKEN_MISSING', 'Not authenticated')
 
     token = credentials.credentials
     try:
-        signing_key = _jwks_client.get_signing_key_from_jwt(token)
+        signing_key = await asyncio.to_thread(_jwks_client.get_signing_key_from_jwt, token)
         payload = jwt.decode(
             token,
             signing_key.key,

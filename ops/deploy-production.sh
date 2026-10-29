@@ -29,6 +29,11 @@ for key in BETTER_AUTH_SECRET BETTER_AUTH_API_KEY BETTER_AUTH_URL OAUTH_TOKEN_EN
     exit 1
   }
 done
+# compose falls back to the dev password when the variable is unset
+if printf '%s\n' "$cfg" | grep -qE '^ +POSTGRES_PASSWORD: "?postgres"?$'; then
+  echo 'deploy fermato: POSTGRES_PASSWORD assente o uguale al default in Infisical prod' >&2
+  exit 1
+fi
 unset cfg INFISICAL_TOKEN
 
 IMAGE_TAG=$IMAGE_TAG ZENBREE_ENV_FILE="$secrets_file" docker compose --env-file "$secrets_file" --profile prod pull -q
